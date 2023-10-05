@@ -1,7 +1,7 @@
 {
   "sounds": {
     "nature": {
-      "label": "Nature",
+      "title": "Nature",
       "sounds": [
         {
           "label": "Rain",
@@ -38,7 +38,7 @@
       ]
     },
     "urban": {
-      "label": "Urban",
+      "title": "Urban",
       "sounds": [
         {
           "label": "Airport",

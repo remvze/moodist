@@ -26,7 +26,8 @@
     "@types/react-dom": "^18.2.10",
     "astro": "^3.2.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "4.11.0"
   },
   "devDependencies": {
     "@commitlint/cli": "17.7.2",
@@ -60,7 +61,6 @@
     "stylelint-config-html": "1.1.0",
     "stylelint-config-idiomatic-order": "9.0.0",
     "stylelint-config-standard": "34.0.0",
-    "stylelint-prettier": "4.0.2",
-    "tsc-files": "1.1.4"
+    "stylelint-prettier": "4.0.2"
   }
 }
