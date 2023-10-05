@@ -26,12 +26,19 @@
     "plugin:react/jsx-runtime",
     "plugin:jsx-a11y/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:astro/recommended"
+    "plugin:astro/recommended",
+    "prettier"
   ],
 
-  "plugins": ["@typescript-eslint", "sort-keys-fix", "sort-destructure-keys"],
+  "plugins": [
+    "@typescript-eslint",
+    "sort-keys-fix",
+    "sort-destructure-keys",
+    "prettier"
+  ],
 
   "rules": {
+    "prettier/prettier": "error",
     "sort-keys-fix/sort-keys-fix": ["warn", "asc"],
     "sort-destructure-keys/sort-destructure-keys": "warn",
     "react/jsx-sort-props": [
