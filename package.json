@@ -14,7 +14,11 @@
     "lint:style:fix": "npm run lint:style -- --fix",
     "format": "prettier . --write",
     "prepare": "husky install",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "release": "standard-version --no-verify",
+    "release:major": "npm run release -- --release-as major",
+    "release:minor": "npm run release -- --release-as minor",
+    "release:patch": "npm run release -- --release-as patch"
   },
   "dependencies": {
     "@astrojs/react": "^3.0.3",
@@ -48,6 +52,7 @@
     "postcss-html": "1.5.0",
     "prettier": "3.0.3",
     "prettier-plugin-astro": "0.12.0",
+    "standard-version": "9.5.0",
     "stylelint": "15.10.3",
     "stylelint-config-html": "1.1.0",
     "stylelint-config-idiomatic-order": "9.0.0",
