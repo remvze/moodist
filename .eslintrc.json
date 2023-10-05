@@ -61,7 +61,12 @@
 
     "import/resolver": {
       "typescript": true,
-      "node": true
+      "node": true,
+
+      "alias": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".d.ts"],
+        "map": [["@", "./src"]]
+      }
     }
   },
 
