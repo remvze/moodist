@@ -12,7 +12,8 @@
     "lint:fix": "npm run lint -- --fix",
     "lint:style": "stylelint ./**/*.{css,astro,html}",
     "lint:style:fix": "npm run lint:style -- --fix",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@astrojs/react": "^3.0.3",
@@ -37,6 +38,7 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-sort-destructure-keys": "1.5.0",
     "eslint-plugin-sort-keys-fix": "1.1.2",
+    "husky": "8.0.3",
     "lint-staged": "14.0.1",
     "postcss-html": "1.5.0",
     "prettier": "3.0.3",
