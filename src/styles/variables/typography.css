@@ -1,0 +1,20 @@
+:root {
+  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Inter Tight', sans-serif;
+  --font-display: 'Fraunces', serif;
+
+  /* Font Sizes */
+  --font-base-size: 1rem;
+  --font-pos-ratio: 1.2;
+  --font-neg-ratio: 1.125;
+  --font-3xlg: calc(var(--font-xxlg) * var(--font-pos-ratio));
+  --font-2xlg: calc(var(--font-xlg) * var(--font-pos-ratio));
+  --font-xlg: calc(var(--font-lg) * var(--font-pos-ratio));
+  --font-lg: calc(var(--font-md) * var(--font-pos-ratio));
+  --font-md: calc(var(--font-base) * var(--font-pos-ratio));
+  --font-base: var(--font-base-size);
+  --font-sm: calc(var(--font-base) / var(--font-neg-ratio));
+  --font-xsm: calc(var(--font-sm) / var(--font-neg-ratio));
+  --font-2xsm: calc(var(--font-xsm) / var(--font-neg-ratio));
+  --font-3xsm: calc(var(--font-xxsm) / var(--font-neg-ratio));
+}

@@ -1,0 +1,18 @@
+:root {
+  --color-neutral-50: #09090b;
+  --color-neutral-100: #18181b;
+  --color-neutral-200: #27272a;
+  --color-neutral-300: #3f3f46;
+  --color-neutral-400: #52525b;
+  --color-neutral-500: #71717a;
+  --color-neutral-600: #a1a1aa;
+  --color-neutral-700: #d4d4d8;
+  --color-neutral-800: #e4e4e7;
+  --color-neutral-900: #f4f4f5;
+  --color-neutral-950: #fafafa;
+
+  /* Foreground */
+  --color-foreground: var(--color-neutral-900);
+  --color-foreground-subtle: var(--color-neutral-600);
+  --color-foreground-subtler: var(--color-neutral-500);
+}
