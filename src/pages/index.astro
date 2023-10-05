@@ -1,76 +1,9 @@
 ---
 import Layout from '@/layouts/layout.astro';
+
+import { Hero } from '@/components/hero';
 ---
 
 <Layout title="Welcome to Astro.">
-  <main>Hello World</main>
+  <Hero />
 </Layout>
-
-<style>
-  main {
-    width: 800px;
-    max-width: calc(100% - 2rem);
-    padding: 1rem;
-    margin: auto;
-    color: white;
-    font-size: 20px;
-    line-height: 1.6;
-  }
-
-  .astro-a {
-    position: absolute;
-    z-index: -1;
-    top: -32px;
-    left: 50%;
-    width: 220px;
-    height: auto;
-    transform: translateX(-50%);
-  }
-
-  h1 {
-    margin-bottom: 1em;
-    font-size: 4rem;
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
-  }
-
-  .text-gradient {
-    background-clip: text;
-    background-image: var(--accent-gradient);
-    background-position: 0%;
-    background-size: 400%;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .instructions {
-    padding: 1.5rem;
-    border: 1px solid rgb(var(--accent-light) 25%);
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    background: linear-gradient(
-      rgb(var(--accent-dark) 66%),
-      rgb(var(--accent-dark) 33%)
-    );
-  }
-
-  .instructions code {
-    padding: 0.3em 0.4em;
-    border-radius: 4px;
-    background: rgb(var(--accent-light) 12%);
-    color: rgb(var(--accent-light));
-    font-size: 0.8em;
-    font-weight: bold;
-  }
-
-  .instructions strong {
-    color: rgb(var(--accent-light));
-  }
-
-  .link-card-grid {
-    display: grid;
-    padding: 0;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-  }
-</style>
