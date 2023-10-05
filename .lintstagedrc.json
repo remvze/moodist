@@ -1,0 +1,8 @@
+{
+  "*.{ts,tsx}": ["eslint --fix", "tsc-files --noEmit"],
+  "*.{js,jsx}": "eslint --fix",
+  "*.{json,md}": "prettier --write",
+  "*.css": "stylelint --fix",
+  "*.astro": ["eslint --fix", "stylelint --fix"],
+  "*.html": ["prettier --write", "stylelint --fix"]
+}
