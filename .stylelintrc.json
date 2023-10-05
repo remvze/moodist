@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-idiomatic-order",
+    "stylelint-config-html",
+    "stylelint-prettier/recommended"
+  ],
+
+  "rules": {
+    "import-notation": "string",
+    "selector-class-pattern": null
+  },
+
+  "overrides": [
+    {
+      "files": ["*.astro"],
+      "rules": {
+        "prettier/prettier": null
+      }
+    }
+  ]
+}

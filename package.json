@@ -9,7 +9,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "lint:style": "stylelint ./**/*.{css,astro,html}",
+    "lint:style:fix": "npm run lint:style -- --fix"
   },
   "dependencies": {
     "@astrojs/react": "^3.0.3",
@@ -31,6 +33,12 @@
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-sort-destructure-keys": "1.5.0",
-    "eslint-plugin-sort-keys-fix": "1.1.2"
+    "eslint-plugin-sort-keys-fix": "1.1.2",
+    "postcss-html": "1.5.0",
+    "stylelint": "15.10.3",
+    "stylelint-config-html": "1.1.0",
+    "stylelint-config-idiomatic-order": "9.0.0",
+    "stylelint-config-standard": "34.0.0",
+    "stylelint-prettier": "4.0.2"
   }
 }
