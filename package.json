@@ -13,7 +13,8 @@
     "lint:style": "stylelint ./**/*.{css,astro,html}",
     "lint:style:fix": "npm run lint:style -- --fix",
     "format": "prettier . --write",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commit": "git-cz"
   },
   "dependencies": {
     "@astrojs/react": "^3.0.3",
@@ -29,6 +30,8 @@
     "@typescript-eslint/eslint-plugin": "6.7.4",
     "@typescript-eslint/parser": "6.7.4",
     "astro-eslint-parser": "0.16.0",
+    "commitizen": "4.3.0",
+    "cz-conventional-changelog": "3.3.0",
     "eslint": "8.50.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-import-resolver-typescript": "3.6.1",
