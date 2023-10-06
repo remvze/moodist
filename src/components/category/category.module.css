@@ -1,4 +1,8 @@
 .category {
+  &:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+
   & .iconContainer {
     display: flex;
     flex-direction: column;

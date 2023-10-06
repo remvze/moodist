@@ -8,6 +8,14 @@ import sounds from '@/data/sounds.json';
 ---
 
 <Layout title="Welcome to Astro.">
-  <Hero />
-  <Categories client:load sounds={sounds.sounds} />
+  <main>
+    <Hero />
+    <Categories client:load sounds={sounds.sounds} />
+  </main>
 </Layout>
+
+<style>
+  main {
+    padding-bottom: 100px;
+  }
+</style>

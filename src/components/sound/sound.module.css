@@ -32,7 +32,7 @@
 
   & h3 {
     font-family: var(--font-heading);
-    font-size: 15px;
+    font-size: var(--font-sm);
     font-weight: 600;
     line-height: 1.6;
   }
