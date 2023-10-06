@@ -53,10 +53,10 @@
     align-items: center;
     justify-content: center;
     padding: 6px 16px;
-    border: 1px solid #2563eb;
+    border: 1px solid var(--color-neutral-200);
     border-radius: 100px;
     margin: 20px auto 0;
-    background-color: rgb(37 99 235 / 30%);
+    background-color: var(--color-neutral-100);
     font-size: var(--font-xsm);
 
     &::before {
@@ -65,7 +65,12 @@
       left: 50%;
       width: 70%;
       height: 1px;
-      background: linear-gradient(90deg, transparent, #60a5fa, transparent);
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--color-neutral-400),
+        transparent
+      );
       content: '';
       transform: translateX(-50%);
     }

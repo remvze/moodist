@@ -6,7 +6,7 @@
   justify-content: center;
   padding: 30px 20px;
   border: 1px solid var(--color-neutral-200);
-  border-radius: 10px;
+  border-radius: 8px;
   background: linear-gradient(var(--color-neutral-100), transparent);
   text-align: center;
 
@@ -19,22 +19,15 @@
     background: linear-gradient(
       90deg,
       transparent,
-      var(--color-neutral-300),
+      var(--color-neutral-400),
       transparent
     );
     content: '';
   }
 
   &.selected {
-    &.green {
-      border: 2px solid #4ade80;
-      box-shadow: 0 10px 20px #4ade8033;
-    }
-
-    &.indigo {
-      border: 2px solid #818cf8;
-      box-shadow: 0 10px 20px #818cf833;
-    }
+    border: 2px solid #818cf8;
+    box-shadow: 0 10px 20px #818cf833;
   }
 
   & h3 {

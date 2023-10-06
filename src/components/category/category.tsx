@@ -1,38 +1,25 @@
-import { useMemo } from 'react';
-
 import { Sounds } from '@/components/sounds';
-import { cn } from '@/helpers/styles';
 
 import styles from './category.module.css';
 
 interface CategoryProps {
-  color: string;
   icon: React.ReactNode;
   title: string;
   id: string;
   sounds: Array<{ label: string; src: string }>;
 }
 
-export function Category({ color, icon, sounds, title }: CategoryProps) {
-  const colorStyle = useMemo(() => {
-    const colorToStyle: { [color: string]: string } = {
-      green: styles.green,
-      indigo: styles.indigo,
-    };
-
-    return colorToStyle[color];
-  }, [color]);
-
+export function Category({ icon, sounds, title }: CategoryProps) {
   return (
     <div className={styles.category}>
       <div className={styles.iconContainer}>
-        <div className={cn(styles.tail, colorStyle)} />
-        <div className={cn(styles.icon, colorStyle)}>{icon}</div>
+        <div className={styles.tail} />
+        <div className={styles.icon}>{icon}</div>
       </div>
 
       <h2 className={styles.title}>{title}</h2>
 
-      <Sounds color={color} sounds={sounds} />
+      <Sounds sounds={sounds} />
     </div>
   );
 }

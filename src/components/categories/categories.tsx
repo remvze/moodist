@@ -19,11 +19,6 @@ interface CategoriesProps {
 
 export function Categories({ sounds }: CategoriesProps) {
   const categories = useMemo(() => {
-    const idToColor: { [id: string]: string } = {
-      nature: 'green',
-      urban: 'indigo',
-    };
-
     const idToIcon: { [id: string]: React.ReactNode } = {
       nature: <BiSolidTree />,
       urban: <FaCity />,
@@ -31,7 +26,6 @@ export function Categories({ sounds }: CategoriesProps) {
 
     const ids = Object.keys(sounds);
     const categories: Array<{
-      color: string;
       icon: React.ReactNode;
       title: string;
       id: string;
@@ -42,7 +36,6 @@ export function Categories({ sounds }: CategoriesProps) {
       const category = sounds[id];
 
       categories.push({
-        color: idToColor[id] || 'green',
         icon: idToIcon[id] || '-',
         id: id,
         ...category,

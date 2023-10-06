@@ -1,26 +1,16 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { cn } from '@/helpers/styles';
 
 import styles from './sound.module.css';
 
 interface SoundProps {
-  color: string;
   sound: { label: string; src: string };
 }
 
-export function Sound({ color, sound }: SoundProps) {
+export function Sound({ sound }: SoundProps) {
   const [isSelected, setIsSelected] = useState(false);
   const [volume, setVolume] = useState(0.5);
-
-  const colorStyle = useMemo(() => {
-    const colorToStyle: { [color: string]: string } = {
-      green: styles.green,
-      indigo: styles.indigo,
-    };
-
-    return colorToStyle[color];
-  }, [color]);
 
   useEffect(() => {
     if (!isSelected) setVolume(0.5);
@@ -28,7 +18,7 @@ export function Sound({ color, sound }: SoundProps) {
 
   return (
     <div
-      className={cn(styles.sound, isSelected && styles.selected, colorStyle)}
+      className={cn(styles.sound, isSelected && styles.selected)}
       onClick={() => setIsSelected(prev => !prev)}
       onKeyDown={() => setIsSelected(prev => !prev)}
     >
