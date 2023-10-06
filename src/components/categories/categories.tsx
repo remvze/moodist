@@ -3,6 +3,8 @@ import { FaCity } from 'react-icons/fa';
 
 import { Container } from '@/components/container';
 import { Category } from '@/components/category';
+import { PlayButton } from '@/components/play-button';
+import { PlayProvider } from '@/contexts/play';
 
 interface CategoriesProps {
   categories: Array<{
@@ -22,16 +24,20 @@ export function Categories({ categories }: CategoriesProps) {
   };
 
   return (
-    <Container>
-      <div>
-        {categories.map(category => (
-          <Category
-            {...category}
-            icon={idToIcon[category.id] || idToIcon.nature}
-            key={category.id}
-          />
-        ))}
-      </div>
-    </Container>
+    <PlayProvider>
+      <Container>
+        <div>
+          {categories.map(category => (
+            <Category
+              {...category}
+              icon={idToIcon[category.id] || idToIcon.nature}
+              key={category.id}
+            />
+          ))}
+        </div>
+
+        <PlayButton />
+      </Container>
+    </PlayProvider>
   );
 }

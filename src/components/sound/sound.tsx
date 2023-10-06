@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { useSound } from '@/hooks/use-sound';
+import { usePlay } from '@/contexts/play';
 import { cn } from '@/helpers/styles';
 
 import styles from './sound.module.css';
@@ -11,6 +12,7 @@ interface SoundProps {
 }
 
 export function Sound({ label, src }: SoundProps) {
+  const { isPlaying } = usePlay();
   const [isSelected, setIsSelected] = useState(false);
   const [volume, setVolume] = useState(0.5);
 
@@ -18,14 +20,15 @@ export function Sound({ label, src }: SoundProps) {
 
   useEffect(() => {
     if (!isSelected) {
-      sound?.pause();
       setVolume(0.5);
     }
 
-    if (isSelected) {
+    if (isSelected && isPlaying) {
       sound?.play();
+    } else {
+      sound?.pause();
     }
-  }, [isSelected, sound]);
+  }, [isSelected, sound, isPlaying]);
 
   return (
     <div
