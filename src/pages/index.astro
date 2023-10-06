@@ -4,13 +4,14 @@ import Layout from '@/layouts/layout.astro';
 import { Hero } from '@/components/hero';
 import { Categories } from '@/components/categories';
 
-import sounds from '@/data/sounds.json';
+// import sounds from '@/data/sounds.json';
+import { sounds } from '@/data/sounds';
 ---
 
 <Layout title="Welcome to Astro.">
   <main>
     <Hero />
-    <Categories client:load sounds={sounds.sounds} />
+    <Categories categories={sounds.categories} client:load />
   </main>
 </Layout>
 
