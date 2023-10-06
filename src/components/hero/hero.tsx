@@ -1,3 +1,5 @@
+import { Balancer } from 'react-wrap-balancer';
+
 import { Container } from '@/components/container';
 
 import styles from './hero.module.css';
@@ -18,7 +20,9 @@ export function Hero() {
           <div className={styles.right} />
         </div>
 
-        <p className={styles.desc}>Ambient background sounds for focus.</p>
+        <p className={styles.desc}>
+          <Balancer>Ambient background sounds for focus.</Balancer>
+        </p>
 
         <p className={styles.free}>100% Free</p>
       </Container>

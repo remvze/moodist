@@ -44,6 +44,7 @@
   & .desc {
     margin-top: 5px;
     color: var(--color-foreground-subtle);
+    line-height: 1.6;
   }
 
   & .free {
