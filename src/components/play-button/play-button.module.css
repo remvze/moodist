@@ -1,5 +1,6 @@
 .playButton {
   position: sticky;
+  z-index: 10;
   top: 30px;
   display: flex;
   width: 150px;
