@@ -10,7 +10,7 @@ export function Sounds({ sounds }: SoundsProps) {
   return (
     <div className={styles.sounds}>
       {sounds.map(sound => (
-        <Sound key={sound.label} sound={sound} />
+        <Sound key={sound.label} {...sound} />
       ))}
     </div>
   );

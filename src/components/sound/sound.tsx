@@ -1,20 +1,31 @@
 import { useState, useEffect } from 'react';
 
+import { useSound } from '@/hooks/use-sound';
 import { cn } from '@/helpers/styles';
 
 import styles from './sound.module.css';
 
 interface SoundProps {
-  sound: { label: string; src: string };
+  label: string;
+  src: string;
 }
 
-export function Sound({ sound }: SoundProps) {
+export function Sound({ label, src }: SoundProps) {
   const [isSelected, setIsSelected] = useState(false);
   const [volume, setVolume] = useState(0.5);
 
+  const sound = useSound(src, { loop: true, volume });
+
   useEffect(() => {
-    if (!isSelected) setVolume(0.5);
-  }, [isSelected]);
+    if (!isSelected) {
+      sound?.pause();
+      setVolume(0.5);
+    }
+
+    if (isSelected) {
+      sound?.play();
+    }
+  }, [isSelected, sound]);
 
   return (
     <div
@@ -22,8 +33,9 @@ export function Sound({ sound }: SoundProps) {
       onClick={() => setIsSelected(prev => !prev)}
       onKeyDown={() => setIsSelected(prev => !prev)}
     >
-      <h3>{sound.label}</h3>
+      <h3>{label}</h3>
       <input
+        autoComplete="off"
         disabled={!isSelected}
         max={100}
         min={0}
