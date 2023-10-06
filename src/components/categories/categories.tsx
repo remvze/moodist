@@ -26,6 +26,8 @@ export function Categories({ categories }: CategoriesProps) {
   return (
     <PlayProvider>
       <Container>
+        <PlayButton />
+
         <div>
           {categories.map(category => (
             <Category
@@ -35,8 +37,6 @@ export function Categories({ categories }: CategoriesProps) {
             />
           ))}
         </div>
-
-        <PlayButton />
       </Container>
     </PlayProvider>
   );
