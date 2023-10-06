@@ -1,4 +1,4 @@
-import { BiPause, BiPlay } from 'react-icons/bi';
+import { BiPause, BiPlay } from 'react-icons/bi/index';
 
 import { usePlay } from '@/contexts/play';
 

@@ -1,5 +1,5 @@
-import { BiSolidTree } from 'react-icons/bi';
-import { FaCity } from 'react-icons/fa';
+import { BiSolidTree } from 'react-icons/bi/index';
+import { FaCity } from 'react-icons/fa/index';
 
 import { Container } from '@/components/container';
 import { Category } from '@/components/category';
