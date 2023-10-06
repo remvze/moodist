@@ -31,6 +31,7 @@
   }
 
   & h3 {
+    cursor: default;
     font-family: var(--font-heading);
     font-size: var(--font-sm);
     font-weight: 600;
