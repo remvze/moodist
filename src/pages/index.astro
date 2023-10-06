@@ -1,7 +1,6 @@
 ---
 import Layout from '@/layouts/layout.astro';
 
-import { Gradient } from '@/components/gradient';
 import { Hero } from '@/components/hero';
 import { Categories } from '@/components/categories';
 
@@ -9,7 +8,6 @@ import sounds from '@/data/sounds.json';
 ---
 
 <Layout title="Welcome to Astro.">
-  <Gradient />
   <Hero />
   <Categories client:load sounds={sounds.sounds} />
 </Layout>
