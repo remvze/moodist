@@ -36,8 +36,9 @@ export function Sound({ label, src }: SoundProps) {
       onClick={() => setIsSelected(prev => !prev)}
       onKeyDown={() => setIsSelected(prev => !prev)}
     >
-      <h3>{label}</h3>
+      <h3 id={label}>{label}</h3>
       <input
+        aria-labelledby={label}
         autoComplete="off"
         disabled={!isSelected}
         max={100}
