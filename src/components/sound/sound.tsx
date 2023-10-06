@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
+import { useLocalStorage } from '@/hooks/use-local-storage';
 
 import { useSound } from '@/hooks/use-sound';
 import { usePlay } from '@/contexts/play';
@@ -13,16 +14,15 @@ interface SoundProps {
 
 export function Sound({ label, src }: SoundProps) {
   const { isPlaying } = usePlay();
-  const [isSelected, setIsSelected] = useState(false);
-  const [volume, setVolume] = useState(0.5);
+  const [isSelected, setIsSelected] = useLocalStorage(
+    `${label}-is-selected`,
+    false,
+  );
+  const [volume, setVolume] = useLocalStorage(`${label}-volume`, 0.5);
 
   const sound = useSound(src, { loop: true, volume });
 
   useEffect(() => {
-    if (!isSelected) {
-      setVolume(0.5);
-    }
-
     if (isSelected && isPlaying) {
       sound?.play();
     } else {
@@ -30,11 +30,16 @@ export function Sound({ label, src }: SoundProps) {
     }
   }, [isSelected, sound, isPlaying]);
 
+  const toggle = useCallback(() => {
+    setIsSelected(prev => !prev);
+    setVolume(0.5);
+  }, [setIsSelected, setVolume]);
+
   return (
     <div
       className={cn(styles.sound, isSelected && styles.selected)}
-      onClick={() => setIsSelected(prev => !prev)}
-      onKeyDown={() => setIsSelected(prev => !prev)}
+      onClick={toggle}
+      onKeyDown={toggle}
     >
       <h3 id={label}>{label}</h3>
       <input
