@@ -7,7 +7,12 @@ export const PlayContext = createContext({
   toggle: () => {},
 });
 
-export const usePlay = () => useContext(PlayContext);
+export const usePlay = (): {
+  isPlaying: boolean;
+  pause: () => void;
+  play: () => void;
+  toggle: () => void;
+} => useContext(PlayContext);
 
 interface PlayProviderProps {
   children: React.ReactNode;
@@ -18,10 +23,10 @@ export function PlayProvider({ children }: PlayProviderProps) {
 
   const play = useCallback(() => setIsPlaying(true), []);
   const pause = useCallback(() => setIsPlaying(false), []);
-  const toggle = useCallback(
-    () => (isPlaying ? pause() : play()),
-    [isPlaying, play, pause],
-  );
+  const toggle = useCallback(() => {
+    if (isPlaying) pause();
+    else play();
+  }, [isPlaying, play, pause]);
 
   return (
     <PlayContext.Provider value={{ isPlaying, pause, play, toggle }}>

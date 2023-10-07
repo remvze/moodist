@@ -13,7 +13,7 @@ interface SoundProps {
 }
 
 export function Sound({ label, src }: SoundProps) {
-  const { isPlaying } = usePlay();
+  const { isPlaying, play } = usePlay();
   const [isSelected, setIsSelected] = useLocalStorage(
     `${label}-is-selected`,
     false,
@@ -30,10 +30,21 @@ export function Sound({ label, src }: SoundProps) {
     }
   }, [isSelected, sound, isPlaying]);
 
-  const toggle = useCallback(() => {
-    setIsSelected(prev => !prev);
+  const select = useCallback(() => {
+    setIsSelected(true);
+    play();
+  }, [setIsSelected, play]);
+
+  const unselect = useCallback(() => {
+    setIsSelected(false);
     setVolume(0.5);
   }, [setIsSelected, setVolume]);
+
+  const toggle = useCallback(() => {
+    if (isSelected) return unselect();
+
+    select();
+  }, [isSelected, unselect, select]);
 
   return (
     <div
