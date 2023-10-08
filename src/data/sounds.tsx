@@ -1,11 +1,12 @@
-import { BiSolidTree, BiWater } from 'react-icons/bi/index';
+import { BiSolidTree, BiWater, BiSolidCoffeeAlt } from 'react-icons/bi/index';
 import { FaCity, FaCloudShowersHeavy, FaWater } from 'react-icons/fa/index';
 import { PiBirdFill } from 'react-icons/pi/index';
 import { MdOutlineThunderstorm } from 'react-icons/md/index';
-import { GiCricket } from 'react-icons/gi/index';
-import { BsSoundwave } from 'react-icons/bs/index';
+import { GiCricket, GiSeagull, GiWindow } from 'react-icons/gi/index';
+import { BsFire, BsAirplaneFill } from 'react-icons/bs/index';
+// import { BsSoundwave } from 'react-icons/bs/index';
 
-const defaultIcon = <BsSoundwave />;
+// const defaultIcon = <BsSoundwave />;
 
 export const sounds: {
   categories: Array<{
@@ -51,12 +52,12 @@ export const sounds: {
           src: '/sounds/waves.mp3',
         },
         {
-          icon: defaultIcon,
+          icon: <GiSeagull />,
           label: 'Seagulls',
           src: '/sounds/seagulls.mp3',
         },
         {
-          icon: defaultIcon,
+          icon: <BsFire />,
           label: 'Campfire',
           src: '/sounds/campfire.mp3',
         },
@@ -68,17 +69,17 @@ export const sounds: {
       id: 'urban',
       sounds: [
         {
-          icon: defaultIcon,
+          icon: <BsAirplaneFill />,
           label: 'Airport',
           src: '/sounds/airport.mp3',
         },
         {
-          icon: defaultIcon,
+          icon: <BiSolidCoffeeAlt />,
           label: 'Cafe',
           src: '/sounds/cafe.mp3',
         },
         {
-          icon: defaultIcon,
+          icon: <GiWindow />,
           label: 'Rain on Window',
           src: '/sounds/rain-on-window.mp3',
         },

@@ -74,7 +74,7 @@
   }
 
   & h3 {
-    margin-top: 6px;
+    margin-top: 8px;
     cursor: default;
     font-family: var(--font-heading);
     font-size: var(--font-sm);
@@ -85,7 +85,7 @@
   & input {
     width: 100%;
     max-width: 120px;
-    margin-top: 12px;
+    margin-top: 10px;
 
     /********** Range Input Styles **********/
 
