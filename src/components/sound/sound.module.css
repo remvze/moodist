@@ -25,11 +25,6 @@
     content: '';
   }
 
-  &.selected {
-    border: 2px solid #818cf8;
-    box-shadow: 0 10px 20px #818cf833;
-  }
-
   & .icon {
     position: relative;
     z-index: 2;
@@ -39,6 +34,7 @@
     align-items: center;
     justify-content: center;
     font-size: var(--font-base);
+    transition: 0.2s;
 
     &::after {
       position: absolute;
@@ -68,8 +64,17 @@
     }
   }
 
+  &.selected {
+    border: 2px solid #818cf8;
+    box-shadow: 0 10px 20px #818cf833;
+
+    & .icon {
+      color: #818cf8;
+    }
+  }
+
   & h3 {
-    margin-top: 12px;
+    margin-top: 6px;
     cursor: default;
     font-family: var(--font-heading);
     font-size: var(--font-sm);
@@ -80,7 +85,7 @@
   & input {
     width: 100%;
     max-width: 120px;
-    margin-top: 6px;
+    margin-top: 12px;
 
     /********** Range Input Styles **********/
 
