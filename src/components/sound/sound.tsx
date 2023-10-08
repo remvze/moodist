@@ -12,9 +12,18 @@ interface SoundProps {
   src: string;
   icon: React.ReactNode;
   hidden: boolean;
+  selectHidden: (key: string) => void;
+  unselectHidden: (key: string) => void;
 }
 
-export function Sound({ hidden, icon, label, src }: SoundProps) {
+export function Sound({
+  hidden,
+  icon,
+  label,
+  selectHidden,
+  src,
+  unselectHidden,
+}: SoundProps) {
   const { isPlaying, play } = usePlay();
   const [isSelected, setIsSelected] = useLocalStorage(
     `${label}-is-selected`,
@@ -31,6 +40,11 @@ export function Sound({ hidden, icon, label, src }: SoundProps) {
       sound?.pause();
     }
   }, [isSelected, sound, isPlaying]);
+
+  useEffect(() => {
+    if (hidden && isSelected) selectHidden(label);
+    else if (hidden && !isSelected) unselectHidden(label);
+  }, [label, isSelected, hidden, selectHidden, unselectHidden]);
 
   const select = useCallback(() => {
     setIsSelected(true);
