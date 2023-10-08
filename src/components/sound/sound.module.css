@@ -10,6 +10,10 @@
   background: linear-gradient(var(--color-neutral-100), transparent);
   text-align: center;
 
+  &.hidden {
+    display: none;
+  }
+
   &:not(.selected)::before {
     position: absolute;
     top: -1px;

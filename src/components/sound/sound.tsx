@@ -11,9 +11,10 @@ interface SoundProps {
   label: string;
   src: string;
   icon: React.ReactNode;
+  hidden: boolean;
 }
 
-export function Sound({ icon, label, src }: SoundProps) {
+export function Sound({ hidden, icon, label, src }: SoundProps) {
   const { isPlaying, play } = usePlay();
   const [isSelected, setIsSelected] = useLocalStorage(
     `${label}-is-selected`,
@@ -49,7 +50,11 @@ export function Sound({ icon, label, src }: SoundProps) {
 
   return (
     <div
-      className={cn(styles.sound, isSelected && styles.selected)}
+      className={cn(
+        styles.sound,
+        isSelected && styles.selected,
+        hidden && styles.hidden,
+      )}
       onClick={toggle}
       onKeyDown={toggle}
     >

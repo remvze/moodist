@@ -9,7 +9,7 @@ interface CategoryProps {
   sounds: Array<{ label: string; src: string; icon: React.ReactNode }>;
 }
 
-export function Category({ icon, sounds, title }: CategoryProps) {
+export function Category({ icon, id, sounds, title }: CategoryProps) {
   return (
     <div className={styles.category}>
       <div className={styles.iconContainer}>
@@ -19,7 +19,7 @@ export function Category({ icon, sounds, title }: CategoryProps) {
 
       <h2 className={styles.title}>{title}</h2>
 
-      <Sounds sounds={sounds} />
+      <Sounds id={id} sounds={sounds} />
     </div>
   );
 }

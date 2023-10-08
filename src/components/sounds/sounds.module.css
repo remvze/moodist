@@ -4,3 +4,36 @@
   gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
+
+.button {
+  position: relative;
+  display: flex;
+  width: max-content;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 50px;
+  margin: 25px auto 0;
+  background-color: var(--color-neutral-50);
+  color: var(--color-neutral-subtle);
+  cursor: pointer;
+  font-size: var(--font-xsm);
+
+  &::before {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    width: 70%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-neutral-300),
+      transparent
+    );
+    content: '';
+    transform: translateX(-50%);
+  }
+}
