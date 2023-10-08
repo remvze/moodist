@@ -10,9 +10,10 @@ import styles from './sound.module.css';
 interface SoundProps {
   label: string;
   src: string;
+  icon: React.ReactNode;
 }
 
-export function Sound({ label, src }: SoundProps) {
+export function Sound({ icon, label, src }: SoundProps) {
   const { isPlaying, play } = usePlay();
   const [isSelected, setIsSelected] = useLocalStorage(
     `${label}-is-selected`,
@@ -52,6 +53,8 @@ export function Sound({ label, src }: SoundProps) {
       onClick={toggle}
       onKeyDown={toggle}
     >
+      <div className={styles.icon}>{icon}</div>
+
       <h3 id={label}>{label}</h3>
       <input
         aria-labelledby={label}

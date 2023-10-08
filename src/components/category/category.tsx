@@ -6,7 +6,7 @@ interface CategoryProps {
   icon: React.ReactNode;
   title: string;
   id: string;
-  sounds: Array<{ label: string; src: string }>;
+  sounds: Array<{ label: string; src: string; icon: React.ReactNode }>;
 }
 
 export function Category({ icon, sounds, title }: CategoryProps) {

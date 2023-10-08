@@ -1,27 +1,12 @@
-import { BiSolidTree } from 'react-icons/bi/index';
-import { FaCity } from 'react-icons/fa/index';
-
 import { Container } from '@/components/container';
 import { Category } from '@/components/category';
 import { PlayButton } from '@/components/play-button';
 import { PlayProvider } from '@/contexts/play';
 
-interface CategoriesProps {
-  categories: Array<{
-    id: string;
-    title: string;
-    sounds: Array<{
-      label: string;
-      src: string;
-    }>;
-  }>;
-}
+import { sounds } from '@/data/sounds';
 
-export function Categories({ categories }: CategoriesProps) {
-  const idToIcon: { [id: string]: React.ReactNode } = {
-    nature: <BiSolidTree />,
-    urban: <FaCity />,
-  };
+export function Categories() {
+  const { categories } = sounds;
 
   return (
     <PlayProvider>
@@ -30,11 +15,7 @@ export function Categories({ categories }: CategoriesProps) {
 
         <div>
           {categories.map(category => (
-            <Category
-              {...category}
-              icon={idToIcon[category.id] || idToIcon.nature}
-              key={category.id}
-            />
+            <Category {...category} key={category.id} />
           ))}
         </div>
       </Container>
