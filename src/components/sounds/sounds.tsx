@@ -50,7 +50,7 @@ export function Sounds({ id, sounds }: SoundsProps) {
           <Sound
             key={sound.label}
             {...sound}
-            hidden={!showAll && index > 3}
+            hidden={!showAll && index > 5}
             selectHidden={selectHidden}
             unselectHidden={unselectHidden}
           />
