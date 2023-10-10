@@ -11,6 +11,7 @@ export interface SoundState {
       volume: number;
     };
   };
+  noSelected: () => boolean;
 }
 
 export const createState: StateCreator<
@@ -18,8 +19,18 @@ export const createState: StateCreator<
   [],
   [],
   SoundState
-> = () => {
-  const state: SoundState = { sounds: {} };
+> = (set, get) => {
+  const state: SoundState = {
+    noSelected() {
+      const { sounds } = get();
+      const keys = Object.keys(sounds);
+
+      return keys.every(key => !sounds[key].isSelected);
+    },
+
+    sounds: {},
+  };
+
   const { categories } = sounds;
 
   categories.forEach(category => {
