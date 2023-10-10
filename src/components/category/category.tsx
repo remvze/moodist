@@ -6,6 +6,7 @@ interface CategoryProps {
   icon: React.ReactNode;
   title: string;
   id: string;
+  functional: boolean;
   sounds: Array<{
     label: string;
     src: string;
@@ -14,7 +15,13 @@ interface CategoryProps {
   }>;
 }
 
-export function Category({ icon, id, sounds, title }: CategoryProps) {
+export function Category({
+  functional = true,
+  icon,
+  id,
+  sounds,
+  title,
+}: CategoryProps) {
   return (
     <div className={styles.category}>
       <div className={styles.iconContainer}>
@@ -24,7 +31,7 @@ export function Category({ icon, id, sounds, title }: CategoryProps) {
 
       <h2 className={styles.title}>{title}</h2>
 
-      <Sounds id={id} sounds={sounds} />
+      <Sounds functional={functional} id={id} sounds={sounds} />
     </div>
   );
 }

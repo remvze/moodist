@@ -8,6 +8,7 @@ import styles from './sounds.module.css';
 
 interface SoundsProps {
   id: string;
+  functional: boolean;
   sounds: Array<{
     label: string;
     src: string;
@@ -16,7 +17,7 @@ interface SoundsProps {
   }>;
 }
 
-export function Sounds({ id, sounds }: SoundsProps) {
+export function Sounds({ functional, id, sounds }: SoundsProps) {
   const [showAll, setShowAll] = useLocalStorage(`${id}-show-more`, false);
 
   const [hiddenSelections, setHiddenSelections] = useState<{
@@ -50,14 +51,17 @@ export function Sounds({ id, sounds }: SoundsProps) {
           <Sound
             key={sound.label}
             {...sound}
+            functional={functional}
             hidden={!showAll && index > 5}
             selectHidden={selectHidden}
             unselectHidden={unselectHidden}
           />
         ))}
+
+        {sounds.length < 2 && new Array(2 - sounds.length).fill(<div />)}
       </div>
 
-      {sounds.length > 4 && (
+      {sounds.length > 6 && (
         <button
           className={cn(
             styles.button,

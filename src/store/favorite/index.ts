@@ -1,17 +1,17 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-import { type SoundState, createState } from './sound.state';
-import { type SoundActions, createActions } from './sound.actions';
+import { type FavoriteState, createState } from './favorite.state';
+import { type FavoriteActions, createActions } from './favorite.actions';
 
-export const useSoundStore = create<SoundState & SoundActions>()(
+export const useFavoriteStore = create<FavoriteState & FavoriteActions>()(
   persist(
     (...a) => ({
       ...createState(...a),
       ...createActions(...a),
     }),
     {
-      name: 'moodist-sounds',
+      name: 'moodist-favorites',
       skipHydration: true,
       storage: createJSONStorage(() => localStorage),
       version: 0,

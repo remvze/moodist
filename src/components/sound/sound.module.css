@@ -29,6 +29,28 @@
     content: '';
   }
 
+  & .favoriteButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 50%;
+    background-color: black;
+    background-color: var(--color-neutral-100);
+    color: var(--color-foreground);
+    cursor: pointer;
+    outline: none;
+
+    &.isFavorite {
+      color: #f43f5e;
+    }
+  }
+
   & .icon {
     position: relative;
     z-index: 2;
@@ -84,78 +106,5 @@
     font-size: var(--font-sm);
     font-weight: 600;
     line-height: 1.6;
-  }
-
-  & input {
-    width: 100%;
-    max-width: 120px;
-    margin-top: 10px;
-
-    /********** Range Input Styles **********/
-
-    /* Range Reset */
-    appearance: none;
-    background: transparent;
-    cursor: pointer;
-
-    /* Removes default focus */
-    &:focus {
-      outline: none;
-    }
-
-    &:disabled {
-      cursor: default;
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    /***** Chrome, Safari, Opera and Edge Chromium styles *****/
-
-    &::-webkit-slider-runnable-track {
-      height: 0.5rem;
-      border-radius: 0.5rem;
-      background-color: #27272a;
-    }
-
-    &::-webkit-slider-thumb {
-      width: 14px;
-      height: 14px;
-      border: 1px solid #52525b;
-      border-radius: 50%;
-      margin-top: -3px;
-      appearance: none;
-      background-color: #3f3f46;
-    }
-
-    &:not(:disabled):focus::-webkit-slider-thumb {
-      border: 1px solid #053a5f;
-      outline: 3px solid #053a5f;
-      outline-offset: 0.125rem;
-    }
-
-    /******** Firefox styles ********/
-
-    &::-moz-range-track {
-      height: 0.5rem;
-      border-radius: 0.5rem;
-      background-color: #27272a;
-    }
-
-    &::-moz-range-thumb {
-      width: 14px;
-      height: 14px;
-      border: none;
-      border: 1px solid #52525b;
-      border-radius: 0;
-      border-radius: 50%;
-      margin-top: -3px;
-      background-color: #3f3f46;
-    }
-
-    &:not(:disabled):focus::-moz-range-thumb {
-      border: 1px solid #053a5f;
-      outline: 3px solid #053a5f;
-      outline-offset: 0.125rem;
-    }
   }
 }
