@@ -28,7 +28,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "4.11.0",
-    "react-wrap-balancer": "1.1.0"
+    "react-wrap-balancer": "1.1.0",
+    "zustand": "4.4.3"
   },
   "devDependencies": {
     "@commitlint/cli": "17.7.2",

@@ -3,14 +3,12 @@ import Layout from '@/layouts/layout.astro';
 
 import { Hero } from '@/components/hero';
 import { Categories } from '@/components/categories';
-
-import { sounds } from '@/data/sounds';
 ---
 
 <Layout title="Welcome to Astro.">
   <main>
     <Hero />
-    <Categories categories={sounds.categories} client:load />
+    <Categories client:load />
   </main>
 </Layout>
 

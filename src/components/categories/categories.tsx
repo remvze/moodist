@@ -1,4 +1,5 @@
 import { Container } from '@/components/container';
+import { StoreConsumer } from '../store-consumer';
 import { Category } from '@/components/category';
 import { PlayButton } from '@/components/play-button';
 import { PlayProvider } from '@/contexts/play';
@@ -9,16 +10,18 @@ export function Categories() {
   const { categories } = sounds;
 
   return (
-    <PlayProvider>
-      <Container>
-        <PlayButton />
+    <StoreConsumer>
+      <PlayProvider>
+        <Container>
+          <PlayButton />
 
-        <div>
-          {categories.map(category => (
-            <Category {...category} key={category.id} />
-          ))}
-        </div>
-      </Container>
-    </PlayProvider>
+          <div>
+            {categories.map(category => (
+              <Category {...category} key={category.id} />
+            ))}
+          </div>
+        </Container>
+      </PlayProvider>
+    </StoreConsumer>
   );
 }

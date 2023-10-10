@@ -8,7 +8,12 @@ import styles from './sounds.module.css';
 
 interface SoundsProps {
   id: string;
-  sounds: Array<{ label: string; src: string; icon: React.ReactNode }>;
+  sounds: Array<{
+    label: string;
+    src: string;
+    icon: React.ReactNode;
+    id: string;
+  }>;
 }
 
 export function Sounds({ id, sounds }: SoundsProps) {
