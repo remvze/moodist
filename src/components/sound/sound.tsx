@@ -1,5 +1,7 @@
 import { useCallback, useEffect } from 'react';
 
+import { Range } from './range';
+
 import { useSound } from '@/hooks/use-sound';
 import { useSoundStore } from '@/store';
 import { usePlay } from '@/contexts/play';
@@ -27,11 +29,6 @@ export function Sound({
   unselectHidden,
 }: SoundProps) {
   const { isPlaying, play } = usePlay();
-  // const [isSelected, setIsSelected] = useLocalStorage(
-  //   `${label}-is-selected`,
-  //   false,
-  // );
-  // const [volume, setVolume] = useLocalStorage(`${label}-volume`, 0.5);
 
   const select = useSoundStore(state => state.select);
   const unselect = useSoundStore(state => state.unselect);
@@ -81,21 +78,8 @@ export function Sound({
       onKeyDown={toggle}
     >
       <div className={styles.icon}>{icon}</div>
-
       <h3 id={label}>{label}</h3>
-      <input
-        aria-labelledby={label}
-        autoComplete="off"
-        disabled={!isSelected}
-        max={100}
-        min={0}
-        type="range"
-        value={volume * 100}
-        onClick={e => e.stopPropagation()}
-        onChange={e =>
-          isSelected && setVolume(id, Number(e.target.value) / 100)
-        }
-      />
+      <Range id={id} label={label} />
     </div>
   );
 }
