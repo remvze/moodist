@@ -1,11 +1,10 @@
 import { useCallback, useEffect } from 'react';
-import { BiHeart, BiSolidHeart } from 'react-icons/bi/index';
 
 import { Range } from './range';
+import { Like } from './like';
 
 import { useSound } from '@/hooks/use-sound';
 import { useSoundStore } from '@/store';
-import { useFavoriteStore } from '@/store/favorite';
 import { usePlay } from '@/contexts/play';
 import { cn } from '@/helpers/styles';
 
@@ -39,9 +38,6 @@ export function Sound({
   const setVolume = useSoundStore(state => state.setVolume);
   const volume = useSoundStore(state => state.sounds[id].volume);
   const isSelected = useSoundStore(state => state.sounds[id].isSelected);
-
-  const isFavorite = useFavoriteStore(state => state.favorites.includes(id));
-  const toggleFavorite = useFavoriteStore(state => state.toggleFavorite);
 
   const sound = useSound(src, { loop: true, volume });
 
@@ -84,15 +80,7 @@ export function Sound({
       onClick={toggle}
       onKeyDown={toggle}
     >
-      <button
-        className={cn(styles.favoriteButton, isFavorite && styles.isFavorite)}
-        onClick={e => {
-          e.stopPropagation();
-          toggleFavorite(id);
-        }}
-      >
-        {isFavorite ? <BiSolidHeart /> : <BiHeart />}
-      </button>
+      <Like id={id} />
       <div className={styles.icon}>{icon}</div>
       <h3 id={label}>{label}</h3>
       <Range id={id} label={label} />
