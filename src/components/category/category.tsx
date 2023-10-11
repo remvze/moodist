@@ -6,7 +6,7 @@ interface CategoryProps {
   icon: React.ReactNode;
   title: string;
   id: string;
-  functional: boolean;
+  functional?: boolean;
   sounds: Array<{
     label: string;
     src: string;

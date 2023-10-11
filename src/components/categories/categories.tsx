@@ -45,8 +45,15 @@ export function Categories() {
                 functional={false}
                 icon={<BiSolidHeart />}
                 id="favorites"
-                sounds={favoriteSounds}
                 title="Favorites"
+                sounds={
+                  favoriteSounds as Array<{
+                    src: string;
+                    label: string;
+                    id: string;
+                    icon: React.ReactNode;
+                  }>
+                }
               />
             )}
 
