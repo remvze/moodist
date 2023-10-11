@@ -42,6 +42,7 @@ export function Buttons() {
       </button>
 
       <button
+        aria-label="Shuffle Sounds"
         className={styles.shuffleButton}
         onClick={() => {
           shuffle();
