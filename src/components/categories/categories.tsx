@@ -18,10 +18,17 @@ export function Categories() {
   const favorites = useFavoriteStore(useShallow(state => state.favorites));
 
   const favoriteSounds = useMemo(() => {
-    return categories
+    const favoriteSounds = categories
       .map(category => category.sounds)
       .flat()
       .filter(sound => favorites.includes(sound.id));
+
+    /**
+     * Reorder based on the order of favorites
+     */
+    return favorites.map(favorite =>
+      favoriteSounds.find(sound => sound.id === favorite),
+    );
   }, [favorites, categories]);
 
   useEffect(() => console.log({ favoriteSounds }), [favoriteSounds]);
