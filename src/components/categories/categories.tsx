@@ -1,8 +1,9 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import { BiSolidHeart } from 'react-icons/bi/index';
 
 import { useFavoriteStore } from '@/store/favorite';
+import { useSoundStore } from '@/store/sound';
 
 import { Container } from '@/components/container';
 import { StoreConsumer } from '../store-consumer';
@@ -12,10 +13,13 @@ import { PlayProvider } from '@/contexts/play';
 
 import { sounds } from '@/data/sounds';
 
+import styles from './categories.module.css';
+
 export function Categories() {
   const categories = useMemo(() => sounds.categories, []);
 
   const favorites = useFavoriteStore(useShallow(state => state.favorites));
+  const noSelected = useSoundStore(state => state.noSelected());
 
   const favoriteSounds = useMemo(() => {
     const favoriteSounds = categories
@@ -31,13 +35,13 @@ export function Categories() {
     );
   }, [favorites, categories]);
 
-  useEffect(() => console.log({ favoriteSounds }), [favoriteSounds]);
-
   return (
     <StoreConsumer>
       <PlayProvider>
         <Container>
           <Buttons />
+
+          {noSelected && <p className={styles.help}>Select a sound to play!</p>}
 
           <div>
             {!!favoriteSounds.length && (

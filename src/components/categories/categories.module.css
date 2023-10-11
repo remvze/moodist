@@ -1,0 +1,6 @@
+.help {
+  margin-top: 20px;
+  color: var(--color-foreground-subtle);
+  font-size: var(--font-sm);
+  text-align: center;
+}
