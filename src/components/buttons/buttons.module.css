@@ -25,8 +25,10 @@
     line-height: 0;
     outline: none;
 
-    &:disabled {
+    &:disabled,
+    &.disabled {
       cursor: default;
+      opacity: 0.8;
     }
 
     & span {
@@ -53,8 +55,10 @@
     outline: none;
     transition: 0.2s;
 
-    &:disabled {
+    &:disabled,
+    &.disabled {
       cursor: default;
+      opacity: 0.8;
     }
 
     &.restore {

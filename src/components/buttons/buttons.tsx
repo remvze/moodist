@@ -27,7 +27,7 @@ export function Buttons() {
   return (
     <div className={styles.buttons}>
       <button
-        className={styles.playButton}
+        className={cn(styles.playButton, noSelected && styles.disabled)}
         disabled={noSelected}
         onClick={handleClick}
       >
@@ -56,6 +56,7 @@ export function Buttons() {
         className={cn(
           styles.smallButton,
           hasHistory ? styles.restore : styles.delete,
+          noSelected && !hasHistory && styles.disabled,
         )}
         onClick={() => {
           if (hasHistory) restoreHistory();

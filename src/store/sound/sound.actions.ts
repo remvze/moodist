@@ -27,6 +27,7 @@ export const createActions: StateCreator<
 
     select(id) {
       set({
+        history: null,
         sounds: {
           ...get().sounds,
           [id]: { ...get().sounds[id], isSelected: true },
