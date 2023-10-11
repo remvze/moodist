@@ -27,8 +27,7 @@
 
     &:disabled,
     &.disabled {
-      cursor: default;
-      opacity: 0.8;
+      cursor: not-allowed;
     }
 
     & span {
@@ -57,8 +56,7 @@
 
     &:disabled,
     &.disabled {
-      cursor: default;
-      opacity: 0.8;
+      cursor: not-allowed;
     }
 
     &.restore {
