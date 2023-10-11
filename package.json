@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^3.0.3",
+    "@floating-ui/react": "0.26.0",
     "@types/react": "^18.2.25",
     "@types/react-dom": "^18.2.10",
     "astro": "^3.2.3",
