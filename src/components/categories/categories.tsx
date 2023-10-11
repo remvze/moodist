@@ -7,7 +7,7 @@ import { useFavoriteStore } from '@/store/favorite';
 import { Container } from '@/components/container';
 import { StoreConsumer } from '../store-consumer';
 import { Category } from '@/components/category';
-import { PlayButton } from '@/components/play-button';
+import { Buttons } from '@/components/buttons';
 import { PlayProvider } from '@/contexts/play';
 
 import { sounds } from '@/data/sounds';
@@ -37,7 +37,7 @@ export function Categories() {
     <StoreConsumer>
       <PlayProvider>
         <Container>
-          <PlayButton />
+          <Buttons />
 
           <div>
             {!!favoriteSounds.length && (

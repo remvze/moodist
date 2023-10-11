@@ -1,0 +1,51 @@
+.buttons {
+  position: sticky;
+  z-index: 10;
+  top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+
+  & .playButton {
+    display: flex;
+    width: 150px;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 100px;
+    border-top: 2px solid #818cf8;
+    border-bottom: 3px solid #4f46e5;
+    background-color: #6366f1;
+    color: var(--color-foreground);
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: var(--font-base);
+    line-height: 0;
+    outline: none;
+
+    & span {
+      font-size: var(--font-lg);
+    }
+  }
+
+  & .shuffleButton {
+    display: flex;
+    width: 45px;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 100px;
+    border-top: 2px solid var(--color-neutral-950);
+    border-bottom: 3px solid var(--color-neutral-600);
+    background-color: var(--color-neutral-800);
+    color: var(--color-neutral-200);
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: var(--font-md);
+    line-height: 0;
+    outline: none;
+  }
+}
