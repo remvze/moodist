@@ -42,7 +42,7 @@
     border-radius: 50%;
     background-color: black;
     background-color: var(--color-neutral-100);
-    color: var(--color-foreground);
+    color: var(--color-foreground-subtle);
     cursor: pointer;
     outline: none;
 
