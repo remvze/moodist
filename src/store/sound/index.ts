@@ -12,6 +12,7 @@ export const useSoundStore = create<SoundState & SoundActions>()(
     }),
     {
       name: 'moodist-sounds',
+      partialize: state => ({ sounds: state.sounds }),
       skipHydration: true,
       storage: createJSONStorage(() => localStorage),
       version: 0,

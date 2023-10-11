@@ -1,15 +1,18 @@
 import { useEffect } from 'react';
-import { BiPause, BiPlay, BiShuffle } from 'react-icons/bi/index';
+import { BiPause, BiPlay, BiUndo, BiTrash } from 'react-icons/bi/index';
 
 import { useSoundStore } from '@/store';
 import { usePlay } from '@/contexts/play';
+import { cn } from '@/helpers/styles';
 
 import styles from './buttons.module.css';
 
 export function Buttons() {
-  const { isPlaying, pause, play, toggle } = usePlay();
+  const { isPlaying, pause, toggle } = usePlay();
   const noSelected = useSoundStore(state => state.noSelected());
-  const shuffle = useSoundStore(state => state.shuffle);
+  const restoreHistory = useSoundStore(state => state.restoreHistory);
+  const hasHistory = useSoundStore(state => !!state.history);
+  const unselectAll = useSoundStore(state => state.unselectAll);
 
   const handleClick = () => {
     if (noSelected) return pause();
@@ -23,7 +26,11 @@ export function Buttons() {
 
   return (
     <div className={styles.buttons}>
-      <button className={styles.playButton} onClick={handleClick}>
+      <button
+        className={styles.playButton}
+        disabled={noSelected}
+        onClick={handleClick}
+      >
         {isPlaying ? (
           <>
             <span>
@@ -42,14 +49,20 @@ export function Buttons() {
       </button>
 
       <button
-        aria-label="Shuffle Sounds"
-        className={styles.shuffleButton}
+        disabled={noSelected && !hasHistory}
+        aria-label={
+          hasHistory ? 'Restore Unselected Sounds' : 'Unselect All Sounds'
+        }
+        className={cn(
+          styles.smallButton,
+          hasHistory ? styles.restore : styles.delete,
+        )}
         onClick={() => {
-          shuffle();
-          play();
+          if (hasHistory) restoreHistory();
+          else if (!noSelected) unselectAll(true);
         }}
       >
-        <BiShuffle />
+        {hasHistory ? <BiUndo /> : <BiTrash />}
       </button>
     </div>
   );

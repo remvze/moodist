@@ -25,12 +25,16 @@
     line-height: 0;
     outline: none;
 
+    &:disabled {
+      cursor: default;
+    }
+
     & span {
       font-size: var(--font-lg);
     }
   }
 
-  & .shuffleButton {
+  & .smallButton {
     display: flex;
     width: 45px;
     height: 45px;
@@ -47,5 +51,24 @@
     font-size: var(--font-md);
     line-height: 0;
     outline: none;
+    transition: 0.2s;
+
+    &:disabled {
+      cursor: default;
+    }
+
+    &.restore {
+      border-top-color: #34d399;
+      border-bottom-color: #047857;
+      background-color: #10b981;
+      color: var(--color-foreground);
+    }
+
+    &.delete {
+      border-top-color: #fb7185;
+      border-bottom-color: #be123c;
+      background-color: #f43f5e;
+      color: var(--color-foreground);
+    }
   }
 }
