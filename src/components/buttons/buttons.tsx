@@ -90,7 +90,7 @@ export function Buttons() {
         )}
       </motion.button>
 
-      <AnimatePresence>
+      <AnimatePresence mode="popLayout">
         {(!noSelected || hasHistory) && (
           <motion.div
             animate={{ opacity: 1, x: 0 }}

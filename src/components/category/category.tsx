@@ -29,7 +29,7 @@ export function Category({
       animate={{ opacity: 1 }}
       className={styles.category}
       initial={{ opacity: 0 }}
-      layout
+      layout="position"
     >
       <div className={styles.iconContainer}>
         <div className={styles.tail} />
