@@ -12,6 +12,7 @@ import {
   useRole,
   useInteractions,
 } from '@floating-ui/react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import { useSoundStore } from '@/store';
 import { usePlay } from '@/contexts/play';
@@ -66,9 +67,10 @@ export function Buttons() {
 
   return (
     <div className={styles.buttons}>
-      <button
+      <motion.button
         className={cn(styles.playButton, noSelected && styles.disabled)}
         disabled={noSelected}
+        layout
         onClick={handleClick}
       >
         {isPlaying ? (
@@ -86,27 +88,37 @@ export function Buttons() {
             Play
           </>
         )}
-      </button>
+      </motion.button>
 
-      <button
-        disabled={noSelected && !hasHistory}
-        ref={refs.setReference}
-        {...getReferenceProps}
-        aria-label={
-          hasHistory ? 'Restore Unselected Sounds' : 'Unselect All Sounds'
-        }
-        className={cn(
-          styles.smallButton,
-          hasHistory ? styles.restore : styles.delete,
-          noSelected && !hasHistory && styles.disabled,
+      <AnimatePresence>
+        {(!noSelected || hasHistory) && (
+          <motion.div
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 20 }}
+          >
+            <button
+              disabled={noSelected && !hasHistory}
+              ref={refs.setReference}
+              {...getReferenceProps}
+              aria-label={
+                hasHistory ? 'Restore Unselected Sounds' : 'Unselect All Sounds'
+              }
+              className={cn(
+                styles.smallButton,
+                hasHistory ? styles.restore : styles.delete,
+                noSelected && !hasHistory && styles.disabled,
+              )}
+              onClick={() => {
+                if (hasHistory) restoreHistory();
+                else if (!noSelected) unselectAll(true);
+              }}
+            >
+              {hasHistory ? <BiUndo /> : <BiTrash />}
+            </button>
+          </motion.div>
         )}
-        onClick={() => {
-          if (hasHistory) restoreHistory();
-          else if (!noSelected) unselectAll(true);
-        }}
-      >
-        {hasHistory ? <BiUndo /> : <BiTrash />}
-      </button>
+      </AnimatePresence>
 
       {isTooltipOpen && (
         <div
