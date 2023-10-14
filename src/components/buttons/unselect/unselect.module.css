@@ -1,0 +1,39 @@
+.unselectButton {
+  display: flex;
+  width: 45px;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 100px;
+  border-top: 2px solid #fb7185;
+  border-bottom: 3px solid #be123c;
+  background-color: #f43f5e;
+  color: var(--color-foreground);
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: var(--font-md);
+  line-height: 0;
+  outline: none;
+  transition: 0.2s;
+
+  &:disabled,
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  &.restore {
+    border-top-color: #34d399;
+    border-bottom-color: #047857;
+    background-color: #10b981;
+    color: var(--color-foreground);
+  }
+}
+
+.tooltip {
+  padding: 6px 12px;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 100px;
+  background-color: var(--color-neutral-100);
+  font-size: var(--font-xsm);
+}
