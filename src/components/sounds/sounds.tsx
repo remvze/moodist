@@ -58,7 +58,10 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
           />
         ))}
 
-        {sounds.length < 2 && new Array(2 - sounds.length).fill(<div />)}
+        {sounds.length < 2 &&
+          new Array(2 - sounds.length)
+            .fill(null)
+            .map((_, index) => <div key={index} />)}
       </div>
 
       {sounds.length > 6 && (
