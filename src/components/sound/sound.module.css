@@ -69,8 +69,10 @@
   }
 
   &.selected {
-    border: 2px solid #818cf8;
-    box-shadow: 0 10px 20px #818cf833;
+    border-color: transparent;
+    box-shadow:
+      0 0 0 2px #818cf8,
+      0 10px 20px #818cf833;
 
     & .icon {
       color: #818cf8;
