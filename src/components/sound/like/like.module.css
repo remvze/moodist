@@ -13,6 +13,7 @@
   background-color: var(--color-neutral-100);
   color: var(--color-foreground-subtle);
   cursor: pointer;
+  line-height: 0;
   outline: none;
 
   &.isFavorite {
