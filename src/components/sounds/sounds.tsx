@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Sound } from '@/components/sound';
 import { useLocalStorage } from '@/hooks/use-local-storage';
 import { cn } from '@/helpers/styles';
+import { fade, scale, mix } from '@/lib/motion';
 
 import styles from './sounds.module.css';
 
@@ -45,6 +46,8 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
     }));
   }, []);
 
+  const variants = mix(fade(), scale(0.85));
+
   return (
     <div>
       <div className={styles.sounds}>
@@ -68,11 +71,12 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
       {sounds.length > 6 && (
         <AnimatePresence initial={false} mode="wait">
           <motion.button
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.85 }}
-            initial={{ opacity: 0, scale: 0.85 }}
+            animate="show"
+            exit="hidden"
+            initial="hidden"
             key={showAll ? `${id}-show-less` : `${id}-show-more`}
             transition={{ duration: 0.2 }}
+            variants={variants}
             className={cn(
               styles.button,
               hasHiddenSelection && !showAll && styles.active,

@@ -16,6 +16,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { useSoundStore } from '@/store';
 import { cn } from '@/helpers/styles';
+import { fade, mix, slideX } from '@/lib/motion';
 
 import styles from './unselect.module.css';
 
@@ -47,14 +48,17 @@ export function UnselectButton() {
   const hasHistory = useSoundStore(state => !!state.history);
   const unselectAll = useSoundStore(state => state.unselectAll);
 
+  const variants = mix(fade(), slideX(20));
+
   return (
     <>
       <AnimatePresence mode="popLayout">
         {(!noSelected || hasHistory) && (
           <motion.div
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            initial={{ opacity: 0, x: 20 }}
+            animate="show"
+            exit="hidden"
+            initial="hidden"
+            variants={variants}
           >
             <button
               disabled={noSelected && !hasHistory}
