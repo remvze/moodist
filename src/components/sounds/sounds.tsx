@@ -1,4 +1,5 @@
 import { useState, useMemo, useCallback } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import { Sound } from '@/components/sound';
 import { useLocalStorage } from '@/hooks/use-local-storage';
@@ -65,15 +66,22 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
       </div>
 
       {sounds.length > 6 && (
-        <button
-          className={cn(
-            styles.button,
-            hasHiddenSelection && !showAll && styles.active,
-          )}
-          onClick={() => setShowAll(prev => !prev)}
-        >
-          {showAll ? 'Show Less' : 'Show More'}
-        </button>
+        <AnimatePresence initial={false} mode="wait">
+          <motion.button
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.85 }}
+            initial={{ opacity: 0, scale: 0.85 }}
+            key={showAll ? `${id}-show-less` : `${id}-show-more`}
+            transition={{ duration: 0.2 }}
+            className={cn(
+              styles.button,
+              hasHiddenSelection && !showAll && styles.active,
+            )}
+            onClick={() => setShowAll(prev => !prev)}
+          >
+            {showAll ? 'Show Less' : 'Show More'}
+          </motion.button>
+        </AnimatePresence>
       )}
     </div>
   );
