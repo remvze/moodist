@@ -46,7 +46,7 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
     }));
   }, []);
 
-  const variants = mix(fade(), scale(0.85));
+  const variants = mix(fade(), scale(0.9));
 
   return (
     <div>
