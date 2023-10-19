@@ -3,13 +3,14 @@ import { BiPause, BiPlay } from 'react-icons/bi/index';
 import { motion } from 'framer-motion';
 
 import { useSoundStore } from '@/store';
-import { usePlay } from '@/contexts/play';
 import { cn } from '@/helpers/styles';
 
 import styles from './play.module.css';
 
 export function PlayButton() {
-  const { isPlaying, pause, toggle } = usePlay();
+  const isPlaying = useSoundStore(state => state.isPlaying);
+  const pause = useSoundStore(state => state.pause);
+  const toggle = useSoundStore(state => state.togglePlay);
   const noSelected = useSoundStore(state => state.noSelected());
 
   const handleClick = () => {

@@ -9,7 +9,6 @@ import { Container } from '@/components/container';
 import { StoreConsumer } from '../store-consumer';
 import { Category } from '@/components/category';
 import { Buttons } from '@/components/buttons';
-import { PlayProvider } from '@/contexts/play';
 
 import { sounds } from '@/data/sounds';
 
@@ -34,35 +33,33 @@ export function Categories() {
 
   return (
     <StoreConsumer>
-      <PlayProvider>
-        <Container>
-          <Buttons />
-          <div>
-            <AnimatePresence initial={false}>
-              {!!favoriteSounds.length && (
-                <Category
-                  functional={false}
-                  icon={<BiSolidHeart />}
-                  id="favorites"
-                  title="Favorites"
-                  sounds={
-                    favoriteSounds as Array<{
-                      src: string;
-                      label: string;
-                      id: string;
-                      icon: React.ReactNode;
-                    }>
-                  }
-                />
-              )}
+      <Container>
+        <Buttons />
+        <div>
+          <AnimatePresence initial={false}>
+            {!!favoriteSounds.length && (
+              <Category
+                functional={false}
+                icon={<BiSolidHeart />}
+                id="favorites"
+                title="Favorites"
+                sounds={
+                  favoriteSounds as Array<{
+                    src: string;
+                    label: string;
+                    id: string;
+                    icon: React.ReactNode;
+                  }>
+                }
+              />
+            )}
 
-              {categories.map(category => (
-                <Category {...category} key={category.id} />
-              ))}
-            </AnimatePresence>
-          </div>
-        </Container>
-      </PlayProvider>
+            {categories.map(category => (
+              <Category {...category} key={category.id} />
+            ))}
+          </AnimatePresence>
+        </div>
+      </Container>
     </StoreConsumer>
   );
 }

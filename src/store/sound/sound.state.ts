@@ -5,6 +5,7 @@ import type { SoundActions } from './sound.actions';
 import { sounds } from '@/data/sounds';
 
 export interface SoundState {
+  isPlaying: boolean;
   sounds: {
     [id: string]: {
       isSelected: boolean;
@@ -38,6 +39,7 @@ export const createState: StateCreator<
       return favorites;
     },
     history: null,
+    isPlaying: false,
     noSelected() {
       const { sounds } = get();
       const keys = Object.keys(sounds);

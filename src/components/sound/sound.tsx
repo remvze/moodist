@@ -5,7 +5,6 @@ import { Like } from './like';
 
 import { useSound } from '@/hooks/use-sound';
 import { useSoundStore } from '@/store';
-import { usePlay } from '@/contexts/play';
 import { cn } from '@/helpers/styles';
 
 import styles from './sound.module.css';
@@ -31,8 +30,8 @@ export function Sound({
   src,
   unselectHidden,
 }: SoundProps) {
-  const { isPlaying, play } = usePlay();
-
+  const isPlaying = useSoundStore(state => state.isPlaying);
+  const play = useSoundStore(state => state.play);
   const select = useSoundStore(state => state.select);
   const unselect = useSoundStore(state => state.unselect);
   const setVolume = useSoundStore(state => state.setVolume);
