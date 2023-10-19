@@ -1,7 +1,7 @@
 import { BiHeart, BiSolidHeart } from 'react-icons/bi/index';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { useFavoriteStore } from '@/store/favorite';
+import { useSoundStore } from '@/store';
 import { cn } from '@/helpers/styles';
 import { fade } from '@/lib/motion';
 
@@ -12,8 +12,8 @@ interface LikeProps {
 }
 
 export function Like({ id }: LikeProps) {
-  const isFavorite = useFavoriteStore(state => state.favorites.includes(id));
-  const toggleFavorite = useFavoriteStore(state => state.toggleFavorite);
+  const isFavorite = useSoundStore(state => state.sounds[id].isFavorite);
+  const toggleFavorite = useSoundStore(state => state.toggleFavorite);
 
   const variants = fade();
 

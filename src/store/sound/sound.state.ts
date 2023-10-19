@@ -8,16 +8,19 @@ export interface SoundState {
   sounds: {
     [id: string]: {
       isSelected: boolean;
+      isFavorite: boolean;
       volume: number;
     };
   };
   history: {
     [id: string]: {
       isSelected: boolean;
+      isFavorite: boolean;
       volume: number;
     };
   } | null;
   noSelected: () => boolean;
+  getFavorites: () => Array<string>;
 }
 
 export const createState: StateCreator<
@@ -27,6 +30,13 @@ export const createState: StateCreator<
   SoundState
 > = (set, get) => {
   const state: SoundState = {
+    getFavorites() {
+      const { sounds } = get();
+      const ids = Object.keys(sounds);
+      const favorites = ids.filter(id => sounds[id].isFavorite);
+
+      return favorites;
+    },
     history: null,
     noSelected() {
       const { sounds } = get();
@@ -44,6 +54,7 @@ export const createState: StateCreator<
 
     sounds.forEach(sound => {
       state.sounds[sound.id] = {
+        isFavorite: false,
         isSelected: false,
         volume: 0.5,
       };

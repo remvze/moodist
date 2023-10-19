@@ -8,6 +8,7 @@ export interface SoundActions {
   setVolume: (id: string, volume: number) => void;
   unselectAll: (pushToHistory?: boolean) => void;
   restoreHistory: () => void;
+  toggleFavorite: (id: string) => void;
 }
 
 export const createActions: StateCreator<
@@ -40,6 +41,18 @@ export const createActions: StateCreator<
         sounds: {
           ...get().sounds,
           [id]: { ...get().sounds[id], volume },
+        },
+      });
+    },
+
+    toggleFavorite(id) {
+      const sounds = get().sounds;
+      const sound = sounds[id];
+
+      set({
+        sounds: {
+          ...sounds,
+          [id]: { ...sound, isFavorite: !sound.isFavorite },
         },
       });
     },

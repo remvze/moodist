@@ -3,7 +3,7 @@ import { useShallow } from 'zustand/react/shallow';
 import { BiSolidHeart } from 'react-icons/bi/index';
 import { AnimatePresence } from 'framer-motion';
 
-import { useFavoriteStore } from '@/store/favorite';
+import { useSoundStore } from '@/store';
 
 import { Container } from '@/components/container';
 import { StoreConsumer } from '../store-consumer';
@@ -16,7 +16,7 @@ import { sounds } from '@/data/sounds';
 export function Categories() {
   const categories = useMemo(() => sounds.categories, []);
 
-  const favorites = useFavoriteStore(useShallow(state => state.favorites));
+  const favorites = useSoundStore(useShallow(state => state.getFavorites()));
 
   const favoriteSounds = useMemo(() => {
     const favoriteSounds = categories
