@@ -11,12 +11,7 @@ import { Categories } from '@/components/categories';
 
 import { sounds } from '@/data/sounds';
 
-interface Sound {
-  src: string;
-  label: string;
-  id: string;
-  icon: React.ReactNode;
-}
+import type { Sound } from '@/data/types';
 
 export function App() {
   const categories = useMemo(() => sounds.categories, []);

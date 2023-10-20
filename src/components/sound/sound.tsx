@@ -9,12 +9,10 @@ import { cn } from '@/helpers/styles';
 
 import styles from './sound.module.css';
 
-interface SoundProps {
-  label: string;
-  src: string;
-  icon: React.ReactNode;
+import type { Sound } from '@/data/types';
+
+interface SoundProps extends Sound {
   hidden: boolean;
-  id: string;
   functional: boolean;
   selectHidden: (key: string) => void;
   unselectHidden: (key: string) => void;

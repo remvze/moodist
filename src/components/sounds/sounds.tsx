@@ -8,15 +8,12 @@ import { fade, scale, mix } from '@/lib/motion';
 
 import styles from './sounds.module.css';
 
+import type { Sounds } from '@/data/types';
+
 interface SoundsProps {
   id: string;
   functional: boolean;
-  sounds: Array<{
-    label: string;
-    src: string;
-    icon: React.ReactNode;
-    id: string;
-  }>;
+  sounds: Sounds;
 }
 
 export function Sounds({ functional, id, sounds }: SoundsProps) {

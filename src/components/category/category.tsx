@@ -5,17 +5,10 @@ import { fade } from '@/lib/motion';
 
 import styles from './category.module.css';
 
-interface CategoryProps {
-  icon: React.ReactNode;
-  title: string;
-  id: string;
+import type { Category } from '@/data/types';
+
+interface CategoryProps extends Category {
   functional?: boolean;
-  sounds: Array<{
-    label: string;
-    src: string;
-    icon: React.ReactNode;
-    id: string;
-  }>;
 }
 
 export function Category({

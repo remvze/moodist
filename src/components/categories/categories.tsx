@@ -2,18 +2,10 @@ import { AnimatePresence } from 'framer-motion';
 
 import { Category } from '@/components/category';
 
+import type { Categories } from '@/data/types';
+
 interface CategoriesProps {
-  categories: Array<{
-    id: string;
-    title: string;
-    icon: React.ReactNode;
-    sounds: Array<{
-      label: string;
-      src: string;
-      icon: React.ReactNode;
-      id: string;
-    }>;
-  }>;
+  categories: Categories;
 }
 
 export function Categories({ categories }: CategoriesProps) {
