@@ -2,13 +2,13 @@
 import Layout from '@/layouts/layout.astro';
 
 import { Hero } from '@/components/hero';
-import { Categories } from '@/components/categories';
+import { App } from '@/components/app';
 ---
 
 <Layout title="Welcome to Astro.">
   <main>
     <Hero />
-    <Categories client:load />
+    <App client:load />
   </main>
 </Layout>
 
