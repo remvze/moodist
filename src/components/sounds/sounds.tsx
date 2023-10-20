@@ -11,8 +11,8 @@ import styles from './sounds.module.css';
 import type { Sounds } from '@/data/types';
 
 interface SoundsProps {
-  id: string;
   functional: boolean;
+  id: string;
   sounds: Sounds;
 }
 

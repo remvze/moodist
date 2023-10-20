@@ -21,6 +21,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:typescript-sort-keys/recommended",
     "plugin:import/recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
@@ -32,6 +33,7 @@
 
   "plugins": [
     "@typescript-eslint",
+    "typescript-sort-keys",
     "sort-keys-fix",
     "sort-destructure-keys",
     "prettier"

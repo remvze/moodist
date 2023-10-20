@@ -12,8 +12,8 @@ import styles from './sound.module.css';
 import type { Sound } from '@/data/types';
 
 interface SoundProps extends Sound {
-  hidden: boolean;
   functional: boolean;
+  hidden: boolean;
   selectHidden: (key: string) => void;
   unselectHidden: (key: string) => void;
 }

@@ -5,23 +5,23 @@ import type { SoundActions } from './sound.actions';
 import { sounds } from '@/data/sounds';
 
 export interface SoundState {
-  isPlaying: boolean;
-  sounds: {
-    [id: string]: {
-      isSelected: boolean;
-      isFavorite: boolean;
-      volume: number;
-    };
-  };
+  getFavorites: () => Array<string>;
   history: {
     [id: string]: {
-      isSelected: boolean;
       isFavorite: boolean;
+      isSelected: boolean;
       volume: number;
     };
   } | null;
+  isPlaying: boolean;
   noSelected: () => boolean;
-  getFavorites: () => Array<string>;
+  sounds: {
+    [id: string]: {
+      isFavorite: boolean;
+      isSelected: boolean;
+      volume: number;
+    };
+  };
 }
 
 export const createState: StateCreator<

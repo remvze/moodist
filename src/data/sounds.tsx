@@ -8,18 +8,10 @@ import { BsFire, BsAirplaneFill } from 'react-icons/bs/index';
 
 // const defaultIcon = <BsSoundwave />;
 
+import type { Categories } from './types';
+
 export const sounds: {
-  categories: Array<{
-    id: string;
-    title: string;
-    icon: React.ReactNode;
-    sounds: Array<{
-      label: string;
-      src: string;
-      icon: React.ReactNode;
-      id: string;
-    }>;
-  }>;
+  categories: Categories;
 } = {
   categories: [
     {

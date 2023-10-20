@@ -4,7 +4,7 @@ import { useSSR } from './use-ssr';
 
 export function useSound(
   src: string,
-  options: { volume?: number; loop?: boolean } = {},
+  options: { loop?: boolean; volume?: number } = {},
 ): HTMLAudioElement | null {
   const { isBrowser } = useSSR();
   const sound = useMemo<HTMLAudioElement | null>(() => {

@@ -3,15 +3,15 @@ import type { StateCreator } from 'zustand';
 import type { SoundState } from './sound.state';
 
 export interface SoundActions {
-  select: (id: string) => void;
-  unselect: (id: string) => void;
-  setVolume: (id: string, volume: number) => void;
-  unselectAll: (pushToHistory?: boolean) => void;
-  restoreHistory: () => void;
-  toggleFavorite: (id: string) => void;
   pause: () => void;
   play: () => void;
+  restoreHistory: () => void;
+  select: (id: string) => void;
+  setVolume: (id: string, volume: number) => void;
+  toggleFavorite: (id: string) => void;
   togglePlay: () => void;
+  unselect: (id: string) => void;
+  unselectAll: (pushToHistory?: boolean) => void;
 }
 
 export const createActions: StateCreator<
