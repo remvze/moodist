@@ -17,7 +17,7 @@ import { BiSolidTree, BiWater } from 'react-icons/bi/index';
 import { FaWater, FaWind, FaLeaf, FaDog, FaFrog } from 'react-icons/fa/index';
 import { PiBirdFill, PiTentFill } from 'react-icons/pi/index';
 import { MdOutlineThunderstorm } from 'react-icons/md/index';
-import { TbScubaMask } from 'react-icons/tb';
+import { TbScubaMask } from 'react-icons/tb/index';
 
 // const defaultIcon = <BsSoundwave />;
 
