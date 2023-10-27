@@ -13,9 +13,27 @@ import {
   BsFillCloudRainHeavyFill,
   BsUmbrellaFill,
 } from 'react-icons/bs/index';
-import { BiSolidTree, BiWater } from 'react-icons/bi/index';
-import { FaWater, FaWind, FaLeaf, FaDog, FaFrog } from 'react-icons/fa/index';
-import { PiBirdFill, PiTentFill } from 'react-icons/pi/index';
+import {
+  BiSolidTree,
+  BiWater,
+  BiSolidCoffeeAlt,
+  BiSolidTrain,
+  BiSolidPlaneAlt,
+} from 'react-icons/bi/index';
+import {
+  FaWater,
+  FaWind,
+  FaLeaf,
+  FaDog,
+  FaFrog,
+  FaCity,
+  FaRoad,
+} from 'react-icons/fa/index';
+import {
+  PiBirdFill,
+  PiTentFill,
+  PiRoadHorizonFill,
+} from 'react-icons/pi/index';
 import { MdOutlineThunderstorm } from 'react-icons/md/index';
 import { TbScubaMask } from 'react-icons/tb/index';
 
@@ -167,6 +185,49 @@ export const sounds: {
         },
       ],
       title: 'Animals',
+    },
+    {
+      icon: <FaCity />,
+      id: 'urban',
+      sounds: [
+        {
+          icon: <BiSolidCoffeeAlt />,
+          id: 'cafe',
+          label: 'Cafe',
+          src: '/sounds/urban/cafe.mp3',
+        },
+        {
+          icon: <PiRoadHorizonFill />,
+          id: 'highway',
+          label: 'Highway',
+          src: '/sounds/urban/highway.mp3',
+        },
+        {
+          icon: <FaRoad />,
+          id: 'road',
+          label: 'Road',
+          src: '/sounds/urban/road.mp3',
+        },
+        {
+          icon: <BiSolidTrain />,
+          id: 'train',
+          label: 'Train',
+          src: '/sounds/urban/train.mp3',
+        },
+        {
+          icon: <BiSolidTrain />,
+          id: 'inside-a-train',
+          label: 'Inside a Train',
+          src: '/sounds/urban/inside-a-train.mp3',
+        },
+        {
+          icon: <BiSolidPlaneAlt />,
+          id: 'airport',
+          label: 'Airport',
+          src: '/sounds/urban/airport.mp3',
+        },
+      ],
+      title: 'Urban',
     },
   ],
 };
