@@ -40,6 +40,7 @@
   ],
 
   "rules": {
+    "@typescript-eslint/ban-ts-comment": "off",
     "prettier/prettier": "error",
     "sort-keys-fix/sort-keys-fix": ["warn", "asc"],
     "sort-destructure-keys/sort-destructure-keys": "warn",
