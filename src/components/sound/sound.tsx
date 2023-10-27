@@ -79,8 +79,8 @@ export function Sound({
     >
       <Like id={id} />
       <div className={styles.icon}>{icon}</div>
-      <h3 id={label}>{label}</h3>
-      <Range id={id} label={label} />
+      <h3 id={id}>{label}</h3>
+      <Range id={id} />
     </div>
   );
 }

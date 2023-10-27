@@ -4,17 +4,16 @@ import styles from './range.module.css';
 
 interface RangeProps {
   id: string;
-  label: string;
 }
 
-export function Range({ id, label }: RangeProps) {
+export function Range({ id }: RangeProps) {
   const setVolume = useSoundStore(state => state.setVolume);
   const volume = useSoundStore(state => state.sounds[id].volume);
   const isSelected = useSoundStore(state => state.sounds[id].isSelected);
 
   return (
     <input
-      aria-labelledby={label}
+      aria-labelledby={id}
       autoComplete="off"
       className={styles.range}
       disabled={!isSelected}
