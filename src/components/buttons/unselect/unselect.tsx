@@ -28,6 +28,8 @@ export function UnselectButton() {
             variants={variants}
           >
             <Tooltip
+              hideDelay={0}
+              showDelay={0}
               content={
                 hasHistory
                   ? 'Restore unselected sounds.'

@@ -38,9 +38,6 @@ export function Tooltip({
     floatingStyles,
     placement: computedPlacement,
     refs,
-    strategy,
-    x,
-    y,
   } = useFloating({
     middleware: [offset(12), flip(), shift()],
     onOpenChange: setIsTooltipOpen,
@@ -90,20 +87,20 @@ export function Tooltip({
 
       <AnimatePresence>
         {isTooltipOpen && (
-          <motion.div
-            animate="show"
-            exit="hidden"
-            initial="hidden"
+          <div
             ref={refs.setFloating}
-            style={floatingStyles}
-            variants={variants}
-            {...getFloatingProps({
-              className: styles.tooltip,
-              style: { left: x ?? 0, position: strategy, top: y ?? 0 },
-            })}
+            {...getFloatingProps({ style: floatingStyles })}
           >
-            {content}
-          </motion.div>
+            <motion.div
+              animate="show"
+              className={styles.tooltip}
+              exit="hidden"
+              initial="hidden"
+              variants={variants}
+            >
+              {content}
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
