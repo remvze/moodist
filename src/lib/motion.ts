@@ -30,8 +30,8 @@ export function slideX(from = -10, to = 0): Motion {
 
 export function slideY(from = -10, to = 0): Motion {
   return {
-    hidden: { Y: from },
-    show: { Y: to },
+    hidden: { y: from },
+    show: { y: to },
   };
 }
 
