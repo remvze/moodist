@@ -5,6 +5,7 @@ import {
   GiWaterfall,
   GiWolfHead,
   GiOwl,
+  GiWindchimes,
 } from 'react-icons/gi/index';
 import {
   BsFire,
@@ -12,6 +13,7 @@ import {
   BsFillCloudRainFill,
   BsFillCloudRainHeavyFill,
   BsUmbrellaFill,
+  BsFillKeyboardFill,
 } from 'react-icons/bs/index';
 import {
   BiSolidTree,
@@ -28,14 +30,17 @@ import {
   FaFrog,
   FaCity,
   FaRoad,
+  FaKeyboard,
+  FaClock,
 } from 'react-icons/fa/index';
 import {
   PiBirdFill,
   PiTentFill,
   PiRoadHorizonFill,
 } from 'react-icons/pi/index';
-import { MdOutlineThunderstorm } from 'react-icons/md/index';
+import { MdOutlineThunderstorm, MdSmartToy } from 'react-icons/md/index';
 import { TbScubaMask } from 'react-icons/tb/index';
+import { RiFilePaper2Fill } from 'react-icons/ri/index';
 
 // const defaultIcon = <BsSoundwave />;
 
@@ -228,6 +233,43 @@ export const sounds: {
         },
       ],
       title: 'Urban',
+    },
+    {
+      icon: <MdSmartToy />,
+      id: 'things',
+      sounds: [
+        {
+          icon: <BsFillKeyboardFill />,
+          id: 'keyboard',
+          label: 'Keyboard',
+          src: '/sounds/things/keyboard.mp3',
+        },
+        {
+          icon: <FaKeyboard />,
+          id: 'typewriter',
+          label: 'Typewriter',
+          src: '/sounds/things/typewriter.mp3',
+        },
+        {
+          icon: <RiFilePaper2Fill />,
+          id: 'paper',
+          label: 'Paper',
+          src: '/sounds/things/paper.mp3',
+        },
+        {
+          icon: <FaClock />,
+          id: 'clock',
+          label: 'Clock',
+          src: '/sounds/things/clock.mp3',
+        },
+        {
+          icon: <GiWindchimes />,
+          id: 'wind-chimes',
+          label: 'Wind Chimes',
+          src: '/sounds/things/wind-chimes.mp3',
+        },
+      ],
+      title: 'Things',
     },
   ],
 };
