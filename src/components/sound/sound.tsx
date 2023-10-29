@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 
 import { Range } from './range';
-import { Like } from './like';
+import { Favorite } from './favorite';
 
 import { useSound } from '@/hooks/use-sound';
 import { useSoundStore } from '@/store';
@@ -77,7 +77,7 @@ export function Sound({
       onClick={toggle}
       onKeyDown={toggle}
     >
-      <Like id={id} />
+      <Favorite id={id} />
       <div className={styles.icon}>{icon}</div>
       <h3 id={id}>{label}</h3>
       <Range id={id} />

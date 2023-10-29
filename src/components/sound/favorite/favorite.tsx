@@ -5,13 +5,13 @@ import { useSoundStore } from '@/store';
 import { cn } from '@/helpers/styles';
 import { fade } from '@/lib/motion';
 
-import styles from './like.module.css';
+import styles from './favorite.module.css';
 
-interface LikeProps {
+interface FavoriteProps {
   id: string;
 }
 
-export function Like({ id }: LikeProps) {
+export function Favorite({ id }: FavoriteProps) {
   const isFavorite = useSoundStore(state => state.sounds[id].isFavorite);
   const toggleFavorite = useSoundStore(state => state.toggleFavorite);
 
