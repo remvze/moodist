@@ -14,11 +14,13 @@ import {
 } from '@floating-ui/react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import { slideX, slideY, mix, fade } from '@/lib/motion';
+
 import styles from './tooltip.module.css';
 
 interface TooltipProps {
   children: JSX.Element;
-  content: React.ReactNode;
+  content: string;
   hideDelay?: number;
   placement?: Placement;
   showDelay?: number;
@@ -62,21 +64,19 @@ export function Tooltip({
     role,
   ]);
 
-  const translate = {
-    bottom: { translateY: -5 },
-    left: { translateX: 5 },
-    right: { translateX: -5 },
-    top: { translateY: 5 },
+  const slide = {
+    bottom: slideY(-5),
+    left: slideX(5),
+    right: slideX(-5),
+    top: slideY(5),
   }[
     computedPlacement.includes('-')
       ? computedPlacement.split('-')[0]
       : computedPlacement
   ];
 
-  const variants = {
-    hidden: { opacity: 0, ...translate },
-    show: { opacity: 1, translateX: 0, translateY: 0 },
-  };
+  const variants = mix(fade(), slide!);
+  const textVariants = fade();
 
   return (
     <>
@@ -98,7 +98,18 @@ export function Tooltip({
               initial="hidden"
               variants={variants}
             >
-              {content}
+              <AnimatePresence initial={false} mode="wait">
+                <motion.span
+                  animate="show"
+                  exit="hidden"
+                  initial="hidden"
+                  key={content}
+                  transition={{ duration: 0.15 }}
+                  variants={textVariants}
+                >
+                  {content}
+                </motion.span>
+              </AnimatePresence>
             </motion.div>
           </div>
         )}
