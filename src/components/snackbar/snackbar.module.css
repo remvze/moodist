@@ -1,0 +1,18 @@
+.wrapper {
+  position: fixed;
+  z-index: 100;
+  bottom: 24px;
+  left: 0;
+  width: 100%;
+
+  & .snackbar {
+    width: max-content;
+    max-width: 90%;
+    padding: 12px 16px;
+    border: 1px solid var(--color-neutral-300);
+    border-radius: 4px;
+    margin: 0 auto;
+    background-color: var(--color-neutral-200);
+    font-size: var(--font-sm);
+  }
+}

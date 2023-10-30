@@ -3,6 +3,7 @@ import { BiPause, BiPlay } from 'react-icons/bi/index';
 import { motion } from 'framer-motion';
 
 import { useSoundStore } from '@/store';
+import { useSnackbar } from '@/contexts/snackbar';
 import { cn } from '@/helpers/styles';
 
 import styles from './play.module.css';
@@ -13,8 +14,10 @@ export function PlayButton() {
   const toggle = useSoundStore(state => state.togglePlay);
   const noSelected = useSoundStore(state => state.noSelected());
 
+  const showSnackbar = useSnackbar();
+
   const handleClick = () => {
-    if (noSelected) return pause();
+    if (noSelected) return showSnackbar('Please first select a sound to play.');
 
     toggle();
   };
@@ -26,7 +29,6 @@ export function PlayButton() {
   return (
     <motion.button
       className={cn(styles.playButton, noSelected && styles.disabled)}
-      disabled={noSelected}
       layout
       onClick={handleClick}
     >

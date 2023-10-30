@@ -8,6 +8,7 @@ import { Container } from '@/components/container';
 import { StoreConsumer } from '@/components/store-consumer';
 import { Buttons } from '@/components/buttons';
 import { Categories } from '@/components/categories';
+import { SnackbarProvider } from '@/contexts/snackbar';
 
 import { sounds } from '@/data/sounds';
 
@@ -48,11 +49,13 @@ export function App() {
   }, [favoriteSounds, categories]);
 
   return (
-    <StoreConsumer>
-      <Container>
-        <Buttons />
-        <Categories categories={allCategories} />
-      </Container>
-    </StoreConsumer>
+    <SnackbarProvider>
+      <StoreConsumer>
+        <Container>
+          <Buttons />
+          <Categories categories={allCategories} />
+        </Container>
+      </StoreConsumer>
+    </SnackbarProvider>
   );
 }
