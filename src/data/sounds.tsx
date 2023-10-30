@@ -6,10 +6,11 @@ import {
   GiWolfHead,
   GiOwl,
   GiWindchimes,
+  GiSoundWaves,
 } from 'react-icons/gi/index';
 import {
   BsFire,
-  // BsSoundwave,
+  BsSoundwave,
   BsFillCloudRainFill,
   BsFillCloudRainHeavyFill,
   BsUmbrellaFill,
@@ -41,8 +42,6 @@ import {
 import { MdOutlineThunderstorm, MdSmartToy } from 'react-icons/md/index';
 import { TbScubaMask } from 'react-icons/tb/index';
 import { RiFilePaper2Fill } from 'react-icons/ri/index';
-
-// const defaultIcon = <BsSoundwave />;
 
 import type { Categories } from './types';
 
@@ -270,6 +269,31 @@ export const sounds: {
         },
       ],
       title: 'Things',
+    },
+    {
+      icon: <BsSoundwave />,
+      id: 'noise',
+      sounds: [
+        {
+          icon: <GiSoundWaves />,
+          id: 'white-noise',
+          label: 'White Noise',
+          src: '/sounds/noise/white-noise.wav',
+        },
+        {
+          icon: <GiSoundWaves />,
+          id: 'pink-noise',
+          label: 'Pink Noise',
+          src: '/sounds/noise/pink-noise.wav',
+        },
+        {
+          icon: <GiSoundWaves />,
+          id: 'brown-noise',
+          label: 'Brown Noise',
+          src: '/sounds/noise/brown-noise.wav',
+        },
+      ],
+      title: 'Noise',
     },
   ],
 };
