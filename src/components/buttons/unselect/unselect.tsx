@@ -15,7 +15,10 @@ export function UnselectButton() {
   const hasHistory = useSoundStore(state => !!state.history);
   const unselectAll = useSoundStore(state => state.unselectAll);
 
-  const variants = mix(fade(), slideX(10));
+  const variants = {
+    ...mix(fade(), slideX(15)),
+    exit: { opacity: 0 },
+  };
 
   return (
     <>
@@ -23,7 +26,7 @@ export function UnselectButton() {
         {(!noSelected || hasHistory) && (
           <motion.div
             animate="show"
-            exit="hidden"
+            exit="exit"
             initial="hidden"
             variants={variants}
           >
