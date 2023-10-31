@@ -1,0 +1,42 @@
+.whySection {
+  padding-bottom: 80px;
+
+  & .title {
+    margin-bottom: 12px;
+    font-family: var(--font-display);
+    font-size: var(--font-lg);
+    font-weight: 600;
+  }
+
+  & .reasons {
+    display: grid;
+    margin-top: 24px;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+    & .icon {
+      display: flex;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--color-neutral-200);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      background-color: var(--color-neutral-100);
+      color: #818cf8;
+      font-size: var(--font-lg);
+    }
+
+    & .label {
+      margin-bottom: 8px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+    }
+
+    & .body {
+      color: var(--color-foreground-subtle);
+      line-height: 1.6;
+    }
+  }
+}
