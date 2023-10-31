@@ -9,6 +9,7 @@
   border-radius: 8px;
   background: linear-gradient(var(--color-neutral-100), transparent);
   text-align: center;
+  transition: 0.2s;
 
   &.hidden {
     display: none;
