@@ -15,11 +15,11 @@ export function UnselectButton() {
   const hasHistory = useSoundStore(state => !!state.history);
   const unselectAll = useSoundStore(state => state.unselectAll);
 
-  const variants = mix(fade(), slideX(20));
+  const variants = mix(fade(), slideX(10));
 
   return (
     <>
-      <AnimatePresence mode="popLayout">
+      <AnimatePresence mode="wait">
         {(!noSelected || hasHistory) && (
           <motion.div
             animate="show"
