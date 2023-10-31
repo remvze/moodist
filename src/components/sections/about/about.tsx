@@ -19,7 +19,10 @@ export function About() {
   return (
     <div className={styles.about}>
       <Container>
-        <h2 className={styles.title}>What is Moodist?</h2>
+        <div className={styles.titleWrapper}>
+          <h2 className={styles.title}>What is Moodist?</h2>
+          <div className={styles.line} />
+        </div>
         <p className={styles.desc}>
           Moodist is your gateway to a world of serenity and focus. It&apos;s a
           free online ambient sound generator offering <span>{count}</span>{' '}

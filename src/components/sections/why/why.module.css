@@ -1,11 +1,24 @@
 .why {
   padding-bottom: 80px;
 
-  & .title {
-    margin-bottom: 12px;
-    font-family: var(--font-display);
-    font-size: var(--font-lg);
-    font-weight: 600;
+  & .titleWrapper {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+
+    & .title {
+      margin-bottom: 12px;
+      font-family: var(--font-display);
+      font-size: var(--font-lg);
+      font-weight: 600;
+    }
+
+    & .line {
+      height: 1px;
+      flex-grow: 1;
+      background: linear-gradient(90deg, var(--color-neutral-300), transparent);
+      transform: translateY(-0.188rem);
+    }
   }
 
   & .reasons {

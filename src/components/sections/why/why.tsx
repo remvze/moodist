@@ -30,7 +30,10 @@ export function Why() {
   return (
     <div className={styles.why}>
       <Container>
-        <h2 className={styles.title}>Why use Moodist?</h2>
+        <div className={styles.titleWrapper}>
+          <h2 className={styles.title}>Why use Moodist?</h2>
+          <div className={styles.line} />
+        </div>
 
         <div className={styles.reasons}>
           {reasons.map(reason => (
