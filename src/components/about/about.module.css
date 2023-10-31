@@ -1,0 +1,19 @@
+.about {
+  padding: 120px 0;
+
+  & .title {
+    margin-bottom: 12px;
+    font-family: var(--font-display);
+    font-size: var(--font-lg);
+    font-weight: 600;
+  }
+
+  & .desc {
+    color: var(--color-foreground-subtle);
+    line-height: 1.7;
+
+    & span {
+      color: var(--color-foreground);
+    }
+  }
+}
