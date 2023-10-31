@@ -3,15 +3,14 @@ import Layout from '@/layouts/layout.astro';
 
 import { Hero } from '@/components/hero';
 import { App } from '@/components/app';
-import { About } from '@/components/about';
-import { WhySection } from '@/components/why-section';
+import { AboutSection, WhySection } from '@/components/sections';
 ---
 
 <Layout title="Welcome to Astro.">
   <main>
     <Hero />
     <App client:load />
-    <About />
+    <AboutSection />
     <WhySection />
   </main>
 </Layout>

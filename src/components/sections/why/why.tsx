@@ -3,9 +3,9 @@ import { Balancer } from 'react-wrap-balancer';
 
 import { Container } from '@/components/container';
 
-import styles from './why-section.module.css';
+import styles from './why.module.css';
 
-export function WhySection() {
+export function Why() {
   const reasons = [
     {
       body: 'Moodist is a cost-free solution, offering you high-quality ambient sounds without any financial commitment.',
@@ -28,7 +28,7 @@ export function WhySection() {
   ];
 
   return (
-    <div className={styles.whySection}>
+    <div className={styles.why}>
       <Container>
         <h2 className={styles.title}>Why use Moodist?</h2>
 
