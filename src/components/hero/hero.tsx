@@ -21,7 +21,7 @@ export function Hero() {
         </div>
 
         <p className={styles.desc}>
-          <Balancer>Ambient background sounds for focus.</Balancer>
+          <Balancer>Ambient sounds for focus and calm.</Balancer>
         </p>
 
         <p className={styles.free}>100% Free</p>
