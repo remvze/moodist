@@ -8,7 +8,7 @@ import styles from './why.module.css';
 export function Why() {
   const reasons = [
     {
-      body: 'Moodist is a cost-free solution, offering you high-quality ambient sounds without any financial commitment.',
+      body: 'Moodist pampers your senses without emptying your wallet. Enjoy our rich collection of ambient sounds at no cost.',
       icon: <BiMoney />,
       id: 'free',
       label: 'Completely Free',
