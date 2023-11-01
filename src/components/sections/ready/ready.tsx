@@ -8,18 +8,20 @@ export function Ready() {
   return (
     <div className={styles.ready}>
       <Container>
-        <div className={styles.iconContainer}>
-          <div className={styles.tail} />
-          <div className={styles.icon}>
-            <RiSparkling2Line />
+        <div className={styles.wrapper}>
+          <div className={styles.iconContainer}>
+            <div className={styles.tail} />
+            <div className={styles.icon}>
+              <RiSparkling2Line />
+            </div>
           </div>
-        </div>
 
-        <h2 className={styles.title}>Are you ready?</h2>
-        <p className={styles.desc}>Create your calm oasis in seconds!</p>
-        <a className={styles.button} href="#app">
-          Use Moodist
-        </a>
+          <h2 className={styles.title}>Are you ready?</h2>
+          <p className={styles.desc}>Create your calm oasis in seconds!</p>
+          <a className={styles.button} href="#app">
+            Use Moodist
+          </a>
+        </div>
       </Container>
     </div>
   );

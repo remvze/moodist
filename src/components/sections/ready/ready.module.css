@@ -1,4 +1,27 @@
 .ready {
+  & .wrapper {
+    position: relative;
+    padding: 0 20px 40px;
+    border-radius: 0 0 20px 20px;
+    background: linear-gradient(transparent, var(--color-neutral-100));
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 70%;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--color-neutral-300),
+        transparent
+      );
+      content: '';
+      transform: translateX(-50%);
+    }
+  }
+
   & .iconContainer {
     display: flex;
     flex-direction: column;
