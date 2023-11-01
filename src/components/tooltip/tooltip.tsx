@@ -41,7 +41,7 @@ export function Tooltip({
     placement: computedPlacement,
     refs,
   } = useFloating({
-    middleware: [offset(12), flip(), shift()],
+    middleware: [offset(12), flip(), shift({ padding: 8 })],
     onOpenChange: setIsTooltipOpen,
     open: isTooltipOpen,
     placement: placement,

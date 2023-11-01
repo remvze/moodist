@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { BiUpArrowAlt } from 'react-icons/bi/index';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import { Tooltip } from '@/components/tooltip';
 import { mix, fade, slideY } from '@/lib/motion';
 
 import styles from './scroll-to-top.module.css';
@@ -32,17 +33,19 @@ export function ScrollToTop() {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.button
-          animate="show"
-          aria-label="Scroll to top"
-          className={styles.button}
-          exit="hidden"
-          initial="hidden"
-          variants={variants}
-          onClick={scrollToTop}
-        >
-          <BiUpArrowAlt />
-        </motion.button>
+        <Tooltip content="Scroll to top" hideDelay={0} showDelay={0}>
+          <motion.button
+            animate="show"
+            aria-label="Scroll to top"
+            className={styles.button}
+            exit="hidden"
+            initial="hidden"
+            variants={variants}
+            onClick={scrollToTop}
+          >
+            <BiUpArrowAlt />
+          </motion.button>
+        </Tooltip>
       )}
     </AnimatePresence>
   );
