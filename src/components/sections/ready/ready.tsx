@@ -1,4 +1,4 @@
-import { RiSparkling2Line } from 'react-icons/ri';
+import { RiSparkling2Line } from 'react-icons/ri/index';
 
 import { Container } from '@/components/container';
 
