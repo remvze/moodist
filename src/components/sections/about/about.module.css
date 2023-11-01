@@ -4,7 +4,7 @@
   & .titleWrapper {
     display: flex;
     align-items: center;
-    column-gap: 15px;
+    column-gap: 12px;
 
     & .title {
       margin-bottom: 12px;
@@ -17,7 +17,7 @@
       height: 1px;
       flex-grow: 1;
       background: linear-gradient(90deg, var(--color-neutral-300), transparent);
-      transform: translateY(-0.188rem);
+      transform: translateY(-0.25rem);
     }
   }
 
