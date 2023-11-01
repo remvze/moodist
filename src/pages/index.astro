@@ -3,21 +3,15 @@ import Layout from '@/layouts/layout.astro';
 
 import { Hero } from '@/components/hero';
 import { App } from '@/components/app';
+import { Footer } from '@/components/footer';
 import { AboutSection, WhySection, ReadySection } from '@/components/sections';
 ---
 
 <Layout title="Welcome to Astro.">
-  <main>
-    <Hero />
-    <App client:load />
-    <AboutSection />
-    <WhySection />
-    <ReadySection />
-  </main>
+  <Hero />
+  <App client:load />
+  <AboutSection />
+  <WhySection />
+  <ReadySection />
+  <Footer />
 </Layout>
-
-<style>
-  main {
-    padding-bottom: 100px;
-  }
-</style>
