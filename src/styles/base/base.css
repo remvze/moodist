@@ -7,6 +7,10 @@
   font: inherit;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--color-neutral-50);
   color: var(--color-foreground);

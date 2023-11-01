@@ -53,6 +53,7 @@ export function App() {
     <SnackbarProvider>
       <StoreConsumer>
         <Container>
+          <div id="app" />
           <Buttons />
           <Categories categories={allCategories} />
         </Container>
