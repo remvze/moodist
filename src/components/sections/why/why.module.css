@@ -51,5 +51,13 @@
       color: var(--color-foreground-subtle);
       line-height: 1.6;
     }
+
+    & .link {
+      display: block;
+      margin-top: 8px;
+      color: var(--color-foreground);
+      font-size: var(--font-sm);
+      text-decoration: none;
+    }
   }
 }

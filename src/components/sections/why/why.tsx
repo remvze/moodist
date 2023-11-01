@@ -24,6 +24,10 @@ export function Why() {
       icon: <BiLogoGithub />,
       id: 'open-source',
       label: 'Open Source',
+      link: {
+        label: 'Source Code',
+        url: 'https://github.com/remvze/moodist',
+      },
     },
   ];
 
@@ -43,6 +47,11 @@ export function Why() {
               <p className={styles.body}>
                 <Balancer>{reason.body}</Balancer>
               </p>
+              {reason.link && (
+                <a className={styles.link} href={reason.link.url}>
+                  {reason.link.label} →
+                </a>
+              )}
             </div>
           ))}
         </div>
