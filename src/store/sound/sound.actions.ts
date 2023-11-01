@@ -2,12 +2,15 @@ import type { StateCreator } from 'zustand';
 
 import type { SoundState } from './sound.state';
 
+import { pickMany, random } from '@/helpers/random';
+
 export interface SoundActions {
   pause: () => void;
   play: () => void;
   restoreHistory: () => void;
   select: (id: string) => void;
   setVolume: (id: string, volume: number) => void;
+  shuffle: () => void;
   toggleFavorite: (id: string) => void;
   togglePlay: () => void;
   unselect: (id: string) => void;
@@ -54,6 +57,25 @@ export const createActions: StateCreator<
           [id]: { ...get().sounds[id], volume },
         },
       });
+    },
+
+    shuffle() {
+      const sounds = get().sounds;
+      const ids = Object.keys(sounds);
+
+      ids.forEach(id => {
+        sounds[id].isSelected = false;
+        sounds[id].volume = 0.5;
+      });
+
+      const randomIDs = pickMany(ids, 4);
+
+      randomIDs.forEach(id => {
+        sounds[id].isSelected = true;
+        sounds[id].volume = random(0.2, 1);
+      });
+
+      set({ history: null, isPlaying: true, sounds });
     },
 
     toggleFavorite(id) {

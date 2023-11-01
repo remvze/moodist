@@ -9,6 +9,7 @@ import { StoreConsumer } from '@/components/store-consumer';
 import { Buttons } from '@/components/buttons';
 import { Categories } from '@/components/categories';
 import { ScrollToTop } from '@/components/scroll-to-top';
+import { Shuffle } from '@/components/shuffle';
 import { SnackbarProvider } from '@/contexts/snackbar';
 
 import { sounds } from '@/data/sounds';
@@ -59,6 +60,7 @@ export function App() {
         </Container>
 
         <ScrollToTop />
+        <Shuffle />
       </StoreConsumer>
     </SnackbarProvider>
   );
