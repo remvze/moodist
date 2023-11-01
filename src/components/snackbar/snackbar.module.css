@@ -4,6 +4,7 @@
   bottom: 24px;
   left: 0;
   width: 100%;
+  pointer-events: none;
 
   & .snackbar {
     width: max-content;
@@ -14,5 +15,6 @@
     margin: 0 auto;
     background-color: var(--color-neutral-200);
     font-size: var(--font-sm);
+    pointer-events: fill;
   }
 }
