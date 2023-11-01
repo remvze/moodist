@@ -89,7 +89,7 @@ export function Tooltip({
         {isTooltipOpen && (
           <div
             ref={refs.setFloating}
-            {...getFloatingProps({ style: floatingStyles })}
+            {...getFloatingProps({ style: { ...floatingStyles, zIndex: 99 } })}
           >
             <motion.div
               animate="show"
