@@ -1,6 +1,7 @@
 ---
 import Layout from '@/layouts/layout.astro';
 
+import { Gradient } from '@/components/gradient';
 import { Hero } from '@/components/hero';
 import { App } from '@/components/app';
 import { Footer } from '@/components/footer';
@@ -8,6 +9,7 @@ import { AboutSection, WhySection, ReadySection } from '@/components/sections';
 ---
 
 <Layout title="Welcome to Astro.">
+  <Gradient />
   <Hero />
   <App client:load />
   <AboutSection />
