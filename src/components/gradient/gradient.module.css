@@ -14,5 +14,6 @@
     background: inherit;
     content: '';
     filter: blur(10px);
+    opacity: 0.8;
   }
 }
