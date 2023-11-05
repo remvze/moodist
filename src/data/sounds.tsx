@@ -62,7 +62,7 @@ export const sounds: {
         {
           icon: <FaWater />,
           id: 'waves',
-          label: 'waves',
+          label: 'Waves',
           src: '/sounds/nature/waves.mp3',
         },
         {
