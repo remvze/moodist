@@ -57,6 +57,7 @@
       margin-top: 8px;
       color: var(--color-foreground);
       font-size: var(--font-sm);
+      font-weight: 500;
       text-decoration: none;
     }
   }

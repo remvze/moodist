@@ -16,6 +16,15 @@
   src: url('/fonts/inter-v13-latin-regular.woff2') format('woff2');
 }
 
+/* inter-500 - latin */
+@font-face {
+  font-display: swap;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/inter-v13-latin-500.woff2') format('woff2');
+}
+
 /* inter-tight-600 - latin */
 @font-face {
   font-display: swap;
