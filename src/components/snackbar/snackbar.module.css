@@ -1,7 +1,7 @@
 .wrapper {
   position: fixed;
   z-index: 100;
-  bottom: 24px;
+  bottom: 20px;
   left: 0;
   width: 100%;
   pointer-events: none;
