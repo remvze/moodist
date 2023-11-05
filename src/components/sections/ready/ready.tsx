@@ -5,6 +5,12 @@ import { Container } from '@/components/container';
 import styles from './ready.module.css';
 
 export function Ready() {
+  const handleClick = () => {
+    const app = document.getElementById('app');
+
+    app?.scrollIntoView(true);
+  };
+
   return (
     <div className={styles.ready}>
       <Container>
@@ -18,9 +24,9 @@ export function Ready() {
 
           <h2 className={styles.title}>Are you ready?</h2>
           <p className={styles.desc}>Create your calm oasis in seconds!</p>
-          <a className={styles.button} href="#app">
+          <button className={styles.button} onClick={handleClick}>
             Use Moodist
-          </a>
+          </button>
         </div>
       </Container>
     </div>
