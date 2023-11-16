@@ -40,7 +40,7 @@ import {
   PiRoadHorizonFill,
 } from 'react-icons/pi/index';
 import { MdOutlineThunderstorm, MdSmartToy } from 'react-icons/md/index';
-import { TbScubaMask } from 'react-icons/tb/index';
+import { TbScubaMask, TbBowlFilled } from 'react-icons/tb/index';
 import { RiFilePaper2Fill } from 'react-icons/ri/index';
 
 import type { Categories } from './types';
@@ -266,6 +266,12 @@ export const sounds: {
           id: 'wind-chimes',
           label: 'Wind Chimes',
           src: '/sounds/things/wind-chimes.mp3',
+        },
+        {
+          icon: <TbBowlFilled />,
+          id: 'singing-bowl',
+          label: 'Singing Bowl',
+          src: '/sounds/things/singing-bowl.mp3',
         },
       ],
       title: 'Things',
