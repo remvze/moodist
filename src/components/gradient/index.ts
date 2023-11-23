@@ -1,1 +1,0 @@
-export { Gradient } from './gradient';
