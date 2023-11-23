@@ -9,7 +9,7 @@ interface StoreConsumerProps {
 export function StoreConsumer({ children }: StoreConsumerProps) {
   useEffect(() => {
     useSoundStore.persist.rehydrate();
-  });
+  }, []);
 
   return <>{children}</>;
 }
