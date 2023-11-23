@@ -28,6 +28,7 @@ export function PlayButton() {
 
   return (
     <motion.button
+      aria-disabled={noSelected}
       className={cn(styles.playButton, noSelected && styles.disabled)}
       layout
       onClick={handleClick}
