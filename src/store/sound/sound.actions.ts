@@ -83,6 +83,7 @@ export const createActions: StateCreator<
       const sound = sounds[id];
 
       set({
+        history: null,
         sounds: {
           ...sounds,
           [id]: { ...sound, isFavorite: !sound.isFavorite },
