@@ -6,10 +6,10 @@
   justify-content: center;
   border: none;
   border-radius: 100px;
-  border-top: 2px solid #818cf8;
-  border-bottom: 3px solid #4f46e5;
-  background-color: #6366f1;
-  color: var(--color-foreground);
+  border-top: 2px solid #34d399;
+  border-bottom: 3px solid #059669;
+  background-color: #10b981;
+  color: #022c22;
   cursor: pointer;
   font-family: var(--font-heading);
   font-size: var(--font-base);

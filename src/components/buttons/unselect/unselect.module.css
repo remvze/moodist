@@ -23,10 +23,10 @@
   }
 
   &.restore {
-    border-top-color: #34d399;
-    border-bottom-color: #047857;
-    background-color: #10b981;
-    color: var(--color-foreground);
+    border-top-color: var(--color-neutral-950);
+    border-bottom-color: var(--color-neutral-600);
+    background-color: var(--color-neutral-700);
+    color: var(--color-neutral-200);
   }
 }
 
