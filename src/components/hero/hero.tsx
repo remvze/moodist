@@ -11,7 +11,9 @@ export function Hero() {
         <img
           alt="Faded Moodist Logo"
           className={styles.logo}
-          src="/faded-logo.svg"
+          height={45}
+          src="/logo.svg"
+          width={45}
         />
 
         <div className={styles.title}>
