@@ -40,14 +40,16 @@ export function useSound(
 
   const play = useCallback(() => {
     if (sound) {
-      if (!hasLoaded) {
+      if (!hasLoaded && !isLoading) {
         setIsLoading(true);
         sound.load();
       }
 
-      sound.play();
+      if (!sound.playing()) {
+        sound.play();
+      }
     }
-  }, [sound, hasLoaded]);
+  }, [sound, hasLoaded, isLoading]);
 
   const stop = useCallback(() => {
     if (sound) sound.stop();
