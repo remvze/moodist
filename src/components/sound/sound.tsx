@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from 'react';
+import { ImSpinner9 } from 'react-icons/im/index';
 
 import { Range } from './range';
 import { Favorite } from './favorite';
@@ -78,7 +79,15 @@ export function Sound({
       onKeyDown={toggle}
     >
       <Favorite id={id} />
-      <div className={styles.icon}>{icon}</div>
+      <div className={styles.icon}>
+        {sound.isLoading ? (
+          <span className={styles.spinner}>
+            <ImSpinner9 />
+          </span>
+        ) : (
+          icon
+        )}
+      </div>
       <h3 id={id}>{label}</h3>
       <Range id={id} />
     </div>

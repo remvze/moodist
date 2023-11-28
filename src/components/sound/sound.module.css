@@ -77,6 +77,14 @@
 
     & .icon {
       color: #34d399;
+
+      & .spinner {
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-name: spinner;
+        animation-timing-function: linear;
+        line-height: 0;
+      }
     }
   }
 
@@ -87,5 +95,15 @@
     font-size: var(--font-sm);
     font-weight: 600;
     line-height: 1.6;
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }
