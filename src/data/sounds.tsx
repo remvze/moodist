@@ -79,6 +79,12 @@ export const sounds: {
         },
         {
           icon: <FaWind />,
+          id: 'howling-wind',
+          label: 'Howling Wind',
+          src: '/sounds/nature/howling-wind.mp3',
+        },
+        {
+          icon: <FaWind />,
           id: 'wind-in-trees',
           label: 'Wind in Trees',
           src: '/sounds/nature/wind-in-trees.mp3',
