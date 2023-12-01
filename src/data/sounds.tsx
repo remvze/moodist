@@ -33,11 +33,13 @@ import {
   FaRoad,
   FaKeyboard,
   FaClock,
+  FaRegSnowflake,
 } from 'react-icons/fa/index';
 import {
   PiBirdFill,
   PiTentFill,
   PiRoadHorizonFill,
+  PiSirenBold,
 } from 'react-icons/pi/index';
 import { MdOutlineThunderstorm, MdSmartToy } from 'react-icons/md/index';
 import { TbScubaMask, TbBowlFilled } from 'react-icons/tb/index';
@@ -100,6 +102,18 @@ export const sounds: {
           id: 'underwater',
           label: 'Underwater',
           src: '/sounds/nature/underwater.mp3',
+        },
+        {
+          icon: <FaRegSnowflake />,
+          id: 'walk-in-snow',
+          label: 'Walk in Snow',
+          src: '/sounds/nature/walk-in-snow.mp3',
+        },
+        {
+          icon: <FaLeaf />,
+          id: 'walk-on-leaves',
+          label: 'Walk on Leaves',
+          src: '/sounds/nature/walk-on-leaves.mp3',
         },
       ],
       title: 'Nature',
@@ -219,6 +233,12 @@ export const sounds: {
           src: '/sounds/urban/road.mp3',
         },
         {
+          icon: <PiSirenBold />,
+          id: 'ambulance-siren',
+          label: 'Ambulance Siren',
+          src: '/sounds/urban/ambulance-siren.mp3',
+        },
+        {
           icon: <BiSolidTrain />,
           id: 'train',
           label: 'Train',
@@ -235,6 +255,12 @@ export const sounds: {
           id: 'airport',
           label: 'Airport',
           src: '/sounds/urban/airport.mp3',
+        },
+        {
+          icon: <BiSolidPlaneAlt />,
+          id: 'airplane',
+          label: 'Airplane',
+          src: '/sounds/urban/airplane.mp3',
         },
       ],
       title: 'Urban',
