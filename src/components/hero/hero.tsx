@@ -1,10 +1,15 @@
+import { useMemo } from 'react';
+
 import { Balancer } from 'react-wrap-balancer';
 
 import { Container } from '@/components/container';
+import { count as soundCount } from '@/lib/sounds';
 
 import styles from './hero.module.css';
 
 export function Hero() {
+  const count = useMemo(() => soundCount(true), []);
+
   return (
     <div className={styles.hero}>
       <Container>
@@ -26,7 +31,7 @@ export function Hero() {
           <Balancer>Ambient sounds for focus and calm.</Balancer>
         </p>
 
-        <p className={styles.free}>100% Free</p>
+        <p className={styles.sounds}>+{count} Sounds</p>
       </Container>
     </div>
   );

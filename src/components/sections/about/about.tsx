@@ -1,20 +1,12 @@
 import { useMemo } from 'react';
 
 import { Container } from '@/components/container';
-import { sounds } from '@/data/sounds';
+import { count as soundCount } from '@/lib/sounds';
 
 import styles from './about.module.css';
 
 export function About() {
-  const count = useMemo(() => {
-    let count = 0;
-
-    sounds.categories.forEach(category => {
-      count += category.sounds.length;
-    });
-
-    return count;
-  }, []);
+  const count = useMemo(soundCount, []);
 
   return (
     <div className={styles.about}>
