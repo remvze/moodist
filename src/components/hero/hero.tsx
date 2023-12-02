@@ -8,7 +8,7 @@ import { count as soundCount } from '@/lib/sounds';
 import styles from './hero.module.css';
 
 export function Hero() {
-  const count = useMemo(() => soundCount(true), []);
+  const count = useMemo(soundCount, []);
 
   return (
     <div className={styles.hero}>
@@ -31,7 +31,7 @@ export function Hero() {
           <Balancer>Ambient sounds for focus and calm.</Balancer>
         </p>
 
-        <p className={styles.sounds}>+{count} Sounds</p>
+        <p className={styles.sounds}>{count} Sounds</p>
       </Container>
     </div>
   );
