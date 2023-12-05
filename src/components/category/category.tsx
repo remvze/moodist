@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 
 import { Sounds } from '@/components/sounds';
-import { fade } from '@/lib/motion';
 
 import styles from './category.module.css';
 
@@ -18,16 +17,8 @@ export function Category({
   sounds,
   title,
 }: CategoryProps) {
-  const variants = fade();
-
   return (
-    <motion.div
-      animate="show"
-      className={styles.category}
-      initial="hidden"
-      layout="position"
-      variants={variants}
-    >
+    <motion.div className={styles.category}>
       <div className={styles.iconContainer}>
         <div className={styles.tail} />
         <div className={styles.icon}>{icon}</div>
