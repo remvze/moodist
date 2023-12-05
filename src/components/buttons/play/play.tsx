@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { BiPause, BiPlay } from 'react-icons/bi/index';
-import { motion } from 'framer-motion';
 
 import { useSoundStore } from '@/store';
 import { useSnackbar } from '@/contexts/snackbar';
@@ -27,10 +26,9 @@ export function PlayButton() {
   }, [isPlaying, pause, noSelected]);
 
   return (
-    <motion.button
+    <button
       aria-disabled={noSelected}
       className={cn(styles.playButton, noSelected && styles.disabled)}
-      layout
       onClick={handleClick}
     >
       {isPlaying ? (
@@ -48,6 +46,6 @@ export function PlayButton() {
           Play
         </>
       )}
-    </motion.button>
+    </button>
   );
 }

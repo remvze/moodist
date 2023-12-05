@@ -1,5 +1,3 @@
-import { motion } from 'framer-motion';
-
 import { Sounds } from '@/components/sounds';
 
 import styles from './category.module.css';
@@ -18,7 +16,7 @@ export function Category({
   title,
 }: CategoryProps) {
   return (
-    <motion.div className={styles.category}>
+    <div className={styles.category}>
       <div className={styles.iconContainer}>
         <div className={styles.tail} />
         <div className={styles.icon}>{icon}</div>
@@ -27,6 +25,6 @@ export function Category({
       <h2 className={styles.title}>{title}</h2>
 
       <Sounds functional={functional} id={id} sounds={sounds} />
-    </motion.div>
+    </div>
   );
 }
