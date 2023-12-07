@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { BiMoney, BiUserCircle, BiLogoGithub } from 'react-icons/bi/index';
 import { BsSoundwave, BsStars } from 'react-icons/bs/index';
 import { RxMixerHorizontal } from 'react-icons/rx/index';
@@ -5,10 +6,13 @@ import { RxMixerHorizontal } from 'react-icons/rx/index';
 import { Balancer } from 'react-wrap-balancer';
 
 import { Container } from '@/components/container';
+import { count as soundCount } from '@/lib/sounds';
 
 import styles from './why.module.css';
 
 export function Why() {
+  const count = useMemo(soundCount, []);
+
   const reasons = [
     {
       body: "Immerse yourself in Moodist's ambient world without spending a dime. All features are accessible to everyone, ensuring a cost-free auditory journey.",
@@ -23,7 +27,7 @@ export function Why() {
       label: 'No Registration',
     },
     {
-      body: 'With a curated collection of 40 sounds, Moodist offers a spectrum of auditory experiences. From the tranquility of nature to the beat of urban life, find the perfect backdrop for your mood.',
+      body: `With a curated collection of ${count} sounds, Moodist offers a spectrum of auditory experiences. From the tranquility of nature to the beat of urban life, find the perfect backdrop for your mood.`,
       icon: <BsSoundwave />,
       id: 'diverse-sounds',
       label: 'Diverse Sounds',
