@@ -16,13 +16,11 @@ export function About() {
           <div className={styles.line} />
         </div>
         <p className={styles.desc}>
-          Moodist is your gateway to a world of serenity and focus. It&apos;s a
-          free online ambient sound generator offering <span>{count}</span>{' '}
-          handpicked sounds in various categories, from nature&apos;s tranquil
-          melodies to the soothing ambiance of urban life. Whether you&apos;re
-          seeking relaxation or a productivity boost, Moodist lets you
-          effortlessly customize your environment with the perfect background
-          sounds.
+          Welcome to Moodist – your free, open-source ambient sound generator.
+          With <span>{count} curated sounds</span>, effortlessly create your
+          custom mix for focus or relaxation. No accounts, no hassle – just pure
+          tranquility. Explore nature&apos;s calm and urban rhythms. Elevate
+          your ambiance with Moodist, where simplicity meets serenity.
         </p>
       </Container>
     </div>

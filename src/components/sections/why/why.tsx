@@ -1,4 +1,7 @@
 import { BiMoney, BiUserCircle, BiLogoGithub } from 'react-icons/bi/index';
+import { BsSoundwave, BsStars } from 'react-icons/bs/index';
+import { RxMixerHorizontal } from 'react-icons/rx/index';
+
 import { Balancer } from 'react-wrap-balancer';
 
 import { Container } from '@/components/container';
@@ -8,26 +11,44 @@ import styles from './why.module.css';
 export function Why() {
   const reasons = [
     {
-      body: 'Moodist pampers your senses without emptying your wallet. Enjoy our rich collection of ambient sounds at no cost.',
+      body: "Immerse yourself in Moodist's ambient world without spending a dime. All features are accessible to everyone, ensuring a cost-free auditory journey.",
       icon: <BiMoney />,
-      id: 'free',
-      label: 'Completely Free',
+      id: 'free-access',
+      label: 'Free Access',
     },
     {
-      body: 'Say goodbye to the hassle of signing up; Moodist is ready to enhance your experience without any registration requirements, ensuring quick and easy access.',
+      body: 'Embrace simplicity – Moodist skips the registration process. No accounts, no hassle; just click, play, and enjoy the serenity.',
       icon: <BiUserCircle />,
-      id: 'registration-free',
-      label: 'Without Registration',
+      id: 'no-registration',
+      label: 'No Registration',
     },
     {
-      body: "Moodist's open-source nature means you can trust its transparency and contribute to its improvement, making it a community-driven tool for everyone's benefit.",
+      body: 'With a curated collection of 40 sounds, Moodist offers a spectrum of auditory experiences. From the tranquility of nature to the beat of urban life, find the perfect backdrop for your mood.',
+      icon: <BsSoundwave />,
+      id: 'diverse-sounds',
+      label: 'Diverse Sounds',
+    },
+    {
+      body: 'Tailor your ambiance effortlessly. Moodist allows you to create personalized mixes, adjusting the blend of sounds to suit your focus or relaxation needs.',
+      icon: <RxMixerHorizontal />,
+      id: 'customizable-mixes',
+      label: 'Customizable Mixes',
+    },
+    {
+      body: 'Trust in transparency. Moodist is open-source, fostering collaboration and providing users with a platform they can explore and understand.',
       icon: <BiLogoGithub />,
       id: 'open-source',
-      label: 'Open Source',
+      label: 'Open-Source',
       link: {
         label: 'Source Code',
         url: 'https://github.com/remvze/moodist',
       },
+    },
+    {
+      body: 'Navigate with ease. Moodist provides a user-friendly interface, ensuring a smooth and hassle-free experience as you explore the diverse soundscape of calm and rhythm.',
+      icon: <BsStars />,
+      id: 'seamless-experience',
+      label: 'Seamless Experience',
     },
   ];
 
