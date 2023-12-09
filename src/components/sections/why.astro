@@ -1,0 +1,157 @@
+---
+import { BiMoney, BiUserCircle, BiLogoGithub } from 'react-icons/bi/index';
+import { BsSoundwave, BsStars } from 'react-icons/bs/index';
+import { RxMixerHorizontal } from 'react-icons/rx/index';
+
+import { Balancer } from 'react-wrap-balancer';
+
+import { Container } from '@/components/container';
+import { count as soundCount } from '@/lib/sounds';
+
+const count = soundCount();
+
+const reasons = [
+  {
+    Icon: BiMoney,
+    body: "Immerse yourself in Moodist's ambient world without spending a dime. All features are accessible to everyone, ensuring a cost-free auditory journey.",
+    id: 'free-access',
+    label: 'Free Access',
+  },
+  {
+    Icon: BiUserCircle,
+    body: 'Embrace simplicity – Moodist skips the registration process. No accounts, no hassle; just click, play, and enjoy the serenity.',
+    id: 'no-registration',
+    label: 'No Registration',
+  },
+  {
+    Icon: BsSoundwave,
+    body: `With a curated collection of ${count} sounds, Moodist offers a spectrum of auditory experiences. From the tranquility of nature to the beat of urban life, find the perfect backdrop for your mood.`,
+    id: 'diverse-sounds',
+    label: 'Diverse Sounds',
+  },
+  {
+    Icon: RxMixerHorizontal,
+    body: 'Tailor your ambiance effortlessly. Moodist allows you to create personalized mixes, adjusting the blend of sounds to suit your focus or relaxation needs.',
+    id: 'customizable-mixes',
+    label: 'Customizable Mixes',
+  },
+  {
+    Icon: BiLogoGithub,
+    body: 'Trust in transparency. Moodist is open-source, fostering collaboration and providing users with a platform they can explore and understand.',
+    id: 'open-source',
+    label: 'Open-Source',
+    link: {
+      label: 'Source Code',
+      url: 'https://github.com/remvze/moodist',
+    },
+  },
+  {
+    Icon: BsStars,
+    body: 'Navigate with ease. Moodist provides a user-friendly interface, ensuring a smooth and hassle-free experience as you explore the diverse soundscape of calm and rhythm.',
+    id: 'seamless-experience',
+    label: 'Seamless Experience',
+  },
+];
+---
+
+<div class="why">
+  <Container>
+    <div class="titleWrapper">
+      <h2 class="title">Why use Moodist?</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="reasons">
+      {
+        reasons.map(reason => (
+          <div class="reason">
+            <div class="icon">
+              <reason.Icon />
+            </div>
+            <h3 class="label">{reason.label}</h3>
+            <p class="body">
+              <Balancer>{reason.body}</Balancer>
+            </p>
+            {reason.link && (
+              <a class="link" href={reason.link.url}>
+                {reason.link.label} →
+              </a>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</div>
+
+<style>
+  .why {
+    padding-bottom: 80px;
+
+    & .titleWrapper {
+      display: flex;
+      align-items: center;
+      column-gap: 12px;
+
+      & .title {
+        margin-bottom: 12px;
+        font-family: var(--font-display);
+        font-size: var(--font-lg);
+        font-weight: 600;
+      }
+
+      & .line {
+        height: 1px;
+        flex-grow: 1;
+        background: linear-gradient(
+          90deg,
+          var(--color-neutral-300),
+          transparent
+        );
+        transform: translateY(-0.25rem);
+      }
+    }
+
+    & .reasons {
+      display: grid;
+      margin-top: 24px;
+      column-gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      row-gap: 28px;
+
+      & .icon {
+        display: flex;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--color-neutral-200);
+        border-radius: 12px;
+        margin-bottom: 12px;
+        background: linear-gradient(var(--color-neutral-100), transparent);
+        color: #34d399;
+        font-size: var(--font-md);
+      }
+
+      & .label {
+        margin-bottom: 8px;
+        font-family: var(--font-heading);
+        font-weight: 600;
+      }
+
+      & .body {
+        color: var(--color-foreground-subtle);
+        line-height: 1.6;
+      }
+
+      & .link {
+        display: block;
+        margin-top: 8px;
+        color: var(--color-foreground);
+        font-size: var(--font-sm);
+        font-weight: 500;
+        text-decoration: none;
+      }
+    }
+  }
+</style>

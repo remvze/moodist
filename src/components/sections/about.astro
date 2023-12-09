@@ -1,0 +1,62 @@
+---
+import { Container } from '@/components/container';
+import { count as soundCount } from '@/lib/sounds';
+
+const count = soundCount();
+---
+
+<div class="about">
+  <Container>
+    <div class="titleWrapper">
+      <h2 class="title">What is Moodist?</h2>
+      <div class="line"></div>
+    </div>
+    <p class="desc">
+      Welcome to Moodist – your free, open-source ambient sound generator. With <span
+        >{count} curated sounds</span
+      >, effortlessly create your custom mix for focus or relaxation. No
+      accounts, no hassle – just pure tranquility. Explore nature&apos;s calm
+      and urban rhythms. Elevate your ambiance with Moodist, where simplicity
+      meets serenity.
+    </p>
+  </Container>
+</div>
+
+<style>
+  .about {
+    padding: 80px 0;
+
+    & .titleWrapper {
+      display: flex;
+      align-items: center;
+      column-gap: 12px;
+
+      & .title {
+        margin-bottom: 12px;
+        font-family: var(--font-display);
+        font-size: var(--font-lg);
+        font-weight: 600;
+      }
+
+      & .line {
+        height: 1px;
+        flex-grow: 1;
+        background: linear-gradient(
+          90deg,
+          var(--color-neutral-300),
+          transparent
+        );
+        transform: translateY(-0.25rem);
+      }
+    }
+
+    & .desc {
+      color: var(--color-foreground-subtle);
+      line-height: 1.7;
+
+      & span {
+        color: var(--color-foreground);
+      }
+    }
+  }
+</style>

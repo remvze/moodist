@@ -1,11 +1,12 @@
 ---
 import Layout from '@/layouts/layout.astro';
+import Footer from '@/components/footer.astro';
+import AboutSection from '@/components/sections/about.astro';
+import WhySection from '@/components/sections/why.astro';
+import ReadySection from '@/components/sections/ready.astro';
 
 import { Hero } from '@/components/hero';
 import { App } from '@/components/app';
-import { AboutSection, WhySection, ReadySection } from '@/components/sections';
-
-import Footer from '@/components/footer.astro';
 ---
 
 <Layout title="Moodist: Ambient Sounds for Focus and Calm">
@@ -13,6 +14,6 @@ import Footer from '@/components/footer.astro';
   <App client:load />
   <AboutSection />
   <WhySection />
-  <ReadySection client:load />
+  <ReadySection />
   <Footer />
 </Layout>

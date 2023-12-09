@@ -86,7 +86,8 @@
 
       "rules": {
         "prettier/prettier": "error",
-        "react/no-unknown-property": "off"
+        "react/no-unknown-property": "off",
+        "react/jsx-key": "off"
       },
 
       "globals": {

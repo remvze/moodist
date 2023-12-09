@@ -1,0 +1,119 @@
+---
+import { RiSparkling2Line } from 'react-icons/ri/index';
+
+import { Container } from '@/components/container';
+---
+
+<div class="ready">
+  <Container>
+    <div class="wrapper">
+      <div class="iconContainer">
+        <div class="tail"></div>
+        <div class="icon">
+          <RiSparkling2Line />
+        </div>
+      </div>
+
+      <h2 class="title">Are you ready?</h2>
+      <p class="desc">Create your calm oasis in seconds!</p>
+      <button class="button" id="button"> Use Moodist</button>
+    </div>
+  </Container>
+</div>
+
+<script>
+  const button = document.getElementById('button');
+
+  button?.addEventListener('click', () => {
+    const app = document.getElementById('app');
+
+    app?.scrollIntoView(true);
+  });
+</script>
+
+<style>
+  .ready {
+    & .wrapper {
+      position: relative;
+      padding: 0 20px 40px;
+      border-radius: 0 0 20px 20px;
+      background: linear-gradient(transparent, var(--color-neutral-100));
+
+      &::after {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 70%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--color-neutral-300),
+          transparent
+        );
+        content: '';
+        transform: translateX(-50%);
+      }
+    }
+
+    & .iconContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 15px;
+
+      & .tail {
+        width: 1px;
+        height: 75px;
+        background: linear-gradient(transparent, var(--color-neutral-300));
+      }
+
+      & .icon {
+        display: flex;
+        width: 45px;
+        height: 45px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--color-neutral-300);
+        border-radius: 50%;
+        background-color: var(--color-neutral-100);
+        color: #fbbf24;
+        font-size: var(--font-md);
+      }
+    }
+
+    & .title {
+      margin-bottom: 12px;
+      font-family: var(--font-display);
+      font-size: var(--font-lg);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    & .desc {
+      color: var(--color-foreground-subtle);
+      text-align: center;
+    }
+
+    & .button {
+      display: flex;
+      width: 120px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 100px;
+      border-top: 2px solid var(--color-neutral-950);
+      border-bottom: 3px solid var(--color-neutral-600);
+      margin: 24px auto 0;
+      background-color: var(--color-neutral-700);
+      color: var(--color-neutral-200);
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-size: var(--font-sm);
+      line-height: 0;
+      outline: none;
+      text-decoration: none;
+    }
+  }
+</style>
