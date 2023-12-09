@@ -1,0 +1,114 @@
+---
+import { Balancer } from 'react-wrap-balancer';
+
+import { Container } from '@/components/container';
+import { count as soundCount } from '@/lib/sounds';
+
+const count = soundCount();
+---
+
+<div class="hero">
+  <Container>
+    <img
+      alt="Faded Moodist Logo"
+      class="logo"
+      height={45}
+      src="/logo.svg"
+      width={45}
+    />
+
+    <div class="title">
+      <div class="left"></div>
+      <h1>Moodist</h1>
+      <div class="right"></div>
+    </div>
+
+    <p class="desc">
+      <Balancer>Ambient sounds for focus and calm.</Balancer>
+    </p>
+
+    <p class="sounds">{count} Sounds</p>
+  </Container>
+</div>
+
+<style>
+  .hero {
+    padding: 140px 0 60px;
+    text-align: center;
+
+    & .logo {
+      display: block;
+      width: 45px;
+      margin: 0 auto 12px;
+    }
+
+    & .title {
+      display: flex;
+      align-items: center;
+      column-gap: 15px;
+
+      & div {
+        height: 1px;
+        flex-grow: 1;
+
+        &.left {
+          background: linear-gradient(
+            90deg,
+            transparent,
+            var(--color-neutral-300)
+          );
+        }
+
+        &.right {
+          background: linear-gradient(
+            90deg,
+            var(--color-neutral-300),
+            transparent
+          );
+        }
+      }
+
+      & h1 {
+        font-family: var(--font-display);
+        font-size: var(--font-2xlg);
+        font-weight: 600;
+      }
+    }
+
+    & .desc {
+      margin-top: 5px;
+      color: var(--color-foreground-subtle);
+      line-height: 1.6;
+    }
+
+    & .sounds {
+      position: relative;
+      display: flex;
+      width: max-content;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 16px;
+      border: 1px solid var(--color-neutral-200);
+      border-radius: 100px;
+      margin: 20px auto 0;
+      background-color: var(--color-neutral-100);
+      font-size: var(--font-xsm);
+
+      &::before {
+        position: absolute;
+        top: -1px;
+        left: 50%;
+        width: 70%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--color-neutral-400),
+          transparent
+        );
+        content: '';
+        transform: translateX(-50%);
+      }
+    }
+  }
+</style>
