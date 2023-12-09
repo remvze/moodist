@@ -1,0 +1,38 @@
+---
+import { Container } from '@/components/container';
+---
+
+<footer class="footer">
+  <Container>
+    <p>
+      Created by{' '}
+      <a href="https://twitter.com/remvze">
+        Maze <span>✦</span>
+      </a>
+    </p>
+  </Container>
+</footer>
+
+<style>
+  .footer {
+    display: flex;
+    height: 100px;
+    align-items: center;
+
+    & p {
+      color: var(--color-foreground-subtle);
+      font-size: var(--font-sm);
+      text-align: center;
+
+      & a {
+        color: var(--color-foreground);
+        font-weight: 500;
+        text-decoration: none;
+
+        & span {
+          color: #c0eb75;
+        }
+      }
+    }
+  }
+</style>
