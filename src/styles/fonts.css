@@ -1,35 +1,35 @@
 /* fraunces-600 - latin */
 @font-face {
-  font-display: swap;
   font-family: Fraunces;
   font-style: normal;
   font-weight: 600;
   src: url('/fonts/fraunces-v31-latin-600.woff2') format('woff2');
+  font-display: swap;
 }
 
 /* inter-regular - latin */
 @font-face {
-  font-display: swap;
   font-family: Inter;
   font-style: normal;
   font-weight: 400;
   src: url('/fonts/inter-v13-latin-regular.woff2') format('woff2');
+  font-display: swap;
 }
 
 /* inter-500 - latin */
 @font-face {
-  font-display: swap;
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
   src: url('../fonts/inter-v13-latin-500.woff2') format('woff2');
+  font-display: swap;
 }
 
 /* inter-tight-600 - latin */
 @font-face {
-  font-display: swap;
   font-family: 'Inter Tight';
   font-style: normal;
   font-weight: 600;
   src: url('/fonts/inter-tight-v7-latin-600.woff2') format('woff2');
+  font-display: swap;
 }

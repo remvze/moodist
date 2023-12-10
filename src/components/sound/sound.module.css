@@ -5,10 +5,10 @@
   align-items: center;
   justify-content: center;
   padding: 25px 20px;
+  text-align: center;
+  background: linear-gradient(var(--color-neutral-100), transparent);
   border: 1px solid var(--color-neutral-200);
   border-radius: 8px;
-  background: linear-gradient(var(--color-neutral-100), transparent);
-  text-align: center;
   transition: 0.2s;
 
   &.hidden {
@@ -21,59 +21,59 @@
     left: 0;
     width: 100%;
     height: 1px;
+    content: '';
     background: linear-gradient(
       90deg,
       transparent,
       var(--color-neutral-400),
       transparent
     );
-    content: '';
   }
 
   & .icon {
     position: relative;
     z-index: 2;
     display: flex;
-    width: 40px;
-    height: 40px;
     align-items: center;
     justify-content: center;
+    width: 40px;
+    height: 40px;
     font-size: var(--font-base);
     transition: 0.2s;
 
     &::after {
       position: absolute;
-      z-index: -1;
       top: 0;
       left: 0;
+      z-index: -1;
       width: 100%;
       height: 100%;
-      border-radius: 50%;
-      background-color: var(--color-neutral-50);
       content: '';
+      background-color: var(--color-neutral-50);
+      border-radius: 50%;
     }
 
     &::before {
       position: absolute;
-      z-index: -2;
       top: -1px;
       left: -1px;
+      z-index: -2;
       width: calc(100% + 2px);
       height: calc(100% + 2px);
-      border-radius: 50%;
+      content: '';
       background: linear-gradient(
         var(--color-neutral-300),
         var(--color-neutral-100)
       );
-      content: '';
+      border-radius: 50%;
     }
 
     & .spinner {
-      animation-duration: 1s;
-      animation-iteration-count: infinite;
-      animation-name: spinner;
-      animation-timing-function: linear;
       line-height: 0;
+      animation-name: spinner;
+      animation-duration: 1s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
     }
   }
 
@@ -90,11 +90,11 @@
 
   & h3 {
     margin-top: 8px;
-    cursor: default;
     font-family: var(--font-heading);
     font-size: var(--font-sm);
     font-weight: 600;
     line-height: 1.6;
+    cursor: default;
   }
 }
 

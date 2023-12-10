@@ -12,13 +12,13 @@ html {
 }
 
 body {
-  background-color: var(--color-neutral-50);
-  color: var(--color-foreground);
   font-family: var(--font-body);
   font-size: var(--font-base);
+  color: var(--color-foreground);
+  background-color: var(--color-neutral-50);
 }
 
 ::selection {
-  background-color: var(--color-neutral-300);
   color: var(--color-foreground);
+  background-color: var(--color-neutral-300);
 }

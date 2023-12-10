@@ -17,14 +17,14 @@
 
     & .icon {
       display: flex;
-      width: 45px;
-      height: 45px;
       align-items: center;
       justify-content: center;
+      width: 45px;
+      height: 45px;
+      font-size: var(--font-md);
+      background-color: var(--color-neutral-100);
       border: 1px solid var(--color-neutral-300);
       border-radius: 50%;
-      background-color: var(--color-neutral-100);
-      font-size: var(--font-md);
     }
   }
 

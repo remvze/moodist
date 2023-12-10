@@ -1,19 +1,19 @@
 .playButton {
   display: flex;
-  width: 150px;
-  height: 45px;
   align-items: center;
   justify-content: center;
-  border: none;
-  border-radius: 100px;
-  border-top: 2px solid #34d399;
-  border-bottom: 3px solid #059669;
-  background-color: #10b981;
-  color: #022c22;
-  cursor: pointer;
+  width: 150px;
+  height: 45px;
   font-family: var(--font-heading);
   font-size: var(--font-base);
   line-height: 0;
+  color: #022c22;
+  cursor: pointer;
+  background-color: #10b981;
+  border: none;
+  border-top: 2px solid #34d399;
+  border-bottom: 3px solid #059669;
+  border-radius: 100px;
   outline: none;
 
   &:disabled,

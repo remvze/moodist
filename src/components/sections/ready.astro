@@ -36,8 +36,8 @@ import { Container } from '@/components/container';
     & .wrapper {
       position: relative;
       padding: 0 20px 40px;
-      border-radius: 0 0 20px 20px;
       background: linear-gradient(transparent, var(--color-neutral-100));
+      border-radius: 0 0 20px 20px;
 
       &::after {
         position: absolute;
@@ -45,13 +45,13 @@ import { Container } from '@/components/container';
         left: 50%;
         width: 70%;
         height: 1px;
+        content: '';
         background: linear-gradient(
           90deg,
           transparent,
           var(--color-neutral-300),
           transparent
         );
-        content: '';
         transform: translateX(-50%);
       }
     }
@@ -70,15 +70,15 @@ import { Container } from '@/components/container';
 
       & .icon {
         display: flex;
-        width: 45px;
-        height: 45px;
         align-items: center;
         justify-content: center;
+        width: 45px;
+        height: 45px;
+        font-size: var(--font-md);
+        color: #fbbf24;
+        background-color: var(--color-neutral-100);
         border: 1px solid var(--color-neutral-300);
         border-radius: 50%;
-        background-color: var(--color-neutral-100);
-        color: #fbbf24;
-        font-size: var(--font-md);
       }
     }
 
@@ -97,23 +97,23 @@ import { Container } from '@/components/container';
 
     & .button {
       display: flex;
-      width: 120px;
-      height: 40px;
       align-items: center;
       justify-content: center;
-      border: none;
-      border-radius: 100px;
-      border-top: 2px solid var(--color-neutral-950);
-      border-bottom: 3px solid var(--color-neutral-600);
+      width: 120px;
+      height: 40px;
       margin: 24px auto 0;
-      background-color: var(--color-neutral-700);
-      color: var(--color-neutral-200);
-      cursor: pointer;
       font-family: var(--font-heading);
       font-size: var(--font-sm);
       line-height: 0;
-      outline: none;
+      color: var(--color-neutral-200);
       text-decoration: none;
+      cursor: pointer;
+      background-color: var(--color-neutral-700);
+      border: none;
+      border-top: 2px solid var(--color-neutral-950);
+      border-bottom: 3px solid var(--color-neutral-600);
+      border-radius: 100px;
+      outline: none;
     }
   }
 </style>

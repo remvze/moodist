@@ -1,19 +1,19 @@
 .unselectButton {
   display: flex;
-  width: 45px;
-  height: 45px;
   align-items: center;
   justify-content: center;
-  border: none;
-  border-radius: 100px;
-  border-top: 2px solid #fb7185;
-  border-bottom: 3px solid #be123c;
-  background-color: #f43f5e;
-  color: var(--color-foreground);
-  cursor: pointer;
+  width: 45px;
+  height: 45px;
   font-family: var(--font-heading);
   font-size: var(--font-md);
   line-height: 0;
+  color: var(--color-foreground);
+  cursor: pointer;
+  background-color: #f43f5e;
+  border: none;
+  border-top: 2px solid #fb7185;
+  border-bottom: 3px solid #be123c;
+  border-radius: 100px;
   outline: none;
   transition: 0.2s;
 
@@ -23,17 +23,17 @@
   }
 
   &.restore {
+    color: var(--color-neutral-200);
+    background-color: var(--color-neutral-700);
     border-top-color: var(--color-neutral-950);
     border-bottom-color: var(--color-neutral-600);
-    background-color: var(--color-neutral-700);
-    color: var(--color-neutral-200);
   }
 }
 
 .tooltip {
   padding: 6px 12px;
+  font-size: var(--font-xsm);
+  background-color: var(--color-neutral-100);
   border: 1px solid var(--color-neutral-200);
   border-radius: 100px;
-  background-color: var(--color-neutral-100);
-  font-size: var(--font-xsm);
 }

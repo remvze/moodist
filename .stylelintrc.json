@@ -1,7 +1,7 @@
 {
   "extends": [
     "stylelint-config-standard",
-    "stylelint-config-idiomatic-order",
+    "stylelint-config-recess-order",
     "stylelint-config-html",
     "stylelint-prettier/recommended"
   ],

@@ -7,8 +7,8 @@
 
   /* Range Reset */
   appearance: none;
-  background: transparent;
   cursor: pointer;
+  background: transparent;
 
   /* Removes default focus */
   &:focus {
@@ -16,27 +16,27 @@
   }
 
   &:disabled {
+    pointer-events: none;
     cursor: default;
     opacity: 0.5;
-    pointer-events: none;
   }
 
   /***** Chrome, Safari, Opera and Edge Chromium styles *****/
 
   &::-webkit-slider-runnable-track {
     height: 0.5rem;
-    border-radius: 0.5rem;
     background-color: #27272a;
+    border-radius: 0.5rem;
   }
 
   &::-webkit-slider-thumb {
     width: 14px;
     height: 14px;
-    border: 1px solid #52525b;
-    border-radius: 50%;
     margin-top: -3px;
     appearance: none;
     background-color: #3f3f46;
+    border: 1px solid #52525b;
+    border-radius: 50%;
   }
 
   &:not(:disabled):focus::-webkit-slider-thumb {
@@ -49,19 +49,19 @@
 
   &::-moz-range-track {
     height: 0.5rem;
-    border-radius: 0.5rem;
     background-color: #27272a;
+    border-radius: 0.5rem;
   }
 
   &::-moz-range-thumb {
     width: 14px;
     height: 14px;
+    margin-top: -3px;
+    background-color: #3f3f46;
     border: none;
     border: 1px solid #52525b;
     border-radius: 0;
     border-radius: 50%;
-    margin-top: -3px;
-    background-color: #3f3f46;
   }
 
   &:not(:disabled):focus::-moz-range-thumb {
