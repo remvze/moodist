@@ -1,6 +1,6 @@
 import { GiCricket, GiSeagull, GiWolfHead, GiOwl } from 'react-icons/gi/index';
 import { FaDog, FaFrog } from 'react-icons/fa/index';
-import { PiBirdFill } from 'react-icons/pi/index';
+import { PiBirdFill, PiDogBold } from 'react-icons/pi/index';
 
 import type { Category } from '../types';
 
@@ -43,6 +43,12 @@ export const animals: Category = {
       id: 'frog',
       label: 'Frog',
       src: '/sounds/animals/frog.mp3',
+    },
+    {
+      icon: <PiDogBold />,
+      id: 'dog-barking',
+      label: 'Dog Barking',
+      src: '/sounds/animals/dog-barking.mp3',
     },
   ],
   title: 'Animals',

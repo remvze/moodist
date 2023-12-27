@@ -3,8 +3,10 @@ import {
   BiSolidTrain,
   BiSolidPlaneAlt,
 } from 'react-icons/bi/index';
-import { FaCity, FaRoad } from 'react-icons/fa/index';
+import { FaCity, FaRoad, FaChurch } from 'react-icons/fa/index';
 import { PiRoadHorizonFill, PiSirenBold } from 'react-icons/pi/index';
+import { MdTempleBuddhist } from 'react-icons/md';
+import { BsSoundwave } from 'react-icons/bs/index';
 
 import type { Category } from '../types';
 
@@ -59,6 +61,24 @@ export const urban: Category = {
       id: 'airplane',
       label: 'Airplane',
       src: '/sounds/urban/airplane.mp3',
+    },
+    {
+      icon: <FaChurch />,
+      id: 'church',
+      label: 'Church',
+      src: '/sounds/urban/church.mp3',
+    },
+    {
+      icon: <MdTempleBuddhist />,
+      id: 'temple',
+      label: 'Temple',
+      src: '/sounds/urban/temple.mp3',
+    },
+    {
+      icon: <BsSoundwave />,
+      id: 'busy-street',
+      label: 'Busy Street',
+      src: '/sounds/urban/busy-street.mp3',
     },
   ],
   title: 'Urban',
