@@ -6,7 +6,7 @@ import {
 } from 'react-icons/bi/index';
 import { FaCity, FaRoad, FaChurch } from 'react-icons/fa/index';
 import { PiRoadHorizonFill, PiSirenBold } from 'react-icons/pi/index';
-import { MdTempleBuddhist, MdConstruction } from 'react-icons/md';
+import { MdTempleBuddhist, MdConstruction } from 'react-icons/md/index';
 import { BsSoundwave, BsPeopleFill } from 'react-icons/bs/index';
 import { GiSubmarine, GiSailboat } from 'react-icons/gi/index';
 
