@@ -2,11 +2,13 @@ import {
   BiSolidCoffeeAlt,
   BiSolidTrain,
   BiSolidPlaneAlt,
+  BiSolidTraffic,
 } from 'react-icons/bi/index';
 import { FaCity, FaRoad, FaChurch } from 'react-icons/fa/index';
 import { PiRoadHorizonFill, PiSirenBold } from 'react-icons/pi/index';
-import { MdTempleBuddhist } from 'react-icons/md';
-import { BsSoundwave } from 'react-icons/bs/index';
+import { MdTempleBuddhist, MdConstruction } from 'react-icons/md';
+import { BsSoundwave, BsPeopleFill } from 'react-icons/bs/index';
+import { GiSubmarine, GiSailboat } from 'react-icons/gi/index';
 
 import type { Category } from '../types';
 
@@ -79,6 +81,36 @@ export const urban: Category = {
       id: 'busy-street',
       label: 'Busy Street',
       src: '/sounds/urban/busy-street.mp3',
+    },
+    {
+      icon: <MdConstruction />,
+      id: 'construction-site',
+      label: 'Construction Site',
+      src: '/sounds/urban/construction-site.mp3',
+    },
+    {
+      icon: <GiSubmarine />,
+      id: 'submarine',
+      label: 'Submarine',
+      src: '/sounds/urban/submarine.mp3',
+    },
+    {
+      icon: <GiSailboat />,
+      id: 'sailboat',
+      label: 'Sailboat',
+      src: '/sounds/urban/sailboat.mp3',
+    },
+    {
+      icon: <BsPeopleFill />,
+      id: 'crowd',
+      label: 'Crowd',
+      src: '/sounds/urban/crowd.mp3',
+    },
+    {
+      icon: <BiSolidTraffic />,
+      id: 'traffic',
+      label: 'Traffic',
+      src: '/sounds/urban/traffic.mp3',
     },
   ],
   title: 'Urban',

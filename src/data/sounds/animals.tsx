@@ -1,5 +1,5 @@
 import { GiCricket, GiSeagull, GiWolfHead, GiOwl } from 'react-icons/gi/index';
-import { FaDog, FaFrog } from 'react-icons/fa/index';
+import { FaDog, FaFrog, FaHorseHead, FaCat } from 'react-icons/fa/index';
 import { PiBirdFill, PiDogBold } from 'react-icons/pi/index';
 
 import type { Category } from '../types';
@@ -49,6 +49,18 @@ export const animals: Category = {
       id: 'dog-barking',
       label: 'Dog Barking',
       src: '/sounds/animals/dog-barking.mp3',
+    },
+    {
+      icon: <FaHorseHead />,
+      id: 'horse-galopp',
+      label: 'Horse Galopp',
+      src: '/sounds/animals/horse-galopp.mp3',
+    },
+    {
+      icon: <FaCat />,
+      id: 'cat-purring',
+      label: 'Cat Purring',
+      src: '/sounds/animals/cat-purring.mp3',
     },
   ],
   title: 'Animals',
