@@ -1,5 +1,5 @@
 import { GiWaterfall } from 'react-icons/gi/index';
-import { BsFire } from 'react-icons/bs/index';
+import { BsFire, BsFillDropletFill } from 'react-icons/bs/index';
 import { BiSolidTree, BiWater } from 'react-icons/bi/index';
 import { FaWater, FaWind, FaLeaf, FaRegSnowflake } from 'react-icons/fa/index';
 import { TbScubaMask, TbSailboat } from 'react-icons/tb/index';
@@ -75,6 +75,12 @@ export const nature: Category = {
       id: 'rowing-boat',
       label: 'Rowing Boat',
       src: '/sounds/nature/rowing-boat.mp3',
+    },
+    {
+      icon: <BsFillDropletFill />,
+      id: 'droplets',
+      label: 'Droplets',
+      src: '/sounds/nature/droplets.mp3',
     },
   ],
   title: 'Nature',

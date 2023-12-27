@@ -1,6 +1,6 @@
 import { GiWindchimes } from 'react-icons/gi/index';
 import { BsFillKeyboardFill } from 'react-icons/bs/index';
-import { FaKeyboard, FaClock, FaFan } from 'react-icons/fa/index';
+import { FaKeyboard, FaClock, FaFan, FaHeartbeat } from 'react-icons/fa/index';
 import { MdSmartToy } from 'react-icons/md/index';
 import { TbBowlFilled } from 'react-icons/tb/index';
 import { RiFilePaper2Fill } from 'react-icons/ri/index';
@@ -52,6 +52,12 @@ export const things: Category = {
       id: 'ceiling-fan',
       label: 'Ceiling Fan',
       src: '/sounds/things/ceiling-fan.mp3',
+    },
+    {
+      icon: <FaHeartbeat />,
+      id: 'heartbeat',
+      label: 'Heartbeat',
+      src: '/sounds/things/heartbeat.mp3',
     },
   ],
   title: 'Things',
