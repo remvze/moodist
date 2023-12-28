@@ -2,7 +2,6 @@ import { GiWaterfall } from 'react-icons/gi/index';
 import { BsFire, BsFillDropletFill } from 'react-icons/bs/index';
 import { BiSolidTree, BiWater } from 'react-icons/bi/index';
 import { FaWater, FaWind, FaLeaf, FaRegSnowflake } from 'react-icons/fa/index';
-import { TbScubaMask } from 'react-icons/tb/index';
 
 import type { Category } from '../types';
 
@@ -51,12 +50,6 @@ export const nature: Category = {
       id: 'waterfall',
       label: 'Waterfall',
       src: '/sounds/nature/waterfall.mp3',
-    },
-    {
-      icon: <TbScubaMask />,
-      id: 'underwater',
-      label: 'Underwater',
-      src: '/sounds/nature/underwater.mp3',
     },
     {
       icon: <FaRegSnowflake />,

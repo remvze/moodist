@@ -1,5 +1,6 @@
 import { BiSolidCoffeeAlt, BiSolidPlaneAlt } from 'react-icons/bi/index';
 import { FaChurch } from 'react-icons/fa/index';
+import { TbScubaMask } from 'react-icons/tb/index';
 import {
   MdTempleBuddhist,
   MdConstruction,
@@ -41,6 +42,12 @@ export const places: Category = {
       id: 'construction-site',
       label: 'Construction Site',
       src: '/sounds/places/construction-site.mp3',
+    },
+    {
+      icon: <TbScubaMask />,
+      id: 'underwater',
+      label: 'Underwater',
+      src: '/sounds/places/underwater.mp3',
     },
   ],
   title: 'Places',
