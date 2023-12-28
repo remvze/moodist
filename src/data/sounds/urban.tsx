@@ -1,12 +1,10 @@
 import {
-  BiSolidCoffeeAlt,
   BiSolidTrain,
   BiSolidPlaneAlt,
   BiSolidTraffic,
 } from 'react-icons/bi/index';
-import { FaCity, FaRoad, FaChurch } from 'react-icons/fa/index';
+import { FaCity, FaRoad } from 'react-icons/fa/index';
 import { PiRoadHorizonFill, PiSirenBold } from 'react-icons/pi/index';
-import { MdTempleBuddhist, MdConstruction } from 'react-icons/md/index';
 import { BsSoundwave, BsPeopleFill } from 'react-icons/bs/index';
 import { GiSubmarine, GiSailboat } from 'react-icons/gi/index';
 
@@ -16,12 +14,6 @@ export const urban: Category = {
   icon: <FaCity />,
   id: 'urban',
   sounds: [
-    {
-      icon: <BiSolidCoffeeAlt />,
-      id: 'cafe',
-      label: 'Cafe',
-      src: '/sounds/urban/cafe.mp3',
-    },
     {
       icon: <PiRoadHorizonFill />,
       id: 'highway',
@@ -54,39 +46,15 @@ export const urban: Category = {
     },
     {
       icon: <BiSolidPlaneAlt />,
-      id: 'airport',
-      label: 'Airport',
-      src: '/sounds/urban/airport.mp3',
-    },
-    {
-      icon: <BiSolidPlaneAlt />,
       id: 'airplane',
       label: 'Airplane',
       src: '/sounds/urban/airplane.mp3',
-    },
-    {
-      icon: <FaChurch />,
-      id: 'church',
-      label: 'Church',
-      src: '/sounds/urban/church.mp3',
-    },
-    {
-      icon: <MdTempleBuddhist />,
-      id: 'temple',
-      label: 'Temple',
-      src: '/sounds/urban/temple.mp3',
     },
     {
       icon: <BsSoundwave />,
       id: 'busy-street',
       label: 'Busy Street',
       src: '/sounds/urban/busy-street.mp3',
-    },
-    {
-      icon: <MdConstruction />,
-      id: 'construction-site',
-      label: 'Construction Site',
-      src: '/sounds/urban/construction-site.mp3',
     },
     {
       icon: <GiSubmarine />,
