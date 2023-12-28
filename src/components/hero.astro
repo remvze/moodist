@@ -1,5 +1,6 @@
 ---
 import { Balancer } from 'react-wrap-balancer';
+import { BsSoundwave } from 'react-icons/bs/index';
 
 import { Container } from '@/components/container';
 import { count as soundCount } from '@/lib/sounds';
@@ -27,7 +28,10 @@ const count = soundCount();
       <Balancer>Ambient sounds for focus and calm.</Balancer>
     </p>
 
-    <p class="sounds">{count} Sounds</p>
+    <p class="sounds">
+      <span class="icon"><BsSoundwave /></span>
+      <span>{count} Sounds</span>
+    </p>
   </Container>
 </div>
 
@@ -84,15 +88,28 @@ const count = soundCount();
     & .sounds {
       position: relative;
       display: flex;
+      column-gap: 8px;
       align-items: center;
       justify-content: center;
       width: max-content;
-      padding: 6px 16px;
+      height: 28px;
+      padding-right: 12px;
       margin: 20px auto 0;
       font-size: var(--font-xsm);
+      color: var(--color-foreground-subtle);
       background-color: var(--color-neutral-100);
       border: 1px solid var(--color-neutral-200);
       border-radius: 100px;
+
+      & .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 0 8px 0 12px;
+        color: var(--color-foreground);
+        border-right: 1px solid var(--color-neutral-200);
+      }
 
       &::before {
         position: absolute;
