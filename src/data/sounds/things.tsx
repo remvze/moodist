@@ -57,7 +57,7 @@ export const things: Category = {
       icon: <FaHeartbeat />,
       id: 'heartbeat',
       label: 'Heartbeat',
-      src: '/sounds/things/heartbeat.mp3',
+      src: '/sounds/things/heartbeat.wav',
     },
   ],
   title: 'Things',
