@@ -7,7 +7,6 @@
   font-family: var(--font-heading);
   font-size: var(--font-base);
   line-height: 0;
-  color: #022c22;
   color: var(--color-neutral-200);
   cursor: pointer;
   background-color: var(--color-neutral-950);
