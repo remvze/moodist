@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/remvze/moodist/compare/v1.0.0...v1.1.0) (2023-12-29)
+
+
+### ♻️ Code Refactoring
+
+* change ordering config ([a43c679](https://github.com/remvze/moodist/commit/a43c679e214b24c7f547e182aea6e2fbf826228f))
+
+
+### 🐛 Bug Fixes
+
+* change icon path ([28c3c40](https://github.com/remvze/moodist/commit/28c3c404ad790869b13731e4c3622abe33f1dda2))
+
+
+### 🚚 Chores
+
+* add more sounds ([e3864be](https://github.com/remvze/moodist/commit/e3864bede129c102ef5b7258b4688d9177dd284c))
+* add more sounds ([55e7f05](https://github.com/remvze/moodist/commit/55e7f05892f6d3200b56a7e06b371bed4b4c4554))
+* add more sounds ([318e87c](https://github.com/remvze/moodist/commit/318e87c9f1f3e2509c2b8eeb3a7f6875dd1c02fd))
+* add places category ([5970012](https://github.com/remvze/moodist/commit/5970012fa6cbd8222c2be8ce426065f928d81b2b))
+* add transport category ([c1c3945](https://github.com/remvze/moodist/commit/c1c3945d43e84e3011de52bffa5116d58283c473))
+* change heartbeat audio ([f43a378](https://github.com/remvze/moodist/commit/f43a378697437f671c0c33122b1c9ec5a1e173ff))
+* relocate underwater audio ([37bad81](https://github.com/remvze/moodist/commit/37bad8149e1f5170426dc745322c0e65cb9a41ff))
+* remove heartbeat audio ([121a8f2](https://github.com/remvze/moodist/commit/121a8f204c6b61490a7ab0e732779031278e6e8c))
+
+
+### 💄 Styling
+
+* add hover states ([2c74dd0](https://github.com/remvze/moodist/commit/2c74dd0d604af86f99edcba2eb573641ac2010fd))
+* change button style ([8efb1ce](https://github.com/remvze/moodist/commit/8efb1cee00ec0e0dcd9677729d9136ca8d69073f))
+* change sound counter ([00fc5f3](https://github.com/remvze/moodist/commit/00fc5f3a872be51eb875744e254c75ea58e93281))
+* change theme ([bd517f8](https://github.com/remvze/moodist/commit/bd517f88c01202eb7e7e5acf70bf4af2e6f91d75))
+
 ## [1.0.0](https://github.com/remvze/moodist/compare/v0.0.1...v1.0.0) (2023-12-09)
 
 
