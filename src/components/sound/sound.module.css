@@ -78,6 +78,10 @@
     }
   }
 
+  &:hover .icon {
+    color: var(--color-foreground-subtle);
+  }
+
   &.selected {
     border-color: transparent;
     box-shadow: 0 0 0 2px var(--color-neutral-800);

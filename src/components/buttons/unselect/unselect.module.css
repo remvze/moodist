@@ -10,7 +10,7 @@
   color: var(--color-foreground);
   cursor: pointer;
   background-color: var(--color-neutral-100);
-  border: 1px solid var(--color-neutral-200);
+  border: 1px solid var(--color-neutral-300);
   border-radius: 100px;
   outline: none;
   transition: 0.2s;
@@ -18,6 +18,10 @@
   &:disabled,
   &.disabled {
     cursor: not-allowed;
+  }
+
+  &:hover {
+    background-color: var(--color-neutral-200);
   }
 }
 
