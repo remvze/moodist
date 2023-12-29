@@ -39,6 +39,7 @@
     width: 40px;
     height: 40px;
     font-size: var(--font-base);
+    color: var(--color-foreground-subtler);
     transition: 0.2s;
 
     &::after {
@@ -79,12 +80,10 @@
 
   &.selected {
     border-color: transparent;
-    box-shadow:
-      0 0 0 2px #34d399,
-      0 10px 20px #34d39933;
+    box-shadow: 0 0 0 2px var(--color-neutral-800);
 
     & .icon {
-      color: #34d399;
+      color: var(--color-foreground);
     }
   }
 

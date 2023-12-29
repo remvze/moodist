@@ -48,7 +48,6 @@ export function UnselectButton() {
                 }
                 className={cn(
                   styles.unselectButton,
-                  hasHistory && styles.restore,
                   noSelected && !hasHistory && styles.disabled,
                 )}
                 onClick={() => {

@@ -8,11 +8,10 @@
   font-size: var(--font-base);
   line-height: 0;
   color: #022c22;
+  color: var(--color-neutral-200);
   cursor: pointer;
-  background-color: #10b981;
-  border: none;
-  border-top: 2px solid #34d399;
-  border-bottom: 3px solid #059669;
+  background-color: var(--color-neutral-950);
+  border: 1px solid var(--color-neutral-50);
   border-radius: 100px;
   outline: none;
 

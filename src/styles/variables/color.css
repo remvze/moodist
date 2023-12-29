@@ -12,7 +12,7 @@
   --color-neutral-950: #fafafa;
 
   /* Foreground */
-  --color-foreground: var(--color-neutral-900);
+  --color-foreground: var(--color-neutral-950);
   --color-foreground-subtle: var(--color-neutral-600);
   --color-foreground-subtler: var(--color-neutral-500);
 }

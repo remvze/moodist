@@ -17,6 +17,6 @@
   outline: none;
 
   &.isFavorite {
-    color: #f43f5e;
+    color: var(--color-foreground);
   }
 }
