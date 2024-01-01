@@ -2,9 +2,8 @@ name: Build and push main image
 
 on:
   push:
-    branches: 
-    - main
-    - dev
+    branches:
+      - main
 
 jobs:
   push-store-image:
@@ -19,9 +18,9 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{github.actor}}
-          password: ${{secrets.GITHUB_TOKEN}}
+          password: ${{secrets.ACCESS_TOKEN}}
 
       - name: 'Build Inventory Image'
         run: |
-          docker build . --tag ghcr.io/${GITHUB_REPOSITORY}:${GITHUB_REF##*/}
-          docker push ghcr.io/${GITHUB_REPOSITORY}:${GITHUB_REF##*/}
+          docker build . --tag ghcr.io/remvze/moodist:latest
+          docker push ghcr.io/remvze/moodist:latest
