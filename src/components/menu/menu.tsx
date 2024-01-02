@@ -14,7 +14,7 @@ import {
   FloatingFocusManager,
 } from '@floating-ui/react';
 
-import { ShuffleButton, ShareButton } from './buttons';
+import { ShuffleItem, ShareItem } from './items';
 
 import { slideY, fade, mix } from '@/lib/motion';
 
@@ -70,8 +70,8 @@ export function Menu() {
                 initial="hidden"
                 variants={variants}
               >
-                <ShareButton />
-                <ShuffleButton />
+                <ShareItem />
+                <ShuffleItem />
               </motion.div>
             </div>
           </FloatingFocusManager>
