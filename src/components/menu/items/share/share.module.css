@@ -1,4 +1,31 @@
 .heading {
   font-family: var(--font-heading);
+  font-size: var(--font-md);
   font-weight: 700;
+}
+
+.desc {
+  margin-top: 12px;
+  line-height: 1.6;
+  color: var(--color-foreground-subtle);
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  margin-top: 12px;
+  background-color: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 4px;
+
+  & input {
+    flex-grow: 1;
+    height: 100%;
+    color: red;
+    background: transparent;
+    border: none;
+    outline: none;
+  }
 }

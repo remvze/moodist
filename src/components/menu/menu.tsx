@@ -57,7 +57,7 @@ export function Menu() {
 
       <AnimatePresence>
         {isOpen && (
-          <FloatingFocusManager context={context} modal={false}>
+          <FloatingFocusManager context={context}>
             <div
               ref={refs.setFloating}
               style={floatingStyles}
