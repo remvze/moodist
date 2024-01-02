@@ -15,6 +15,7 @@
   max-height: 100%;
   padding: 50px 0;
   overflow-y: auto;
+  pointer-events: none;
   transform: translate(-50%, -50%);
 
   & .content {
@@ -22,8 +23,27 @@
     width: 90%;
     max-width: 500px;
     padding: 20px;
+    padding-top: 40px;
     margin: 0 auto;
+    pointer-events: fill;
     background-color: var(--color-neutral-100);
     border-radius: 8px;
+
+    & .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      font-size: 16px;
+      color: var(--color-foreground-subtle);
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      outline: none;
+    }
   }
 }

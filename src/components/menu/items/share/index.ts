@@ -1,1 +1,0 @@
-export { Share } from './share';

@@ -1,4 +1,5 @@
 import { AnimatePresence } from 'framer-motion';
+import { IoClose } from 'react-icons/io5/index';
 
 import styles from './modal.module.css';
 
@@ -19,7 +20,13 @@ export function Modal({ children, onClose, show }: ModalProps) {
             onKeyDown={onClose}
           />
           <div className={styles.modal}>
-            <div className={styles.content}>{children}</div>
+            <div className={styles.content}>
+              <button className={styles.close} onClick={onClose}>
+                <IoClose />
+              </button>
+
+              {children}
+            </div>
           </div>
         </>
       )}
