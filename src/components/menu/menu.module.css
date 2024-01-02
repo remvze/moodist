@@ -24,9 +24,6 @@
   }
 
   & .menu {
-    position: absolute;
-    right: 0;
-    bottom: calc(100% + 12px);
     width: 200px;
     padding: 4px;
     background-color: var(--color-neutral-100);
