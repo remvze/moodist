@@ -14,15 +14,14 @@ import {
   FloatingFocusManager,
 } from '@floating-ui/react';
 
-import { useSoundStore } from '@/store';
+import { ShuffleButton, ShareButton } from './buttons';
+
 import { slideY, fade, mix } from '@/lib/motion';
 
 import styles from './menu.module.css';
 
 export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const shuffle = useSoundStore(state => state.shuffle);
 
   const variants = mix(slideY(-20), fade());
 
@@ -71,9 +70,8 @@ export function Menu() {
                 initial="hidden"
                 variants={variants}
               >
-                <button className={styles.menuItem} onClick={shuffle}>
-                  Shuffle Sounds
-                </button>
+                <ShareButton />
+                <ShuffleButton />
               </motion.div>
             </div>
           </FloatingFocusManager>

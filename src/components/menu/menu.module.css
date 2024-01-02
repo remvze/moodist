@@ -24,6 +24,9 @@
   }
 
   & .menu {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
     width: 200px;
     padding: 4px;
     background-color: var(--color-neutral-100);
