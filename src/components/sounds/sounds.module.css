@@ -44,7 +44,7 @@
     width: 8px;
     height: 8px;
     content: '';
-    background-color: #34d399;
+    background-color: var(--color-neutral-950);
     border-radius: 50%;
   }
 }
