@@ -1,14 +1,15 @@
 import styles from './item.module.css';
 
 interface ItemProps {
-  children: React.ReactNode;
+  icon: React.ReactElement;
+  label: string;
   onClick: () => void;
 }
 
-export function Item({ children, onClick }: ItemProps) {
+export function Item({ icon, label, onClick }: ItemProps) {
   return (
     <button className={styles.item} onClick={onClick}>
-      {children}
+      <span className={styles.icon}>{icon}</span> {label}
     </button>
   );
 }
