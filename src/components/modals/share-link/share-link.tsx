@@ -25,7 +25,7 @@ export function ShareLinkModal({ onClose, show }: ShareLinkModalProps) {
         volume: sounds[sound].volume.toFixed(1),
       }))
       .filter(sound => sound.isSelected);
-  }, [sounds]);
+  }, [sounds, JSON.stringify(sounds)]); // eslint-disable-line
 
   const string = useMemo(() => {
     const object: Record<string, number> = {};
