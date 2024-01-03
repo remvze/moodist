@@ -5,6 +5,7 @@ import type { SoundState } from './sound.state';
 import { pickMany, random } from '@/helpers/random';
 
 export interface SoundActions {
+  override: (sounds: Record<string, number>) => void;
   pause: () => void;
   play: () => void;
   restoreHistory: () => void;
@@ -24,6 +25,19 @@ export const createActions: StateCreator<
   SoundActions
 > = (set, get) => {
   return {
+    override(newSounds) {
+      get().unselectAll();
+
+      const sounds = get().sounds;
+
+      Object.keys(newSounds).forEach(sound => {
+        sounds[sound].isSelected = true;
+        sounds[sound].volume = newSounds[sound];
+      });
+
+      set({ sounds: { ...sounds } });
+    },
+
     pause() {
       set({ isPlaying: false });
     },

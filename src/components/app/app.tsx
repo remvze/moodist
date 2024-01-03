@@ -9,6 +9,7 @@ import { StoreConsumer } from '@/components/store-consumer';
 import { Buttons } from '@/components/buttons';
 import { Categories } from '@/components/categories';
 import { ScrollToTop } from '@/components/scroll-to-top';
+import { SharedModal } from '@/components/modals/shared';
 import { Menu } from '@/components/menu/menu';
 import { SnackbarProvider } from '@/contexts/snackbar';
 
@@ -61,6 +62,7 @@ export function App() {
 
         <ScrollToTop />
         <Menu />
+        <SharedModal />
       </StoreConsumer>
     </SnackbarProvider>
   );

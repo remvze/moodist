@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import { IoCopyOutline, IoCheckmark } from 'react-icons/io5/index';
 
 import { Modal } from '@/components/modal';
@@ -14,6 +14,7 @@ interface ShareLinkModalProps {
 }
 
 export function ShareLinkModal({ onClose, show }: ShareLinkModalProps) {
+  const [isMounted, setIsMounted] = useState(false);
   const sounds = useSoundStore(state => state.sounds);
   const { copy, copying } = useCopy();
 
@@ -38,8 +39,15 @@ export function ShareLinkModal({ onClose, show }: ShareLinkModalProps) {
   }, [selected]);
 
   const url = useMemo(() => {
-    return `https://moodist.app/?share=${encodeURIComponent(string)}`;
-  }, [string]);
+    if (!isMounted)
+      return `https://moodist.app/?share=${encodeURIComponent(string)}`;
+
+    return `${window.location.protocol}//${
+      window.location.host
+    }/?share=${encodeURIComponent(string)}`;
+  }, [string, isMounted]);
+
+  useEffect(() => setIsMounted(true), []);
 
   return (
     <Modal show={show} onClose={onClose}>

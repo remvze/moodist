@@ -1,0 +1,1 @@
+export { SharedModal } from './shared';
