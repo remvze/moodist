@@ -74,7 +74,7 @@ export function SharedModal() {
 
     override(newSounds);
     setIsOpen(false);
-    showSnackbar('Overrode sounds! You can now play them.');
+    showSnackbar('Done! You can now play the new selection.');
   };
 
   return (
