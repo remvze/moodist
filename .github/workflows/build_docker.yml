@@ -2,8 +2,8 @@ name: Build and push main image
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - '*'
 
 jobs:
   push-store-image:
@@ -22,5 +22,13 @@ jobs:
 
       - name: 'Build Inventory Image'
         run: |
-          docker build . --tag ghcr.io/remvze/moodist:latest
-          docker push ghcr.io/remvze/moodist:latest
+          IMAGE_NAME="ghcr.io/remvze/moodist"
+
+          GIT_TAG=${{ github.ref }}
+          GIT_TAG=${GIT_TAG#refs/tags/}
+
+          docker build . --tag $IMAGE_NAME:latest
+          docker push $IMAGE_NAME:latest
+
+          docker build . --tag $IMAGE_NAME:$GIT_TAG
+          docker push $IMAGE_NAME:$GIT_TAG
