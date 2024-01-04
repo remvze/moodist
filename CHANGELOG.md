@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/remvze/moodist/compare/v1.1.0...v1.2.0) (2024-01-04)
+
+
+### ♻️ Code Refactoring
+
+* better item structure for menu ([26bf016](https://github.com/remvze/moodist/commit/26bf01690cfcc105b661951bcb2347394a67fb68))
+* rewrite menu with floating ui ([8beb42c](https://github.com/remvze/moodist/commit/8beb42cb1b92c99aa9656b35cd7d82094e5baf72))
+
+
+### 🐛 Bug Fixes
+
+* stringify dependency ([1a23e00](https://github.com/remvze/moodist/commit/1a23e004a65960ce169990211f150db25762fead))
+
+
+### ✨ Features
+
+* add animation to menu box ([17027e2](https://github.com/remvze/moodist/commit/17027e299bb9bf958aebaf735c40e7664ad71e8b))
+* add disabled state ([ff26597](https://github.com/remvze/moodist/commit/ff26597d22d444d18d2874a5c278eccc288972de))
+* add menu button ([184bb09](https://github.com/remvze/moodist/commit/184bb09f5ab09fcf877e6a904023d9de72be9a89))
+* add share modal ([35e3215](https://github.com/remvze/moodist/commit/35e32152b153f4dfaf9e071f526f6d7602ea97fc))
+* add share placeholder ([fe2357c](https://github.com/remvze/moodist/commit/fe2357c995713cd0fb8335b325266859dc47a769))
+* basic structure for share link ([ef81f19](https://github.com/remvze/moodist/commit/ef81f198baeb927e3b1768570f75e6638a7bd0b6))
+* **docker:** add dockerfile ([a234bc1](https://github.com/remvze/moodist/commit/a234bc17a66331acbbc1d980cd1f53d58646f534))
+* implement override feature ([0f62f07](https://github.com/remvze/moodist/commit/0f62f0795c5a9e06fa4e62b6b7b1e6c0774dfe0f))
+* implement sharing URL ([93ff72a](https://github.com/remvze/moodist/commit/93ff72a052484b36c9ac821b94b632865b4a3550))
+
+
+### 💄 Styling
+
+* add animation to modal ([7823dc7](https://github.com/remvze/moodist/commit/7823dc7ff473278ef8ee401e69796c17b33da794))
+* add icon to menu items ([131ab29](https://github.com/remvze/moodist/commit/131ab296215812e45a0c60486d75683f3de25d16))
+* change border color ([85b627e](https://github.com/remvze/moodist/commit/85b627ecb96a4f52ecacdb53ed4484c050adba5e))
+* change copy ([c51acd6](https://github.com/remvze/moodist/commit/c51acd62618cc705902dc01f0574a2c9124264c5))
+* change to primary color ([c8e5122](https://github.com/remvze/moodist/commit/c8e51226e57bfa72ad91318de25fc5f9b5751634))
+* widen the menu ([37a0736](https://github.com/remvze/moodist/commit/37a0736a0e7edd09c33940099c884e5b48afbbf1))
+
+
+### 🚚 Chores
+
+* change docker workflow ([cb4bfea](https://github.com/remvze/moodist/commit/cb4bfea5ab4326dee17c78554f12a08ffcb9dd0e))
+* change docker-compose file ([660ee07](https://github.com/remvze/moodist/commit/660ee07a2359ec77c9d56bbe552541246e0f79c5))
+* update GitHub action ([ee60613](https://github.com/remvze/moodist/commit/ee606139a80121fd6ee1b8233f82af994c4e1178))
+
 ## [1.1.0](https://github.com/remvze/moodist/compare/v1.0.0...v1.1.0) (2023-12-29)
 
 
