@@ -5,7 +5,7 @@ import { Range } from './range';
 import { Favorite } from './favorite';
 
 import { useSound } from '@/hooks/use-sound';
-import { useSoundStore } from '@/store';
+import { useSoundStore, useLoadingStore } from '@/store';
 import { cn } from '@/helpers/styles';
 
 import styles from './sound.module.css';
@@ -36,6 +36,8 @@ export function Sound({
   const setVolume = useSoundStore(state => state.setVolume);
   const volume = useSoundStore(state => state.sounds[id].volume);
   const isSelected = useSoundStore(state => state.sounds[id].isSelected);
+
+  const isLoading = useLoadingStore(state => state.loaders[src]);
 
   const sound = useSound(src, { loop: true, volume });
 
@@ -80,7 +82,7 @@ export function Sound({
     >
       <Favorite id={id} />
       <div className={styles.icon}>
-        {sound.isLoading ? (
+        {isLoading ? (
           <span className={styles.spinner}>
             <ImSpinner9 />
           </span>

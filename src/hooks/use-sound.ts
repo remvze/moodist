@@ -1,6 +1,7 @@
 import { useMemo, useEffect, useCallback, useState } from 'react';
 import { Howl } from 'howler';
 
+import { useLoadingStore } from '@/store';
 import { useSSR } from './use-ssr';
 
 export function useSound(
@@ -8,7 +9,9 @@ export function useSound(
   options: { loop?: boolean; volume?: number } = {},
 ) {
   const [hasLoaded, setHasLoaded] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const isLoading = useLoadingStore(state => state.loaders[src]);
+  const setIsLoading = useLoadingStore(state => state.set);
+
   const { isBrowser } = useSSR();
   const sound = useMemo<Howl | null>(() => {
     let sound: Howl | null = null;
@@ -16,7 +19,7 @@ export function useSound(
     if (isBrowser) {
       sound = new Howl({
         onload: () => {
-          setIsLoading(false);
+          setIsLoading(src, false);
           setHasLoaded(true);
         },
         preload: false,
@@ -25,7 +28,7 @@ export function useSound(
     }
 
     return sound;
-  }, [src, isBrowser]);
+  }, [src, isBrowser, setIsLoading]);
 
   useEffect(() => {
     if (sound) {
@@ -41,7 +44,7 @@ export function useSound(
   const play = useCallback(() => {
     if (sound) {
       if (!hasLoaded && !isLoading) {
-        setIsLoading(true);
+        setIsLoading(src, true);
         sound.load();
       }
 
@@ -49,7 +52,7 @@ export function useSound(
         sound.play();
       }
     }
-  }, [sound, hasLoaded, isLoading]);
+  }, [src, setIsLoading, sound, hasLoaded, isLoading]);
 
   const stop = useCallback(() => {
     if (sound) sound.stop();
