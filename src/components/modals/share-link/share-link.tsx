@@ -23,7 +23,7 @@ export function ShareLinkModal({ onClose, show }: ShareLinkModalProps) {
       .map(sound => ({
         id: sound,
         isSelected: sounds[sound].isSelected,
-        volume: sounds[sound].volume.toFixed(1),
+        volume: sounds[sound].volume.toFixed(2),
       }))
       .filter(sound => sound.isSelected);
   }, [sounds, JSON.stringify(sounds)]); // eslint-disable-line
