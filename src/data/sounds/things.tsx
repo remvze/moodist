@@ -4,6 +4,7 @@ import { FaKeyboard, FaClock, FaFan } from 'react-icons/fa/index';
 import { MdSmartToy } from 'react-icons/md/index';
 import { TbBowlFilled } from 'react-icons/tb/index';
 import { RiFilePaper2Fill } from 'react-icons/ri/index';
+import { BiSolidDryer } from 'react-icons/bi/index';
 
 import type { Category } from '../types';
 
@@ -52,6 +53,12 @@ export const things: Category = {
       id: 'ceiling-fan',
       label: 'Ceiling Fan',
       src: '/sounds/things/ceiling-fan.mp3',
+    },
+    {
+      icon: <BiSolidDryer />,
+      id: 'dryer',
+      label: 'Dryer',
+      src: '/sounds/things/dryer.mp3',
     },
   ],
   title: 'Things',

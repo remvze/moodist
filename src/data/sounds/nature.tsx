@@ -40,7 +40,7 @@ export const nature: Category = {
       src: '/sounds/nature/howling-wind.mp3',
     },
     {
-      icon: <FaWind />,
+      icon: <BiSolidTree />,
       id: 'wind-in-trees',
       label: 'Wind in Trees',
       src: '/sounds/nature/wind-in-trees.mp3',

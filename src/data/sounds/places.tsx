@@ -1,6 +1,7 @@
 import { BiSolidCoffeeAlt, BiSolidPlaneAlt } from 'react-icons/bi/index';
 import { FaChurch } from 'react-icons/fa/index';
-import { TbScubaMask } from 'react-icons/tb/index';
+import { TbScubaMask, TbBeerFilled } from 'react-icons/tb/index';
+import { GiVillage } from 'react-icons/gi/index';
 import {
   MdTempleBuddhist,
   MdConstruction,
@@ -48,6 +49,18 @@ export const places: Category = {
       id: 'underwater',
       label: 'Underwater',
       src: '/sounds/places/underwater.mp3',
+    },
+    {
+      icon: <TbBeerFilled />,
+      id: 'crowded-bar',
+      label: 'Crowded Bar',
+      src: '/sounds/places/crowded-bar.mp3',
+    },
+    {
+      icon: <GiVillage />,
+      id: 'night-village',
+      label: 'Night Village',
+      src: '/sounds/places/night-village.mp3',
     },
   ],
   title: 'Places',
