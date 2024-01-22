@@ -1,5 +1,5 @@
 import { BiSolidCoffeeAlt, BiSolidPlaneAlt } from 'react-icons/bi/index';
-import { FaChurch } from 'react-icons/fa/index';
+import { FaChurch, FaSubway } from 'react-icons/fa/index';
 import { TbScubaMask, TbBeerFilled } from 'react-icons/tb/index';
 import { GiVillage } from 'react-icons/gi/index';
 import {
@@ -7,6 +7,7 @@ import {
   MdConstruction,
   MdLocationPin,
 } from 'react-icons/md/index';
+import { HiOfficeBuilding } from 'react-icons/hi/index';
 
 import type { Category } from '../types';
 
@@ -61,6 +62,18 @@ export const places: Category = {
       id: 'night-village',
       label: 'Night Village',
       src: '/sounds/places/night-village.mp3',
+    },
+    {
+      icon: <FaSubway />,
+      id: 'subway-station',
+      label: 'Subway Station',
+      src: '/sounds/places/subway-station.mp3',
+    },
+    {
+      icon: <HiOfficeBuilding />,
+      id: 'office',
+      label: 'Office',
+      src: '/sounds/places/office.mp3',
     },
   ],
   title: 'Places',
