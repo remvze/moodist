@@ -1,6 +1,7 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import { BiSolidHeart } from 'react-icons/bi/index';
+import { Howler } from 'howler';
 
 import { useSoundStore } from '@/store';
 
@@ -35,6 +36,22 @@ export function App() {
       favoriteSounds.find(sound => sound.id === favorite),
     );
   }, [favorites, categories]);
+
+  useEffect(() => {
+    const onChange = () => {
+      const { ctx } = Howler;
+
+      if (ctx && !document.hidden) {
+        setTimeout(() => {
+          ctx.resume();
+        }, 100);
+      }
+    };
+
+    document.addEventListener('visibilitychange', onChange, false);
+
+    return () => document.removeEventListener('visibilitychange', onChange);
+  }, []);
 
   const allCategories = useMemo(() => {
     const favorites = [];
