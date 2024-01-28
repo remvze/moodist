@@ -2,6 +2,7 @@ import { useMemo, useEffect } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import { BiSolidHeart } from 'react-icons/bi/index';
 import { Howler } from 'howler';
+import unmuteAudio from 'unmute-ios-audio';
 
 import { useSoundStore } from '@/store';
 
@@ -51,6 +52,10 @@ export function App() {
     document.addEventListener('visibilitychange', onChange, false);
 
     return () => document.removeEventListener('visibilitychange', onChange);
+  }, []);
+
+  useEffect(() => {
+    unmuteAudio();
   }, []);
 
   const allCategories = useMemo(() => {
