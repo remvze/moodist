@@ -45,6 +45,7 @@
     "sort-keys-fix/sort-keys-fix": ["warn", "asc"],
     "sort-destructure-keys/sort-destructure-keys": "warn",
     "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/media-has-caption": "off",
     "react/jsx-sort-props": [
       "warn",
       {

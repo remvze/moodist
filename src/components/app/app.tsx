@@ -94,18 +94,22 @@ export function App() {
   }, [favoriteSounds, categories]);
 
   return (
-    <SnackbarProvider>
-      <StoreConsumer>
-        <Container>
-          <div id="app" />
-          <Buttons />
-          <Categories categories={allCategories} />
-        </Container>
+    <>
+      <SnackbarProvider>
+        <StoreConsumer>
+          <Container>
+            <div id="app" />
+            <Buttons />
+            <Categories categories={allCategories} />
+          </Container>
 
-        <ScrollToTop />
-        <Menu />
-        <SharedModal />
-      </StoreConsumer>
-    </SnackbarProvider>
+          <ScrollToTop />
+          <Menu />
+          <SharedModal />
+        </StoreConsumer>
+      </SnackbarProvider>
+
+      <audio aria-hidden={true} src="" />
+    </>
   );
 }
