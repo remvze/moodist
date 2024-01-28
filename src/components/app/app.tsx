@@ -23,6 +23,9 @@ export function App() {
   const categories = useMemo(() => sounds.categories, []);
 
   const favorites = useSoundStore(useShallow(state => state.getFavorites()));
+  const play = useSoundStore(state => state.play);
+  const pause = useSoundStore(state => state.pause);
+  const isPlaying = useSoundStore(state => state.isPlaying);
 
   const favoriteSounds = useMemo(() => {
     const favoriteSounds = categories
@@ -57,6 +60,28 @@ export function App() {
   useEffect(() => {
     unmuteAudio();
   }, []);
+
+  useEffect(() => {
+    try {
+      navigator.mediaSession.setActionHandler('play', play);
+      navigator.mediaSession.setActionHandler('pause', pause);
+      navigator.mediaSession.setActionHandler('stop', pause);
+    } catch (error) {
+      console.log('Media session is no supported yet');
+    }
+  }, [play, pause]);
+
+  useEffect(() => {
+    if (isPlaying) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: 'Moodist',
+      });
+
+      navigator.mediaSession.playbackState = 'playing';
+    } else {
+      navigator.mediaSession.playbackState = 'paused';
+    }
+  }, [isPlaying]);
 
   const allCategories = useMemo(() => {
     const favorites = [];
