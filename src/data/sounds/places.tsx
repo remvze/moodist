@@ -1,7 +1,7 @@
 import { BiSolidCoffeeAlt, BiSolidPlaneAlt } from 'react-icons/bi/index';
-import { FaChurch, FaSubway } from 'react-icons/fa/index';
+import { FaChurch, FaSubway, FaShoppingBasket } from 'react-icons/fa/index';
 import { TbScubaMask, TbBeerFilled } from 'react-icons/tb/index';
-import { GiVillage } from 'react-icons/gi/index';
+import { GiVillage, GiCarousel } from 'react-icons/gi/index';
 import {
   MdTempleBuddhist,
   MdConstruction,
@@ -74,6 +74,18 @@ export const places: Category = {
       id: 'office',
       label: 'Office',
       src: '/sounds/places/office.mp3',
+    },
+    {
+      icon: <FaShoppingBasket />,
+      id: 'supermarket',
+      label: 'Supermarket',
+      src: '/sounds/places/supermarket.mp3',
+    },
+    {
+      icon: <GiCarousel />,
+      id: 'carousel',
+      label: 'Carousel',
+      src: '/sounds/places/carousel.mp3',
     },
   ],
   title: 'Places',
