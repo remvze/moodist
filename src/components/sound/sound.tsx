@@ -43,9 +43,9 @@ export function Sound({
 
   useEffect(() => {
     if (isSelected && isPlaying && functional) {
-      sound?.play();
+      sound?.fadeIn();
     } else {
-      sound?.pause();
+      sound?.fadeOut();
     }
   }, [isSelected, sound, isPlaying, functional]);
 
