@@ -62,28 +62,9 @@ export function useSound(
     if (sound) sound.pause();
   }, [sound]);
 
-  const fadeIn = useCallback(() => {
-    if (sound) {
-      if (!sound.playing()) {
-        play();
-        sound.fade(0, options.volume || 0.5, 1000);
-      }
-    }
-  }, [play, sound, options.volume]);
-
-  const fadeOut = useCallback(() => {
-    if (sound) {
-      sound.fade(options.volume || 0.5, 0, 1000);
-
-      setTimeout(() => {
-        sound.pause();
-      }, 1200);
-    }
-  }, [sound, options.volume]);
-
   const control = useMemo(
-    () => ({ fadeIn, fadeOut, isLoading, pause, play, stop }),
-    [play, stop, pause, isLoading, fadeIn, fadeOut],
+    () => ({ isLoading, pause, play, stop }),
+    [play, stop, pause, isLoading],
   );
 
   return control;
