@@ -8,6 +8,7 @@ import {
   MdLocationPin,
 } from 'react-icons/md/index';
 import { HiOfficeBuilding } from 'react-icons/hi/index';
+import { AiFillExperiment } from 'react-icons/ai/index';
 
 import type { Category } from '../types';
 
@@ -86,6 +87,12 @@ export const places: Category = {
       id: 'carousel',
       label: 'Carousel',
       src: '/sounds/places/carousel.mp3',
+    },
+    {
+      icon: <AiFillExperiment />,
+      id: 'laboratory',
+      label: 'Laboratory',
+      src: '/sounds/places/laboratory.mp3',
     },
   ],
   title: 'Places',

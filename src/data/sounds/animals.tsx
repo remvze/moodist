@@ -1,4 +1,10 @@
-import { GiCricket, GiSeagull, GiWolfHead, GiOwl } from 'react-icons/gi/index';
+import {
+  GiCricket,
+  GiSeagull,
+  GiWolfHead,
+  GiOwl,
+  GiWhaleTail,
+} from 'react-icons/gi/index';
 import {
   FaDog,
   FaFrog,
@@ -73,6 +79,12 @@ export const animals: Category = {
       id: 'crows',
       label: 'Crows',
       src: '/sounds/animals/crows.mp3',
+    },
+    {
+      icon: <GiWhaleTail />,
+      id: 'whale',
+      label: 'Whale',
+      src: '/sounds/animals/whale.mp3',
     },
   ],
   title: 'Animals',
