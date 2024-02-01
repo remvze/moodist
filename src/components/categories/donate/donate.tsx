@@ -16,7 +16,7 @@ export function Donate() {
       <p className={styles.desc}>Help me keep Moodist ad-free.</p>
       <a
         className={styles.button}
-        href="https://buymeacoffee.com"
+        href="https://buymeacoffee.com/remvze"
         rel="noreferrer"
         target="_blank"
       >
