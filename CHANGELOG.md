@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/remvze/moodist/compare/v1.3.0...v1.3.1) (2024-02-01)
+
+
+### ✨ Features
+
+* add donate item ([f12ca48](https://github.com/remvze/moodist/commit/f12ca4806c9279f69f298bef770f8cac69a0860a))
+* add donate section ([d449c29](https://github.com/remvze/moodist/commit/d449c29321024a43517e92cc59223b4b22fe2e82))
+* add donation header ([17b4f25](https://github.com/remvze/moodist/commit/17b4f25ff10e09a917203e67cf963cac8358de1a))
+
+
+### 🐛 Bug Fixes
+
+* coffee typo ([8e02910](https://github.com/remvze/moodist/commit/8e0291004a90e55b67a921b9ffb483b409109ae4))
+* complete donation links ([e6f768a](https://github.com/remvze/moodist/commit/e6f768a5e6dc983ae04b70f6c434fd4c13aeb506))
+
+
+### 🚚 Chores
+
+* add donation link to README file ([1f806c4](https://github.com/remvze/moodist/commit/1f806c4e561d79a00850130eda09376299d85ed2))
+
 ## [1.3.0](https://github.com/remvze/moodist/compare/v1.2.0...v1.3.0) (2024-02-01)
 
 
