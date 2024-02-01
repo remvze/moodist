@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/remvze/moodist/compare/v1.2.0...v1.3.0) (2024-02-01)
+
+
+### ♻️ Code Refactoring
+
+* remove media session ([1f63534](https://github.com/remvze/moodist/commit/1f635348e3e5cf73ee76e1c5fac7b5f5b7f7ea6a))
+* remove unmute and media session ([b77c817](https://github.com/remvze/moodist/commit/b77c817db25e1a738b6770b1ae86d792e0d42240))
+
+
+### ✨ Features
+
+* add fading to intro and outro ([5467bbb](https://github.com/remvze/moodist/commit/5467bbbc2437a5504e157122a995ad7a565ff0b8))
+* add loader for favorites ([f682a91](https://github.com/remvze/moodist/commit/f682a910da97eb53cfb90ce955e953f05088e686))
+* add media session ([5e0a842](https://github.com/remvze/moodist/commit/5e0a84259ff5586700c4e10087485d905be7ccee))
+
+
+### 🐛 Bug Fixes
+
+* add audio element ([889962b](https://github.com/remvze/moodist/commit/889962babe6e940ff283a41b145620d2a0477c70))
+* add media session ([81f33d9](https://github.com/remvze/moodist/commit/81f33d9d375f63b4dd0bf58ad28a72354d85706e))
+* add media session ([216b913](https://github.com/remvze/moodist/commit/216b913ccd0a7dfe0d03575f842aac9711ef0216))
+* add unmute for iOS ([e422b52](https://github.com/remvze/moodist/commit/e422b52436c7dfc0b6cf866afa2b74dc219dcf2f))
+* connect audio context to audio element ([463667c](https://github.com/remvze/moodist/commit/463667c868371540c46c9007e686961f9a4be7e5))
+* increase decimal ([a33ae45](https://github.com/remvze/moodist/commit/a33ae450cf2c883228c76d04df8df75839c12753))
+* remove fading ([d96461d](https://github.com/remvze/moodist/commit/d96461d1ea83c72bfe651d84cf34fabc029c200e))
+* resume audio ([8e4d053](https://github.com/remvze/moodist/commit/8e4d0531e0e9aaf4e52b3b3a8666b74ff0c0222e))
+* undo changes ([32da26c](https://github.com/remvze/moodist/commit/32da26ccfc0c5bdbe031e26ea48363ea0d8a7b23))
+
+
+### 🚚 Chores
+
+* add binaural beats ([f1d212a](https://github.com/remvze/moodist/commit/f1d212abc8b69a614bbdc4a23876e2eab7cbb574))
+* add more sounds ([38f6f7d](https://github.com/remvze/moodist/commit/38f6f7dbe6898ed78e51eb3f0c7936f003ddca08))
+* add more sounds ([937bf29](https://github.com/remvze/moodist/commit/937bf29d09cbce20ea0b6b0c87879f3a7dd1d497))
+* add more sounds ([e2172fd](https://github.com/remvze/moodist/commit/e2172fd2bbd0e12a705c9efc98c72ad99d86d006))
+* add more sounds ([1f12afa](https://github.com/remvze/moodist/commit/1f12afa3943154d70145ef6adc6aeee79f7a7af3))
+* add more sounds ([cd05704](https://github.com/remvze/moodist/commit/cd05704a73ffb33aa0ccf5d789328a4cefc320f1))
+* add more sounds ([01b4bdb](https://github.com/remvze/moodist/commit/01b4bdbb572285984bcdc9bb94c1a1b6dd2630c5))
+
 ## [1.2.0](https://github.com/remvze/moodist/compare/v1.1.0...v1.2.0) (2024-01-04)
 
 
