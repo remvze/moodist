@@ -14,7 +14,7 @@ import {
   FloatingFocusManager,
 } from '@floating-ui/react';
 
-import { ShuffleItem, ShareItem } from './items';
+import { ShuffleItem, ShareItem, DonateItem } from './items';
 import { ShareLinkModal } from '@/components/modals/share-link';
 
 import { slideY, fade, mix } from '@/lib/motion';
@@ -76,6 +76,7 @@ export function Menu() {
                 >
                   <ShareItem open={() => setShowShareLink(true)} />
                   <ShuffleItem />
+                  <DonateItem />
                 </motion.div>
               </div>
             </FloatingFocusManager>

@@ -1,16 +1,30 @@
 import styles from './item.module.css';
 
 interface ItemProps {
-  disabled: boolean;
+  disabled?: boolean;
+  href?: string;
   icon: React.ReactElement;
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
-export function Item({ disabled = false, icon, label, onClick }: ItemProps) {
+export function Item({
+  disabled = false,
+  href,
+  icon,
+  label,
+  onClick = () => {},
+}: ItemProps) {
+  const Comp = href ? 'a' : 'button';
+
   return (
-    <button className={styles.item} disabled={disabled} onClick={onClick}>
+    <Comp
+      className={styles.item}
+      disabled={disabled}
+      onClick={onClick}
+      {...(href ? { href, target: '_blank' } : {})}
+    >
       <span className={styles.icon}>{icon}</span> {label}
-    </button>
+    </Comp>
   );
 }

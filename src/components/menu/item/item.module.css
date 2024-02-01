@@ -10,6 +10,7 @@
   line-height: 1;
   color: var(--color-foreground-subtle);
   text-align: left;
+  text-decoration: none;
   cursor: pointer;
   background-color: transparent;
   border: 1px solid var(--color-neutral-200);
