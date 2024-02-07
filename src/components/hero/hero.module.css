@@ -3,7 +3,7 @@
 
   .container {
     position: relative;
-    padding: 100px 0 60px;
+    padding: 120px 0 60px;
 
     & .pattern {
       position: absolute;
