@@ -84,12 +84,12 @@
       background-image: conic-gradient(
         transparent,
         transparent,
-        var(--color-neutral-500),
+        var(--color-neutral-400),
         transparent,
         transparent,
         transparent,
         transparent,
-        var(--color-neutral-500),
+        var(--color-neutral-400),
         transparent,
         transparent
       );
