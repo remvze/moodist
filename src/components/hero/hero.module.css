@@ -44,6 +44,8 @@
         background: linear-gradient(
           90deg,
           transparent,
+          transparent,
+          var(--color-neutral-200),
           var(--color-neutral-300)
         );
       }
@@ -52,6 +54,8 @@
         background: linear-gradient(
           90deg,
           var(--color-neutral-300),
+          var(--color-neutral-200),
+          transparent,
           transparent
         );
       }
