@@ -1,4 +1,6 @@
 .donate {
+  margin-bottom: 20px;
+
   & .iconContainer {
     display: flex;
     flex-direction: column;
