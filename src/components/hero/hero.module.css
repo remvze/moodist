@@ -13,15 +13,15 @@
       width: 100%;
       height: 100%;
       background-image: radial-gradient(
-          var(--color-neutral-200) 10%,
+          var(--color-neutral-100) 10%,
           transparent 11%
         ),
-        radial-gradient(var(--color-neutral-200) 10%, transparent 11%);
+        radial-gradient(var(--color-neutral-100) 10%, transparent 11%);
       background-position:
         0 0,
         20px 20px;
       background-size: 20px 20px;
-      mask-image: linear-gradient(#fff, transparent);
+      mask-image: linear-gradient(#fff, transparent, transparent);
     }
   }
 
