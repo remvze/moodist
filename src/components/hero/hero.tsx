@@ -24,7 +24,9 @@ export function Hero() {
         />
 
         <div className={styles.title}>
+          <div className={styles.left}></div>
           <h1>Moodist</h1>
+          <div className={styles.right}></div>
         </div>
 
         <p className={styles.desc}>
