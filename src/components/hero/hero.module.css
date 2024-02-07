@@ -19,8 +19,8 @@
         radial-gradient(var(--color-neutral-200) 5%, transparent 7%);
       background-position:
         0 0,
-        23px 23px;
-      background-size: 23px 23px;
+        25px 25px;
+      background-size: 25px 25px;
       mask-image: linear-gradient(#fff, transparent, transparent);
     }
   }
