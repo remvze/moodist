@@ -3,7 +3,7 @@
 
   .container {
     position: relative;
-    padding: 120px 0 60px;
+    padding: 100px 0 60px;
 
     & .pattern {
       position: absolute;
@@ -21,8 +21,8 @@
         0 0,
         30px 30px;
       background-size: 30px 30px;
-      opacity: 0.8;
-      mask-image: linear-gradient(#fff, transparent, transparent);
+      opacity: 0.7;
+      mask-image: linear-gradient(transparent, #fff, transparent);
     }
   }
 
@@ -33,34 +33,7 @@
   }
 
   & .title {
-    display: flex;
-    column-gap: 15px;
     align-items: center;
-
-    & div {
-      flex-grow: 1;
-      height: 1px;
-
-      &.left {
-        background: linear-gradient(
-          90deg,
-          transparent,
-          transparent,
-          var(--color-neutral-200),
-          var(--color-neutral-300)
-        );
-      }
-
-      &.right {
-        background: linear-gradient(
-          90deg,
-          var(--color-neutral-300),
-          var(--color-neutral-200),
-          transparent,
-          transparent
-        );
-      }
-    }
 
     & h1 {
       font-family: var(--font-display);
