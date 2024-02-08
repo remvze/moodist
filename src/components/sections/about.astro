@@ -1,4 +1,7 @@
 ---
+import { Balancer } from 'react-wrap-balancer';
+import { FaQuestion } from 'react-icons/fa/index';
+
 import { Container } from '@/components/container';
 import { count as soundCount } from '@/lib/sounds';
 
@@ -7,17 +10,21 @@ const count = soundCount();
 
 <div class="about">
   <Container>
-    <div class="titleWrapper">
-      <h2 class="title">What is Moodist?</h2>
-      <div class="line"></div>
+    <div class="iconContainer">
+      <div class="tail"></div>
+      <div class="icon">
+        <FaQuestion />
+      </div>
     </div>
+
+    <h2 class="title">What is Moodist?</h2>
     <p class="desc">
-      Welcome to Moodist – your free, open-source ambient sound generator. With <span
-        >{count} curated sounds</span
-      >, effortlessly create your custom mix for focus or relaxation. No
-      accounts, no hassle – just pure tranquility. Explore nature&apos;s calm
-      and urban rhythms. Elevate your ambiance with Moodist, where simplicity
-      meets serenity.
+      <Balancer>
+        Moodist is a free and open-source ambient sound generator featuring <span
+          class="counter">{count} carefully curated sounds</span
+        >. Create your ideal atmosphere for relaxation, focus, or creativity
+        with this versatile tool.
+      </Balancer>
     </p>
   </Container>
 </div>
@@ -26,35 +33,48 @@ const count = soundCount();
   .about {
     padding: 80px 0;
 
-    & .titleWrapper {
+    & .iconContainer {
       display: flex;
-      column-gap: 12px;
+      flex-direction: column;
       align-items: center;
+      margin-bottom: 15px;
 
-      & .title {
-        margin-bottom: 12px;
-        font-family: var(--font-display);
-        font-size: var(--font-lg);
-        font-weight: 600;
+      & .tail {
+        width: 1px;
+        height: 75px;
+        background: linear-gradient(transparent, var(--color-neutral-300));
       }
 
-      & .line {
-        flex-grow: 1;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          var(--color-neutral-300),
-          transparent
-        );
-        transform: translateY(-0.25rem);
+      & .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        font-size: var(--font-base);
+        background-color: var(--color-neutral-100);
+        border: 1px solid var(--color-neutral-300);
+        border-radius: 50%;
       }
     }
 
+    & .title {
+      margin-bottom: 12px;
+      font-family: var(--font-display);
+      font-size: var(--font-lg);
+      font-weight: 600;
+      text-align: center;
+    }
+
     & .desc {
+      width: 100%;
+      max-width: 450px;
+      margin: 0 auto;
       line-height: 1.7;
       color: var(--color-foreground-subtle);
+      text-align: center;
 
-      & span {
+      & .counter {
         color: var(--color-foreground);
       }
     }

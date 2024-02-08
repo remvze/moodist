@@ -3,6 +3,7 @@ import { BiMoney, BiUserCircle, BiLogoGithub } from 'react-icons/bi/index';
 import { BsSoundwave, BsStars } from 'react-icons/bs/index';
 import { RxMixerHorizontal } from 'react-icons/rx/index';
 import { IoShareSocialSharp } from 'react-icons/io5/index';
+import { FaQuestion } from 'react-icons/fa/index';
 
 import { Balancer } from 'react-wrap-balancer';
 
@@ -63,10 +64,14 @@ const reasons = [
 
 <div class="why">
   <Container>
-    <div class="titleWrapper">
-      <h2 class="title">Why use Moodist?</h2>
-      <div class="line"></div>
+    <div class="iconContainer">
+      <div class="tail"></div>
+      <div class="icon">
+        <FaQuestion />
+      </div>
     </div>
+
+    <h2 class="title">Why use Moodist?</h2>
 
     <div class="reasons">
       {
@@ -81,7 +86,7 @@ const reasons = [
             </p>
             {reason.link && (
               <a class="link" href={reason.link.url}>
-                {reason.link.label} →
+                {reason.link.label}
               </a>
             )}
           </div>
@@ -95,28 +100,37 @@ const reasons = [
   .why {
     padding-bottom: 80px;
 
-    & .titleWrapper {
+    & .iconContainer {
       display: flex;
-      column-gap: 12px;
+      flex-direction: column;
       align-items: center;
+      margin-bottom: 15px;
 
-      & .title {
-        margin-bottom: 12px;
-        font-family: var(--font-display);
-        font-size: var(--font-lg);
-        font-weight: 600;
+      & .tail {
+        width: 1px;
+        height: 75px;
+        background: linear-gradient(transparent, var(--color-neutral-300));
       }
 
-      & .line {
-        flex-grow: 1;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          var(--color-neutral-300),
-          transparent
-        );
-        transform: translateY(-0.25rem);
+      & .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        font-size: var(--font-base);
+        background-color: var(--color-neutral-100);
+        border: 1px solid var(--color-neutral-300);
+        border-radius: 50%;
       }
+    }
+
+    & .title {
+      margin-bottom: 12px;
+      font-family: var(--font-display);
+      font-size: var(--font-lg);
+      font-weight: 600;
+      text-align: center;
     }
 
     & .reasons {
@@ -132,7 +146,7 @@ const reasons = [
         justify-content: center;
         width: 40px;
         height: 40px;
-        margin-bottom: 12px;
+        margin: 0 auto 12px;
         font-size: var(--font-md);
         color: var(--color-foreground-subtle);
         background: linear-gradient(var(--color-neutral-100), transparent);
@@ -144,11 +158,16 @@ const reasons = [
         margin-bottom: 8px;
         font-family: var(--font-heading);
         font-weight: 600;
+        text-align: center;
       }
 
       & .body {
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
         line-height: 1.6;
         color: var(--color-foreground-subtle);
+        text-align: center;
       }
 
       & .link {
@@ -157,6 +176,7 @@ const reasons = [
         font-size: var(--font-sm);
         font-weight: 500;
         color: var(--color-foreground);
+        text-align: center;
         text-decoration: none;
       }
     }
