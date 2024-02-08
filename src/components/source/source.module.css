@@ -4,7 +4,7 @@
   & .wrapper {
     position: relative;
     padding: 0 20px 40px;
-    background: linear-gradient(transparent, rgb(24 24 27 / 80%));
+    background: linear-gradient(transparent, rgb(24 24 27 / 70%));
     border-radius: 0 0 20px 20px;
 
     &::after {
