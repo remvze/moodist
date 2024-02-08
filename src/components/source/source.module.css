@@ -4,7 +4,7 @@
   & .wrapper {
     position: relative;
     padding: 0 20px 40px;
-    background: linear-gradient(transparent, var(--color-neutral-100));
+    background: linear-gradient(transparent, rgb(24 24 27 / 80%));
     border-radius: 0 0 20px 20px;
 
     &::after {
@@ -17,7 +17,7 @@
       background: linear-gradient(
         90deg,
         transparent,
-        var(--color-neutral-300),
+        var(--color-neutral-400),
         transparent
       );
       transform: translateX(-50%);
