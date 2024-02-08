@@ -1,0 +1,74 @@
+.button {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  height: 40px;
+  padding: 0 20px;
+  overflow: hidden;
+  font-size: var(--font-xsm);
+  font-weight: 500;
+  color: var(--color-neutral-subtle);
+  text-decoration: none;
+  cursor: pointer;
+  background-color: var(--color-neutral-200);
+  border: none;
+  border-radius: 50px;
+  transition: 0.2s;
+
+  &::after {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    z-index: -1;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    content: '';
+    background-color: var(--color-neutral-50);
+    border-radius: 100px;
+    transition: inherit;
+  }
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -2;
+    width: 150%;
+    aspect-ratio: 1 / 1;
+    content: '';
+    background-image: conic-gradient(
+      transparent,
+      transparent,
+      var(--color-neutral-400),
+      transparent,
+      transparent,
+      transparent,
+      transparent,
+      var(--color-neutral-400),
+      transparent,
+      transparent
+    );
+    transform: translate(-50%, -50%);
+    animation-name: shine;
+    animation-duration: 6s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  &:hover::after {
+    background-color: var(--color-neutral-100);
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(450deg);
+  }
+}

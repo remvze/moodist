@@ -1,7 +1,9 @@
 import { FaGithub } from 'react-icons/fa/index';
 
+import { Container } from '@/components/container';
+import { SpecialButton } from '@/components/special-button';
+
 import styles from './source.module.css';
-import { Container } from '../container';
 
 export function Source() {
   return (
@@ -17,14 +19,12 @@ export function Source() {
 
           <h2 className={styles.title}>Open Source</h2>
           <p className={styles.desc}>Moodist is free and open-source!</p>
-          <a
+          <SpecialButton
             className={styles.button}
             href="https://github.com/remvze/moodist"
-            rel="noreferrer"
-            target="_blank"
           >
             Source Code
-          </a>
+          </SpecialButton>
         </div>
       </Container>
     </div>

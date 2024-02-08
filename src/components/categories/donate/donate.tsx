@@ -1,5 +1,7 @@
 import { FaCoffee } from 'react-icons/fa/index';
 
+import { SpecialButton } from '@/components/special-button';
+
 import styles from './donate.module.css';
 
 export function Donate() {
@@ -14,14 +16,12 @@ export function Donate() {
 
       <h2 className={styles.title}>Support Me</h2>
       <p className={styles.desc}>Help me keep Moodist ad-free.</p>
-      <a
+      <SpecialButton
         className={styles.button}
         href="https://buymeacoffee.com/remvze"
-        rel="noreferrer"
-        target="_blank"
       >
         Donate Today
-      </a>
+      </SpecialButton>
     </div>
   );
 }
