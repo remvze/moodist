@@ -1,4 +1,6 @@
 ---
+import { count } from '@/lib/sounds';
+
 import '@/styles/global.css';
 
 interface Props {
@@ -9,14 +11,13 @@ interface Props {
 const title = Astro.props.title || 'Moodist: Ambient Sounds for Focus and Calm';
 const description =
   Astro.props.description ||
-  "Moodist is a free online ambient sound generator for focus and calm, offering 35 handpicked sounds in various categories, from nature's tranquil melodies to the soothing ambiance of urban life.";
+  `Moodist is a free and open-source ambient sound generator featuring ${count()} carefully curated sounds. Create your ideal atmosphere for relaxation, focus, or creativity with this versatile tool.`;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta content="Astro description" name="description" />
     <meta content="width=device-width" name="viewport" />
     <meta content={Astro.generator} name="generator" />
     <meta content="#18181b" name="theme-color" />
