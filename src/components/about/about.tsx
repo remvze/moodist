@@ -18,7 +18,7 @@ export function About() {
 
   return (
     <section className={styles.about}>
-      <Container>
+      <Container tight>
         <div className={styles.iconContainer}>
           <div className={styles.tail} />
           <div className={styles.icon}>

@@ -35,9 +35,6 @@
   }
 
   & .desc {
-    width: 100%;
-    max-width: 450px;
-    margin: 0 auto;
     line-height: 1.6;
     color: var(--color-foreground-subtle);
     text-align: center;
