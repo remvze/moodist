@@ -1,13 +1,12 @@
 .about {
-  margin-top: 80px;
-
-  & .title {
-    font-family: var(--font-display);
-    font-size: var(--font-lg);
-    font-weight: 600;
+  & .effect {
+    position: sticky;
+    top: 0;
+    height: 80px;
+    background: linear-gradient(var(--color-neutral-50), transparent);
   }
 
-  .paragraph {
+  & .paragraph {
     padding: 30px 0;
     background: linear-gradient(
       transparent,
@@ -35,20 +34,6 @@
     & .desc {
       line-height: 1.6;
       color: var(--color-foreground-subtle);
-
-      /* text-align: center; */
     }
   }
-
-  /* & .divider {
-    width: 80px;
-    height: 1px;
-    margin: 0 auto 24px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--color-neutral-300),
-      transparent
-    );
-  } */
 }

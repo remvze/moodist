@@ -1,5 +1,3 @@
-import { Balancer } from 'react-wrap-balancer';
-
 import { Container } from '@/components/container';
 import { count as soundCount } from '@/lib/sounds';
 
@@ -17,22 +15,16 @@ export function About() {
 
   return (
     <section className={styles.about}>
-      <Container tight>
-        <h1 className={styles.title}>Free Ambient Sounds</h1>
+      <div className={styles.effect} />
 
+      <Container tight>
         {paragraphs.map((paragraph, index) => (
           <div className={styles.paragraph} key={index}>
             <div className={styles.counter}>
               <span>0{index + 1}</span> / 0{paragraphs.length}
             </div>
 
-            <p className={styles.desc}>
-              <Balancer>{paragraph}</Balancer>
-            </p>
-
-            {index < paragraphs.length - 1 && (
-              <div className={styles.divider} />
-            )}
+            <p className={styles.desc}>{paragraph}</p>
           </div>
         ))}
       </Container>
