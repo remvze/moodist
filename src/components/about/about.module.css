@@ -35,66 +35,19 @@
   }
 
   & .desc {
-    position: relative;
     width: 100%;
-    max-width: 500px;
-    padding: 24px 0;
-    padding-left: 24px;
+    max-width: 450px;
     margin: 0 auto;
-    line-height: 1.65;
+    line-height: 1.6;
     color: var(--color-foreground-subtle);
-    text-align: left;
-    background: linear-gradient(90deg, rgb(24 24 27 / 70%), transparent);
-    border-radius: 20px;
+    text-align: center;
 
-    &:first-of-type {
-      border-top: none;
-    }
-
-    &:nth-of-type(odd)::after {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 1px;
-      height: 70%;
-      content: '';
-      background: linear-gradient(
-        transparent,
-        var(--color-neutral-300),
-        transparent
-      );
-      transform: translateY(-50%);
-    }
-
-    &:nth-of-type(even) {
-      padding-right: 24px;
-      padding-left: 0;
-      text-align: right;
-      background: linear-gradient(90deg, transparent, rgb(24 24 27 / 70%));
-      border-left: none;
-    }
-
-    &:nth-of-type(even)::after {
-      position: absolute;
-      top: 50%;
-      right: 0;
-      width: 1px;
-      height: 70%;
-      content: '';
-      background: linear-gradient(
-        transparent,
-        var(--color-neutral-300),
-        transparent
-      );
-      transform: translateY(-50%);
-    }
-
-    /* &:not(:last-of-type) {
+    &:not(:last-of-type) {
       margin-bottom: 24px;
-    } */
+    }
   }
 
-  /* & .divider {
+  & .divider {
     width: 80px;
     height: 1px;
     margin: 0 auto 24px;
@@ -104,5 +57,5 @@
       var(--color-neutral-300),
       transparent
     );
-  } */
+  }
 }
