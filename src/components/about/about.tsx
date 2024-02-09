@@ -1,4 +1,3 @@
-import { FaQuestion } from 'react-icons/fa6/index';
 import { Balancer } from 'react-wrap-balancer';
 
 import { Container } from '@/components/container';
@@ -19,25 +18,22 @@ export function About() {
   return (
     <section className={styles.about}>
       <Container tight>
-        <div className={styles.iconContainer}>
-          <div className={styles.tail} />
-          <div className={styles.icon}>
-            <FaQuestion />
-          </div>
-        </div>
-
         <h1 className={styles.title}>Free Ambient Sounds</h1>
 
         {paragraphs.map((paragraph, index) => (
-          <>
-            <p className={styles.desc} key={index}>
+          <div className={styles.paragraph} key={index}>
+            <div className={styles.counter}>
+              <span>0{index + 1}</span> / 0{paragraphs.length}
+            </div>
+
+            <p className={styles.desc}>
               <Balancer>{paragraph}</Balancer>
             </p>
 
             {index < paragraphs.length - 1 && (
               <div className={styles.divider} />
             )}
-          </>
+          </div>
         ))}
       </Container>
     </section>
