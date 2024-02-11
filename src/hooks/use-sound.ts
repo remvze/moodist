@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useCallback, useState, useRef } from 'react';
+import { useMemo, useEffect, useCallback, useState } from 'react';
 import { Howl } from 'howler';
 
 import { useLoadingStore } from '@/store';
@@ -11,7 +11,6 @@ export function useSound(
   const [hasLoaded, setHasLoaded] = useState(false);
   const isLoading = useLoadingStore(state => state.loaders[src]);
   const setIsLoading = useLoadingStore(state => state.set);
-  const timeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const { isBrowser } = useSSR();
   const sound = useMemo<Howl | null>(() => {
@@ -50,35 +49,18 @@ export function useSound(
       }
 
       if (!sound.playing()) {
-        if (timeout.current) clearTimeout(timeout.current);
-        sound.volume(0);
-        sound.fade(
-          0,
-          typeof options.volume === 'number' ? options.volume : 0.5,
-          1000,
-        );
         sound.play();
       }
     }
-  }, [src, setIsLoading, sound, hasLoaded, isLoading, options.volume]);
+  }, [src, setIsLoading, sound, hasLoaded, isLoading]);
 
   const stop = useCallback(() => {
     if (sound) sound.stop();
   }, [sound]);
 
   const pause = useCallback(() => {
-    if (sound) {
-      sound.fade(
-        typeof options.volume === 'number' ? options.volume : 0.5,
-        0,
-        1000,
-      );
-
-      timeout.current = setTimeout(() => {
-        sound.pause();
-      }, 1000);
-    }
-  }, [sound, options.volume]);
+    if (sound) sound.pause();
+  }, [sound]);
 
   const control = useMemo(
     () => ({ isLoading, pause, play, stop }),
