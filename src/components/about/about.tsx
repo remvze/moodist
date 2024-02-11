@@ -1,6 +1,3 @@
-import { FaQuestion } from 'react-icons/fa6/index';
-import { Balancer } from 'react-wrap-balancer';
-
 import { Container } from '@/components/container';
 import { count as soundCount } from '@/lib/sounds';
 
@@ -18,26 +15,17 @@ export function About() {
 
   return (
     <section className={styles.about}>
-      <Container>
-        <div className={styles.iconContainer}>
-          <div className={styles.tail} />
-          <div className={styles.icon}>
-            <FaQuestion />
-          </div>
-        </div>
+      <div className={styles.effect} />
 
-        <h1 className={styles.title}>Free Ambient Sounds</h1>
-
+      <Container tight>
         {paragraphs.map((paragraph, index) => (
-          <>
-            <p className={styles.desc} key={index}>
-              <Balancer>{paragraph}</Balancer>
-            </p>
+          <div className={styles.paragraph} key={index}>
+            <div className={styles.counter}>
+              <span>0{index + 1}</span> / 0{paragraphs.length}
+            </div>
 
-            {index < paragraphs.length - 1 && (
-              <div className={styles.divider} />
-            )}
-          </>
+            <p className={styles.desc}>{paragraph}</p>
+          </div>
         ))}
       </Container>
     </section>

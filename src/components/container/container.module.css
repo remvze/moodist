@@ -2,4 +2,8 @@
   width: 90%;
   max-width: 600px;
   margin: 0 auto;
+
+  &.tight {
+    max-width: 450px;
+  }
 }
