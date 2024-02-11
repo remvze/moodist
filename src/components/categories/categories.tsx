@@ -13,15 +13,11 @@ export function Categories({ categories }: CategoriesProps) {
   return (
     <AnimatePresence initial={false}>
       {categories.map((category, index) => (
-        <>
-          <Category
-            functional={category.id !== 'favorites'}
-            {...category}
-            key={category.id}
-          />
+        <div key={category.id}>
+          <Category functional={category.id !== 'favorites'} {...category} />
 
           {index === 3 && <Donate />}
-        </>
+        </div>
       ))}
     </AnimatePresence>
   );
