@@ -15,6 +15,7 @@ import {
 } from '@floating-ui/react';
 
 import { ShuffleItem, ShareItem, DonateItem, NotepadItem } from './items';
+import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
 import { Notepad } from '@/components/toolbox';
 
@@ -78,7 +79,9 @@ export function Menu() {
                 >
                   <ShareItem open={() => setShowShareLink(true)} />
                   <ShuffleItem />
+                  <Divider />
                   <NotepadItem open={() => setShowNotepad(true)} />
+                  <Divider />
                   <DonateItem />
                 </motion.div>
               </div>
