@@ -34,7 +34,6 @@
     "react-dom": "^18.2.0",
     "react-icons": "4.11.0",
     "react-wrap-balancer": "1.1.0",
-    "word-counting": "1.1.4",
     "zustand": "4.4.3"
   },
   "devDependencies": {
