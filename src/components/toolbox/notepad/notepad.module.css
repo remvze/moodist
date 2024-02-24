@@ -24,3 +24,10 @@
   outline: none;
   scroll-padding-bottom: 12px;
 }
+
+.counter {
+  margin-top: 8px;
+  font-size: var(--font-sm);
+  color: var(--color-foreground-subtle);
+  text-align: center;
+}

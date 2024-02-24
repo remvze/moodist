@@ -11,6 +11,8 @@ interface NotepadProps {
 export function Notepad({ onClose, show }: NotepadProps) {
   const note = useNoteStore(state => state.note);
   const write = useNoteStore(state => state.write);
+  const words = useNoteStore(state => state.words());
+  const characters = useNoteStore(state => state.characters());
 
   return (
     <Modal show={show} wide onClose={onClose}>
@@ -24,6 +26,11 @@ export function Notepad({ onClose, show }: NotepadProps) {
         value={note}
         onChange={e => write(e.target.value)}
       />
+
+      <p className={styles.counter}>
+        {characters} character{characters !== 1 && 's'} • {words} word
+        {words !== 1 && 's'}
+      </p>
     </Modal>
   );
 }
