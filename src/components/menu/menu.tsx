@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { IoMenu, IoClose } from 'react-icons/io5/index';
-import { AnimatePresence, motion } from 'framer-motion';
 import {
   useFloating,
   autoUpdate,
   offset,
   flip,
   shift,
+  size,
   useClick,
   useDismiss,
   useRole,
@@ -25,8 +25,6 @@ import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
 import { Notepad } from '@/components/toolbox';
 
-import { slideY, fade, mix } from '@/lib/motion';
-
 import styles from './menu.module.css';
 
 export function Menu() {
@@ -35,10 +33,20 @@ export function Menu() {
   const [showShareLink, setShowShareLink] = useState(false);
   const [showNotepad, setShowNotepad] = useState(false);
 
-  const variants = mix(slideY(-20), fade());
-
   const { context, floatingStyles, refs } = useFloating({
-    middleware: [offset(12), flip(), shift()],
+    middleware: [
+      offset(12),
+      flip(),
+      shift(),
+      size({
+        apply({ availableHeight, elements }) {
+          Object.assign(elements.floating.style, {
+            maxHeight: `${availableHeight}px`,
+          });
+        },
+        padding: 10,
+      }),
+    ],
     onOpenChange: setIsOpen,
     open: isOpen,
     placement: 'top-end',
@@ -68,33 +76,24 @@ export function Menu() {
           {isOpen ? <IoClose /> : <IoMenu />}
         </button>
 
-        <AnimatePresence>
-          {isOpen && (
-            <FloatingFocusManager context={context} modal={false}>
-              <div
-                ref={refs.setFloating}
-                style={floatingStyles}
-                {...getFloatingProps()}
-              >
-                <motion.div
-                  animate="show"
-                  className={styles.menu}
-                  exit="hidden"
-                  initial="hidden"
-                  variants={variants}
-                >
-                  <ShareItem open={() => setShowShareLink(true)} />
-                  <ShuffleItem />
-                  <Divider />
-                  <NotepadItem open={() => setShowNotepad(true)} />
-                  <Divider />
-                  <DonateItem />
-                  <SourceItem />
-                </motion.div>
-              </div>
-            </FloatingFocusManager>
-          )}
-        </AnimatePresence>
+        {isOpen && (
+          <FloatingFocusManager context={context} modal={false}>
+            <div
+              ref={refs.setFloating}
+              style={floatingStyles}
+              {...getFloatingProps()}
+              className={styles.menu}
+            >
+              <ShareItem open={() => setShowShareLink(true)} />
+              <ShuffleItem />
+              <Divider />
+              <NotepadItem open={() => setShowNotepad(true)} />
+              <Divider />
+              <DonateItem />
+              <SourceItem />
+            </div>
+          </FloatingFocusManager>
+        )}
       </div>
 
       <ShareLinkModal
