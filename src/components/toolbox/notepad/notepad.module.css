@@ -9,6 +9,12 @@
     font-weight: 500;
     color: var(--color-foreground-subtle);
   }
+
+  & .buttons {
+    display: flex;
+    column-gap: 4px;
+    align-items: center;
+  }
 }
 
 .textarea {
@@ -27,7 +33,7 @@
 
 .counter {
   margin-top: 8px;
-  font-size: var(--font-sm);
+  font-size: var(--font-xsm);
   color: var(--color-foreground-subtle);
   text-align: center;
 }

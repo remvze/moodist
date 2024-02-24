@@ -1,7 +1,16 @@
+import { BiTrash } from 'react-icons/bi/index';
+import { LuCopy, LuDownload } from 'react-icons/lu/index';
+import { FaCheck } from 'react-icons/fa6/index';
+import { FaUndo } from 'react-icons/fa/index';
+
 import { Modal } from '@/components/modal';
+import { Button } from './button';
+
+import { useNoteStore } from '@/store';
+import { useCopy } from '@/hooks/use-copy';
+import { download } from '@/helpers/download';
 
 import styles from './notepad.module.css';
-import { useNoteStore } from '@/store';
 
 interface NotepadProps {
   onClose: () => void;
@@ -10,19 +19,44 @@ interface NotepadProps {
 
 export function Notepad({ onClose, show }: NotepadProps) {
   const note = useNoteStore(state => state.note);
+  const history = useNoteStore(state => state.history);
   const write = useNoteStore(state => state.write);
   const words = useNoteStore(state => state.words());
   const characters = useNoteStore(state => state.characters());
+  const clear = useNoteStore(state => state.clear);
+  const restore = useNoteStore(state => state.restore);
+
+  const { copy, copying } = useCopy();
 
   return (
     <Modal show={show} wide onClose={onClose}>
       <header className={styles.header}>
         <h2 className={styles.label}>Your Note</h2>
+        <div className={styles.buttons}>
+          <Button
+            icon={copying ? <FaCheck /> : <LuCopy />}
+            tooltip="Copy Note"
+            onClick={() => copy(note)}
+          />
+          <Button
+            icon={<LuDownload />}
+            tooltip="Download Note"
+            onClick={() => download('Moodit Note.txt', note)}
+          />
+          <Button
+            critical={!history}
+            icon={history ? <FaUndo /> : <BiTrash />}
+            recommended={history}
+            tooltip="Clear Note"
+            onClick={() => (history ? restore() : clear())}
+          />
+        </div>
       </header>
 
       <textarea
         className={styles.textarea}
         dir="auto"
+        placeholder="What is on your mind?"
         value={note}
         onChange={e => write(e.target.value)}
       />
