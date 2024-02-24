@@ -29,9 +29,9 @@ export function Hero() {
           <div className={styles.right}></div>
         </div>
 
-        <p className={styles.desc}>
+        <h2 className={styles.desc}>
           <Balancer>Ambient sounds for focus and calm.</Balancer>
-        </p>
+        </h2>
 
         <p className={styles.sounds}>
           <span className={styles.icon}>

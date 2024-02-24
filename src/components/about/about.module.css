@@ -18,7 +18,7 @@
     & .counter {
       width: max-content;
       padding: 6px 16px;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       font-size: var(--font-xsm);
       color: var(--color-foreground-subtle);
       background: linear-gradient(var(--color-neutral-100), transparent);
@@ -31,7 +31,14 @@
       }
     }
 
-    & .desc {
+    & .title {
+      margin-bottom: 8px;
+      font-family: var(--font-heading);
+      font-size: var(--font-md);
+      font-weight: 600;
+    }
+
+    & .body {
       line-height: 1.6;
       color: var(--color-foreground-subtle);
     }
