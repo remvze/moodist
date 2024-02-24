@@ -14,7 +14,13 @@ import {
   FloatingFocusManager,
 } from '@floating-ui/react';
 
-import { ShuffleItem, ShareItem, DonateItem, NotepadItem } from './items';
+import {
+  ShuffleItem,
+  ShareItem,
+  DonateItem,
+  NotepadItem,
+  SourceItem,
+} from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
 import { Notepad } from '@/components/toolbox';
@@ -83,6 +89,7 @@ export function Menu() {
                   <NotepadItem open={() => setShowNotepad(true)} />
                   <Divider />
                   <DonateItem />
+                  <SourceItem />
                 </motion.div>
               </div>
             </FloatingFocusManager>
