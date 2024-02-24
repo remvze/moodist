@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useSoundStore } from '@/store';
+import { useSoundStore, useNoteStore } from '@/store';
 
 interface StoreConsumerProps {
   children: React.ReactNode;
@@ -9,6 +9,7 @@ interface StoreConsumerProps {
 export function StoreConsumer({ children }: StoreConsumerProps) {
   useEffect(() => {
     useSoundStore.persist.rehydrate();
+    useNoteStore.persist.rehydrate();
   }, []);
 
   return <>{children}</>;

@@ -29,6 +29,13 @@
     background-color: var(--color-neutral-100);
     border-radius: 8px;
 
+    &.wide {
+      width: 95%;
+      max-width: 600px;
+      padding: 12px;
+      padding-top: 40px;
+    }
+
     & .close {
       position: absolute;
       top: 10px;

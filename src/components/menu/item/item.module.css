@@ -4,7 +4,8 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  padding: 16px 12px;
+  height: 50px;
+  padding: 0 12px;
   font-size: var(--font-sm);
   font-weight: 500;
   line-height: 1;

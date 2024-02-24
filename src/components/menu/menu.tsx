@@ -14,8 +14,9 @@ import {
   FloatingFocusManager,
 } from '@floating-ui/react';
 
-import { ShuffleItem, ShareItem, DonateItem } from './items';
+import { ShuffleItem, ShareItem, DonateItem, NotepadItem } from './items';
 import { ShareLinkModal } from '@/components/modals/share-link';
+import { Notepad } from '@/components/toolbox';
 
 import { slideY, fade, mix } from '@/lib/motion';
 
@@ -25,6 +26,7 @@ export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
 
   const [showShareLink, setShowShareLink] = useState(false);
+  const [showNotepad, setShowNotepad] = useState(false);
 
   const variants = mix(slideY(-20), fade());
 
@@ -76,6 +78,7 @@ export function Menu() {
                 >
                   <ShareItem open={() => setShowShareLink(true)} />
                   <ShuffleItem />
+                  <NotepadItem open={() => setShowNotepad(true)} />
                   <DonateItem />
                 </motion.div>
               </div>
@@ -88,6 +91,8 @@ export function Menu() {
         show={showShareLink}
         onClose={() => setShowShareLink(false)}
       />
+
+      <Notepad show={showNotepad} onClose={() => setShowNotepad(false)} />
     </>
   );
 }
