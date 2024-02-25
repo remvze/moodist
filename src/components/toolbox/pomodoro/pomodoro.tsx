@@ -8,6 +8,8 @@ import { Timer } from './timer';
 import { Button } from './button';
 import { Setting } from './setting';
 
+import { useLocalStorage } from '@/hooks/use-local-storage';
+
 import styles from './pomodoro.module.css';
 
 interface PomodoroProps {
@@ -23,11 +25,19 @@ export function Pomodoro({ onClose, show }: PomodoroProps) {
   const [timer, setTimer] = useState(0);
   const interval = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const [times, setTimes] = useState<Record<string, number>>({
-    long: 60,
-    pomodoro: 60,
-    short: 60,
-  });
+  const defaultTimes = useMemo(
+    () => ({
+      long: 60,
+      pomodoro: 60,
+      short: 60,
+    }),
+    [],
+  );
+
+  const [times, setTimes] = useLocalStorage<Record<string, number>>(
+    'moodist-pomodoro-setting',
+    defaultTimes,
+  );
 
   const [completions, setCompletions] = useState<Record<string, number>>({
     long: 0,
