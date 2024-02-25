@@ -20,7 +20,7 @@ export function Pomodoro({ onClose, show }: PomodoroProps) {
 
   const [selectedTab, setSelectedTab] = useState('pomodoro');
   const [running, setRunning] = useState(false);
-  const [timer, setTimer] = useState(0);
+  const [timer, setTimer] = useState(10);
   const interval = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const [times, setTimes] = useState<Record<string, number>>({
