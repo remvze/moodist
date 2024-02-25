@@ -1,0 +1,12 @@
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 30px 0;
+  font-size: var(--font-xlg);
+  font-weight: 500;
+  background-color: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 8px;
+}

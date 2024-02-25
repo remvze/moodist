@@ -20,10 +20,11 @@ import {
   DonateItem,
   NotepadItem,
   SourceItem,
+  PomodoroItem,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
-import { Notepad } from '@/components/toolbox';
+import { Notepad, Pomodoro } from '@/components/toolbox';
 
 import styles from './menu.module.css';
 
@@ -32,6 +33,7 @@ export function Menu() {
 
   const [showShareLink, setShowShareLink] = useState(false);
   const [showNotepad, setShowNotepad] = useState(false);
+  const [showPomodoro, setShowPomodoro] = useState(false);
 
   const { context, floatingStyles, refs } = useFloating({
     middleware: [
@@ -88,6 +90,7 @@ export function Menu() {
               <ShuffleItem />
               <Divider />
               <NotepadItem open={() => setShowNotepad(true)} />
+              <PomodoroItem open={() => setShowPomodoro(true)} />
               <Divider />
               <DonateItem />
               <SourceItem />
@@ -102,6 +105,7 @@ export function Menu() {
       />
 
       <Notepad show={showNotepad} onClose={() => setShowNotepad(false)} />
+      <Pomodoro show={showPomodoro} onClose={() => setShowPomodoro(false)} />
     </>
   );
 }
