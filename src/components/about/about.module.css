@@ -1,4 +1,6 @@
 .about {
+  padding-top: 10px;
+
   & .effect {
     position: sticky;
     top: 0;

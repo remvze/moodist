@@ -1,7 +1,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  z-index: 19;
+  z-index: 20;
   background-color: rgb(9 9 11 / 40%);
   backdrop-filter: blur(5px);
 }

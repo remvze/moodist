@@ -28,7 +28,7 @@
       border-color: var(--color-neutral-300);
     }
 
-    &:hover {
+    &:not(.selected):hover {
       color: var(--color-foreground);
       background-color: var(--color-neutral-100);
     }

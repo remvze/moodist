@@ -4,7 +4,7 @@
   justify-content: center;
   width: 30px;
   height: 30px;
-  font-size: var(--font-xsm);
+  font-size: var(--font-sm);
   color: var(--color-foreground);
   cursor: pointer;
   background-color: var(--color-neutral-100);
@@ -15,5 +15,9 @@
 
   &:hover {
     background-color: var(--color-neutral-200);
+  }
+
+  &.smallIcon {
+    font-size: var(--font-xsm);
   }
 }
