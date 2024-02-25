@@ -9,6 +9,7 @@ import { Button } from './button';
 import { Setting } from './setting';
 
 import { useLocalStorage } from '@/hooks/use-local-storage';
+import { usePomodoroStore } from '@/store';
 
 import styles from './pomodoro.module.css';
 
@@ -21,7 +22,10 @@ export function Pomodoro({ onClose, show }: PomodoroProps) {
   const [showSetting, setShowSetting] = useState(false);
 
   const [selectedTab, setSelectedTab] = useState('pomodoro');
-  const [running, setRunning] = useState(false);
+
+  const running = usePomodoroStore(state => state.running);
+  const setRunning = usePomodoroStore(state => state.setRunning);
+
   const [timer, setTimer] = useState(0);
   const interval = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -76,7 +80,7 @@ export function Pomodoro({ onClose, show }: PomodoroProps) {
         [selectedTab]: prev[selectedTab] + 1,
       }));
     }
-  }, [timer, selectedTab, running]);
+  }, [timer, selectedTab, running, setRunning]);
 
   useEffect(() => {
     const time = times[selectedTab] || 10;
@@ -85,7 +89,7 @@ export function Pomodoro({ onClose, show }: PomodoroProps) {
 
     setRunning(false);
     setTimer(time);
-  }, [selectedTab, times]);
+  }, [selectedTab, times, setRunning]);
 
   const toggleRunning = () => {
     if (running) setRunning(false);

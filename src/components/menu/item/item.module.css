@@ -33,4 +33,11 @@
   & .icon {
     color: var(--color-foreground);
   }
+
+  & .active {
+    width: 4px;
+    height: 4px;
+    background: var(--color-neutral-950);
+    border-radius: 50%;
+  }
 }
