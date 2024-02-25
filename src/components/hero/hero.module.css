@@ -18,7 +18,7 @@
       );
       background-position: top center;
       background-size: 31px 31px;
-      opacity: 0.8;
+      opacity: 0.9;
       mask-image: linear-gradient(#fff, transparent, transparent);
     }
   }
