@@ -20,7 +20,7 @@ export function Pomodoro({ onClose, show }: PomodoroProps) {
 
   const [selectedTab, setSelectedTab] = useState('pomodoro');
   const [running, setRunning] = useState(false);
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(0);
   const interval = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const [times, setTimes] = useState<Record<string, number>>({
@@ -57,7 +57,7 @@ export function Pomodoro({ onClose, show }: PomodoroProps) {
   }, [running]);
 
   useEffect(() => {
-    if (timer <= 0) {
+    if (timer <= 0 && running) {
       if (interval.current) clearInterval(interval.current);
 
       setRunning(false);
@@ -66,7 +66,7 @@ export function Pomodoro({ onClose, show }: PomodoroProps) {
         [selectedTab]: prev[selectedTab] + 1,
       }));
     }
-  }, [timer, selectedTab]);
+  }, [timer, selectedTab, running]);
 
   useEffect(() => {
     const time = times[selectedTab] || 10;
