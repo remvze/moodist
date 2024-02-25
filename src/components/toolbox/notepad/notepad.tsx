@@ -46,8 +46,8 @@ export function Notepad({ onClose, show }: NotepadProps) {
           <Button
             critical={!history}
             icon={history ? <FaUndo /> : <BiTrash />}
-            recommended={history}
-            tooltip="Clear Note"
+            recommended={!!history}
+            tooltip={history ? 'Restore Note' : 'Clear Note'}
             onClick={() => (history ? restore() : clear())}
           />
         </div>
