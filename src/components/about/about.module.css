@@ -17,6 +17,10 @@
       transparent
     );
 
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+
     & .counter {
       width: max-content;
       padding: 6px 16px;
@@ -43,6 +47,44 @@
     & .body {
       line-height: 1.6;
       color: var(--color-foreground-subtle);
+    }
+  }
+
+  .button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    margin-top: 20px;
+    font-size: var(--font-sm);
+    font-weight: 500;
+    color: var(--color-foreground);
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 50px;
+    outline: none;
+    transition: 0.2s;
+
+    &::before {
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      width: 70%;
+      height: 1px;
+      content: '';
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--color-neutral-300),
+        transparent
+      );
+      transform: translateX(-50%);
+    }
+
+    &:hover {
+      background-color: var(--color-neutral-100);
     }
   }
 }

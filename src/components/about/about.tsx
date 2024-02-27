@@ -29,6 +29,12 @@ export function About() {
     },
   ];
 
+  const handleClick = () => {
+    const app = document.getElementById('app');
+
+    app?.scrollIntoView();
+  };
+
   return (
     <section className={styles.about}>
       <div className={styles.effect} />
@@ -44,6 +50,10 @@ export function About() {
             <p className={styles.body}>{paragraph.body}</p>
           </div>
         ))}
+
+        <button className={styles.button} onClick={handleClick}>
+          Use Moodist
+        </button>
       </Container>
     </section>
   );
