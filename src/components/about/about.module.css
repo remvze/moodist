@@ -55,7 +55,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 16px;
+    padding: 10px 16px;
     margin-top: 20px;
     font-size: var(--font-sm);
     font-weight: 500;
