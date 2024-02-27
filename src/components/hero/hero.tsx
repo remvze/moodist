@@ -13,7 +13,7 @@ export function Hero() {
   return (
     <div className={styles.hero}>
       <Container className={styles.container}>
-        <div className={styles.pattern} />
+        {/* <div className={styles.pattern} /> */}
 
         <img
           alt="Faded Moodist Logo"
