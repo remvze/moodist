@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IoClose } from 'react-icons/io5/index';
 
@@ -8,16 +9,31 @@ import styles from './modal.module.css';
 
 interface ModalProps {
   children: React.ReactNode;
+  lockBody?: boolean;
   onClose: () => void;
   show: boolean;
   wide?: boolean;
 }
 
-export function Modal({ children, onClose, show, wide }: ModalProps) {
+export function Modal({
+  children,
+  lockBody = true,
+  onClose,
+  show,
+  wide,
+}: ModalProps) {
   const variants = {
     modal: mix(fade(), slideY(20)),
     overlay: fade(),
   };
+
+  useEffect(() => {
+    if (show && lockBody) {
+      document.body.style.overflow = 'hidden';
+    } else if (lockBody) {
+      document.body.style.overflow = 'auto';
+    }
+  }, [show, lockBody]);
 
   return (
     <AnimatePresence>

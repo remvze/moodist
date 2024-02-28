@@ -27,7 +27,7 @@ export function Setting({ onChange, onClose, show, times }: SettingProps) {
   };
 
   return (
-    <Modal show={show} onClose={onClose}>
+    <Modal lockBody={false} show={show} onClose={onClose}>
       <h2 className={styles.title}>Change Times</h2>
 
       <form className={styles.form} onSubmit={handleSubmit}>
