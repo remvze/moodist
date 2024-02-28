@@ -1,0 +1,12 @@
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--font-md);
+  font-weight: 600;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  margin: 16px 0;
+  background-color: var(--color-neutral-200);
+}

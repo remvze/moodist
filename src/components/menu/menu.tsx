@@ -21,9 +21,11 @@ import {
   NotepadItem,
   SourceItem,
   PomodoroItem,
+  PresetsItem,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
+import { PresetsModal } from '@/components/modals/presets';
 import { Notepad, Pomodoro } from '@/components/toolbox';
 
 import styles from './menu.module.css';
@@ -31,6 +33,7 @@ import styles from './menu.module.css';
 export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const [showPresets, setShowPresets] = useState(false);
   const [showShareLink, setShowShareLink] = useState(false);
   const [showNotepad, setShowNotepad] = useState(false);
   const [showPomodoro, setShowPomodoro] = useState(false);
@@ -86,6 +89,7 @@ export function Menu() {
               {...getFloatingProps()}
               className={styles.menu}
             >
+              <PresetsItem open={() => setShowPresets(true)} />
               <ShareItem open={() => setShowShareLink(true)} />
               <ShuffleItem />
               <Divider />
@@ -103,6 +107,8 @@ export function Menu() {
         show={showShareLink}
         onClose={() => setShowShareLink(false)}
       />
+
+      <PresetsModal show={showPresets} onClose={() => setShowPresets(false)} />
 
       <Notepad show={showNotepad} onClose={() => setShowNotepad(false)} />
       <Pomodoro show={showPomodoro} onClose={() => setShowPomodoro(false)} />

@@ -4,3 +4,4 @@ export { Donate as DonateItem } from './donate';
 export { Notepad as NotepadItem } from './notepad';
 export { Source as SourceItem } from './source';
 export { Pomodoro as PomodoroItem } from './pomodoro';
+export { Presets as PresetsItem } from './presets';

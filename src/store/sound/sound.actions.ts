@@ -31,11 +31,13 @@ export const createActions: StateCreator<
       const sounds = get().sounds;
 
       Object.keys(newSounds).forEach(sound => {
-        sounds[sound].isSelected = true;
-        sounds[sound].volume = newSounds[sound];
+        if (sounds[sound]) {
+          sounds[sound].isSelected = true;
+          sounds[sound].volume = newSounds[sound];
+        }
       });
 
-      set({ sounds: { ...sounds } });
+      set({ history: null, sounds: { ...sounds } });
     },
 
     pause() {
