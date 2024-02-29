@@ -2,6 +2,100 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/remvze/moodist/compare/v1.3.1...v1.4.0) (2024-02-29)
+
+
+### ♻️ Code Refactoring
+
+* add variant to container ([831a9c8](https://github.com/remvze/moodist/commit/831a9c8ea019a3d86e994ff0e060dd4337a84d1f))
+* move donation to React ([c505c57](https://github.com/remvze/moodist/commit/c505c574a885004e071da63d8255062befc29921))
+* move footer to React ([52176bc](https://github.com/remvze/moodist/commit/52176bc3f9eac43d701de0e7f0ca103eeca46858))
+* remove sections ([3f45be3](https://github.com/remvze/moodist/commit/3f45be3942bfeff74f3f0126de5e61037a749e61))
+
+
+### 💄 Styling
+
+* add effect to about ([1a499be](https://github.com/remvze/moodist/commit/1a499be2446730d5333dd0d0d6a06bbd47564979))
+* add margin to donate section ([6d30a01](https://github.com/remvze/moodist/commit/6d30a0123e0feb509b6c560f405b98d20a89467a))
+* add polka dot pattern ([dc22b51](https://github.com/remvze/moodist/commit/dc22b51548f0d6830fcee79eebd75650f3f19dc1))
+* add scroll lock in modals ([def69de](https://github.com/remvze/moodist/commit/def69de6e4e11e373280c90f93af0b0369b85ac8))
+* add shine to donation button ([ac24da2](https://github.com/remvze/moodist/commit/ac24da294008a34c49dc3502374f1fcf55db5be8))
+* change description ([8930e7b](https://github.com/remvze/moodist/commit/8930e7b76abffafd0ace5926de6c1d3f7629febd))
+* change dividers ([8471a3c](https://github.com/remvze/moodist/commit/8471a3ca493b0c738ed7de900e82403f0b1ce2b7))
+* change pattern ([f3e7224](https://github.com/remvze/moodist/commit/f3e72242670317d938cc8d9619729be95df0f4f0))
+* change position for toolbar ([e7fd84b](https://github.com/remvze/moodist/commit/e7fd84bd4e8637e34eb0a59e97fd9c49875f8776))
+* change sound counter ([e1b9a17](https://github.com/remvze/moodist/commit/e1b9a1736c1d11827faf900838769194364afbd3))
+* change the about style ([4515aa8](https://github.com/remvze/moodist/commit/4515aa8e7a7f6d0fbc839625f74f0583e1a20d18))
+* change the pattern slightly ([5fc3e7e](https://github.com/remvze/moodist/commit/5fc3e7e5d048cb4aa189683d147b181fdf2a94b6))
+* change unselected style ([586e502](https://github.com/remvze/moodist/commit/586e502c3cc81314bc1e83f4e088a0d9289390fc))
+* decorate paragraphs ([1a6ecd8](https://github.com/remvze/moodist/commit/1a6ecd82abe89e1686538c42b31826ccc8a43b2d))
+* decrease dots ([182a8c7](https://github.com/remvze/moodist/commit/182a8c7aadc9a253261c56ae7faf8ac5c3c82707))
+* decrease dots ([0ad4bb7](https://github.com/remvze/moodist/commit/0ad4bb72e15e8f7d52e7d4b036b71fdb837e3554))
+* decrease dots ([2b84374](https://github.com/remvze/moodist/commit/2b843747b41111908bbe5fb8f5abc407114e4f15))
+* decrease font size ([69cb45b](https://github.com/remvze/moodist/commit/69cb45bff74d36f654d521e9e7f6b2149b01d630))
+* decrease opacity ([56802b6](https://github.com/remvze/moodist/commit/56802b67f2db751dbede9aa58b2158dd250a1420))
+* decrease opacity ([2078648](https://github.com/remvze/moodist/commit/2078648c6687aab79a725490335b8ae751f3d4ee))
+* decrease opacity ([82e4ea7](https://github.com/remvze/moodist/commit/82e4ea72f4ddb8658824813a64e14970400b1820))
+* decrease padding ([98d2f76](https://github.com/remvze/moodist/commit/98d2f764383eaba0dd6163b93826459b614b67d2))
+* decrease shine ([0f32de3](https://github.com/remvze/moodist/commit/0f32de3c0ca9f553c8917b786ddcdfb6feccf0c8))
+* hide about and features ([400ea0a](https://github.com/remvze/moodist/commit/400ea0aeafe48587fe8596d1b5fe90755995d1c3))
+* hide features ([9028675](https://github.com/remvze/moodist/commit/902867505743dd1dcd3f1e2afef010a186586615))
+* increase dots ([405fccc](https://github.com/remvze/moodist/commit/405fcccd95d9ce720f0731e8040006bd1d9b8bd2))
+* increase opacity ([882d440](https://github.com/remvze/moodist/commit/882d44079cfba8c7536c3713f0abeaa075ecb069))
+* increase padding ([8e50013](https://github.com/remvze/moodist/commit/8e500136cec6ba5580146306f25a5956aa3a2a4b))
+* increase pattern opacity ([5b83710](https://github.com/remvze/moodist/commit/5b83710c75515352b88c7bd361694d3067cb08fb))
+* lower opacity ([d4cc24e](https://github.com/remvze/moodist/commit/d4cc24e468230df51e5676abbd828b2f2edd97f3))
+* remove hero pattern ([8f36c86](https://github.com/remvze/moodist/commit/8f36c863d7f7489979691475947dbc8f29f26b39))
+* revert changes ([341a896](https://github.com/remvze/moodist/commit/341a896924a6ace70114ad2ae3349f8934a329ba))
+* revert pattern ([5916e86](https://github.com/remvze/moodist/commit/5916e86d3c6de9912b2c9bd490fa04cd9a0958dd))
+* show about and features ([37505a6](https://github.com/remvze/moodist/commit/37505a6b3f86919ac04b69519e56ddbaf5234843))
+
+
+### ✨ Features
+
+* add about section ([d725d59](https://github.com/remvze/moodist/commit/d725d597034ead0bb63c5f0667b64ce459477662))
+* add active indicators ([240fd9c](https://github.com/remvze/moodist/commit/240fd9c6e05c7385c0de92b8b57776988b902fae))
+* add alarm for pomodoro timer ([0eb47ba](https://github.com/remvze/moodist/commit/0eb47ba2e1accaee7dd7d6114ca9a69cbc0656c4))
+* add basic pomodoro structure ([9f7de33](https://github.com/remvze/moodist/commit/9f7de336e5add254b40c5694fc4c619ee00602ba))
+* add controls to pomodoro ([7ed016d](https://github.com/remvze/moodist/commit/7ed016d8558a73d8d2bf05823cf80633882c1d69))
+* add copy for productivity toolbox ([3205145](https://github.com/remvze/moodist/commit/3205145d5425c7a7a8660b46aa9de0b273a04ff0))
+* add counter to notepad ([2424523](https://github.com/remvze/moodist/commit/24245235b14f9d59f86d2e988657a45a8a6d1eb7))
+* add CTA button ([0e12a52](https://github.com/remvze/moodist/commit/0e12a5203ef836bd262b3d4cc02aaeb9048f461e))
+* add custom presets ([2484e01](https://github.com/remvze/moodist/commit/2484e01273cf5e7ef5b44395cab26095891118fd))
+* add dividers to menu items ([408734d](https://github.com/remvze/moodist/commit/408734d49fd89fbd47d29527c03927e49c834f30))
+* add fade in/out ([663cb92](https://github.com/remvze/moodist/commit/663cb921350c083f1991665d147a3820bcdd9321))
+* add features section ([e4e332a](https://github.com/remvze/moodist/commit/e4e332ad75aad1a58fd97acb71660b8dec9dfa09))
+* add open-source section ([f7302de](https://github.com/remvze/moodist/commit/f7302dec5b7e182ad465bc30b63457a6e629a5b3))
+* add scroll for lower heights ([758f2f4](https://github.com/remvze/moodist/commit/758f2f48dc6a4e520b7a1e937f96eed28c8e8c20))
+* add simple notepad ([e923559](https://github.com/remvze/moodist/commit/e923559709796698257772cced4e20de584c6c80))
+* add source code item ([d055e66](https://github.com/remvze/moodist/commit/d055e66dd9dd5789c88d1a002686457ea89db073))
+* add special button ([a514a36](https://github.com/remvze/moodist/commit/a514a364ec5b6e2e34e7901ad51219d7be2aee86))
+* add titles ([5f40435](https://github.com/remvze/moodist/commit/5f40435c0ccfec0cb87d9ac0c14723fb8265fa8d))
+* add toolbar to notepad ([7463334](https://github.com/remvze/moodist/commit/7463334053ecd35a53cae535674169f5b50c81c2))
+* change alignments ([1a01a00](https://github.com/remvze/moodist/commit/1a01a0086648c7564ecab30b79df0d67e93eb392))
+* change the copy for features ([38da02a](https://github.com/remvze/moodist/commit/38da02a0d3b08e8f8802d6cf76a04ae656e10b76))
+* change tooltip content ([941e1f0](https://github.com/remvze/moodist/commit/941e1f024189143340d663a0c117c08a0b315599))
+* implement time setting ([f3cb2a1](https://github.com/remvze/moodist/commit/f3cb2a1b63e40f4f742ee2591b9353aa373f9783))
+* persist pomodoro setting ([665e217](https://github.com/remvze/moodist/commit/665e2173f4083128687a6302a6f2fd82674f07c1))
+* persist presets ([38a9a23](https://github.com/remvze/moodist/commit/38a9a23790248d5af522fc0d3cf6e99970e59637))
+
+
+### 🐛 Bug Fixes
+
+* add correct count to description ([81e6666](https://github.com/remvze/moodist/commit/81e66667765879da624544c5d915c1562f2ab34c))
+* add key to categories ([38c11f1](https://github.com/remvze/moodist/commit/38c11f124e2235bc32de1e469b00ccaa22467a7e))
+* add min-width to inputs ([dfd6c1f](https://github.com/remvze/moodist/commit/dfd6c1fc4a41845e686fc6ee96f71b696213fe69))
+* change completion condition ([1ac5286](https://github.com/remvze/moodist/commit/1ac52861d1de651f8245d1e343307c6cf7a13dde))
+* change default times ([158cffc](https://github.com/remvze/moodist/commit/158cffca8c4b138f33e2df03e046706d2b122478))
+* change initial value ([a7e5368](https://github.com/remvze/moodist/commit/a7e53685918187c47d4fc2935418786b772c189e))
+* change z-index values ([79afb8d](https://github.com/remvze/moodist/commit/79afb8d92f9cb8e551bf101267018af1ab58815d))
+* comment out toolbox section ([a8a8c36](https://github.com/remvze/moodist/commit/a8a8c3643478d3da531e1da6c3640eb327acad3b))
+* make sound count dynamic ([f66a6ff](https://github.com/remvze/moodist/commit/f66a6ffde770992353a5b21fe65c20fe50ab4328))
+* remove extra headings ([7390a9b](https://github.com/remvze/moodist/commit/7390a9b3de0c52163d63b42ad48a882087886b65))
+* remove fading ([653d309](https://github.com/remvze/moodist/commit/653d309e64b770c2b270d2435bcd02345b686fec))
+* remove time from tabs array ([110356b](https://github.com/remvze/moodist/commit/110356b2da82e0f1e971ee9dc486664027d886ff))
+* remove word counter dependency ([ae3ea8c](https://github.com/remvze/moodist/commit/ae3ea8c74f9a94ae56a0eb4b165bc36d990dea7b))
+
 ### [1.3.1](https://github.com/remvze/moodist/compare/v1.3.0...v1.3.1) (2024-02-01)
 
 
