@@ -19,10 +19,10 @@ export function About() {
       body: 'The beauty of Moodist lies in its simplicity and customization. No complex menus or confusing options – just choose your desired sounds, adjust the volume balance, and hit play. Want to blend the gentle chirping of birds with the soothing sound of rain? No problem! Layer as many sounds as you like to create your personalized soundscape oasis.',
       title: 'Create Your Soundscape',
     },
-    {
-      body: 'Moodist goes beyond just ambient sounds by offering a suite of productivity tools to help you stay organized and focused. Utilize the built-in pomodoro timer to structure your workday in focused intervals, jot down thoughts and ideas in the simple notepad, and keep track of your tasks with the handy to-do list. These tools seamlessly integrate with the ambient soundscapes, allowing you to create a personalized environment that fosters both focus and relaxation.',
-      title: 'A Productivity Toolbox',
-    },
+    // {
+    //   body: 'Moodist goes beyond just ambient sounds by offering a suite of productivity tools to help you stay organized and focused. Utilize the built-in pomodoro timer to structure your workday in focused intervals, jot down thoughts and ideas in the simple notepad, and keep track of your tasks with the handy to-do list. These tools seamlessly integrate with the ambient soundscapes, allowing you to create a personalized environment that fosters both focus and relaxation.',
+    //   title: 'A Productivity Toolbox',
+    // },
     {
       body: "Whether you're looking to unwind after a long day, enhance your focus during work, or lull yourself into a peaceful sleep, Moodist has the perfect soundscape waiting for you. The best part? It's completely free and open-source, so you can enjoy its benefits without any strings attached. Start using Moodist today and discover your new haven of tranquility and focus!",
       title: 'Sounds for Every Moment',
