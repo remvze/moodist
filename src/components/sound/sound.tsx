@@ -90,7 +90,9 @@ export function Sound({
           icon
         )}
       </div>
-      <h3 id={id}>{label}</h3>
+      <div className={styles.label} id={id}>
+        {label}
+      </div>
       <Range id={id} />
     </div>
   );

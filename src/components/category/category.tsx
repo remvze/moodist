@@ -22,7 +22,7 @@ export function Category({
         <div className={styles.icon}>{icon}</div>
       </div>
 
-      <h2 className={styles.title}>{title}</h2>
+      <div className={styles.title}>{title}</div>
 
       <Sounds functional={functional} id={id} sounds={sounds} />
     </div>

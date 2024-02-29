@@ -61,7 +61,7 @@
       }
     }
 
-    & h1 {
+    & h2 {
       font-family: var(--font-display);
       font-size: var(--font-2xlg);
       font-weight: 600;

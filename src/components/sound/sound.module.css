@@ -91,7 +91,7 @@
     }
   }
 
-  & h3 {
+  & .label {
     margin-top: 8px;
     font-family: var(--font-heading);
     font-size: var(--font-sm);
