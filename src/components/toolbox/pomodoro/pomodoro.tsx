@@ -51,9 +51,9 @@ export function Pomodoro({ onClose, show }: PomodoroProps) {
 
   const tabs = useMemo(
     () => [
-      { id: 'pomodoro', label: 'Pomodoro', time: 60 },
-      { id: 'short', label: 'Break', time: 60 },
-      { id: 'long', label: 'Long Break', time: 60 },
+      { id: 'pomodoro', label: 'Pomodoro' },
+      { id: 'short', label: 'Break' },
+      { id: 'long', label: 'Long Break' },
     ],
     [],
   );
