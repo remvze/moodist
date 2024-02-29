@@ -9,6 +9,7 @@ import { Button } from './button';
 import { Setting } from './setting';
 
 import { useLocalStorage } from '@/hooks/use-local-storage';
+import { useSoundEffect } from '@/hooks/use-sound-effect';
 import { usePomodoroStore } from '@/store';
 
 import styles from './pomodoro.module.css';
@@ -28,6 +29,8 @@ export function Pomodoro({ onClose, show }: PomodoroProps) {
 
   const [timer, setTimer] = useState(0);
   const interval = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const alarm = useSoundEffect('/sounds/alarm.mp3');
 
   const defaultTimes = useMemo(
     () => ({
@@ -74,13 +77,15 @@ export function Pomodoro({ onClose, show }: PomodoroProps) {
     if (timer <= 0 && running) {
       if (interval.current) clearInterval(interval.current);
 
+      alarm.play();
+
       setRunning(false);
       setCompletions(prev => ({
         ...prev,
         [selectedTab]: prev[selectedTab] + 1,
       }));
     }
-  }, [timer, selectedTab, running, setRunning]);
+  }, [timer, selectedTab, running, setRunning, alarm]);
 
   useEffect(() => {
     const time = times[selectedTab] || 10;
