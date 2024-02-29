@@ -31,9 +31,9 @@ export function Pomodoro({ onClose, show }: PomodoroProps) {
 
   const defaultTimes = useMemo(
     () => ({
-      long: 60,
-      pomodoro: 60,
-      short: 60,
+      long: 15 * 60,
+      pomodoro: 25 * 60,
+      short: 5 * 60,
     }),
     [],
   );
