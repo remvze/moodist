@@ -9,9 +9,8 @@ import { Container } from '@/components/container';
 import { StoreConsumer } from '@/components/store-consumer';
 import { Buttons } from '@/components/buttons';
 import { Categories } from '@/components/categories';
-import { ScrollToTop } from '@/components/scroll-to-top';
 import { SharedModal } from '@/components/modals/shared';
-import { Menu } from '@/components/menu/menu';
+import { Toolbar } from '@/components/toolbar';
 import { SnackbarProvider } from '@/contexts/snackbar';
 
 import { sounds } from '@/data/sounds';
@@ -77,8 +76,7 @@ export function App() {
           <Categories categories={allCategories} />
         </Container>
 
-        <ScrollToTop />
-        <Menu />
+        <Toolbar />
         <SharedModal />
       </StoreConsumer>
     </SnackbarProvider>

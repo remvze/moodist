@@ -1,0 +1,13 @@
+.wrapper {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  z-index: 15;
+  width: 100%;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

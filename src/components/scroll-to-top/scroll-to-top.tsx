@@ -31,7 +31,7 @@ export function ScrollToTop() {
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isVisible ? (
         <motion.button
           animate="show"
           aria-label="Scroll to top"
@@ -43,6 +43,8 @@ export function ScrollToTop() {
         >
           <BiUpArrowAlt />
         </motion.button>
+      ) : (
+        <div />
       )}
     </AnimatePresence>
   );

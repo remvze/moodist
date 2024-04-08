@@ -1,8 +1,4 @@
 .button {
-  position: fixed;
-  bottom: 20px;
-  left: calc(50vw - 400px);
-  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,10 +11,6 @@
   border: 1px solid var(--color-neutral-300);
   border-radius: 50%;
   transition: 0.2s;
-
-  @media (width <= 850px) {
-    left: 5vw;
-  }
 
   &:hover {
     background-color: var(--color-neutral-200);

@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IoClose } from 'react-icons/io5/index';
 
+import { Portal } from '@/components/portal';
+
 import { fade, mix, slideY } from '@/lib/motion';
 import { cn } from '@/helpers/styles';
 
@@ -36,35 +38,37 @@ export function Modal({
   }, [show, lockBody]);
 
   return (
-    <AnimatePresence>
-      {show && (
-        <>
-          <motion.div
-            animate="show"
-            className={styles.overlay}
-            exit="hidden"
-            initial="hidden"
-            variants={variants.overlay}
-            onClick={onClose}
-            onKeyDown={onClose}
-          />
-          <div className={styles.modal}>
+    <Portal>
+      <AnimatePresence>
+        {show && (
+          <>
             <motion.div
               animate="show"
-              className={cn(styles.content, wide && styles.wide)}
+              className={styles.overlay}
               exit="hidden"
               initial="hidden"
-              variants={variants.modal}
-            >
-              <button className={styles.close} onClick={onClose}>
-                <IoClose />
-              </button>
+              variants={variants.overlay}
+              onClick={onClose}
+              onKeyDown={onClose}
+            />
+            <div className={styles.modal}>
+              <motion.div
+                animate="show"
+                className={cn(styles.content, wide && styles.wide)}
+                exit="hidden"
+                initial="hidden"
+                variants={variants.modal}
+              >
+                <button className={styles.close} onClick={onClose}>
+                  <IoClose />
+                </button>
 
-              {children}
-            </motion.div>
-          </div>
-        </>
-      )}
-    </AnimatePresence>
+                {children}
+              </motion.div>
+            </div>
+          </>
+        )}
+      </AnimatePresence>
+    </Portal>
   );
 }

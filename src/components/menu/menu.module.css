@@ -1,13 +1,4 @@
 .wrapper {
-  position: fixed;
-  right: calc(50vw - 400px);
-  bottom: 20px;
-  z-index: 15;
-
-  @media (width <= 850px) {
-    right: 5vw;
-  }
-
   & .menuButton {
     display: flex;
     align-items: center;
