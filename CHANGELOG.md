@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.3](https://github.com/remvze/moodist/compare/v1.4.2...v1.4.3) (2024-04-11)
+
+
+### 🚚 Chores
+
+* remove arm/v7 ([fa9711a](https://github.com/remvze/moodist/commit/fa9711a1e09e6e979b420556160c3cd69a8c3775))
+
 ### [1.4.2](https://github.com/remvze/moodist/compare/v1.4.1...v1.4.2) (2024-04-11)
 
 
