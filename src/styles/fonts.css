@@ -21,7 +21,7 @@
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
-  src: url('../fonts/inter-v13-latin-500.woff2') format('woff2');
+  src: url('/fonts/inter-v13-latin-500.woff2') format('woff2');
   font-display: swap;
 }
 
