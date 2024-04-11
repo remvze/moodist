@@ -34,7 +34,7 @@ jobs:
           GIT_TAG=${GIT_TAG#refs/tags/}
 
           docker buildx build \
-            --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6 \
+            --platform linux/amd64,linux/arm64,linux/arm/v7 \
             -t $IMAGE_NAME:latest \
             -t $IMAGE_NAME:$GIT_TAG \
             --push .
