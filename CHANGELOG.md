@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://github.com/remvze/moodist/compare/v1.4.1...v1.4.2) (2024-04-11)
+
+
+### 💄 Styling
+
+* change font path ([43ba975](https://github.com/remvze/moodist/commit/43ba9754085d7a710d3d629e70f873b16f267507))
+
+
+### 🚚 Chores
+
+* remove arm/v6 ([017c27f](https://github.com/remvze/moodist/commit/017c27fb2b20402553011db8f417717dcca6d447))
+
 ### [1.4.1](https://github.com/remvze/moodist/compare/v1.4.0...v1.4.1) (2024-04-11)
 
 
