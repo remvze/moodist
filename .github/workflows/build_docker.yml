@@ -20,15 +20,21 @@ jobs:
           username: ${{github.actor}}
           password: ${{secrets.ACCESS_TOKEN}}
 
-      - name: 'Build Inventory Image'
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: 'Build and push Inventory Image'
         run: |
           IMAGE_NAME="ghcr.io/remvze/moodist"
 
           GIT_TAG=${{ github.ref }}
           GIT_TAG=${GIT_TAG#refs/tags/}
 
-          docker build . --tag $IMAGE_NAME:latest
-          docker push $IMAGE_NAME:latest
-
-          docker build . --tag $IMAGE_NAME:$GIT_TAG
-          docker push $IMAGE_NAME:$GIT_TAG
+          docker buildx build \
+            --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6 \
+            -t $IMAGE_NAME:latest \
+            -t $IMAGE_NAME:$GIT_TAG \
+            --push .
