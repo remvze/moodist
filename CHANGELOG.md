@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/remvze/moodist/compare/v1.4.0...v1.4.1) (2024-04-11)
+
+
+### ✨ Features
+
+* add toolbar and portal ([ede4801](https://github.com/remvze/moodist/commit/ede480186c4b3f187c82e1d64e4d521ee59da31a))
+
+
+### 💄 Styling
+
+* widen the container ([7ec7ea7](https://github.com/remvze/moodist/commit/7ec7ea74d53db85cffa3af646c03270793453009))
+
+
+### 🚚 Chores
+
+* change GitHub workflow ([faf7f78](https://github.com/remvze/moodist/commit/faf7f78b8c10cd7b3688ed5bba3d0c077c020ad2))
+
 ## [1.4.0](https://github.com/remvze/moodist/compare/v1.3.1...v1.4.0) (2024-02-29)
 
 
