@@ -31,6 +31,10 @@
       background: transparent;
       border: none;
       outline: none;
+
+      &:focus-visible {
+        outline: 1px solid var(--color-neutral-950);
+      }
     }
 
     & button {
@@ -47,6 +51,10 @@
       border: none;
       border-radius: 4px;
       outline: none;
+
+      &:focus-visible {
+        outline: 1px solid var(--color-neutral-950);
+      }
 
       &:disabled {
         cursor: not-allowed;
