@@ -9,7 +9,7 @@ export function Shuffle() {
   const shuffle = useSoundStore(state => state.shuffle);
 
   return (
-    <Tooltip content="Shuffle sounds" hideDelay={0} showDelay={0}>
+    <Tooltip content="Shuffle sounds" showDelay={0}>
       <button
         aria-label="Shuffle sounds"
         className={styles.button}

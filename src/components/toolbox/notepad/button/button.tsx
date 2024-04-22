@@ -20,7 +20,7 @@ export function Button({
   tooltip,
 }: ButtonProps) {
   return (
-    <Tooltip content={tooltip} hideDelay={0} placement="bottom" showDelay={0}>
+    <Tooltip content={tooltip} placement="bottom" showDelay={0}>
       <button
         className={cn(
           styles.button,
