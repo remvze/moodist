@@ -23,6 +23,10 @@
   &:hover {
     background-color: var(--color-neutral-200);
   }
+
+  &:focus-visible {
+    outline: 1px solid white;
+  }
 }
 
 .tooltip {

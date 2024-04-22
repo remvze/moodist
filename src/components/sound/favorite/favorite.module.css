@@ -24,4 +24,8 @@
   &.isFavorite {
     color: var(--color-foreground);
   }
+
+  &:focus-visible {
+    outline: 1px solid white;
+  }
 }
