@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IoClose } from 'react-icons/io5/index';
+import FocusTrap from 'focus-trap-react';
 
 import { Portal } from '@/components/portal';
 
@@ -37,6 +38,18 @@ export function Modal({
     }
   }, [show, lockBody]);
 
+  useEffect(() => {
+    function keyListener(e) {
+      if (e.keyCode === 27) {
+        onClose();
+      }
+    }
+
+    document.addEventListener('keydown', keyListener);
+
+    return () => document.removeEventListener('keydown', keyListener);
+  });
+
   return (
     <Portal>
       <AnimatePresence>
@@ -51,21 +64,23 @@ export function Modal({
               onClick={onClose}
               onKeyDown={onClose}
             />
-            <div className={styles.modal}>
-              <motion.div
-                animate="show"
-                className={cn(styles.content, wide && styles.wide)}
-                exit="hidden"
-                initial="hidden"
-                variants={variants.modal}
-              >
-                <button className={styles.close} onClick={onClose}>
-                  <IoClose />
-                </button>
+            <FocusTrap>
+              <div className={styles.modal}>
+                <motion.div
+                  animate="show"
+                  className={cn(styles.content, wide && styles.wide)}
+                  exit="hidden"
+                  initial="hidden"
+                  variants={variants.modal}
+                >
+                  <button className={styles.close} onClick={onClose}>
+                    <IoClose />
+                  </button>
 
-                {children}
-              </motion.div>
-            </div>
+                  {children}
+                </motion.div>
+              </div>
+            </FocusTrap>
           </>
         )}
       </AnimatePresence>
