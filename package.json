@@ -23,6 +23,8 @@
   "dependencies": {
     "@astrojs/react": "^3.0.3",
     "@floating-ui/react": "0.26.0",
+    "@radix-ui/react-dropdown-menu": "2.0.6",
+    "@radix-ui/react-tooltip": "1.0.7",
     "@types/howler": "2.2.10",
     "@types/react": "^18.2.25",
     "@types/react-dom": "^18.2.10",

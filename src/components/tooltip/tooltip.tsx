@@ -1,27 +1,28 @@
-import { useState, cloneElement } from 'react';
-import {
-  useFloating,
-  autoUpdate,
-  offset,
-  flip,
-  shift,
-  useHover,
-  useFocus,
-  useDismiss,
-  useRole,
-  useInteractions,
-  type Placement,
-} from '@floating-ui/react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 
 import { slideX, slideY, mix, fade } from '@/lib/motion';
 
 import styles from './tooltip.module.css';
 
+type Placement =
+  | 'top'
+  | 'right'
+  | 'bottom'
+  | 'left'
+  | 'top-start'
+  | 'top-end'
+  | 'right-start'
+  | 'right-end'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'left-start'
+  | 'left-end';
+
 interface TooltipProps {
   children: JSX.Element;
   content: string;
-  hideDelay?: number;
   placement?: Placement;
   showDelay?: number;
 }
@@ -29,91 +30,57 @@ interface TooltipProps {
 export function Tooltip({
   children,
   content,
-  hideDelay = 100,
   placement = 'top',
   showDelay = 500,
 }: TooltipProps) {
-  const [isTooltipOpen, setIsTooltipOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const {
-    context,
-    floatingStyles,
-    placement: computedPlacement,
-    refs,
-  } = useFloating({
-    middleware: [offset(12), flip(), shift({ padding: 8 })],
-    onOpenChange: setIsTooltipOpen,
-    open: isTooltipOpen,
-    placement: placement,
-    whileElementsMounted: autoUpdate,
-  });
-
-  const hover = useHover(context, {
-    delay: showDelay,
-    move: false,
-    restMs: hideDelay,
-  });
-  const focus = useFocus(context);
-  const dismiss = useDismiss(context);
-  const role = useRole(context, { role: 'tooltip' });
-
-  const { getFloatingProps, getReferenceProps } = useInteractions([
-    hover,
-    focus,
-    dismiss,
-    role,
-  ]);
+  const side = placement.split('-')[0] as 'top' | 'right' | 'bottom' | 'left';
+  const align = placement.split('-')[1] as
+    | 'start'
+    | 'end'
+    | 'center'
+    | undefined;
 
   const slide = {
     bottom: slideY(-5),
     left: slideX(5),
     right: slideX(-5),
     top: slideY(5),
-  }[
-    computedPlacement.includes('-')
-      ? computedPlacement.split('-')[0]
-      : computedPlacement
-  ];
+  }[side];
 
   const variants = mix(fade(), slide!);
-  const textVariants = fade();
 
   return (
-    <>
-      {cloneElement(
-        children,
-        getReferenceProps({ ref: refs.setReference, ...children.props }),
-      )}
+    <TooltipPrimitive.Provider delayDuration={showDelay}>
+      <TooltipPrimitive.Root open={isOpen} onOpenChange={o => setIsOpen(o)}>
+        <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
 
-      <AnimatePresence>
-        {isTooltipOpen && (
-          <div
-            ref={refs.setFloating}
-            {...getFloatingProps({ style: { ...floatingStyles, zIndex: 99 } })}
-          >
-            <motion.div
-              animate="show"
-              className={styles.tooltip}
-              exit="hidden"
-              initial="hidden"
-              variants={variants}
-            >
-              <AnimatePresence initial={false} mode="wait">
-                <motion.span
+        <AnimatePresence>
+          {isOpen && (
+            <TooltipPrimitive.Portal forceMount>
+              <TooltipPrimitive.Content
+                align={align}
+                asChild
+                className={styles.tooltip}
+                collisionPadding={8}
+                side={side}
+                sideOffset={12}
+              >
+                <motion.div
                   animate="show"
+                  className={styles.tooltip}
                   exit="hidden"
                   initial="hidden"
-                  key={content}
-                  transition={{ duration: 0.15 }}
-                  variants={textVariants}
+                  variants={variants}
                 >
                   {content}
-                </motion.span>
-              </AnimatePresence>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-    </>
+                </motion.div>
+              </TooltipPrimitive.Content>
+            </TooltipPrimitive.Portal>
+          )}
+        </AnimatePresence>
+      </TooltipPrimitive.Root>
+    </TooltipPrimitive.Provider>
   );
 }

@@ -1,18 +1,6 @@
 import { useState } from 'react';
 import { IoMenu, IoClose } from 'react-icons/io5/index';
-import {
-  useFloating,
-  autoUpdate,
-  offset,
-  flip,
-  shift,
-  size,
-  useClick,
-  useDismiss,
-  useRole,
-  useInteractions,
-  FloatingFocusManager,
-} from '@floating-ui/react';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 import {
   ShuffleItem,
@@ -29,6 +17,8 @@ import { PresetsModal } from '@/components/modals/presets';
 import { Notepad, Pomodoro } from '@/components/toolbox';
 
 import styles from './menu.module.css';
+import { AnimatePresence, motion } from 'framer-motion';
+import { fade, mix, slideY } from '@/lib/motion';
 
 export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,78 +28,57 @@ export function Menu() {
   const [showNotepad, setShowNotepad] = useState(false);
   const [showPomodoro, setShowPomodoro] = useState(false);
 
-  const { context, floatingStyles, refs } = useFloating({
-    middleware: [
-      offset(12),
-      flip(),
-      shift(),
-      size({
-        apply({ availableHeight, elements }) {
-          Object.assign(elements.floating.style, {
-            maxHeight: `${availableHeight}px`,
-          });
-        },
-        padding: 10,
-      }),
-    ],
-    onOpenChange: setIsOpen,
-    open: isOpen,
-    placement: 'top-end',
-    whileElementsMounted: autoUpdate,
-  });
-
-  const click = useClick(context);
-  const dismiss = useDismiss(context);
-  const role = useRole(context);
-
-  const { getFloatingProps, getReferenceProps } = useInteractions([
-    click,
-    dismiss,
-    role,
-  ]);
+  const variants = mix(fade(), slideY());
 
   return (
     <>
       <div className={styles.wrapper}>
-        <button
-          aria-label="Menu"
-          className={styles.menuButton}
-          ref={refs.setReference}
-          onClick={() => setIsOpen(prev => !prev)}
-          {...getReferenceProps()}
-        >
-          {isOpen ? <IoClose /> : <IoMenu />}
-        </button>
+        <DropdownMenu.Root open={isOpen} onOpenChange={o => setIsOpen(o)}>
+          <DropdownMenu.Trigger asChild>
+            <button aria-label="Menu" className={styles.menuButton}>
+              {isOpen ? <IoClose /> : <IoMenu />}
+            </button>
+          </DropdownMenu.Trigger>
 
-        {isOpen && (
-          <FloatingFocusManager context={context} modal={false}>
-            <div
-              ref={refs.setFloating}
-              style={floatingStyles}
-              {...getFloatingProps()}
-              className={styles.menu}
-            >
-              <PresetsItem open={() => setShowPresets(true)} />
-              <ShareItem open={() => setShowShareLink(true)} />
-              <ShuffleItem />
-              <Divider />
-              <NotepadItem open={() => setShowNotepad(true)} />
-              <PomodoroItem open={() => setShowPomodoro(true)} />
-              <Divider />
-              <DonateItem />
-              <SourceItem />
-            </div>
-          </FloatingFocusManager>
-        )}
+          <AnimatePresence>
+            {isOpen && (
+              <DropdownMenu.Portal forceMount>
+                <DropdownMenu.Content
+                  align="end"
+                  asChild
+                  collisionPadding={10}
+                  side="top"
+                  sideOffset={12}
+                >
+                  <motion.div
+                    animate="show"
+                    className={styles.menu}
+                    exit="hidden"
+                    initial="hidden"
+                    variants={variants}
+                  >
+                    <PresetsItem open={() => setShowPresets(true)} />
+                    <ShareItem open={() => setShowShareLink(true)} />
+                    <ShuffleItem />
+                    <Divider />
+                    <NotepadItem open={() => setShowNotepad(true)} />
+                    <PomodoroItem open={() => setShowPomodoro(true)} />
+                    <Divider />
+                    <DonateItem />
+                    <SourceItem />
+                  </motion.div>
+                </DropdownMenu.Content>
+              </DropdownMenu.Portal>
+            )}
+          </AnimatePresence>
+        </DropdownMenu.Root>
       </div>
 
       <ShareLinkModal
         show={showShareLink}
         onClose={() => setShowShareLink(false)}
       />
-
       <PresetsModal show={showPresets} onClose={() => setShowPresets(false)} />
-
       <Notepad show={showNotepad} onClose={() => setShowNotepad(false)} />
       <Pomodoro show={showPomodoro} onClose={() => setShowPomodoro(false)} />
     </>

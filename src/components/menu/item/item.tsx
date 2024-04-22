@@ -1,3 +1,5 @@
+import { Item as DropdownItem } from '@radix-ui/react-dropdown-menu';
+
 import styles from './item.module.css';
 
 interface ItemProps {
@@ -20,14 +22,15 @@ export function Item({
   const Comp = href ? 'a' : 'button';
 
   return (
-    <Comp
-      className={styles.item}
-      disabled={disabled}
-      onClick={onClick}
-      {...(href ? { href, target: '_blank' } : {})}
-    >
-      <span className={styles.icon}>{icon}</span> {label}
-      {active && <div className={styles.active} />}
-    </Comp>
+    <DropdownItem asChild onClick={onClick}>
+      <Comp
+        className={styles.item}
+        disabled={disabled}
+        {...(href ? { href, target: '_blank' } : {})}
+      >
+        <span className={styles.icon}>{icon}</span> {label}
+        {active && <div className={styles.active} />}
+      </Comp>
+    </DropdownItem>
   );
 }
