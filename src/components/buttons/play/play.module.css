@@ -27,4 +27,8 @@
   & span {
     font-size: var(--font-lg);
   }
+
+  &:focus-visible {
+    outline: 1px solid white;
+  }
 }

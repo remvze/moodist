@@ -65,20 +65,34 @@ export function Sound({
   }, [unselect, setVolume, id]);
 
   const toggle = useCallback(() => {
-    if (isSelected) return _unselect();
+    if (isSelected) _unselect();
+    else _select();
+  }, [isSelected, _select, _unselect]);
 
-    _select();
-  }, [isSelected, _unselect, _select]);
+  const handleClick = useCallback(() => {
+    toggle();
+  }, [toggle]);
+
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (event.key === 'Enter') {
+        toggle();
+      }
+    },
+    [toggle],
+  );
 
   return (
     <div
+      role="button"
+      tabIndex={0}
       className={cn(
         styles.sound,
         isSelected && styles.selected,
         hidden && styles.hidden,
       )}
-      onClick={toggle}
-      onKeyDown={toggle}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
     >
       <Favorite id={id} />
       <div className={styles.icon}>
