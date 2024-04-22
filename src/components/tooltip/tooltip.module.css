@@ -1,4 +1,5 @@
 .tooltip {
+  z-index: 99;
   width: max-content;
   padding: 6px 12px;
   font-size: var(--font-xsm);

@@ -54,17 +54,17 @@ export function Modal({
     <Portal>
       <AnimatePresence>
         {show && (
-          <>
-            <motion.div
-              animate="show"
-              className={styles.overlay}
-              exit="hidden"
-              initial="hidden"
-              variants={variants.overlay}
-              onClick={onClose}
-              onKeyDown={onClose}
-            />
-            <FocusTrap>
+          <FocusTrap>
+            <div>
+              <motion.div
+                animate="show"
+                className={styles.overlay}
+                exit="hidden"
+                initial="hidden"
+                variants={variants.overlay}
+                onClick={onClose}
+                onKeyDown={onClose}
+              />
               <div className={styles.modal}>
                 <motion.div
                   animate="show"
@@ -80,8 +80,8 @@ export function Modal({
                   {children}
                 </motion.div>
               </div>
-            </FocusTrap>
-          </>
+            </div>
+          </FocusTrap>
         )}
       </AnimatePresence>
     </Portal>
