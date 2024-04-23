@@ -7,6 +7,8 @@ import { Portal } from '@/components/portal';
 import { fade, mix, slideY } from '@/lib/motion';
 import { cn } from '@/helpers/styles';
 
+import FocusTrap from 'focus-trap-react';
+
 import styles from './modal.module.css';
 
 interface ModalProps {
@@ -41,32 +43,34 @@ export function Modal({
     <Portal>
       <AnimatePresence>
         {show && (
-          <div onKeyDown={e => (e.key === 'Escape' ? onClose() : null)}>
-            <motion.div
-              animate="show"
-              className={styles.overlay}
-              exit="hidden"
-              initial="hidden"
-              variants={variants.overlay}
-              onClick={onClose}
-              onKeyDown={onClose}
-            />
-            <div className={styles.modal}>
+          <FocusTrap>
+            <div onKeyDown={e => (e.key === 'Escape' ? onClose() : null)}>
               <motion.div
                 animate="show"
-                className={cn(styles.content, wide && styles.wide)}
+                className={styles.overlay}
                 exit="hidden"
                 initial="hidden"
-                variants={variants.modal}
-              >
-                <button className={styles.close} onClick={onClose}>
-                  <IoClose />
-                </button>
+                variants={variants.overlay}
+                onClick={onClose}
+                onKeyDown={onClose}
+              />
+              <div className={styles.modal}>
+                <motion.div
+                  animate="show"
+                  className={cn(styles.content, wide && styles.wide)}
+                  exit="hidden"
+                  initial="hidden"
+                  variants={variants.modal}
+                >
+                  <button className={styles.close} onClick={onClose}>
+                    <IoClose />
+                  </button>
 
-                {children}
-              </motion.div>
+                  {children}
+                </motion.div>
+              </div>
             </div>
-          </div>
+          </FocusTrap>
         )}
       </AnimatePresence>
     </Portal>
