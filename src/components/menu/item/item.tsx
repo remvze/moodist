@@ -9,6 +9,7 @@ interface ItemProps {
   icon: React.ReactElement;
   label: string;
   onClick?: () => void;
+  shortcut?: string;
 }
 
 export function Item({
@@ -18,6 +19,7 @@ export function Item({
   icon,
   label,
   onClick = () => {},
+  shortcut,
 }: ItemProps) {
   const Comp = href ? 'a' : 'button';
 
@@ -28,8 +30,12 @@ export function Item({
         disabled={disabled}
         {...(href ? { href, target: '_blank' } : {})}
       >
-        <span className={styles.icon}>{icon}</span> {label}
-        {active && <div className={styles.active} />}
+        <span className={styles.label}>
+          <span className={styles.icon}>{icon}</span> {label}
+          {active && <div className={styles.active} />}
+        </span>
+
+        {shortcut && <span className={styles.shortcut}>{shortcut}</span>}
       </Comp>
     </DropdownItem>
   );

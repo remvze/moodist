@@ -7,5 +7,12 @@ interface PresetsProps {
 }
 
 export function Presets({ open }: PresetsProps) {
-  return <Item icon={<RiPlayListFill />} label="Your Presets" onClick={open} />;
+  return (
+    <Item
+      icon={<RiPlayListFill />}
+      label="Your Presets"
+      shortcut="Shift + Alt + P"
+      onClick={open}
+    />
+  );
 }
