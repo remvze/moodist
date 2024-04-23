@@ -24,6 +24,10 @@
     opacity: 0.4;
   }
 
+  &:focus-visible {
+    outline: 1px solid white;
+  }
+
   &:not(:disabled):hover {
     color: var(--color-foreground);
     background-color: var(--color-neutral-200);

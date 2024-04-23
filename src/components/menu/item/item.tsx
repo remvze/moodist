@@ -23,6 +23,7 @@ export function Item({
     <Comp
       className={styles.item}
       disabled={disabled}
+      tabIndex={0}
       onClick={onClick}
       {...(href ? { href, target: '_blank' } : {})}
     >
