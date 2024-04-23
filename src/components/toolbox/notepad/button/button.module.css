@@ -15,7 +15,8 @@
   transition-property: border-color, color, background-color;
 
   &:focus-visible {
-    outline: 1px solid var(--color-neutral-950);
+    outline: 2px solid var(--color-neutral-400);
+    outline-offset: 2px;
   }
 
   &.critical {
@@ -37,7 +38,8 @@
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     background-color: var(--color-neutral-200);
   }
 }

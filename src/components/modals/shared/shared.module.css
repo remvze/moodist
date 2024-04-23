@@ -52,10 +52,12 @@
     transition: 0.2s;
 
     &:focus-visible {
-      outline: 1px solid var(--color-neutral-950);
+      outline: 2px solid var(--color-neutral-400);
+      outline-offset: 2px;
     }
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       color: var(--color-foreground);
       background-color: var(--color-neutral-300);
     }
@@ -64,7 +66,8 @@
       color: var(--color-neutral-200);
       background-color: var(--color-neutral-950);
 
-      &:hover {
+      &:hover,
+      &:focus-visible {
         background-color: var(--color-neutral-800);
       }
     }

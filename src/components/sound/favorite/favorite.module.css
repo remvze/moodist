@@ -14,18 +14,19 @@
   background-color: var(--color-neutral-100);
   border: 1px solid var(--color-neutral-200);
   border-radius: 50%;
-  outline: none;
   transition: 0.2s;
 
-  &:hover {
-    color: var(--color-foreground);
-  }
-
-  &.isFavorite {
+  &:hover,
+  &:focus-visible {
     color: var(--color-foreground);
   }
 
   &:focus-visible {
-    outline: 1px solid var(--color-neutral-950);
+    outline: 2px solid var(--color-neutral-400);
+    outline-offset: 2px;
+  }
+
+  &.isFavorite {
+    color: var(--color-foreground);
   }
 }

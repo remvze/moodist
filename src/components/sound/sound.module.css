@@ -11,6 +11,11 @@
   border-radius: 8px;
   transition: 0.2s;
 
+  &:focus-visible {
+    outline: 2px solid var(--color-neutral-400);
+    outline-offset: 2px;
+  }
+
   &.hidden {
     display: none;
   }
@@ -78,7 +83,8 @@
     }
   }
 
-  &:hover .icon {
+  &:hover .icon,
+  &:focus-visible .icon {
     color: var(--color-foreground-subtle);
   }
 

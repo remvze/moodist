@@ -20,7 +20,13 @@
     background-color: transparent;
     border: 1px solid transparent;
     border-radius: 4px;
+    outline: none;
     transition: 0.2s;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-neutral-400);
+      outline-offset: 2px;
+    }
 
     &.selected {
       color: var(--color-foreground);
@@ -28,7 +34,8 @@
       border-color: var(--color-neutral-300);
     }
 
-    &:not(.selected):hover {
+    &:not(.selected):hover,
+    &:not(.selected):focus-visible {
       color: var(--color-foreground);
       background-color: var(--color-neutral-100);
     }
