@@ -7,7 +7,7 @@ import { fade } from '@/lib/motion';
 
 import styles from './favorite.module.css';
 
-import { useKeyboardButton } from '@/hooks/useKeyboardButton';
+import { useKeyboardButton } from '@/hooks/use-keyboard-button';
 
 interface FavoriteProps {
   id: string;

@@ -12,7 +12,7 @@ import styles from './sound.module.css';
 
 import type { Sound } from '@/data/types';
 
-import { useKeyboardButton } from '@/hooks/useKeyboardButton';
+import { useKeyboardButton } from '@/hooks/use-keyboard-button';
 
 interface SoundProps extends Sound {
   functional: boolean;
