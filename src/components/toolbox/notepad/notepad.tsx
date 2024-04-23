@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import { BiTrash } from 'react-icons/bi/index';
 import { LuCopy, LuDownload } from 'react-icons/lu/index';
 import { FaCheck } from 'react-icons/fa6/index';
@@ -18,6 +19,8 @@ interface NotepadProps {
 }
 
 export function Notepad({ onClose, show }: NotepadProps) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
   const note = useNoteStore(state => state.note);
   const history = useNoteStore(state => state.history);
   const write = useNoteStore(state => state.write);
@@ -27,6 +30,14 @@ export function Notepad({ onClose, show }: NotepadProps) {
   const restore = useNoteStore(state => state.restore);
 
   const { copy, copying } = useCopy();
+
+  useEffect(() => {
+    if (show && textareaRef.current) {
+      setTimeout(() => {
+        textareaRef.current?.focus();
+      }, 10);
+    }
+  }, [show]);
 
   return (
     <Modal show={show} wide onClose={onClose}>
@@ -57,6 +68,7 @@ export function Notepad({ onClose, show }: NotepadProps) {
         className={styles.textarea}
         dir="auto"
         placeholder="What is on your mind?"
+        ref={textareaRef}
         value={note}
         onChange={e => write(e.target.value)}
       />
