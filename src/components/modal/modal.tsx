@@ -41,7 +41,7 @@ export function Modal({
     <Portal>
       <AnimatePresence>
         {show && (
-          <>
+          <div onKeyDown={e => (e.key === 'Escape' ? onClose() : null)}>
             <motion.div
               animate="show"
               className={styles.overlay}
@@ -66,7 +66,7 @@ export function Modal({
                 {children}
               </motion.div>
             </div>
-          </>
+          </div>
         )}
       </AnimatePresence>
     </Portal>
