@@ -54,6 +54,8 @@ export function Notepad({ onClose, show }: NotepadProps) {
       </header>
 
       <textarea
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus={true}
         className={styles.textarea}
         dir="auto"
         placeholder="What is on your mind?"
