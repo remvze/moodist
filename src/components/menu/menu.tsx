@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { IoMenu, IoClose } from 'react-icons/io5/index';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 import {
   ShuffleItem,
@@ -29,6 +30,12 @@ export function Menu() {
   const [showPomodoro, setShowPomodoro] = useState(false);
 
   const variants = mix(fade(), slideY());
+
+  useHotkeys('alt+m', () => setIsOpen(prev => !prev));
+  useHotkeys('alt+n', () => setShowNotepad(prev => !prev));
+  useHotkeys('alt+p', () => setShowPomodoro(prev => !prev));
+  useHotkeys('shift+alt+p', () => setShowPresets(prev => !prev));
+  useHotkeys('alt+s', () => setShowShareLink(prev => !prev));
 
   return (
     <>
