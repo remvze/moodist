@@ -7,6 +7,8 @@ import { fade } from '@/lib/motion';
 
 import styles from './favorite.module.css';
 
+import { useKeyboardButton } from '@/hooks/useKeyboardButton';
+
 interface FavoriteProps {
   id: string;
 }
@@ -17,11 +19,16 @@ export function Favorite({ id }: FavoriteProps) {
 
   const variants = fade();
 
+  const handleKeyDown = useKeyboardButton(() => {
+    toggleFavorite(id);
+  });
+
   return (
     <AnimatePresence initial={false} mode="wait">
       <button
         aria-label="Add Sound to Favorites"
         className={cn(styles.favoriteButton, isFavorite && styles.isFavorite)}
+        onKeyDown={handleKeyDown}
         onClick={e => {
           e.stopPropagation();
           toggleFavorite(id);

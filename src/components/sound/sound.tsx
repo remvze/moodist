@@ -12,6 +12,8 @@ import styles from './sound.module.css';
 
 import type { Sound } from '@/data/types';
 
+import { useKeyboardButton } from '@/hooks/useKeyboardButton';
+
 interface SoundProps extends Sound {
   functional: boolean;
   hidden: boolean;
@@ -73,14 +75,9 @@ export function Sound({
     toggle();
   }, [toggle]);
 
-  const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === 'Enter') {
-        toggle();
-      }
-    },
-    [toggle],
-  );
+  const handleKeyDown = useKeyboardButton(() => {
+    toggle();
+  });
 
   return (
     <div
