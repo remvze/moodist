@@ -16,7 +16,7 @@ export function Notepad({ open }: NotepadProps) {
       active={!!note.length}
       icon={<MdNotes />}
       label="Notepad"
-      shortcut="Alt + N"
+      shortcut="Shift + N"
       onClick={open}
     />
   );

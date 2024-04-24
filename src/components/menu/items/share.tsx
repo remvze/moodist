@@ -16,7 +16,7 @@ export function Share({ open }: ShareProps) {
       disabled={noSelected}
       icon={<IoShareSocialSharp />}
       label="Share Sounds"
-      shortcut="Alt + S"
+      shortcut="Shift + S"
       onClick={open}
     />
   );

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { IoMenu, IoClose } from 'react-icons/io5/index';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useHotkeys } from 'react-hotkeys-hook';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import {
   ShuffleItem,
@@ -16,10 +17,9 @@ import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
 import { PresetsModal } from '@/components/modals/presets';
 import { Notepad, Pomodoro } from '@/components/toolbox';
+import { fade, mix, slideY } from '@/lib/motion';
 
 import styles from './menu.module.css';
-import { AnimatePresence, motion } from 'framer-motion';
-import { fade, mix, slideY } from '@/lib/motion';
 
 export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,11 +31,11 @@ export function Menu() {
 
   const variants = mix(fade(), slideY());
 
-  useHotkeys('alt+m', () => setIsOpen(prev => !prev));
-  useHotkeys('alt+n', () => setShowNotepad(prev => !prev));
-  useHotkeys('alt+p', () => setShowPomodoro(prev => !prev));
+  useHotkeys('shift+m', () => setIsOpen(prev => !prev));
+  useHotkeys('shift+n', () => setShowNotepad(prev => !prev));
+  useHotkeys('shift+p', () => setShowPomodoro(prev => !prev));
   useHotkeys('shift+alt+p', () => setShowPresets(prev => !prev));
-  useHotkeys('alt+s', () => setShowShareLink(prev => !prev));
+  useHotkeys('shift+s', () => setShowShareLink(prev => !prev));
 
   return (
     <>

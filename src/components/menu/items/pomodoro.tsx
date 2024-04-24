@@ -16,7 +16,7 @@ export function Pomodoro({ open }: PomodoroProps) {
       active={running}
       icon={<MdOutlineAvTimer />}
       label="Pomodoro"
-      shortcut="Alt + P"
+      shortcut="Shift + P"
       onClick={open}
     />
   );
