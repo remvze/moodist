@@ -105,7 +105,7 @@ export function Sound({
       <div className={styles.label} id={id}>
         {label}
       </div>
-      <Range id={id} />
+      <Range id={id} label={label} />
     </div>
   );
 }

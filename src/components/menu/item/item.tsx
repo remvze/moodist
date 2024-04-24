@@ -29,6 +29,7 @@ export function Item({
         className={styles.item}
         disabled={disabled}
         {...(href ? { href, target: '_blank' } : {})}
+        aria-label={label}
       >
         <span className={styles.label}>
           <span className={styles.icon}>{icon}</span> {label}
