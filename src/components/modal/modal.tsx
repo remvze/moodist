@@ -39,8 +39,8 @@ export function Modal({
   }, [show, lockBody]);
 
   useEffect(() => {
-    function keyListener(e) {
-      if (e.keyCode === 27) {
+    function keyListener(e: KeyboardEvent) {
+      if (e.key === 'escape') {
         onClose();
       }
     }
@@ -48,7 +48,7 @@ export function Modal({
     document.addEventListener('keydown', keyListener);
 
     return () => document.removeEventListener('keydown', keyListener);
-  });
+  }, [onClose]);
 
   return (
     <Portal>
