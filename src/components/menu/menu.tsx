@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { IoMenu, IoClose } from 'react-icons/io5/index';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useHotkeys } from 'react-hotkeys-hook';
@@ -20,22 +20,52 @@ import { Notepad, Pomodoro } from '@/components/toolbox';
 import { fade, mix, slideY } from '@/lib/motion';
 
 import styles from './menu.module.css';
+import { useCloseListener } from '@/hooks/use-close-listener';
 
 export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [showPresets, setShowPresets] = useState(false);
-  const [showShareLink, setShowShareLink] = useState(false);
-  const [showNotepad, setShowNotepad] = useState(false);
-  const [showPomodoro, setShowPomodoro] = useState(false);
+  const initial = useMemo(
+    () => ({
+      notepad: false,
+      pomodoro: false,
+      presets: false,
+      shareLink: false,
+    }),
+    [],
+  );
 
-  const variants = mix(fade(), slideY());
+  const [modals, setModals] = useState<{
+    notepad: boolean;
+    pomodoro: boolean;
+    presets: boolean;
+    shareLink: boolean;
+  }>(initial);
+
+  const close = useCallback((name: string) => {
+    setModals(prev => ({ ...prev, [name]: false }));
+  }, []);
+
+  const closeAll = useCallback(() => setModals(initial), [initial]);
+
+  const open = useCallback(
+    (name: string) => {
+      closeAll();
+      setIsOpen(false);
+      setModals(prev => ({ ...prev, [name]: true }));
+    },
+    [closeAll],
+  );
 
   useHotkeys('shift+m', () => setIsOpen(prev => !prev));
-  useHotkeys('shift+n', () => setShowNotepad(prev => !prev));
-  useHotkeys('shift+p', () => setShowPomodoro(prev => !prev));
-  useHotkeys('shift+alt+p', () => setShowPresets(prev => !prev));
-  useHotkeys('shift+s', () => setShowShareLink(prev => !prev));
+  useHotkeys('shift+n', () => open('notepad'));
+  useHotkeys('shift+p', () => open('pomodoro'));
+  useHotkeys('shift+alt+p', () => open('presets'));
+  useHotkeys('shift+s', () => open('shareLink'));
+
+  useCloseListener(closeAll);
+
+  const variants = mix(fade(), slideY());
 
   return (
     <>
@@ -64,12 +94,12 @@ export function Menu() {
                     initial="hidden"
                     variants={variants}
                   >
-                    <PresetsItem open={() => setShowPresets(true)} />
-                    <ShareItem open={() => setShowShareLink(true)} />
+                    <PresetsItem open={() => open('presets')} />
+                    <ShareItem open={() => open('shareLink')} />
                     <ShuffleItem />
                     <Divider />
-                    <NotepadItem open={() => setShowNotepad(true)} />
-                    <PomodoroItem open={() => setShowPomodoro(true)} />
+                    <NotepadItem open={() => open('notepad')} />
+                    <PomodoroItem open={() => open('pomodoro')} />
                     <Divider />
                     <DonateItem />
                     <SourceItem />
@@ -82,12 +112,16 @@ export function Menu() {
       </div>
 
       <ShareLinkModal
-        show={showShareLink}
-        onClose={() => setShowShareLink(false)}
+        show={modals.shareLink}
+        onClose={() => close('shareLink')}
       />
-      <PresetsModal show={showPresets} onClose={() => setShowPresets(false)} />
-      <Notepad show={showNotepad} onClose={() => setShowNotepad(false)} />
-      <Pomodoro show={showPomodoro} onClose={() => setShowPomodoro(false)} />
+      <PresetsModal show={modals.presets} onClose={() => close('presets')} />
+      <Notepad show={modals.notepad} onClose={() => close('notepad')} />
+      <Pomodoro
+        open={() => open('pomodoro')}
+        show={modals.pomodoro}
+        onClose={() => close('pomodoro')}
+      />
     </>
   );
 }

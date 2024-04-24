@@ -16,10 +16,11 @@ import styles from './pomodoro.module.css';
 
 interface PomodoroProps {
   onClose: () => void;
+  open: () => void;
   show: boolean;
 }
 
-export function Pomodoro({ onClose, show }: PomodoroProps) {
+export function Pomodoro({ onClose, open, show }: PomodoroProps) {
   const [showSetting, setShowSetting] = useState(false);
 
   const [selectedTab, setSelectedTab] = useState('pomodoro');
@@ -125,7 +126,10 @@ export function Pomodoro({ onClose, show }: PomodoroProps) {
             <Button
               icon={<IoMdSettings />}
               tooltip="Change Times"
-              onClick={() => setShowSetting(true)}
+              onClick={() => {
+                onClose();
+                setShowSetting(true);
+              }}
             />
           </div>
         </header>
@@ -157,10 +161,14 @@ export function Pomodoro({ onClose, show }: PomodoroProps) {
       <Setting
         show={showSetting}
         times={times}
-        onClose={() => setShowSetting(false)}
         onChange={times => {
           setShowSetting(false);
           setTimes(times);
+          open();
+        }}
+        onClose={() => {
+          setShowSetting(false);
+          open();
         }}
       />
     </>

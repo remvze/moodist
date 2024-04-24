@@ -40,7 +40,7 @@ export function Modal({
 
   useEffect(() => {
     function keyListener(e: KeyboardEvent) {
-      if (e.key === 'escape') {
+      if (show && e.key === 'Escape') {
         onClose();
       }
     }
@@ -48,7 +48,7 @@ export function Modal({
     document.addEventListener('keydown', keyListener);
 
     return () => document.removeEventListener('keydown', keyListener);
-  }, [onClose]);
+  }, [onClose, show]);
 
   return (
     <Portal>
