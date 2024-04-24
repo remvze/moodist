@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
-import { onCloseModal } from '@/lib/modal';
+import { onCloseModals } from '@/lib/modal';
 
 export function useCloseListener(listener: () => void) {
   useEffect(() => {
-    const unsubscribe = onCloseModal(listener);
+    const unsubscribe = onCloseModals(listener);
 
     return unsubscribe;
   }, [listener]);

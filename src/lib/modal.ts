@@ -4,7 +4,7 @@ export function closeModals() {
   dispatch('closeModals');
 }
 
-export function onCloseModal(listener: () => void) {
+export function onCloseModals(listener: () => void) {
   subscribe('closeModals', listener);
 
   return () => unsubscribe('closeModals', listener);
