@@ -11,9 +11,10 @@ import { useKeyboardButton } from '@/hooks/use-keyboard-button';
 
 interface FavoriteProps {
   id: string;
+  label: string;
 }
 
-export function Favorite({ id }: FavoriteProps) {
+export function Favorite({ id, label }: FavoriteProps) {
   const isFavorite = useSoundStore(state => state.sounds[id].isFavorite);
   const toggleFavorite = useSoundStore(state => state.toggleFavorite);
 
@@ -26,8 +27,12 @@ export function Favorite({ id }: FavoriteProps) {
   return (
     <AnimatePresence initial={false} mode="wait">
       <button
-        aria-label="Add Sound to Favorites"
         className={cn(styles.favoriteButton, isFavorite && styles.isFavorite)}
+        aria-label={
+          isFavorite
+            ? `Remove ${label} Sound from Favorites`
+            : `Add ${label} Sound to Favorites`
+        }
         onKeyDown={handleKeyDown}
         onClick={e => {
           e.stopPropagation();

@@ -81,6 +81,7 @@ export function Sound({
 
   return (
     <div
+      aria-label={`${label} sound`}
       role="button"
       tabIndex={0}
       className={cn(
@@ -91,7 +92,7 @@ export function Sound({
       onClick={handleClick}
       onKeyDown={handleKeyDown}
     >
-      <Favorite id={id} />
+      <Favorite id={id} label={label} />
       <div className={styles.icon}>
         {isLoading ? (
           <span className={styles.spinner}>
