@@ -14,16 +14,24 @@ interface SettingProps {
 export function Setting({ onChange, onClose, show, times }: SettingProps) {
   const [values, setValues] = useState(times);
 
-  useEffect(() => setValues(times), [times]);
+  useEffect(() => {
+    if (show) setValues(times);
+  }, [times, show]);
 
   const handleChange = (id: string) => (value: number) => {
     setValues(prev => ({ ...prev, [id]: value * 60 }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     onChange(values);
+  };
+
+  const handleCancel = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+
+    onClose();
   };
 
   return (
@@ -51,14 +59,7 @@ export function Setting({ onChange, onClose, show, times }: SettingProps) {
         />
 
         <div className={styles.buttons}>
-          <button
-            onClick={e => {
-              e.preventDefault();
-              onClose();
-            }}
-          >
-            Cancel
-          </button>
+          <button onClick={handleCancel}>Cancel</button>
           <button className={styles.primary}>Save</button>
         </div>
       </form>
