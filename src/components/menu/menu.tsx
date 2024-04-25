@@ -35,12 +35,7 @@ export function Menu() {
     [],
   );
 
-  const [modals, setModals] = useState<{
-    notepad: boolean;
-    pomodoro: boolean;
-    presets: boolean;
-    shareLink: boolean;
-  }>(initial);
+  const [modals, setModals] = useState(initial);
 
   const close = useCallback((name: string) => {
     setModals(prev => ({ ...prev, [name]: false }));
