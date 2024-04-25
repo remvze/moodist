@@ -18,17 +18,19 @@ interface SoundsProps {
 
 export function Sounds({ functional, id, sounds }: SoundsProps) {
   const [showAll, setShowAll] = useLocalStorage(`${id}-show-more`, false);
+  const [clickedMore, setClickedMore] = useState(false);
 
   const firstNewSound = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    if (showAll && clickedMore) {
+      firstNewSound.current?.focus();
+      setClickedMore(false);
+    }
+  }, [showAll, clickedMore]);
+
   const showMoreButton = useRef<HTMLButtonElement>(null);
   const [exitComplete, setExitComplete] = useState(false);
-
-  useEffect(() => {
-    if (showAll) {
-      firstNewSound.current?.focus();
-    }
-  }, [showAll]);
 
   const [hiddenSelections, setHiddenSelections] = useState<{
     [key: string]: boolean;
@@ -53,6 +55,11 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
       [key]: false,
     }));
   }, []);
+
+  const toggleMore = () => {
+    setShowAll(prev => !prev);
+    setClickedMore(true);
+  };
 
   const variants = mix(fade(), scale(0.9));
 
@@ -95,7 +102,7 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
               styles.button,
               hasHiddenSelection && !showAll && styles.active,
             )}
-            onClick={() => setShowAll(prev => !prev)}
+            onClick={toggleMore}
             onAnimationComplete={() => {
               if (!showAll && exitComplete) {
                 setExitComplete(false);
