@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { Sound } from '@/components/sound';
@@ -18,6 +18,14 @@ interface SoundsProps {
 
 export function Sounds({ functional, id, sounds }: SoundsProps) {
   const [showAll, setShowAll] = useLocalStorage(`${id}-show-more`, false);
+
+  const firstNewSound = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (showAll) {
+      firstNewSound.current?.focus();
+    }
+  }, [showAll]);
 
   const [hiddenSelections, setHiddenSelections] = useState<{
     [key: string]: boolean;
@@ -54,6 +62,7 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
             {...sound}
             functional={functional}
             hidden={!showAll && index > 5}
+            ref={index === 6 ? firstNewSound : undefined}
             selectHidden={selectHidden}
             unselectHidden={unselectHidden}
           />
