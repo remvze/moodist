@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { Sound } from '@/components/sound';
@@ -18,6 +18,17 @@ interface SoundsProps {
 
 export function Sounds({ functional, id, sounds }: SoundsProps) {
   const [showAll, setShowAll] = useLocalStorage(`${id}-show-more`, false);
+
+  const firstNewSound = useRef<HTMLDivElement>(null);
+
+  const showMoreButton = useRef<HTMLButtonElement>(null);
+  const [exitComplete, setExitComplete] = useState(false);
+
+  useEffect(() => {
+    if (showAll) {
+      firstNewSound.current?.focus();
+    }
+  }, [showAll]);
 
   const [hiddenSelections, setHiddenSelections] = useState<{
     [key: string]: boolean;
@@ -54,6 +65,7 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
             {...sound}
             functional={functional}
             hidden={!showAll && index > 5}
+            ref={index === 6 ? firstNewSound : undefined}
             selectHidden={selectHidden}
             unselectHidden={unselectHidden}
           />
@@ -66,12 +78,17 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
       </div>
 
       {sounds.length > 6 && (
-        <AnimatePresence initial={false} mode="wait">
+        <AnimatePresence
+          initial={false}
+          mode="wait"
+          onExitComplete={() => setExitComplete(true)}
+        >
           <motion.button
             animate="show"
             exit="hidden"
             initial="hidden"
             key={showAll ? `${id}-show-less` : `${id}-show-more`}
+            ref={showMoreButton}
             transition={{ duration: 0.2 }}
             variants={variants}
             className={cn(
@@ -79,6 +96,12 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
               hasHiddenSelection && !showAll && styles.active,
             )}
             onClick={() => setShowAll(prev => !prev)}
+            onAnimationComplete={() => {
+              if (!showAll && exitComplete) {
+                setExitComplete(false);
+                showMoreButton.current?.focus();
+              }
+            }}
           >
             {showAll ? 'Show Less' : 'Show More'}
           </motion.button>
