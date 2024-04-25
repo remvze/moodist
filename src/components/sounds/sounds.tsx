@@ -21,6 +21,9 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
 
   const firstNewSound = useRef<HTMLDivElement>(null);
 
+  const showMoreButton = useRef<HTMLButtonElement>(null);
+  const [exitComplete, setExitComplete] = useState(false);
+
   useEffect(() => {
     if (showAll) {
       firstNewSound.current?.focus();
@@ -75,12 +78,17 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
       </div>
 
       {sounds.length > 6 && (
-        <AnimatePresence initial={false} mode="wait">
+        <AnimatePresence
+          initial={false}
+          mode="wait"
+          onExitComplete={() => setExitComplete(true)}
+        >
           <motion.button
             animate="show"
             exit="hidden"
             initial="hidden"
             key={showAll ? `${id}-show-less` : `${id}-show-more`}
+            ref={showMoreButton}
             transition={{ duration: 0.2 }}
             variants={variants}
             className={cn(
@@ -88,6 +96,12 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
               hasHiddenSelection && !showAll && styles.active,
             )}
             onClick={() => setShowAll(prev => !prev)}
+            onAnimationComplete={() => {
+              if (!showAll && exitComplete) {
+                setExitComplete(false);
+                showMoreButton.current?.focus();
+              }
+            }}
           >
             {showAll ? 'Show Less' : 'Show More'}
           </motion.button>
