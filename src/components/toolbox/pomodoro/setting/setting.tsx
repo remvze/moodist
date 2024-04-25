@@ -28,8 +28,6 @@ export function Setting({ onChange, onClose, show, times }: SettingProps) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log({ values });
-
     const newValues: Record<string, number> = {};
 
     Object.keys(values).forEach(name => {
