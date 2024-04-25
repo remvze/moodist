@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { Sound } from '@/components/sound';
@@ -18,6 +18,7 @@ interface SoundsProps {
 
 export function Sounds({ functional, id, sounds }: SoundsProps) {
   const [showAll, setShowAll] = useLocalStorage(`${id}-show-more`, false);
+  const soundToFocusRef = useRef<HTMLDivElement>(null);
 
   const [hiddenSelections, setHiddenSelections] = useState<{
     [key: string]: boolean;
@@ -43,6 +44,17 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
     }));
   }, []);
 
+  const handleOnClick = () => {
+    setShowAll(prev => !prev);
+    if (showAll && sounds.length > 6) {
+      setTimeout(() => {
+        if (soundToFocusRef.current) {
+          soundToFocusRef.current.focus();
+        }
+      }, 0);
+    }
+  };
+
   const variants = mix(fade(), scale(0.9));
 
   return (
@@ -51,6 +63,7 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
         {sounds.map((sound, index) => (
           <Sound
             key={sound.label}
+            ref={index === 6 ? soundToFocusRef : null}
             {...sound}
             functional={functional}
             hidden={!showAll && index > 5}
@@ -78,7 +91,7 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
               styles.button,
               hasHiddenSelection && !showAll && styles.active,
             )}
-            onClick={() => setShowAll(prev => !prev)}
+            onClick={handleOnClick}
           >
             {showAll ? 'Show Less' : 'Show More'}
           </motion.button>

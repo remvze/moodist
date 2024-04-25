@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, forwardRef } from 'react';
 import { ImSpinner9 } from 'react-icons/im/index';
 
 import { Range } from './range';
@@ -21,16 +21,19 @@ interface SoundProps extends Sound {
   unselectHidden: (key: string) => void;
 }
 
-export function Sound({
-  functional,
-  hidden,
-  icon,
-  id,
-  label,
-  selectHidden,
-  src,
-  unselectHidden,
-}: SoundProps) {
+export const Sound = forwardRef(function Sound(
+  {
+    functional,
+    hidden,
+    icon,
+    id,
+    label,
+    selectHidden,
+    src,
+    unselectHidden,
+  }: SoundProps,
+  ref,
+) {
   const isPlaying = useSoundStore(state => state.isPlaying);
   const play = useSoundStore(state => state.play);
   const select = useSoundStore(state => state.select);
@@ -82,6 +85,7 @@ export function Sound({
   return (
     <div
       aria-label={`${label} sound`}
+      ref={ref}
       role="button"
       tabIndex={0}
       className={cn(
@@ -108,4 +112,4 @@ export function Sound({
       <Range id={id} label={label} />
     </div>
   );
-}
+});
