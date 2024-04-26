@@ -71,6 +71,7 @@ export function Notepad({ onClose, show }: NotepadProps) {
         ref={textareaRef}
         value={note}
         onChange={e => write(e.target.value)}
+        onKeyDown={e => e.stopPropagation()}
       />
 
       <p className={styles.counter}>
