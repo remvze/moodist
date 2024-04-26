@@ -18,12 +18,15 @@ import { ShareLinkModal } from '@/components/modals/share-link';
 import { PresetsModal } from '@/components/modals/presets';
 import { Notepad, Pomodoro } from '@/components/toolbox';
 import { fade, mix, slideY } from '@/lib/motion';
+import { useSoundStore } from '@/store';
 
 import styles from './menu.module.css';
 import { useCloseListener } from '@/hooks/use-close-listener';
 
 export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const noSelected = useSoundStore(state => state.noSelected());
 
   const initial = useMemo(
     () => ({
@@ -56,7 +59,7 @@ export function Menu() {
   useHotkeys('shift+n', () => open('notepad'));
   useHotkeys('shift+p', () => open('pomodoro'));
   useHotkeys('shift+alt+p', () => open('presets'));
-  useHotkeys('shift+s', () => open('shareLink'));
+  useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
 
   useCloseListener(closeAll);
 
