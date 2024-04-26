@@ -1,3 +1,4 @@
+import { useEffect, useCallback } from 'react';
 import { BiUndo, BiTrash } from 'react-icons/bi/index';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -19,6 +20,23 @@ export function UnselectButton() {
     ...mix(fade(), slideX(15)),
     exit: { opacity: 0 },
   };
+
+  const handleToggle = useCallback(() => {
+    if (hasHistory) restoreHistory();
+    else if (!noSelected) unselectAll(true);
+  }, [hasHistory, noSelected, unselectAll, restoreHistory]);
+
+  useEffect(() => {
+    const listener = (e: KeyboardEvent) => {
+      if (e.shiftKey && e.key === 'R') {
+        handleToggle();
+      }
+    };
+
+    document.addEventListener('keydown', listener);
+
+    return () => document.removeEventListener('keydown', listener);
+  }, [handleToggle]);
 
   return (
     <>
@@ -49,10 +67,7 @@ export function UnselectButton() {
                   styles.unselectButton,
                   noSelected && !hasHistory && styles.disabled,
                 )}
-                onClick={() => {
-                  if (hasHistory) restoreHistory();
-                  else if (!noSelected) unselectAll(true);
-                }}
+                onClick={handleToggle}
               >
                 {hasHistory ? <BiUndo /> : <BiTrash />}
               </button>
