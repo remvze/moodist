@@ -20,6 +20,12 @@
   background-color: var(--color-neutral-50);
   border: 1px solid var(--color-neutral-200);
   border-radius: 50px;
+  transition: 0.2s;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color-neutral-100);
+  }
 
   &:focus-visible {
     outline: 2px solid var(--color-neutral-400);
