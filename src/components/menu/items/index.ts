@@ -5,3 +5,4 @@ export { Notepad as NotepadItem } from './notepad';
 export { Source as SourceItem } from './source';
 export { Pomodoro as PomodoroItem } from './pomodoro';
 export { Presets as PresetsItem } from './presets';
+export { Shortcuts as ShortcutsItem } from './shortcuts';

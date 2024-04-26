@@ -12,10 +12,12 @@ import {
   SourceItem,
   PomodoroItem,
   PresetsItem,
+  ShortcutsItem,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
 import { PresetsModal } from '@/components/modals/presets';
+import { ShortcutsModal } from '@/components/modals/shortcuts';
 import { Notepad, Pomodoro } from '@/components/toolbox';
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/store';
@@ -34,6 +36,7 @@ export function Menu() {
       pomodoro: false,
       presets: false,
       shareLink: false,
+      shortcuts: false,
     }),
     [],
   );
@@ -59,6 +62,7 @@ export function Menu() {
   useHotkeys('shift+n', () => open('notepad'));
   useHotkeys('shift+p', () => open('pomodoro'));
   useHotkeys('shift+alt+p', () => open('presets'));
+  useHotkeys('shift+h', () => open('shortcuts'));
   useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
 
   useCloseListener(closeAll);
@@ -95,9 +99,14 @@ export function Menu() {
                     <PresetsItem open={() => open('presets')} />
                     <ShareItem open={() => open('shareLink')} />
                     <ShuffleItem />
+
                     <Divider />
                     <NotepadItem open={() => open('notepad')} />
                     <PomodoroItem open={() => open('pomodoro')} />
+
+                    <Divider />
+                    <ShortcutsItem open={() => open('shortcuts')} />
+
                     <Divider />
                     <DonateItem />
                     <SourceItem />
@@ -112,6 +121,10 @@ export function Menu() {
       <ShareLinkModal
         show={modals.shareLink}
         onClose={() => close('shareLink')}
+      />
+      <ShortcutsModal
+        show={modals.shortcuts}
+        onClose={() => close('shortcuts')}
       />
       <PresetsModal show={modals.presets} onClose={() => close('presets')} />
       <Notepad show={modals.notepad} onClose={() => close('notepad')} />
