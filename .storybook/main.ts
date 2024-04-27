@@ -27,7 +27,7 @@ const config: StorybookConfig = {
       ...config,
       
       define: {
-        'process.env.NODE_DEBUG': false,
+        'process.env.NODE_DEBUG': false, // https://github.com/storybookjs/storybook/issues/18920
       },
 
       resolve: {
