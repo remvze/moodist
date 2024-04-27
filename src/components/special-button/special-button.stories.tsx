@@ -4,6 +4,7 @@ import { SpecialButton } from './special-button';
 
 const meta: Meta<typeof SpecialButton> = {
   component: SpecialButton,
+  tags: ['autodocs'],
   title: 'SpecialButton',
 };
 
