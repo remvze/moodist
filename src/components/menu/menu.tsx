@@ -13,11 +13,13 @@ import {
   PomodoroItem,
   PresetsItem,
   ShortcutsItem,
+  SleepTimer,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
 import { PresetsModal } from '@/components/modals/presets';
 import { ShortcutsModal } from '@/components/modals/shortcuts';
+import { SleepTimerModal } from '@/components/modals/sleep-timer';
 import { Notepad, Pomodoro } from '@/components/toolbox';
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/store';
@@ -37,6 +39,7 @@ export function Menu() {
       presets: false,
       shareLink: false,
       shortcuts: false,
+      sleepTimer: false,
     }),
     [],
   );
@@ -64,6 +67,7 @@ export function Menu() {
   useHotkeys('shift+alt+p', () => open('presets'));
   useHotkeys('shift+h', () => open('shortcuts'));
   useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
+  useHotkeys('shift+t', () => open('sleepTimer'));
 
   useCloseListener(closeAll);
 
@@ -71,6 +75,7 @@ export function Menu() {
 
   return (
     <>
+      <Divider />
       <div className={styles.wrapper}>
         <DropdownMenu.Root open={isOpen} onOpenChange={o => setIsOpen(o)}>
           <DropdownMenu.Trigger asChild>
@@ -103,6 +108,7 @@ export function Menu() {
                     <Divider />
                     <NotepadItem open={() => open('notepad')} />
                     <PomodoroItem open={() => open('pomodoro')} />
+                    <SleepTimer open={() => open('sleepTimer')} />
 
                     <Divider />
                     <ShortcutsItem open={() => open('shortcuts')} />
@@ -132,6 +138,10 @@ export function Menu() {
         open={() => open('pomodoro')}
         show={modals.pomodoro}
         onClose={() => close('pomodoro')}
+      />
+      <SleepTimerModal
+        show={modals.sleepTimer}
+        onClose={() => close('sleepTimer')}
       />
     </>
   );
