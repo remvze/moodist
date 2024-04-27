@@ -39,6 +39,12 @@ export function Notepad({ onClose, show }: NotepadProps) {
     }
   }, [show]);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    e.stopPropagation();
+
+    if (e.key === 'Escape') onClose();
+  };
+
   return (
     <Modal show={show} wide onClose={onClose}>
       <header className={styles.header}>
@@ -71,7 +77,7 @@ export function Notepad({ onClose, show }: NotepadProps) {
         ref={textareaRef}
         value={note}
         onChange={e => write(e.target.value)}
-        onKeyDown={e => e.stopPropagation()}
+        onKeyDown={handleKeyDown}
       />
 
       <p className={styles.counter}>
