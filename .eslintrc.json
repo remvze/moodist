@@ -1,15 +1,12 @@
 {
   "root": true,
-
   "env": {
     "browser": true,
     "amd": true,
     "node": true,
     "es2022": true
   },
-
   "parser": "@typescript-eslint/parser",
-
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
@@ -17,7 +14,6 @@
       "jsx": true
     }
   },
-
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -28,9 +24,9 @@
     "plugin:jsx-a11y/recommended",
     "plugin:react-hooks/recommended",
     "plugin:astro/recommended",
-    "prettier"
+    "prettier",
+    "plugin:storybook/recommended"
   ],
-
   "plugins": [
     "@typescript-eslint",
     "typescript-sort-keys",
@@ -38,7 +34,6 @@
     "sort-destructure-keys",
     "prettier"
   ],
-
   "rules": {
     "@typescript-eslint/ban-ts-comment": "off",
     "prettier/prettier": "error",
@@ -54,48 +49,39 @@
       }
     ]
   },
-
   "settings": {
     "react": {
       "version": "detect"
     },
-
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx", ".js", ".jsx"]
     },
-
     "import/resolver": {
       "typescript": true,
       "node": true,
-
       "alias": {
         "extensions": [".js", ".jsx", ".ts", ".tsx", ".d.ts"],
         "map": [["@", "./src"]]
       }
     }
   },
-
   "overrides": [
     {
       "files": ["**/*.astro"],
       "parser": "astro-eslint-parser",
-
       "parserOptions": {
         "parser": "@typescript-eslint/parser",
         "extraFileExtensions": [".astro"]
       },
-
       "rules": {
         "prettier/prettier": "error",
         "react/no-unknown-property": "off",
         "react/jsx-key": "off"
       },
-
       "globals": {
         "Astro": "readonly"
       }
     },
-
     {
       "files": ["**/*.astro/*.js"],
       "rules": {
