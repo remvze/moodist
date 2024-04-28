@@ -21,6 +21,8 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
 
   const timerId = useRef<NodeJS.Timeout>();
 
+  const isPlaying = useSoundStore(state => state.isPlaying);
+  const play = useSoundStore(state => state.play);
   const pause = useSoundStore(state => state.pause);
 
   const calculateTotalSeconds = useCallback((): number => {
@@ -36,6 +38,7 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
 
   const handleStart = () => {
     if (timerId.current) clearInterval(timerId.current);
+    if (!isPlaying) play();
 
     setTimeLeft(calculateTotalSeconds);
     setRunning(true);
