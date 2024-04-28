@@ -13,7 +13,7 @@ import {
   PomodoroItem,
   PresetsItem,
   ShortcutsItem,
-  SleepTimer,
+  SleepTimerItem,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
@@ -103,11 +103,11 @@ export function Menu() {
                     <PresetsItem open={() => open('presets')} />
                     <ShareItem open={() => open('shareLink')} />
                     <ShuffleItem />
+                    <SleepTimerItem open={() => open('sleepTimer')} />
 
                     <Divider />
                     <NotepadItem open={() => open('notepad')} />
                     <PomodoroItem open={() => open('pomodoro')} />
-                    <SleepTimer open={() => open('sleepTimer')} />
 
                     <Divider />
                     <ShortcutsItem open={() => open('shortcuts')} />

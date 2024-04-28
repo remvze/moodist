@@ -6,4 +6,4 @@ export { Source as SourceItem } from './source';
 export { Pomodoro as PomodoroItem } from './pomodoro';
 export { Presets as PresetsItem } from './presets';
 export { Shortcuts as ShortcutsItem } from './shortcuts';
-export { SleepTimer } from './sleep-timer';
+export { SleepTimer as SleepTimerItem } from './sleep-timer';
