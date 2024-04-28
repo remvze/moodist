@@ -3,8 +3,8 @@ import { Modal } from '@/components/modal';
 import { FaPlay, FaUndo } from 'react-icons/fa/index';
 import { useSoundStore } from '@/store';
 
-import { Button } from '@/components/generic/button';
-import { Timer } from '@/components/generic/timer';
+import { Button } from '@/components/toolbox/generics/button';
+import { Timer } from '@/components/timer';
 
 import styles from './sleep-timer.module.css';
 
