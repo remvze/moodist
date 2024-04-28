@@ -3,9 +3,9 @@ import { FaUndo, FaPlay, FaPause } from 'react-icons/fa/index';
 import { IoMdSettings } from 'react-icons/io/index';
 
 import { Modal } from '@/components/modal';
+import { Button } from '@/components/generic/button';
+import { Timer } from '@/components/generic/timer';
 import { Tabs } from './tabs';
-import { Timer } from './timer';
-import { Button } from './button';
 import { Setting } from './setting';
 
 import { useLocalStorage } from '@/hooks/use-local-storage';
