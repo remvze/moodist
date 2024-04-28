@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { Modal } from '@/components/modal';
 import { FaPlay, FaUndo } from 'react-icons/fa/index';
 import { useSoundStore } from '@/store';
@@ -18,7 +18,8 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
   const [minutes, setMinutes] = useState<string>('0');
   const [running, setRunning] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
-  const [timerId, setTimerId] = useState<NodeJS.Timeout | undefined>(undefined);
+
+  const timerId = useRef<NodeJS.Timeout>();
 
   const pause = useSoundStore(state => state.pause);
 
@@ -33,9 +34,8 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
     setTimeLeft(calculateTotalSeconds());
   }, [calculateTotalSeconds]);
 
-  // Handle multiple clicks on this. Only the latest click should be taken into account
   const handleStart = () => {
-    if (timerId) clearInterval(timerId);
+    if (timerId.current) clearInterval(timerId.current);
 
     setTimeLeft(calculateTotalSeconds);
     setRunning(true);
@@ -54,12 +54,12 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
         });
       }, 1000);
 
-      setTimerId(newTimerId);
+      timerId.current = newTimerId;
     }
   };
 
   const handleReset = () => {
-    if (timerId) clearInterval(timerId);
+    if (timerId.current) clearInterval(timerId.current);
     setTimeLeft(0);
     setRunning(false);
   };

@@ -75,7 +75,6 @@ export function Menu() {
 
   return (
     <>
-      <Divider />
       <div className={styles.wrapper}>
         <DropdownMenu.Root open={isOpen} onOpenChange={o => setIsOpen(o)}>
           <DropdownMenu.Trigger asChild>
