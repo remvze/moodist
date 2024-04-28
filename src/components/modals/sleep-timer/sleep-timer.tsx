@@ -73,7 +73,11 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
     <Modal show={show} onClose={onClose}>
       <header className={styles.header}>
         <h2 className={styles.title}>Sleep Timer</h2>
+        <p className={styles.desc}>
+          Stop sounds after a certain amount of time.
+        </p>
       </header>
+
       <div className={styles.controls}>
         {!running && (
           <div className={styles.inputContainer}>
@@ -92,6 +96,7 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
             />
           </div>
         )}
+
         {!running && (
           <div className={styles.inputContainer}>
             <label className={styles.label} htmlFor="minutes">
@@ -109,7 +114,9 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
             />
           </div>
         )}
+
         {running ? <Timer displayHours={true} timer={timeLeft} /> : null}
+
         <div className={styles.buttons}>
           <Button
             icon={<FaUndo />}
@@ -117,6 +124,7 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
             tooltip="Reset"
             onClick={handleReset}
           />
+
           {!running && (
             <Button
               disabled={calculateTotalSeconds() <= 0}

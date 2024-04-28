@@ -1,12 +1,14 @@
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 
   & .title {
-    font-size: var(--font-sm);
-    font-weight: 500;
+    margin-bottom: 8px;
+    font-family: var(--font-heading);
+    font-size: var(--font-md);
+    font-weight: 600;
+  }
+
+  & .desc {
     color: var(--color-foreground-subtle);
   }
 }
