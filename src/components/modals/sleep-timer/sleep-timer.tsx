@@ -61,6 +61,8 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
   const handleReset = () => {
     if (timerId.current) clearInterval(timerId.current);
     setTimeLeft(0);
+    setHours('0');
+    setMinutes('0');
     setRunning(false);
   };
 
@@ -114,6 +116,7 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
           />
           {!running && (
             <Button
+              disabled={calculateTotalSeconds() <= 0}
               icon={<FaPlay />}
               smallIcon
               tooltip={'Start'}

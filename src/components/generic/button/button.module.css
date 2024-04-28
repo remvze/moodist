@@ -26,4 +26,9 @@
   &.smallIcon {
     font-size: var(--font-xsm);
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
 }
