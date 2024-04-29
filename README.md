@@ -19,7 +19,7 @@
 - 🥷 Privacy focused: no data collection
 - 💰 Completely free, open-source, and self-hostable
 
-## Tools Used
+## Tools
 
 - ⚡ **TypeScript**: Programming Language
 - 🔨 **React**: UI Library
@@ -39,6 +39,22 @@
 - 🧭 **Commitizen**: Git Commit Message Helper
 - 📓 **Standard Version**: Versioning and CHANGLOG Generation
 - 🧰 **PostCSS**: CSS Transformations
+
+## Commands
+
+- `npm run dev`: run development server
+- `npm run build`: build for production
+- `npm run preview`: preview the built app
+- `npm run lint`: lint files using ESLint
+- `npm run lint:fix`: lint and fix using ESLint
+- `npm run lint:style`: lint styles using Stylelint
+- `npm run lint:style:fix`: lint and fix styles using Stylelint
+- `npm run format`: format files using Prettier
+- `npm run commit`: commit message using Commitizen
+- `npm run release:major`: release major varsion
+- `npm run release:minor`: release minor varsion
+- `npm run release:patch`: release patch varsion
+- `npm run storybook`: run Storybook
 
 ## License
 
