@@ -1,10 +1,9 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
-import { Modal } from '@/components/modal';
-import { FaPlay, FaUndo } from 'react-icons/fa/index';
-import { useSoundStore } from '@/store';
 
-import { Button } from '@/components/toolbox/generics/button';
+import { Modal } from '@/components/modal';
 import { Timer } from '@/components/timer';
+import { useSoundStore } from '@/store';
+import { cn } from '@/helpers/styles';
 
 import styles from './sleep-timer.module.css';
 
@@ -41,9 +40,10 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
     if (!isPlaying) play();
 
     setTimeLeft(calculateTotalSeconds);
-    setRunning(true);
 
     if (timeLeft > 0) {
+      setRunning(true);
+
       const newTimerId = setInterval(() => {
         setTimeLeft(prevTimeLeft => {
           const newTimeLeft = prevTimeLeft - 1;
@@ -118,21 +118,19 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
         {running ? <Timer displayHours={true} timer={timeLeft} /> : null}
 
         <div className={styles.buttons}>
-          <Button
-            icon={<FaUndo />}
-            smallIcon
-            tooltip="Reset"
-            onClick={handleReset}
-          />
+          {running && (
+            <button className={styles.button} onClick={handleReset}>
+              Reset
+            </button>
+          )}
 
           {!running && (
-            <Button
-              disabled={calculateTotalSeconds() <= 0}
-              icon={<FaPlay />}
-              smallIcon
-              tooltip={'Start'}
+            <button
+              className={cn(styles.button, styles.primary)}
               onClick={handleStart}
-            />
+            >
+              Save
+            </button>
           )}
         </div>
       </div>
