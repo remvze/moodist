@@ -69,6 +69,12 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
     setRunning(false);
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    handleStart();
+  };
+
   return (
     <Modal show={show} onClose={onClose}>
       <header className={styles.header}>
@@ -78,62 +84,68 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
         </p>
       </header>
 
-      <div className={styles.controls}>
-        {!running && (
-          <div className={styles.inputContainer}>
-            <label className={styles.label} htmlFor="hours">
-              Hours:
-            </label>
-            <input
-              className={styles.input}
-              id="hours"
-              min="0"
-              type="number"
-              value={hours}
-              onChange={e =>
-                setHours(e.target.value === '' ? '' : e.target.value)
-              }
-            />
-          </div>
-        )}
-
-        {!running && (
-          <div className={styles.inputContainer}>
-            <label className={styles.label} htmlFor="minutes">
-              Minutes:
-            </label>
-            <input
-              className={styles.input}
-              max="59"
-              min="0"
-              type="number"
-              value={minutes}
-              onChange={e =>
-                setMinutes(e.target.value === '' ? '' : e.target.value)
-              }
-            />
-          </div>
-        )}
-
-        {running ? <Timer displayHours={true} timer={timeLeft} /> : null}
-
-        <div className={styles.buttons}>
-          {running && (
-            <button className={styles.button} onClick={handleReset}>
-              Reset
-            </button>
+      <form onSubmit={handleSubmit}>
+        <div className={styles.controls}>
+          {!running && (
+            <div className={styles.inputContainer}>
+              <label className={styles.label} htmlFor="hours">
+                Hours:
+              </label>
+              <input
+                className={styles.input}
+                id="hours"
+                min="0"
+                type="number"
+                value={hours}
+                onChange={e =>
+                  setHours(e.target.value === '' ? '' : e.target.value)
+                }
+              />
+            </div>
           )}
 
           {!running && (
-            <button
-              className={cn(styles.button, styles.primary)}
-              onClick={handleStart}
-            >
-              Save
-            </button>
+            <div className={styles.inputContainer}>
+              <label className={styles.label} htmlFor="minutes">
+                Minutes:
+              </label>
+              <input
+                className={styles.input}
+                max="59"
+                min="0"
+                type="number"
+                value={minutes}
+                onChange={e =>
+                  setMinutes(e.target.value === '' ? '' : e.target.value)
+                }
+              />
+            </div>
           )}
+
+          {running ? <Timer displayHours={true} timer={timeLeft} /> : null}
+
+          <div className={styles.buttons}>
+            {running && (
+              <button
+                className={styles.button}
+                type="button"
+                onClick={handleReset}
+              >
+                Reset
+              </button>
+            )}
+
+            {!running && (
+              <button
+                className={cn(styles.button, styles.primary)}
+                type="submit"
+              >
+                Save
+              </button>
+            )}
+          </div>
         </div>
-      </div>
+      </form>
     </Modal>
   );
 }
