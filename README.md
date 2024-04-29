@@ -5,19 +5,31 @@
   <a href="https://moodist.app">Visit <strong>Moodist</strong></a> | <a href="https://buymeacoffee.com/remvze">Buy Me a Coffee</a>
 </div>
 
-## Tech Stack
+## Features
+
+- 🎵 Over 75 ambient sounds
+- 📝 Persistent sound selection
+- ✈️ Sharing sound selections with others
+- 🧰 Custom sound presets
+- 🌙 Sleep timer for sounds (soon)
+- 📓 Notepad for quick notes
+- ⌛ Pomodoro timer
+- ✅ Simple to-do list (soon)
+- ⌨️ Keyboard shortcuts for everything
+- 🥷 Privacy focused: no data collection
+- 💰 Completely free, open-source, and self-hostable
+
+## Tools Used
 
 - ⚡ **TypeScript**: Programming Language
 - 🔨 **React**: UI Library
 - 🧑‍🚀 **Astro**: Meta Framework
 - 🎨 **CSS Modules**: Styling
 - 🐻 **Zustand**: State Management
+- ⚙️ **Radix**: Accessible Components
 - 📕 **Storybook**: Component Documentation
-- 🧪 **Vitest**: Unit Testing
-- 🔭 **Playwright**: End-To-End Testing
-
----
-
+- 🧪 **Vitest**: Unit Testing (soon)
+- 🔭 **Playwright**: End-To-End Testing (soon)
 - 🔍 **ESLint**: Code Linting
 - 🧹 **Prettier**: Code Formatting
 - 🧼 **Stylelint**: CSS Linting
