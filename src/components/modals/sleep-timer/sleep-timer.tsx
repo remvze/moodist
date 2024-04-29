@@ -86,43 +86,15 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
 
       <form onSubmit={handleSubmit}>
         <div className={styles.controls}>
-          {!running && (
-            <div className={styles.inputContainer}>
-              <label className={styles.label} htmlFor="hours">
-                Hours:
-              </label>
-              <input
-                className={styles.input}
-                id="hours"
-                min="0"
-                required
-                type="number"
-                value={hours}
-                onChange={e =>
-                  setHours(e.target.value === '' ? '' : e.target.value)
-                }
-              />
-            </div>
-          )}
+          <div className={styles.inputs}>
+            {!running && (
+              <Field label="Hours" value={hours} onChange={setHours} />
+            )}
 
-          {!running && (
-            <div className={styles.inputContainer}>
-              <label className={styles.label} htmlFor="minutes">
-                Minutes:
-              </label>
-              <input
-                className={styles.input}
-                max="59"
-                min="0"
-                required
-                type="number"
-                value={minutes}
-                onChange={e =>
-                  setMinutes(e.target.value === '' ? '' : e.target.value)
-                }
-              />
-            </div>
-          )}
+            {!running && (
+              <Field label="Minutes" value={minutes} onChange={setMinutes} />
+            )}
+          </div>
 
           {running ? <Timer displayHours={true} timer={timeLeft} /> : null}
 
@@ -149,5 +121,31 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
         </div>
       </form>
     </Modal>
+  );
+}
+
+interface FieldProps {
+  label: string;
+  onChange: (value: string) => void;
+  value: string;
+}
+
+function Field({ label, onChange, value }: FieldProps) {
+  return (
+    <div className={styles.field}>
+      <label className={styles.label} htmlFor={label.toLocaleLowerCase()}>
+        {label}
+      </label>
+      <input
+        className={styles.input}
+        id={label.toLocaleLowerCase()}
+        max="59"
+        min="0"
+        required
+        type="number"
+        value={value}
+        onChange={e => onChange(e.target.value === '' ? '' : e.target.value)}
+      />
+    </div>
   );
 }

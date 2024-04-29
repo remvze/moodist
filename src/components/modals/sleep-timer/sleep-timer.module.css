@@ -19,23 +19,32 @@
   align-items: flex-start;
   margin-top: 8px;
 
-  & .inputContainer {
+  & .inputs {
     display: flex;
-    align-items: center;
+    column-gap: 12px;
+    align-items: flex-end;
 
-    & .input {
-      display: block;
-      height: 40px;
-      padding: 0 8px;
-      color: var(--color-foreground);
-      background-color: var(--color-neutral-50);
-      border: 1px solid var(--color-neutral-200);
-      border-radius: 4px;
-      outline: none;
-    }
+    & .field {
+      flex-grow: 1;
 
-    & .label {
-      width: 100px;
+      & .label {
+        display: block;
+        margin-bottom: 4px;
+        font-weight: 500;
+      }
+
+      & .input {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        height: 40px;
+        padding: 0 8px;
+        color: var(--color-foreground);
+        background-color: var(--color-neutral-50);
+        border: 1px solid var(--color-neutral-200);
+        border-radius: 4px;
+        outline: none;
+      }
     }
   }
 
