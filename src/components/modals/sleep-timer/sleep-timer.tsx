@@ -14,7 +14,7 @@ interface SleepTimerModalProps {
 
 export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
   const [hours, setHours] = useState<string>('0');
-  const [minutes, setMinutes] = useState<string>('0');
+  const [minutes, setMinutes] = useState<string>('10');
   const [running, setRunning] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
 
@@ -65,7 +65,7 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
     if (timerId.current) clearInterval(timerId.current);
     setTimeLeft(0);
     setHours('0');
-    setMinutes('0');
+    setMinutes('10');
     setRunning(false);
   };
 
@@ -95,6 +95,7 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
                 className={styles.input}
                 id="hours"
                 min="0"
+                required
                 type="number"
                 value={hours}
                 onChange={e =>
@@ -113,6 +114,7 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
                 className={styles.input}
                 max="59"
                 min="0"
+                required
                 type="number"
                 value={minutes}
                 onChange={e =>
