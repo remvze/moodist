@@ -14,15 +14,13 @@
 }
 
 .controls {
-  display: flex;
-  flex-flow: column wrap;
-  align-items: flex-start;
   margin-top: 8px;
 
   & .inputs {
     display: flex;
     column-gap: 12px;
     align-items: flex-end;
+    width: 100%;
 
     & .field {
       flex-grow: 1;
