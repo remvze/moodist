@@ -58,6 +58,12 @@
 - `npm run release:patch`: release patch version
 - `npm run storybook`: run Storybook
 
+## Support Moodist
+
+Give a ⭐ if you liked this project.
+
+[Buy me a coffee ☕](https://buymeacoffee.com) to help me maintain Moodist.
+
 ## License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
