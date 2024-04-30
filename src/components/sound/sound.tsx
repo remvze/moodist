@@ -32,18 +32,21 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
   const setVolume = useSoundStore(state => state.setVolume);
   const volume = useSoundStore(state => state.sounds[id].volume);
   const isSelected = useSoundStore(state => state.sounds[id].isSelected);
+  const locked = useSoundStore(state => state.locked);
 
   const isLoading = useLoadingStore(state => state.loaders[src]);
 
   const sound = useSound(src, { loop: true, volume });
 
   useEffect(() => {
+    if (locked) return;
+
     if (isSelected && isPlaying && functional) {
       sound?.play();
     } else {
       sound?.pause();
     }
-  }, [isSelected, sound, isPlaying, functional]);
+  }, [isSelected, sound, isPlaying, functional, locked]);
 
   useEffect(() => {
     if (hidden && isSelected) selectHidden(label);
@@ -51,19 +54,22 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
   }, [label, isSelected, hidden, selectHidden, unselectHidden]);
 
   const _select = useCallback(() => {
+    if (locked) return;
     select(id);
     play();
-  }, [select, play, id]);
+  }, [select, play, id, locked]);
 
   const _unselect = useCallback(() => {
+    if (locked) return;
     unselect(id);
     setVolume(id, 0.5);
-  }, [unselect, setVolume, id]);
+  }, [unselect, setVolume, id, locked]);
 
   const toggle = useCallback(() => {
+    if (locked) return;
     if (isSelected) _unselect();
     else _select();
-  }, [isSelected, _select, _unselect]);
+  }, [isSelected, _select, _unselect, locked]);
 
   const handleClick = useCallback(() => {
     toggle();

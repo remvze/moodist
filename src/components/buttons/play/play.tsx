@@ -12,14 +12,17 @@ export function PlayButton() {
   const pause = useSoundStore(state => state.pause);
   const toggle = useSoundStore(state => state.togglePlay);
   const noSelected = useSoundStore(state => state.noSelected());
+  const locked = useSoundStore(state => state.locked);
 
   const showSnackbar = useSnackbar();
 
   const handleToggle = useCallback(() => {
+    if (locked) return;
+
     if (noSelected) return showSnackbar('Please first select a sound to play.');
 
     toggle();
-  }, [showSnackbar, toggle, noSelected]);
+  }, [showSnackbar, toggle, noSelected, locked]);
 
   useEffect(() => {
     if (isPlaying && noSelected) pause();

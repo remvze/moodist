@@ -11,6 +11,7 @@ export function Range({ id, label }: RangeProps) {
   const setVolume = useSoundStore(state => state.setVolume);
   const volume = useSoundStore(state => state.sounds[id].volume);
   const isSelected = useSoundStore(state => state.sounds[id].isSelected);
+  const locked = useSoundStore(state => state.locked);
 
   return (
     <input
@@ -22,8 +23,10 @@ export function Range({ id, label }: RangeProps) {
       min={0}
       type="range"
       value={volume * 100}
-      onChange={e => isSelected && setVolume(id, Number(e.target.value) / 100)}
       onClick={e => e.stopPropagation()}
+      onChange={e =>
+        !locked && isSelected && setVolume(id, Number(e.target.value) / 100)
+      }
     />
   );
 }

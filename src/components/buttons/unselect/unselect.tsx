@@ -15,6 +15,7 @@ export function UnselectButton() {
   const restoreHistory = useSoundStore(state => state.restoreHistory);
   const hasHistory = useSoundStore(state => !!state.history);
   const unselectAll = useSoundStore(state => state.unselectAll);
+  const locked = useSoundStore(state => state.locked);
 
   const variants = {
     ...mix(fade(), slideX(15)),
@@ -22,9 +23,10 @@ export function UnselectButton() {
   };
 
   const handleToggle = useCallback(() => {
+    if (locked) return;
     if (hasHistory) restoreHistory();
     else if (!noSelected) unselectAll(true);
-  }, [hasHistory, noSelected, unselectAll, restoreHistory]);
+  }, [hasHistory, noSelected, unselectAll, restoreHistory, locked]);
 
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {

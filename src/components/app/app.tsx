@@ -23,6 +23,8 @@ export function App() {
 
   const favorites = useSoundStore(useShallow(state => state.getFavorites()));
   const pause = useSoundStore(state => state.pause);
+  const lock = useSoundStore(state => state.lock);
+  const unlock = useSoundStore(state => state.unlock);
 
   const favoriteSounds = useMemo(() => {
     const favoriteSounds = categories
@@ -56,13 +58,16 @@ export function App() {
 
   useEffect(() => {
     const unsubscribe = subscribe('fadeOut', (e: { duration: number }) => {
+      lock();
+
       setTimeout(() => {
         pause();
+        unlock();
       }, e.duration);
     });
 
     return unsubscribe;
-  }, [pause]);
+  }, [pause, lock, unlock]);
 
   const allCategories = useMemo(() => {
     const favorites = [];

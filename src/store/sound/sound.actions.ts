@@ -5,6 +5,7 @@ import type { SoundState } from './sound.state';
 import { pickMany, random } from '@/helpers/random';
 
 export interface SoundActions {
+  lock: () => void;
   override: (sounds: Record<string, number>) => void;
   pause: () => void;
   play: () => void;
@@ -14,6 +15,7 @@ export interface SoundActions {
   shuffle: () => void;
   toggleFavorite: (id: string) => void;
   togglePlay: () => void;
+  unlock: () => void;
   unselect: (id: string) => void;
   unselectAll: (pushToHistory?: boolean) => void;
 }
@@ -25,6 +27,10 @@ export const createActions: StateCreator<
   SoundActions
 > = (set, get) => {
   return {
+    lock() {
+      set({ locked: true });
+    },
+
     override(newSounds) {
       get().unselectAll();
 
@@ -109,6 +115,10 @@ export const createActions: StateCreator<
 
     togglePlay() {
       set({ isPlaying: !get().isPlaying });
+    },
+
+    unlock() {
+      set({ locked: false });
     },
 
     unselect(id) {
