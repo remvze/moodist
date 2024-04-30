@@ -58,7 +58,7 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
     if (timeLeft === 0) {
       setRunning(false);
       // pause();
-      dispatch('fadeOut', { duration: 5000 });
+      dispatch('fadeOut', { duration: 1000 });
 
       setTimeSpent(0);
 

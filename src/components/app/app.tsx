@@ -16,11 +16,13 @@ import { SnackbarProvider } from '@/contexts/snackbar';
 import { sounds } from '@/data/sounds';
 
 import type { Sound } from '@/data/types';
+import { subscribe } from '@/lib/event';
 
 export function App() {
   const categories = useMemo(() => sounds.categories, []);
 
   const favorites = useSoundStore(useShallow(state => state.getFavorites()));
+  const pause = useSoundStore(state => state.pause);
 
   const favoriteSounds = useMemo(() => {
     const favoriteSounds = categories
@@ -51,6 +53,16 @@ export function App() {
 
     return () => document.removeEventListener('visibilitychange', onChange);
   }, []);
+
+  useEffect(() => {
+    const unsubscribe = subscribe('fadeOut', (e: { duration: number }) => {
+      setTimeout(() => {
+        pause();
+      }, e.duration);
+    });
+
+    return unsubscribe;
+  }, [pause]);
 
   const allCategories = useMemo(() => {
     const favorites = [];

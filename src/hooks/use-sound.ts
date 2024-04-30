@@ -1,7 +1,7 @@
 import { useMemo, useEffect, useCallback, useState } from 'react';
 import { Howl } from 'howler';
 
-import { useSoundStore, useLoadingStore } from '@/store';
+import { useLoadingStore } from '@/store';
 import { subscribe } from '@/lib/event';
 import { useSSR } from './use-ssr';
 
@@ -9,8 +9,6 @@ export function useSound(
   src: string,
   options: { loop?: boolean; volume?: number } = {},
 ) {
-  const pauseAll = useSoundStore(state => state.pause);
-
   const [hasLoaded, setHasLoaded] = useState(false);
   const isLoading = useLoadingStore(state => state.loaders[src]);
   const setIsLoading = useLoadingStore(state => state.set);
@@ -70,12 +68,11 @@ export function useSound(
       sound?.fade(sound.volume(), 0, duration);
 
       setTimeout(() => {
-        pauseAll();
-
+        pause();
         sound?.volume(options.volume || 0.5);
       }, duration);
     },
-    [options.volume, sound, pauseAll],
+    [options.volume, sound, pause],
   );
 
   useEffect(() => {
