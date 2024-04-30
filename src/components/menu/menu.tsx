@@ -26,6 +26,7 @@ import { useSoundStore } from '@/store';
 
 import styles from './menu.module.css';
 import { useCloseListener } from '@/hooks/use-close-listener';
+import { closeModals } from '@/lib/modal';
 
 export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,6 +57,7 @@ export function Menu() {
     (name: string) => {
       closeAll();
       setIsOpen(false);
+      closeModals();
       setModals(prev => ({ ...prev, [name]: true }));
     },
     [closeAll],

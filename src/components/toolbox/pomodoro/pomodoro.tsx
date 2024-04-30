@@ -11,6 +11,7 @@ import { Setting } from './setting';
 import { useLocalStorage } from '@/hooks/use-local-storage';
 import { useSoundEffect } from '@/hooks/use-sound-effect';
 import { usePomodoroStore } from '@/store';
+import { useCloseListener } from '@/hooks/use-close-listener';
 
 import styles from './pomodoro.module.css';
 
@@ -61,6 +62,8 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
     ],
     [],
   );
+
+  useCloseListener(() => setShowSetting(false));
 
   useEffect(() => {
     if (running) {
