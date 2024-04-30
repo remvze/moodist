@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 
 import { Modal } from '@/components/modal';
 import { Timer } from '@/components/timer';
@@ -13,57 +13,59 @@ interface SleepTimerModalProps {
 }
 
 export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
+  const [running, setRunning] = useState(false);
+
   const [hours, setHours] = useState<string>('0');
   const [minutes, setMinutes] = useState<string>('10');
-  const [running, setRunning] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(0);
 
-  const timerId = useRef<NodeJS.Timeout>();
+  const totalSeconds = useMemo(
+    () =>
+      (hours === '' ? 0 : parseInt(hours)) * 3600 +
+      (minutes === '' ? 0 : parseInt(minutes)) * 60,
+    [hours, minutes],
+  );
+
+  const [timeSpent, setTimeSpent] = useState(0);
+
+  const timeLeft = useMemo(
+    () => totalSeconds - timeSpent,
+    [totalSeconds, timeSpent],
+  );
+
+  const timerId = useRef<ReturnType<typeof setInterval>>();
 
   const isPlaying = useSoundStore(state => state.isPlaying);
   const play = useSoundStore(state => state.play);
   const pause = useSoundStore(state => state.pause);
 
-  const calculateTotalSeconds = useCallback((): number => {
-    return (
-      (hours === '' ? 0 : parseInt(hours)) * 3600 +
-      (minutes === '' ? 0 : parseInt(minutes)) * 60
-    );
-  }, [minutes, hours]);
-
-  useEffect(() => {
-    setTimeLeft(calculateTotalSeconds());
-  }, [calculateTotalSeconds]);
-
   const handleStart = () => {
     if (timerId.current) clearInterval(timerId.current);
     if (!isPlaying) play();
 
-    setTimeLeft(calculateTotalSeconds);
-
-    if (timeLeft > 0) {
+    if (totalSeconds > 0) {
       setRunning(true);
 
       const newTimerId = setInterval(() => {
-        setTimeLeft(prevTimeLeft => {
-          const newTimeLeft = prevTimeLeft - 1;
-          if (newTimeLeft <= 0) {
-            clearInterval(newTimerId);
-            pause();
-            setRunning(false);
-            return 0;
-          }
-          return newTimeLeft;
-        });
+        setTimeSpent(prev => prev + 1);
       }, 1000);
 
       timerId.current = newTimerId;
     }
   };
 
+  useEffect(() => {
+    if (timeLeft === 0) {
+      setRunning(false);
+      pause();
+      setTimeSpent(0);
+
+      if (timerId.current) clearInterval(timerId.current);
+    }
+  }, [timeLeft, pause]);
+
   const handleReset = () => {
     if (timerId.current) clearInterval(timerId.current);
-    setTimeLeft(0);
+    setTimeSpent(0);
     setHours('0');
     setMinutes('10');
     setRunning(false);
@@ -114,7 +116,7 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
                 className={cn(styles.button, styles.primary)}
                 type="submit"
               >
-                Save
+                Start
               </button>
             )}
           </div>
