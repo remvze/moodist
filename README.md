@@ -20,6 +20,18 @@
 1. 🥷 Privacy focused: no data collection
 1. 💰 Completely free, open-source, and self-hostable
 
+## Contributing
+
+All contributions, issues, and feature requests are welcome!
+
+1. Fork the project
+1. Create your feature branch (`git checkout -b feature/awesome-feature`)
+1. Commit your changes (`git commit -m "feat: add awesome feature`)
+1. Push to the remote branch (`git push origin feature/awesome-feature`)
+1. Open a Pull Request ⚡
+
+⚠️ **Notice**: Commit messages should follow [Conventional Commits Specification](https://www.conventionalcommits.org/en/v1.0.0/).
+
 ## Tools
 
 - ⚡ **TypeScript**: Programming Language
@@ -61,8 +73,7 @@
 ## Support Moodist
 
 Give a ⭐ if you liked this project.
-
-[Buy me a coffee ☕](https://buymeacoffee.com) to help me maintain Moodist.
+☕ [Buy Me a Coffee](https://buymeacoffee.com) to help me maintain Moodist.
 
 ## License
 
@@ -72,5 +83,5 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 Some sounds used in this project are sourced from third-party providers and **are subject to different licenses**:
 
-- Sounds licensed under the **Pixabay Content License**: [Link to Pixabay Content License](https://pixabay.com/service/license-summary/)
+- Sounds licensed under the **Pixabay Content License**: [Pixabay Content License](https://pixabay.com/service/license-summary/)
 - Sounds licensed under **CC0**: [Creative Commons Zero License](https://creativecommons.org/publicdomain/zero/1.0/)
