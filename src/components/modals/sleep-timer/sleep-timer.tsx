@@ -2,6 +2,7 @@ import { useEffect, useState, useRef, useMemo } from 'react';
 
 import { Modal } from '@/components/modal';
 import { Timer } from '@/components/timer';
+import { dispatch } from '@/lib/event';
 import { useSoundStore } from '@/store';
 import { cn } from '@/helpers/styles';
 
@@ -56,7 +57,9 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
   useEffect(() => {
     if (timeLeft === 0) {
       setRunning(false);
-      pause();
+      // pause();
+      dispatch('fadeOut', { duration: 5000 });
+
       setTimeSpent(0);
 
       if (timerId.current) clearInterval(timerId.current);
