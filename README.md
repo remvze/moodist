@@ -53,9 +53,9 @@
 - `npm run lint:style:fix`: lint and fix styles using Stylelint
 - `npm run format`: format files using Prettier
 - `npm run commit`: commit message using Commitizen
-- `npm run release:major`: release major varsion
-- `npm run release:minor`: release minor varsion
-- `npm run release:patch`: release patch varsion
+- `npm run release:major`: release major version
+- `npm run release:minor`: release minor version
+- `npm run release:patch`: release patch version
 - `npm run storybook`: run Storybook
 
 ## License
