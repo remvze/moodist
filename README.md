@@ -73,6 +73,7 @@ All contributions, issues, and feature requests are welcome!
 ## Support Moodist
 
 Give a ⭐ if you liked this project.
+
 ☕ [Buy Me a Coffee](https://buymeacoffee.com) to help me maintain Moodist.
 
 ## License
