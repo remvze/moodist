@@ -5,6 +5,15 @@
   <a href="https://moodist.app">Visit <strong>Moodist</strong></a> | <a href="https://buymeacoffee.com/remvze">Buy Me a Coffee</a>
 </div>
 
+## Table of Contents
+
+- [Features](#features)
+- [Tools](#tools)
+- [Commands](#commands)
+- [Contributing](#contributing)
+- [Support](#support-moodist)
+- [License](#license)
+
 ## Features
 
 1. 🎵 Over 75 ambient sounds
@@ -19,18 +28,6 @@
 1. ⌨️ Keyboard shortcuts for everything
 1. 🥷 Privacy focused: no data collection
 1. 💰 Completely free, open-source, and self-hostable
-
-## Contributing
-
-All contributions, issues, and feature requests are welcome!
-
-1. Fork the project
-1. Create your feature branch (`git checkout -b feature/awesome-feature`)
-1. Commit your changes (`git commit -m "feat: add awesome feature`)
-1. Push to the remote branch (`git push origin feature/awesome-feature`)
-1. Open a Pull Request ⚡
-
-⚠️ **Notice**: Commit messages should follow [Conventional Commits Specification](https://www.conventionalcommits.org/en/v1.0.0/).
 
 ## Tools
 
@@ -69,6 +66,10 @@ All contributions, issues, and feature requests are welcome!
 - `npm run release:minor`: release minor version
 - `npm run release:patch`: release patch version
 - `npm run storybook`: run Storybook
+
+## Contributing
+
+🚧 Please check [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 ## Support Moodist
 
