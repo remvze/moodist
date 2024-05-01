@@ -4,6 +4,7 @@ import { Howl } from 'howler';
 import { useLoadingStore } from '@/store';
 import { subscribe } from '@/lib/event';
 import { useSSR } from './use-ssr';
+import { FADE_OUT } from '@/constants/events';
 
 export function useSound(
   src: string,
@@ -78,7 +79,7 @@ export function useSound(
   useEffect(() => {
     const listener = (e: { duration: number }) => fadeOut(e.duration);
 
-    return subscribe('fadeOut', listener);
+    return subscribe(FADE_OUT, listener);
   }, [fadeOut]);
 
   const control = useMemo(

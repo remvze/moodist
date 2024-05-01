@@ -14,6 +14,7 @@ import { Toolbar } from '@/components/toolbar';
 import { SnackbarProvider } from '@/contexts/snackbar';
 
 import { sounds } from '@/data/sounds';
+import { FADE_OUT } from '@/constants/events';
 
 import type { Sound } from '@/data/types';
 import { subscribe } from '@/lib/event';
@@ -57,7 +58,7 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    const unsubscribe = subscribe('fadeOut', (e: { duration: number }) => {
+    const unsubscribe = subscribe(FADE_OUT, (e: { duration: number }) => {
       lock();
 
       setTimeout(() => {

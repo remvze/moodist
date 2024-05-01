@@ -5,6 +5,7 @@ import { Timer } from '@/components/timer';
 import { dispatch } from '@/lib/event';
 import { useSoundStore } from '@/store';
 import { cn } from '@/helpers/styles';
+import { FADE_OUT } from '@/constants/events';
 
 import styles from './sleep-timer.module.css';
 
@@ -58,7 +59,7 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
     if (timeLeft === 0) {
       setRunning(false);
       // pause();
-      dispatch('fadeOut', { duration: 1000 });
+      dispatch(FADE_OUT, { duration: 1000 });
 
       setTimeSpent(0);
 
