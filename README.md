@@ -7,12 +7,12 @@
 
 ## Table of Contents
 
-- [Features](#features)
-- [Tools](#tools)
-- [Commands](#commands)
-- [Contributing](#contributing)
-- [Support](#support-moodist)
-- [License](#license)
+- ⚡ [Features](#features)
+- 🧰 [Tools](#tools)
+- 🔮 [Commands](#commands)
+- 🚧 [Contributing](#contributing)
+- ⭐ [Support](#support-moodist)
+- 📜 [License](#license)
 
 ## Features
 
