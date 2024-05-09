@@ -75,6 +75,7 @@ export function Notepad({ onClose, show }: NotepadProps) {
         dir="auto"
         placeholder="What is on your mind?"
         ref={textareaRef}
+        spellCheck={false}
         value={note}
         onChange={e => write(e.target.value)}
         onKeyDown={handleKeyDown}
