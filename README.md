@@ -20,11 +20,10 @@
 1. 📝 Persistent sound selection
 1. ✈️ Sharing sound selections with others
 1. 🧰 Custom sound presets
-1. 🌙 Sleep timer for sounds (soon)
+1. 🌙 Sleep timer for sounds
 1. 📓 Notepad for quick notes
 1. 🍅 Pomodoro timer
 1. ✅ Simple to-do list (soon)
-1. ⌛ Distraction-free countdown timer (soon)
 1. ⌨️ Keyboard shortcuts for everything
 1. 🥷 Privacy focused: no data collection
 1. 💰 Completely free, open-source, and self-hostable
