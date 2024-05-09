@@ -14,6 +14,7 @@ import {
   PresetsItem,
   ShortcutsItem,
   SleepTimerItem,
+  CountdownTimerItem,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
@@ -110,6 +111,7 @@ export function Menu() {
                     <Divider />
                     <NotepadItem open={() => open('notepad')} />
                     <PomodoroItem open={() => open('pomodoro')} />
+                    <CountdownTimerItem />
 
                     <Divider />
                     <ShortcutsItem open={() => open('shortcuts')} />

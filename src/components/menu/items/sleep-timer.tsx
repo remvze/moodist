@@ -10,7 +10,7 @@ export function SleepTimer({ open }: SleepTimerProps) {
   return (
     <Item
       icon={<IoMoonSharp />}
-      label="Sleep timer"
+      label="Sleep Timer"
       shortcut="Shift + T"
       onClick={open}
     />
