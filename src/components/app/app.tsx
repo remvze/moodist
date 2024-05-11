@@ -86,6 +86,8 @@ export function App() {
   }, [favoriteSounds, categories]);
 
   const audioElement = useRef<HTMLAudioElement | null>(null);
+
+  const play = useSoundStore(state => state.play);
   const isPlaying = useSoundStore(state => state.isPlaying);
 
   useEffect(() => {
@@ -95,6 +97,16 @@ export function App() {
       audioElement.current.srcObject = dest.stream;
     }
   }, []);
+
+  useEffect(() => {
+    try {
+      navigator.mediaSession.setActionHandler('play', play);
+      navigator.mediaSession.setActionHandler('pause', pause);
+      navigator.mediaSession.setActionHandler('stop', pause);
+    } catch (error) {
+      console.log('Media session is no supported yet');
+    }
+  }, [play, pause]);
 
   useEffect(() => {
     if (isPlaying) {
