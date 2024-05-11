@@ -1,31 +1,28 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { useSoundStore } from '@/store';
 
 export function useMediaSession() {
-  const play = useSoundStore(state => state.play);
-  const pause = useSoundStore(state => state.pause);
+  const ref = useRef<HTMLAudioElement | null>(null);
+
   const isPlaying = useSoundStore(state => state.isPlaying);
 
   useEffect(() => {
-    try {
-      navigator.mediaSession.setActionHandler('play', play);
-      navigator.mediaSession.setActionHandler('pause', pause);
-      navigator.mediaSession.setActionHandler('stop', pause);
-    } catch (error) {
-      console.log('Media session is no supported yet');
-    }
-  }, [play, pause]);
-
-  useEffect(() => {
     if (isPlaying) {
-      navigator.mediaSession.metadata = new MediaMetadata({
-        title: 'Moodist',
-      });
+      ref.current?.play().then(() => {
+        console.log('hi');
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: 'Moodist',
+        });
 
-      navigator.mediaSession.playbackState = 'playing';
+        navigator.mediaSession.playbackState = 'playing';
+      });
     } else {
+      ref.current?.pause();
+
       navigator.mediaSession.playbackState = 'paused';
     }
   }, [isPlaying]);
+
+  return ref;
 }
