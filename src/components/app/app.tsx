@@ -140,7 +140,7 @@ export function App() {
         </StoreConsumer>
       </SnackbarProvider>
 
-      <audio aria-hidden={true} muted ref={audioElement} src="" />
+      <audio aria-hidden={true} ref={audioElement} src="" />
     </>
   );
 }
