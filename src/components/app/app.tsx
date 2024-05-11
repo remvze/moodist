@@ -96,6 +96,7 @@ export function App() {
     Howler.masterGain.connect(dest);
 
     if (audioElement.current) {
+      audioElement.current.volume = 0;
       audioElement.current.srcObject = dest.stream;
     }
   }, []);
@@ -113,7 +114,6 @@ export function App() {
   useEffect(() => {
     if (isPlaying) {
       audioElement.current?.play().then(() => {
-        audioElement.current!.volume = 1;
         navigator.mediaSession.metadata = new MediaMetadata({
           title: 'Moodist',
         });
