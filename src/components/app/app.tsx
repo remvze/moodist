@@ -113,6 +113,7 @@ export function App() {
   useEffect(() => {
     if (isPlaying) {
       audioElement.current?.play().then(() => {
+        audioElement.current!.volume = 1;
         navigator.mediaSession.metadata = new MediaMetadata({
           title: 'Moodist',
         });
