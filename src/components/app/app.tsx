@@ -105,6 +105,8 @@ export function App() {
 
       <audio
         aria-hidden={true}
+        loop
+        muted
         ref={audio}
         src="/sounds/2-seconds-of-silence.mp3"
       />

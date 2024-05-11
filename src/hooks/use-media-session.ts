@@ -8,8 +8,8 @@ export function useMediaSession() {
   const isPlaying = useSoundStore(state => state.isPlaying);
 
   useEffect(() => {
-    if (isPlaying) {
-      ref.current?.play().then(() => {
+    if (ref.current) {
+      ref.current.addEventListener('play', () => {
         console.log('hi');
         navigator.mediaSession.metadata = new MediaMetadata({
           title: 'Moodist',
@@ -17,10 +17,18 @@ export function useMediaSession() {
 
         navigator.mediaSession.playbackState = 'playing';
       });
+
+      ref.current.addEventListener('pause', () => {
+        navigator.mediaSession.playbackState = 'paused';
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isPlaying) {
+      ref.current?.play();
     } else {
       ref.current?.pause();
-
-      navigator.mediaSession.playbackState = 'paused';
     }
   }, [isPlaying]);
 
