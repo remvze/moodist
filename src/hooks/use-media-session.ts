@@ -3,25 +3,29 @@ import { useEffect } from 'react';
 import { useSoundStore } from '@/store';
 
 export function useMediaSession() {
+  const play = useSoundStore(state => state.play);
+  const pause = useSoundStore(state => state.pause);
   const isPlaying = useSoundStore(state => state.isPlaying);
 
   useEffect(() => {
-    if ('mediaSession' in navigator) {
-      if (isPlaying) {
-        console.log('hello');
-        navigator.mediaSession.metadata = new MediaMetadata({
-          title: 'Moodist - Ambient Sounds',
-        });
+    try {
+      navigator.mediaSession.setActionHandler('play', play);
+      navigator.mediaSession.setActionHandler('pause', pause);
+      navigator.mediaSession.setActionHandler('stop', pause);
+    } catch (error) {
+      console.log('Media session is no supported yet');
+    }
+  }, [play, pause]);
 
-        navigator.mediaSession.playbackState = 'playing';
+  useEffect(() => {
+    if (isPlaying) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: 'Moodist',
+      });
 
-        navigator.mediaSession.setActionHandler('play', function () {});
-        navigator.mediaSession.setActionHandler('pause', function () {});
-        navigator.mediaSession.setActionHandler('stop', function () {});
-      } else {
-        navigator.mediaSession.playbackState = 'paused';
-        console.log('bye');
-      }
+      navigator.mediaSession.playbackState = 'playing';
+    } else {
+      navigator.mediaSession.playbackState = 'paused';
     }
   }, [isPlaying]);
 }
