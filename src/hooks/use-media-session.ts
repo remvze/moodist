@@ -13,10 +13,13 @@ export function useMediaSession() {
           title: 'Moodist - Ambient Sounds',
         });
 
+        navigator.mediaSession.playbackState = 'playing';
+
         navigator.mediaSession.setActionHandler('play', function () {});
         navigator.mediaSession.setActionHandler('pause', function () {});
+        navigator.mediaSession.setActionHandler('stop', function () {});
       } else {
-        navigator.mediaSession.metadata = null;
+        navigator.mediaSession.playbackState = 'paused';
         console.log('bye');
       }
     }
