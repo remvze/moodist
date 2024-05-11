@@ -18,7 +18,6 @@ import { FADE_OUT } from '@/constants/events';
 
 import type { Sound } from '@/data/types';
 import { subscribe } from '@/lib/event';
-import { useMediaSession } from '@/hooks/use-media-session';
 
 export function App() {
   const categories = useMemo(() => sounds.categories, []);
@@ -86,30 +85,18 @@ export function App() {
     return [...favorites, ...categories];
   }, [favoriteSounds, categories]);
 
-  const audio = useMediaSession();
-
   return (
-    <>
-      <SnackbarProvider>
-        <StoreConsumer>
-          <Container>
-            <div id="app" />
-            <Buttons />
-            <Categories categories={allCategories} />
-          </Container>
+    <SnackbarProvider>
+      <StoreConsumer>
+        <Container>
+          <div id="app" />
+          <Buttons />
+          <Categories categories={allCategories} />
+        </Container>
 
-          <Toolbar />
-          <SharedModal />
-        </StoreConsumer>
-      </SnackbarProvider>
-
-      <audio
-        aria-hidden={true}
-        loop
-        muted
-        ref={audio}
-        src="/sounds/2-seconds-of-silence.mp3"
-      />
-    </>
+        <Toolbar />
+        <SharedModal />
+      </StoreConsumer>
+    </SnackbarProvider>
   );
 }
