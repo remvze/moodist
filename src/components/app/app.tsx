@@ -18,6 +18,7 @@ import { FADE_OUT } from '@/constants/events';
 
 import type { Sound } from '@/data/types';
 import { subscribe } from '@/lib/event';
+import { useMediaSession } from '@/hooks/use-media-session';
 
 export function App() {
   const categories = useMemo(() => sounds.categories, []);
@@ -84,6 +85,8 @@ export function App() {
 
     return [...favorites, ...categories];
   }, [favoriteSounds, categories]);
+
+  useMediaSession();
 
   return (
     <SnackbarProvider>
