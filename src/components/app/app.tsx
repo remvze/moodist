@@ -93,6 +93,8 @@ export function App() {
   useEffect(() => {
     const dest = Howler.ctx.createMediaStreamDestination();
 
+    Howler.masterGain.connect(dest);
+
     if (audioElement.current) {
       audioElement.current.srcObject = dest.stream;
     }
