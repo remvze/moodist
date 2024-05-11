@@ -1,3 +1,4 @@
+import { FiExternalLink } from 'react-icons/fi/index';
 import { Item as DropdownItem } from '@radix-ui/react-dropdown-menu';
 
 import styles from './item.module.css';
@@ -37,6 +38,12 @@ export function Item({
         </span>
 
         {shortcut && <span className={styles.shortcut}>{shortcut}</span>}
+
+        {href && (
+          <span className={styles.external}>
+            <FiExternalLink />
+          </span>
+        )}
       </Comp>
     </DropdownItem>
   );
