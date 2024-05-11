@@ -1,4 +1,4 @@
-import { useMemo, useEffect } from 'react';
+import { useMemo, useEffect, useRef } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import { BiSolidHeart } from 'react-icons/bi/index';
 import { Howler } from 'howler';
@@ -85,18 +85,48 @@ export function App() {
     return [...favorites, ...categories];
   }, [favoriteSounds, categories]);
 
-  return (
-    <SnackbarProvider>
-      <StoreConsumer>
-        <Container>
-          <div id="app" />
-          <Buttons />
-          <Categories categories={allCategories} />
-        </Container>
+  const audioElement = useRef<HTMLAudioElement | null>(null);
+  const isPlaying = useSoundStore(state => state.isPlaying);
 
-        <Toolbar />
-        <SharedModal />
-      </StoreConsumer>
-    </SnackbarProvider>
+  useEffect(() => {
+    const dest = Howler.ctx.createMediaStreamDestination();
+
+    if (audioElement.current) {
+      audioElement.current.srcObject = dest.stream;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isPlaying) {
+      audioElement.current?.play().then(() => {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: 'Moodist',
+        });
+
+        navigator.mediaSession.playbackState = 'playing';
+      });
+    } else {
+      audioElement.current?.pause();
+      navigator.mediaSession.playbackState = 'paused';
+    }
+  }, [isPlaying]);
+
+  return (
+    <>
+      <SnackbarProvider>
+        <StoreConsumer>
+          <Container>
+            <div id="app" />
+            <Buttons />
+            <Categories categories={allCategories} />
+          </Container>
+
+          <Toolbar />
+          <SharedModal />
+        </StoreConsumer>
+      </SnackbarProvider>
+
+      <audio aria-hidden={true} muted ref={audioElement} src="" />
+    </>
   );
 }
