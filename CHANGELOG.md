@@ -2,6 +2,123 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/remvze/moodist/compare/v1.4.3...v1.5.0) (2024-05-19)
+
+
+### 💄 Styling
+
+* add hover state to button ([ebb35de](https://github.com/remvze/moodist/commit/ebb35deaf982348ccea49e3830af77521fbed207))
+* add outline for better accessibility ([e7d7a37](https://github.com/remvze/moodist/commit/e7d7a37a12dd79f12933b3ffa91fe6e0557c4f9e))
+* add outlines to toolbar buttons ([a3cfbb9](https://github.com/remvze/moodist/commit/a3cfbb98db8a70d8055e86071a4dab4d2b7ab952))
+* better outlines for accessibility ([3c8d75b](https://github.com/remvze/moodist/commit/3c8d75b018e657b2c2e13d967b90b635360225fe))
+* change button styles ([e674738](https://github.com/remvze/moodist/commit/e674738ce70d1c240c57433824a0b509f24deb88))
+* change input styles ([8fe90da](https://github.com/remvze/moodist/commit/8fe90daf1e96def534c62f3241438cf62ea00b18))
+* change outline color ([6f9c941](https://github.com/remvze/moodist/commit/6f9c941a8749f2b006c3f352e0a047c5dc1d3d21))
+
+
+### ♻️ Code Refactoring
+
+* add constants ([81678ea](https://github.com/remvze/moodist/commit/81678ea384bfdc00925e674c988fad85710d705a))
+* add Radix ([ddae0b6](https://github.com/remvze/moodist/commit/ddae0b660ff2bb0bc33400ad59159f4525d80429))
+* better name ([2192335](https://github.com/remvze/moodist/commit/219233523827ed47a8ebea88a4ce73bb3c027e0c))
+* better shortcut handling ([f81ea9e](https://github.com/remvze/moodist/commit/f81ea9e7bdf7c7253587da9312e6fb6caaf14590))
+* reduce dependency ([c893e2a](https://github.com/remvze/moodist/commit/c893e2a6adc68bdd40f8e5dd1e2b3ab6642a0145))
+* relocate generic components ([4adfb3d](https://github.com/remvze/moodist/commit/4adfb3ddc938a2720c26b9107c8cccdf66c0b913))
+* remove extra types ([e490a1d](https://github.com/remvze/moodist/commit/e490a1da84d948c9db2e689414f432aaf53bc0b2))
+* remove hide delay for tooltips ([48291a6](https://github.com/remvze/moodist/commit/48291a645776b235918485b737b9272113f838a0))
+* rename hook file ([2f84268](https://github.com/remvze/moodist/commit/2f84268017aa4592684c8e3ac47399d0f100669d))
+* reorder menu items ([ae0cbf1](https://github.com/remvze/moodist/commit/ae0cbf1aa3392ae775bfee9404c21ed7c145166e))
+* rewrite timer logic ([7c57fb6](https://github.com/remvze/moodist/commit/7c57fb686b50fa106ad0663a44f4831295d235c3))
+
+
+### ✨ Features
+
+* add autofocus for note ([24a53c8](https://github.com/remvze/moodist/commit/24a53c81dffc1a4ba0b46244a87fb49bf562e755))
+* add basic fading effect ([6ce766a](https://github.com/remvze/moodist/commit/6ce766af47389e9e3e57226b956b8593a4af06d4))
+* add better aria labels ([98e5021](https://github.com/remvze/moodist/commit/98e5021f561458465a544e2b86194e7f52a62169))
+* add better aria labels ([9774532](https://github.com/remvze/moodist/commit/977453230847790de86aa7721c059d4fe3ec7eeb))
+* add close event for modals ([af92b1e](https://github.com/remvze/moodist/commit/af92b1ed902b4bf221e53315ba431f834915d7c2))
+* add countdown timer button ([5f066a4](https://github.com/remvze/moodist/commit/5f066a4eff91996b165de3b86549fffe93800d38))
+* add description for sleep timer ([77e2ec5](https://github.com/remvze/moodist/commit/77e2ec5e798771b7719b36882bc68c10265c06f6))
+* add form to sleep timer ([9d458fb](https://github.com/remvze/moodist/commit/9d458fb60e8b84210f492541bab2c5dc94adcc8b))
+* add keyboard shortcut for play button ([d3a2a12](https://github.com/remvze/moodist/commit/d3a2a12e1fdcca502c0d3d6dc60d3e4c577165f2))
+* add keyboard shortcut for unselect button ([99f3a41](https://github.com/remvze/moodist/commit/99f3a41598ea237d2f509825d0b3c0ee27e789d7))
+* add keyboard shortcuts ([669df1f](https://github.com/remvze/moodist/commit/669df1f08264e63c0892e7d4fdd2ee7dbcb96b2e))
+* add lock while fading ([d9246b6](https://github.com/remvze/moodist/commit/d9246b692bcb75018653cb6f437b1f46af1f925d))
+* add media session (wip) ([34d3f07](https://github.com/remvze/moodist/commit/34d3f075816eb821979f1d51a1177ecfa03920f3))
+* add media session (wip) ([cf4870b](https://github.com/remvze/moodist/commit/cf4870b0d6b172bd4e6b79ff517af06b2aeac7a5))
+* add media session (wip) ([9f0a28d](https://github.com/remvze/moodist/commit/9f0a28d9305954486d4f609f85811982df9710f3))
+* add media session (wip) ([56b0e9b](https://github.com/remvze/moodist/commit/56b0e9bf1a16d4e7e2c8d7a552b652f8d30dd800))
+* add media session (wip) ([4f752bb](https://github.com/remvze/moodist/commit/4f752bb6d048c0260ff6b2aada59c227624b2d17))
+* add media session (wip) ([1547b0a](https://github.com/remvze/moodist/commit/1547b0a436bd9a77c19fc5d37be3cb3e123e6117))
+* add media session (wip) ([f311ec1](https://github.com/remvze/moodist/commit/f311ec114e3a8ca61954819334e43195d0980219))
+* add media session (wip) ([df1b05f](https://github.com/remvze/moodist/commit/df1b05f7ce3e26128d0bc4a9a022b5300ea88f85))
+* add media session (wip) ([ea0dfff](https://github.com/remvze/moodist/commit/ea0dfff9c1e7d8e6e03bccdc0ab15d098b31a10d))
+* add media session (wip) ([fc1bd07](https://github.com/remvze/moodist/commit/fc1bd07b7de9532383c66d7e59cc13bbe41f415a))
+* add media session (wip) ([f79e941](https://github.com/remvze/moodist/commit/f79e941527e09e96b5eba6ca8c4e2e3df583c071))
+* add media session (wip) ([11a4514](https://github.com/remvze/moodist/commit/11a4514a0f63f09954361fdef8145869d369fd29))
+* add shortcuts list ([60f167c](https://github.com/remvze/moodist/commit/60f167c4d734bc6238f7c2bb7b39c89ed45ed9eb))
+* add shortcuts to items ([42f82ab](https://github.com/remvze/moodist/commit/42f82ab95d684163826e76231fb1dd554f773d68))
+* add sleep timer ([71b62ed](https://github.com/remvze/moodist/commit/71b62ed3dd365744435dc4499b9c53684f72849c))
+* add story for modal ([9b7d3c6](https://github.com/remvze/moodist/commit/9b7d3c645b8c3469231641e6ec8bbdef88732bbc))
+* add story for snackbar ([43f6245](https://github.com/remvze/moodist/commit/43f62452275573f948449190dcfcef89faa4ec51))
+* allow using spacebar or enter to trigger buttons ([60cc2e9](https://github.com/remvze/moodist/commit/60cc2e9369aff3a374458cf1c3234eec8cd0530e))
+* change shortcuts to shift ([837826f](https://github.com/remvze/moodist/commit/837826fbc13599e51bb7b65cf8b7bdcb1f1fc503))
+* close notepad on escape ([583578b](https://github.com/remvze/moodist/commit/583578b31592b3c0e7f5ae6ad3f83e99e64fb6ff))
+* make the modal more accessible ([0252fa9](https://github.com/remvze/moodist/commit/0252fa96abed18de71472ffc671b13c263754ed9))
+
+
+### 🐛 Bug Fixes
+
+* allow empty inputs ([601ba6d](https://github.com/remvze/moodist/commit/601ba6def7954ca8f961c461abacfb076863ae18))
+* change default values ([34d3c72](https://github.com/remvze/moodist/commit/34d3c72f3512664ac8f26a637b0d0be86b5499df))
+* close all modals ([f025213](https://github.com/remvze/moodist/commit/f025213ef2e8ddbc5e6603d045c8bd4d08ad8b7b))
+* fix button disabled and reset to 0 ([58bf28b](https://github.com/remvze/moodist/commit/58bf28bb24fd12bc28f4f5e3e79058df60095fd4))
+* focus on the first new sound ([54c7772](https://github.com/remvze/moodist/commit/54c777276deccfda20bb7f027cef40d141a445b1))
+* make inputs full width ([cc77f9e](https://github.com/remvze/moodist/commit/cc77f9e9c0b0a0d7734353486c93b4ca1509bf36))
+* make share hotkey conditional ([9ad49d0](https://github.com/remvze/moodist/commit/9ad49d021a34d47160575ae1349f866ecb26c077))
+* play sounds when starting timer if not already playing ([2e375ad](https://github.com/remvze/moodist/commit/2e375ad40a8001ee00c9553ba46d70f3bbe6636c))
+* refocus on show more button ([b955fc9](https://github.com/remvze/moodist/commit/b955fc93f42c1bd71d5fb5ff46f9e3a039c7fe83))
+* relocate focus trap ([8596a00](https://github.com/remvze/moodist/commit/8596a0014cbbac25ec93b1bb9136219a096cb21f))
+* remove auto focus on load ([3b0c229](https://github.com/remvze/moodist/commit/3b0c22968e4209fa5a37a88b69f55492615ec389))
+* remove console log ([7c6f068](https://github.com/remvze/moodist/commit/7c6f068d158cda0f8b0fe6bd6352a65002db0e25))
+* remove media session ([9338b1d](https://github.com/remvze/moodist/commit/9338b1d30a4ae4602b339bc5c5a391a462a03de2))
+* remove media session ([8d01d74](https://github.com/remvze/moodist/commit/8d01d74bd356adce782b95065fadad332ed99e48))
+* replace the animation on button ([8307657](https://github.com/remvze/moodist/commit/8307657628c0afc7ef11c3a829344a64777dc1d3))
+* reset values on cancel ([89a8308](https://github.com/remvze/moodist/commit/89a83089c568c619fd76a28c268ad9af9913babc))
+* take remvze comments into account ([0517c31](https://github.com/remvze/moodist/commit/0517c31fc13e0b82391e18a7d16341421488f1c2))
+* turn off spell check ([c66cddc](https://github.com/remvze/moodist/commit/c66cddc4c98c19a8c0ef46ed0ee7555a30fd5059))
+* typo in README file ([06d0dfb](https://github.com/remvze/moodist/commit/06d0dfbe7eb0660a97c84627b1751b9a43d2e033))
+
+
+### 🚚 Chores
+
+* add accessibility addon ([0300df3](https://github.com/remvze/moodist/commit/0300df3852838135245882a8aa1c59dd1a3f8af7))
+* add autodocs for button ([3f3bcdd](https://github.com/remvze/moodist/commit/3f3bcdda21b631683028ea1c65e674973c78291d))
+* add contributing guide ([5899d1b](https://github.com/remvze/moodist/commit/5899d1bbbb8eb621882e2cbacc1bc1dc9ae2ee06))
+* add contribution section to README file ([b990778](https://github.com/remvze/moodist/commit/b9907781424ccd43babd31dd1d939d2e78ba4a11))
+* add divider ([3e44516](https://github.com/remvze/moodist/commit/3e445165090472859573e69fad0fdeec87ca858f))
+* add emojis ([d09e598](https://github.com/remvze/moodist/commit/d09e598297fb29f005873eb5e1cfad62774fc7f0))
+* add emojis ([781adcf](https://github.com/remvze/moodist/commit/781adcf17eecea61bc03b832d8c81f3aac304848))
+* add features to README file ([c614e3d](https://github.com/remvze/moodist/commit/c614e3d4f54f814fe3813bc8788a23ecba5e38c8))
+* add licenses to README file ([dcef777](https://github.com/remvze/moodist/commit/dcef77729579391706047ad68afd73a07acf5122))
+* add link to issue ([6fe9ce8](https://github.com/remvze/moodist/commit/6fe9ce8915600e5ec0140b5bb635ac1a2b092339))
+* add link to story ([f8fb1ed](https://github.com/remvze/moodist/commit/f8fb1ed61e071baeba7981773e4dbd1e345c29b1))
+* add npm commands to README file ([8d90344](https://github.com/remvze/moodist/commit/8d90344b26d3d52d1649074486d10c7b0bc68b66))
+* add story for snackbar provider ([f19d151](https://github.com/remvze/moodist/commit/f19d151f4a5292668e87abb04111e142482baf1e))
+* add support section ([672988c](https://github.com/remvze/moodist/commit/672988c36e8630fe775fdf0707bfa3e1a8956231))
+* add tech stack to README file ([8e6e690](https://github.com/remvze/moodist/commit/8e6e6900069775df5c29c53b2d2b9a00457ad8f8))
+* complete tech stack ([aeccf2d](https://github.com/remvze/moodist/commit/aeccf2dabd7528ff7984b50b7e7c7b8f46d4cef7))
+* install Storybook ([65ca7e1](https://github.com/remvze/moodist/commit/65ca7e1c942455a41f8af794861a1875bd6190be))
+* remove extra sound ([9ad1630](https://github.com/remvze/moodist/commit/9ad16306cf534ff27e99a537589c0d3c2c483d81))
+* update README file ([629f0a5](https://github.com/remvze/moodist/commit/629f0a514ec1ac96f1874b8d6a466bf05577cd4d))
+* update README file ([de49d37](https://github.com/remvze/moodist/commit/de49d37f08a90523e9b9b298189b10103e833e15))
+* update README file ([7cb0f1c](https://github.com/remvze/moodist/commit/7cb0f1c7521775578bb6d794f43d04aa0da2fcba))
+* update README file ([dc139e4](https://github.com/remvze/moodist/commit/dc139e41e628a75756cea99bdca0252267541014))
+* update README file ([954a1b1](https://github.com/remvze/moodist/commit/954a1b1ce2c9f334d349fcd140ec18a5c78b7dd7))
+* update README file ([383f898](https://github.com/remvze/moodist/commit/383f8981250d2fe646b4f642b36b28b3dbdd178f))
+* write story for button ([603d318](https://github.com/remvze/moodist/commit/603d318e68ec786cfbeaad57835a812ca8918fb9))
+
 ### [1.4.3](https://github.com/remvze/moodist/compare/v1.4.2...v1.4.3) (2024-04-11)
 
 ### 🚚 Chores
