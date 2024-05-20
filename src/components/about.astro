@@ -1,0 +1,160 @@
+---
+import { Container } from '@/components/container';
+
+import { count as soundCount } from '@/lib/sounds';
+
+const count = soundCount();
+
+const paragraphs = [
+  {
+    body: 'Craving a calming escape from the daily grind? Do you need the perfect soundscape to boost your focus or lull you into peaceful sleep? Look no further than Moodist, your free and open-source ambient sound generator! Ditch the subscriptions and registrations – with Moodist, you unlock a world of soothing and immersive audio experiences, entirely for free.',
+    title: 'Free Ambient Sounds',
+  },
+  {
+    body: `Dive into an expansive library of ${count} carefully curated sounds. Nature lovers will find solace in the gentle murmur of streams, the rhythmic crash of waves, or the crackling warmth of a campfire. Cityscapes come alive with the soft hum of cafes, the rhythmic clatter of trains, or the calming white noise of traffic. And for those seeking deeper focus or relaxation, Moodist offers binaural beats and color noise designed to enhance your state of mind.`,
+    title: 'Carefully Curated Sounds',
+  },
+  {
+    body: 'The beauty of Moodist lies in its simplicity and customization. No complex menus or confusing options – just choose your desired sounds, adjust the volume balance, and hit play. Want to blend the gentle chirping of birds with the soothing sound of rain? No problem! Layer as many sounds as you like to create your personalized soundscape oasis.',
+    title: 'Create Your Soundscape',
+  },
+  // {
+  //   body: 'Moodist goes beyond just ambient sounds by offering a suite of productivity tools to help you stay organized and focused. Utilize the built-in pomodoro timer to structure your workday in focused intervals, jot down thoughts and ideas in the simple notepad, and keep track of your tasks with the handy to-do list. These tools seamlessly integrate with the ambient soundscapes, allowing you to create a personalized environment that fosters both focus and relaxation.',
+  //   title: 'A Productivity Toolbox',
+  // },
+  {
+    body: "Whether you're looking to unwind after a long day, enhance your focus during work, or lull yourself into a peaceful sleep, Moodist has the perfect soundscape waiting for you. The best part? It's completely free and open-source, so you can enjoy its benefits without any strings attached. Start using Moodist today and discover your new haven of tranquility and focus!",
+    title: 'Sounds for Every Moment',
+  },
+];
+---
+
+<section class="about">
+  <div class="effect"></div>
+
+  <Container tight>
+    {
+      paragraphs.map((paragraph, index) => (
+        <div class="paragraph">
+          <div class="counter">
+            <span>0{index + 1}</span> / 0{paragraphs.length}
+          </div>
+
+          <h2 class="title">{paragraph.title}</h2>
+          <p class="body">{paragraph.body}</p>
+        </div>
+      ))
+    }
+
+    <button class="button" id="use-moodist"> Use Moodist</button>
+  </Container>
+</section>
+
+<script lang="ts">
+  const button = document.getElementById('use-moodist');
+
+  button.addEventListener('click', () => {
+    const app = document.getElementById('app');
+
+    app?.scrollIntoView();
+  });
+</script>
+
+<style>
+  .about {
+    padding-top: 10px;
+
+    & .effect {
+      position: sticky;
+      top: 0;
+      height: 80px;
+      background: linear-gradient(var(--color-neutral-50), transparent);
+    }
+
+    & .paragraph {
+      padding: 30px 0;
+      background: linear-gradient(
+        transparent,
+        var(--color-neutral-50) 10%,
+        var(--color-neutral-50) 90%,
+        transparent
+      );
+
+      &:last-of-type {
+        padding-bottom: 0;
+      }
+
+      & .counter {
+        width: max-content;
+        padding: 6px 16px;
+        margin-bottom: 16px;
+        font-size: var(--font-xsm);
+        color: var(--color-foreground-subtle);
+        background: linear-gradient(var(--color-neutral-100), transparent);
+        border: 1px solid var(--color-neutral-300);
+        border-radius: 20px 20px 20px 8px;
+
+        & span {
+          font-weight: 500;
+          color: var(--color-foreground);
+        }
+      }
+
+      & .title {
+        margin-bottom: 8px;
+        font-family: var(--font-heading);
+        font-size: var(--font-md);
+        font-weight: 600;
+      }
+
+      & .body {
+        line-height: 1.6;
+        color: var(--color-foreground-subtle);
+      }
+    }
+
+    .button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      margin-top: 20px;
+      font-size: var(--font-xsm);
+      font-weight: 500;
+      color: var(--color-foreground);
+      cursor: pointer;
+      background-color: transparent;
+      border: 1px solid var(--color-neutral-200);
+      border-radius: 50px;
+      outline: none;
+      transition: 0.2s;
+
+      &::before {
+        position: absolute;
+        top: -1px;
+        left: 50%;
+        width: 70%;
+        height: 1px;
+        content: '';
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--color-neutral-300),
+          transparent
+        );
+        transform: translateX(-50%);
+      }
+
+      &:hover,
+      &:focus-visible {
+        background-color: var(--color-neutral-100);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--color-neutral-400);
+        outline-offset: 2px;
+      }
+    }
+  }
+</style>

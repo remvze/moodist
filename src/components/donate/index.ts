@@ -1,1 +1,0 @@
-export { Donate } from './donate';
