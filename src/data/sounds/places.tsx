@@ -1,4 +1,8 @@
-import { BiSolidCoffeeAlt, BiSolidPlaneAlt } from 'react-icons/bi/index';
+import {
+  BiSolidCoffeeAlt,
+  BiSolidPlaneAlt,
+  BiSolidDryer,
+} from 'react-icons/bi/index';
 import { FaChurch, FaSubway, FaShoppingBasket } from 'react-icons/fa/index';
 import { TbScubaMask, TbBeerFilled } from 'react-icons/tb/index';
 import { GiVillage, GiCarousel } from 'react-icons/gi/index';
@@ -93,6 +97,12 @@ export const places: Category = {
       id: 'laboratory',
       label: 'Laboratory',
       src: '/sounds/places/laboratory.mp3',
+    },
+    {
+      icon: <BiSolidDryer />,
+      id: 'laundry-room',
+      label: 'Laundry Room',
+      src: '/sounds/places/laundry-room.mp3',
     },
   ],
   title: 'Places',
