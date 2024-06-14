@@ -34,13 +34,12 @@ export function useSound(
 
   useEffect(() => {
     if (sound) {
-      sound.loop(typeof options.loop === 'boolean' ? options.loop : false);
+      sound.loop(options.loop ?? false);
     }
   }, [sound, options.loop]);
 
   useEffect(() => {
-    if (sound)
-      sound.volume(typeof options.volume === 'number' ? options.volume : 0.5);
+    if (sound) sound.volume(options.volume ?? 0.5);
   }, [sound, options.volume]);
 
   const play = useCallback(() => {

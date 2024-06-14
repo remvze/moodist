@@ -20,7 +20,7 @@ export function useSoundEffect(src: string, volume: number = 1) {
   }, [src, isBrowser]);
 
   useEffect(() => {
-    if (sound) sound.volume(typeof volume === 'number' ? volume : 1);
+    if (sound) sound.volume(volume ?? 1);
   }, [sound, volume]);
 
   const play = useCallback(() => {
