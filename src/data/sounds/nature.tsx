@@ -1,7 +1,13 @@
 import { GiWaterfall } from 'react-icons/gi/index';
 import { BsFire, BsFillDropletFill } from 'react-icons/bs/index';
 import { BiSolidTree, BiWater } from 'react-icons/bi/index';
-import { FaWater, FaWind, FaLeaf, FaRegSnowflake } from 'react-icons/fa/index';
+import {
+  FaWater,
+  FaWind,
+  FaLeaf,
+  FaRegSnowflake,
+  FaTree,
+} from 'react-icons/fa/index';
 
 import type { Category } from '../types';
 
@@ -68,6 +74,12 @@ export const nature: Category = {
       id: 'droplets',
       label: 'Droplets',
       src: '/sounds/nature/droplets.mp3',
+    },
+    {
+      icon: <FaTree />,
+      id: 'jungle',
+      label: 'Jungle',
+      src: '/sounds/nature/jungle.mp3',
     },
   ],
   title: 'Nature',
