@@ -1,4 +1,8 @@
-import { GiWindchimes, GiFilmProjector } from 'react-icons/gi/index';
+import {
+  GiWindchimes,
+  GiFilmProjector,
+  GiWashingMachine,
+} from 'react-icons/gi/index';
 import { BsFillKeyboardFill } from 'react-icons/bs/index';
 import { FaKeyboard, FaClock, FaFan } from 'react-icons/fa/index';
 import { MdSmartToy, MdWaterDrop, MdRadio } from 'react-icons/md/index';
@@ -90,6 +94,12 @@ export const things: Category = {
       id: 'morse-code',
       label: 'Morse Code',
       src: '/sounds/things/morse-code.mp3',
+    },
+    {
+      icon: <GiWashingMachine />,
+      id: 'washing-machine',
+      label: 'Washing Machine',
+      src: '/sounds/things/washing-machine.mp3',
     },
   ],
   title: 'Things',
