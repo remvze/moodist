@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/remvze/moodist/compare/v1.5.0...v1.5.1) (2024-06-14)
+
+
+### ♻️ Code Refactoring
+
+* migrate to Astro components ([ffe260f](https://github.com/remvze/moodist/commit/ffe260f4a02238cb83cf92ed06c4f9c75ba189a4))
+* rename some functions ([0533460](https://github.com/remvze/moodist/commit/05334606673a6268ca35083ea31e28cdb11f1b86))
+* use nullish operator ([9d633a9](https://github.com/remvze/moodist/commit/9d633a963772c3444b6e9effc7920fe190b0614d))
+
+
+### 🚚 Chores
+
+* add more sounds ([095e3c7](https://github.com/remvze/moodist/commit/095e3c795ef699e9e99c5eb364badaadce8a884b))
+* add washing machine sound ([7e65bb7](https://github.com/remvze/moodist/commit/7e65bb75f9871603c30ecfc578ad109a969a2a58))
+* update README file ([a9fe7f7](https://github.com/remvze/moodist/commit/a9fe7f7b4f9ca91704d76a314e3c3368fbc4f1cf))
+
 ## [1.5.0](https://github.com/remvze/moodist/compare/v1.4.3...v1.5.0) (2024-05-19)
 
 
