@@ -1,7 +1,7 @@
 import { BiShuffle } from 'react-icons/bi/index';
 
 import { Tooltip } from '@/components/tooltip';
-import { useSoundStore } from '@/store';
+import { useSoundStore } from '@/stores';
 
 import styles from './shuffle.module.css';
 

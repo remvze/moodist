@@ -10,7 +10,7 @@ import { Setting } from './setting';
 
 import { useLocalStorage } from '@/hooks/use-local-storage';
 import { useSoundEffect } from '@/hooks/use-sound-effect';
-import { usePomodoroStore } from '@/store';
+import { usePomodoroStore } from '@/stores';
 import { useCloseListener } from '@/hooks/use-close-listener';
 
 import styles from './pomodoro.module.css';

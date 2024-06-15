@@ -1,7 +1,7 @@
 import { BiHeart, BiSolidHeart } from 'react-icons/bi/index';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { useSoundStore } from '@/store';
+import { useSoundStore } from '@/stores';
 import { cn } from '@/helpers/styles';
 import { fade } from '@/lib/motion';
 

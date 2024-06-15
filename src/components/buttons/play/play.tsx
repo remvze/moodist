@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { BiPause, BiPlay } from 'react-icons/bi/index';
 
-import { useSoundStore } from '@/store';
+import { useSoundStore } from '@/stores';
 import { useSnackbar } from '@/contexts/snackbar';
 import { cn } from '@/helpers/styles';
 

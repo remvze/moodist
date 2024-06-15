@@ -4,7 +4,7 @@ import { IoCopyOutline, IoCheckmark } from 'react-icons/io5/index';
 import { Modal } from '@/components/modal';
 
 import { useCopy } from '@/hooks/use-copy';
-import { useSoundStore } from '@/store';
+import { useSoundStore } from '@/stores';
 
 import styles from './share-link.module.css';
 

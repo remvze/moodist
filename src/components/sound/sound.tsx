@@ -5,7 +5,7 @@ import { Range } from './range';
 import { Favorite } from './favorite';
 
 import { useSound } from '@/hooks/use-sound';
-import { useSoundStore, useLoadingStore } from '@/store';
+import { useSoundStore, useLoadingStore } from '@/stores';
 import { cn } from '@/helpers/styles';
 
 import styles from './sound.module.css';

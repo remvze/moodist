@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useSoundStore, useNoteStore, usePresetStore } from '@/store';
+import { useSoundStore, useNoteStore, usePresetStore } from '@/stores';
 
 interface StoreConsumerProps {
   children: React.ReactNode;

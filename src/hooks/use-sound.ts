@@ -1,7 +1,7 @@
 import { useMemo, useEffect, useCallback, useState } from 'react';
 import { Howl } from 'howler';
 
-import { useLoadingStore } from '@/store';
+import { useLoadingStore } from '@/stores';
 import { subscribe } from '@/lib/event';
 import { useSSR } from './use-ssr';
 import { FADE_OUT } from '@/constants/events';

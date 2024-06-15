@@ -2,7 +2,7 @@ import { MdOutlineAvTimer } from 'react-icons/md/index';
 
 import { Item } from '../item';
 
-import { usePomodoroStore } from '@/store';
+import { usePomodoroStore } from '@/stores';
 
 interface PomodoroProps {
   open: () => void;

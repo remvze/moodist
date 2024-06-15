@@ -23,7 +23,7 @@ import { ShortcutsModal } from '@/components/modals/shortcuts';
 import { SleepTimerModal } from '@/components/modals/sleep-timer';
 import { Notepad, Pomodoro } from '@/components/toolbox';
 import { fade, mix, slideY } from '@/lib/motion';
-import { useSoundStore } from '@/store';
+import { useSoundStore } from '@/stores';
 
 import styles from './menu.module.css';
 import { useCloseListener } from '@/hooks/use-close-listener';
