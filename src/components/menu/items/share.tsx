@@ -2,7 +2,7 @@ import { IoShareSocialSharp } from 'react-icons/io5/index';
 
 import { Item } from '../item';
 
-import { useSoundStore } from '@/stores';
+import { useSoundStore } from '@/stores/sound';
 
 interface ShareProps {
   open: () => void;

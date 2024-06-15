@@ -2,7 +2,8 @@ import { FaPlay, FaRegTrashAlt } from 'react-icons/fa/index';
 
 import styles from './list.module.css';
 
-import { usePresetStore, useSoundStore } from '@/stores';
+import { useSoundStore } from '@/stores/sound';
+import { usePresetStore } from '@/stores/preset';
 
 interface ListProps {
   close: () => void;

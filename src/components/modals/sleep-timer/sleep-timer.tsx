@@ -3,7 +3,7 @@ import { useEffect, useState, useRef, useMemo } from 'react';
 import { Modal } from '@/components/modal';
 import { Timer } from '@/components/timer';
 import { dispatch } from '@/lib/event';
-import { useSoundStore } from '@/stores';
+import { useSoundStore } from '@/stores/sound';
 import { cn } from '@/helpers/styles';
 import { FADE_OUT } from '@/constants/events';
 

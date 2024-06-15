@@ -1,4 +1,4 @@
-import { useSoundStore } from '@/stores';
+import { useSoundStore } from '@/stores/sound';
 
 import styles from './range.module.css';
 

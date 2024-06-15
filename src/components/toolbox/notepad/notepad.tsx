@@ -7,7 +7,7 @@ import { FaUndo } from 'react-icons/fa/index';
 import { Modal } from '@/components/modal';
 import { Button } from './button';
 
-import { useNoteStore } from '@/stores';
+import { useNoteStore } from '@/stores/note';
 import { useCopy } from '@/hooks/use-copy';
 import { download } from '@/helpers/download';
 

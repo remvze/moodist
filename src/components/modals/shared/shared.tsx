@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { Modal } from '@/components/modal';
 
-import { useSoundStore } from '@/stores';
+import { useSoundStore } from '@/stores/sound';
 import { useSnackbar } from '@/contexts/snackbar';
 import { useCloseListener } from '@/hooks/use-close-listener';
 import { cn } from '@/helpers/styles';

@@ -2,7 +2,7 @@ import { MdNotes } from 'react-icons/md/index';
 
 import { Item } from '../item';
 
-import { useNoteStore } from '@/stores';
+import { useNoteStore } from '@/stores/note';
 
 interface NotepadProps {
   open: () => void;

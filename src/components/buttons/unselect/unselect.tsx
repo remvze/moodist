@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { Tooltip } from '@/components/tooltip';
 
-import { useSoundStore } from '@/stores';
+import { useSoundStore } from '@/stores/sound';
 import { cn } from '@/helpers/styles';
 import { fade, mix, slideX } from '@/lib/motion';
 

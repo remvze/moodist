@@ -1,7 +1,8 @@
 import { useState, type FormEvent } from 'react';
 
 import { cn } from '@/helpers/styles';
-import { useSoundStore, usePresetStore } from '@/stores';
+import { useSoundStore } from '@/stores/sound';
+import { usePresetStore } from '@/stores/preset';
 
 import styles from './new.module.css';
 

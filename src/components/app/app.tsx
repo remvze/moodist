@@ -3,7 +3,7 @@ import { useShallow } from 'zustand/react/shallow';
 import { BiSolidHeart } from 'react-icons/bi/index';
 import { Howler } from 'howler';
 
-import { useSoundStore } from '@/stores';
+import { useSoundStore } from '@/stores/sound';
 
 import { Container } from '@/components/container';
 import { StoreConsumer } from '@/components/store-consumer';

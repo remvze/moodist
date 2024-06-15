@@ -1,6 +1,6 @@
 import { BiShuffle } from 'react-icons/bi/index';
 
-import { useSoundStore } from '@/stores';
+import { useSoundStore } from '@/stores/sound';
 
 import { Item } from '../item';
 
