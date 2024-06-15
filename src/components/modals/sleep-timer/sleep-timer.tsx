@@ -6,6 +6,7 @@ import { dispatch } from '@/lib/event';
 import { useSoundStore } from '@/stores/sound';
 import { cn } from '@/helpers/styles';
 import { FADE_OUT } from '@/constants/events';
+import { useSleepTimerStore } from '@/stores/sleep-timer';
 
 import styles from './sleep-timer.module.css';
 
@@ -15,7 +16,11 @@ interface SleepTimerModalProps {
 }
 
 export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
+  const setActive = useSleepTimerStore(state => state.set);
+
   const [running, setRunning] = useState(false);
+
+  useEffect(() => setActive(running), [running, setActive]);
 
   const [hours, setHours] = useState<string>('0');
   const [minutes, setMinutes] = useState<string>('10');
