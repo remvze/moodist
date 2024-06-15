@@ -6,6 +6,24 @@ import { subscribe } from '@/lib/event';
 import { useSSR } from './use-ssr';
 import { FADE_OUT } from '@/constants/events';
 
+/**
+ * A custom React hook to manage sound playback using Howler.js with additional features.
+ *
+ * This hook initializes a Howl instance for playing sound effects in the browser,
+ * and provides control functions to play, stop, pause, and fade out the sound.
+ * It also handles loading state management and supports event subscription for fade-out effects.
+ *
+ * @param {string} src - The source URL of the sound file.
+ * @param {Object} [options] - Options for sound playback.
+ * @param {boolean} [options.loop=false] - Whether the sound should loop.
+ * @param {number} [options.volume=0.5] - The initial volume of the sound, ranging from 0.0 to 1.0.
+ * @returns {{ play: () => void, stop: () => void, pause: () => void, fadeOut: (duration: number) => void, isLoading: boolean }} An object containing control functions for the sound:
+ *   - play: Function to play the sound.
+ *   - stop: Function to stop the sound.
+ *   - pause: Function to pause the sound.
+ *   - fadeOut: Function to fade out the sound over a given duration.
+ *   - isLoading: A boolean indicating if the sound is currently loading.
+ */
 export function useSound(
   src: string,
   options: { loop?: boolean; volume?: number } = {},
