@@ -6,7 +6,7 @@ interface SleepTimerProps {
   open: () => void;
 }
 
-export function Timer({ open }: SleepTimerProps) {
+export function CountdownTimer({ open }: SleepTimerProps) {
   return (
     <Item
       icon={<MdOutlineTimer />}

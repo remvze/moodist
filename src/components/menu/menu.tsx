@@ -11,7 +11,7 @@ import {
   NotepadItem,
   SourceItem,
   PomodoroItem,
-  TimerItem,
+  CountdownTimerItem,
   PresetsItem,
   ShortcutsItem,
   SleepTimerItem,
@@ -21,7 +21,7 @@ import { ShareLinkModal } from '@/components/modals/share-link';
 import { PresetsModal } from '@/components/modals/presets';
 import { ShortcutsModal } from '@/components/modals/shortcuts';
 import { SleepTimerModal } from '@/components/modals/sleep-timer';
-import { Notepad, Pomodoro, Timer } from '@/components/toolbox';
+import { Notepad, Pomodoro, CountdownTimer } from '@/components/toolbox';
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
 
@@ -36,13 +36,13 @@ export function Menu() {
 
   const initial = useMemo(
     () => ({
+      countdownTimer: false,
       notepad: false,
       pomodoro: false,
       presets: false,
       shareLink: false,
       shortcuts: false,
       sleepTimer: false,
-      timer: false,
     }),
     [],
   );
@@ -68,11 +68,11 @@ export function Menu() {
   useHotkeys('shift+m', () => setIsOpen(prev => !prev));
   useHotkeys('shift+n', () => open('notepad'));
   useHotkeys('shift+p', () => open('pomodoro'));
-  useHotkeys('shift+t', () => open('timer'));
+  useHotkeys('shift+c', () => open('countdownTimer'));
   useHotkeys('shift+alt+p', () => open('presets'));
   useHotkeys('shift+h', () => open('shortcuts'));
   useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
-  useHotkeys('shift+alt+t', () => open('sleepTimer'));
+  useHotkeys('shift+t', () => open('sleepTimer'));
 
   useCloseListener(closeAll);
 
@@ -113,7 +113,7 @@ export function Menu() {
                     <Divider />
                     <NotepadItem open={() => open('notepad')} />
                     <PomodoroItem open={() => open('pomodoro')} />
-                    <TimerItem open={() => open('timer')} />
+                    <CountdownTimerItem open={() => open('countdownTimer')} />
 
                     <Divider />
                     <ShortcutsItem open={() => open('shortcuts')} />
@@ -144,7 +144,10 @@ export function Menu() {
         show={modals.pomodoro}
         onClose={() => close('pomodoro')}
       />
-      <Timer show={modals.timer} onClose={() => close('timer')} />
+      <CountdownTimer
+        show={modals.countdownTimer}
+        onClose={() => close('countdownTimer')}
+      />
       <SleepTimerModal
         show={modals.sleepTimer}
         onClose={() => close('sleepTimer')}

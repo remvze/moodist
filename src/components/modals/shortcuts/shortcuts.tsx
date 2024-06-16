@@ -30,11 +30,11 @@ export function ShortcutsModal({ onClose, show }: ShortcutsModalProps) {
       label: 'Pomodoro Timer',
     },
     {
-      keys: ['Shift', 'T'],
+      keys: ['Shift', 'C'],
       label: 'Countdown Timer',
     },
     {
-      keys: ['Shift', 'Alt', 'T'],
+      keys: ['Shift', 'T'],
       label: 'Sleep Timer',
     },
     {

@@ -5,7 +5,7 @@ interface TimerProps {
   show: boolean;
 }
 
-export function Timer({ onClose, show }: TimerProps) {
+export function CountdownTimer({ onClose, show }: TimerProps) {
   return (
     <Modal show={show} onClose={onClose}>
       <h1>Hello World</h1>

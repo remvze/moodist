@@ -1,3 +1,3 @@
 export { Notepad } from './notepad';
 export { Pomodoro } from './pomodoro';
-export { Timer } from './timer';
+export { CountdownTimer } from './countdown-timer';
