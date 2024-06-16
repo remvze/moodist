@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { AnimatePresence } from 'framer-motion';
 
 import { Timer } from './timer';
 import { Notice } from './notice';
@@ -31,11 +30,9 @@ export function Timers() {
             )}
           </header>
 
-          <AnimatePresence>
-            {timers.map(timer => (
-              <Timer id={timer.id} key={timer.id} />
-            ))}
-          </AnimatePresence>
+          {timers.map(timer => (
+            <Timer id={timer.id} key={timer.id} />
+          ))}
 
           <Notice />
         </div>

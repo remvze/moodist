@@ -5,7 +5,6 @@ import {
   IoRefresh,
   IoTrashOutline,
 } from 'react-icons/io5/index';
-import { motion } from 'framer-motion';
 
 import { ReverseTimer } from './reverse-timer';
 
@@ -139,20 +138,8 @@ export function Timer({ id }: TimerProps) {
     };
   }, [isRunning, tick, id, spent, total, left]);
 
-  const variants = {
-    enter: { opacity: 1 },
-    exit: { opacity: 0 },
-    initial: { opacity: 0 },
-  };
-
   return (
-    <motion.div
-      animate="enter"
-      className={styles.timer}
-      exit="exit"
-      initial="initial"
-      variants={variants}
-    >
+    <div className={styles.timer}>
       <header className={styles.header}>
         <div className={styles.bar}>
           <div
@@ -211,6 +198,6 @@ export function Timer({ id }: TimerProps) {
           <IoTrashOutline />
         </button>
       </footer>
-    </motion.div>
+    </div>
   );
 }
