@@ -12,7 +12,7 @@ interface TimerProps {
 
 export function CountdownTimer({ onClose, show }: TimerProps) {
   return (
-    <Modal show={show} onClose={onClose}>
+    <Modal persist show={show} onClose={onClose}>
       <h2 className={styles.title}>Countdown Timer</h2>
       <Form />
       <Timers />

@@ -14,6 +14,7 @@ interface ModalProps {
   children: React.ReactNode;
   lockBody?: boolean;
   onClose: () => void;
+  persist?: boolean;
   show: boolean;
   wide?: boolean;
 }
@@ -22,6 +23,7 @@ export function Modal({
   children,
   lockBody = true,
   onClose,
+  persist = false,
   show,
   wide,
 }: ModalProps) {
@@ -50,40 +52,49 @@ export function Modal({
     return () => document.removeEventListener('keydown', keyListener);
   }, [onClose, show]);
 
+  const animationProps = persist
+    ? {
+        animate: show ? 'show' : 'hidden',
+      }
+    : {
+        animate: 'show',
+        exit: 'hidden',
+        initial: 'hidden',
+      };
+
+  const content = (
+    <FocusTrap active={show}>
+      <div>
+        <motion.div
+          {...animationProps}
+          className={styles.overlay}
+          variants={variants.overlay}
+          onClick={onClose}
+          onKeyDown={onClose}
+        />
+        <div className={styles.modal}>
+          <motion.div
+            {...animationProps}
+            className={cn(styles.content, wide && styles.wide)}
+            variants={variants.modal}
+          >
+            <button className={styles.close} onClick={onClose}>
+              <IoClose />
+            </button>
+            {children}
+          </motion.div>
+        </div>
+      </div>
+    </FocusTrap>
+  );
+
   return (
     <Portal>
-      <AnimatePresence>
-        {show && (
-          <FocusTrap>
-            <div>
-              <motion.div
-                animate="show"
-                className={styles.overlay}
-                exit="hidden"
-                initial="hidden"
-                variants={variants.overlay}
-                onClick={onClose}
-                onKeyDown={onClose}
-              />
-              <div className={styles.modal}>
-                <motion.div
-                  animate="show"
-                  className={cn(styles.content, wide && styles.wide)}
-                  exit="hidden"
-                  initial="hidden"
-                  variants={variants.modal}
-                >
-                  <button className={styles.close} onClick={onClose}>
-                    <IoClose />
-                  </button>
-
-                  {children}
-                </motion.div>
-              </div>
-            </div>
-          </FocusTrap>
-        )}
-      </AnimatePresence>
+      {persist ? (
+        <div style={{ display: show ? 'block' : 'none' }}>{content}</div>
+      ) : (
+        <AnimatePresence>{show && content}</AnimatePresence>
+      )}
     </Portal>
   );
 }
