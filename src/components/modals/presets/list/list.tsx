@@ -1,4 +1,5 @@
 import { FaPlay, FaRegTrashAlt } from 'react-icons/fa/index';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import styles from './list.module.css';
 
@@ -26,29 +27,37 @@ export function List({ close }: ListProps) {
         <p className={styles.empty}>You don&apos;t have any presets yet.</p>
       )}
 
-      {presets.map(preset => (
-        <div className={styles.preset} key={preset.id}>
-          <input
-            placeholder="Untitled"
-            type="text"
-            value={preset.label}
-            onChange={e => changeName(preset.id, e.target.value)}
-          />
-          <button onClick={() => deletePreset(preset.id)}>
-            <FaRegTrashAlt />
-          </button>
-          <button
-            className={styles.primary}
-            onClick={() => {
-              override(preset.sounds);
-              play();
-              close();
-            }}
+      <AnimatePresence>
+        {presets.map(preset => (
+          <motion.div
+            animate={{ opacity: 1 }}
+            className={styles.preset}
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+            key={preset.id}
           >
-            <FaPlay />
-          </button>
-        </div>
-      ))}
+            <input
+              placeholder="Untitled"
+              type="text"
+              value={preset.label}
+              onChange={e => changeName(preset.id, e.target.value)}
+            />
+            <button onClick={() => deletePreset(preset.id)}>
+              <FaRegTrashAlt />
+            </button>
+            <button
+              className={styles.primary}
+              onClick={() => {
+                override(preset.sounds);
+                play();
+                close();
+              }}
+            >
+              <FaPlay />
+            </button>
+          </motion.div>
+        ))}
+      </AnimatePresence>
     </div>
   );
 }
