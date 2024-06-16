@@ -1,0 +1,27 @@
+.timers {
+  margin-top: 48px;
+
+  & > header {
+    display: flex;
+    column-gap: 12px;
+    align-items: center;
+    margin-bottom: 16px;
+
+    & .title {
+      font-family: var(--font-display);
+      font-size: var(--font-lg);
+      line-height: 1;
+    }
+
+    & .line {
+      flex-grow: 1;
+      height: 0;
+      border-top: 1px dashed var(--color-neutral-200);
+    }
+
+    & .spent {
+      font-size: var(--font-sm);
+      color: var(--color-foreground-subtle);
+    }
+  }
+}

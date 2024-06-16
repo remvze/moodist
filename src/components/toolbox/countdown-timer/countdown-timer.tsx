@@ -1,6 +1,7 @@
 import { Modal } from '@/components/modal';
 
 import { Form } from './form';
+import { Timers } from './timers';
 
 interface TimerProps {
   onClose: () => void;
@@ -10,8 +11,8 @@ interface TimerProps {
 export function CountdownTimer({ onClose, show }: TimerProps) {
   return (
     <Modal show={show} onClose={onClose}>
-      <h1>Hello World</h1>
       <Form />
+      <Timers />
     </Modal>
   );
 }

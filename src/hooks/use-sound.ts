@@ -26,7 +26,8 @@ import { FADE_OUT } from '@/constants/events';
  */
 export function useSound(
   src: string,
-  options: { loop?: boolean; volume?: number } = {},
+  options: { loop?: boolean; preload?: boolean; volume?: number } = {},
+  html5: boolean = false,
 ) {
   const [hasLoaded, setHasLoaded] = useState(false);
   const isLoading = useLoadingStore(state => state.loaders[src]);
@@ -38,17 +39,18 @@ export function useSound(
 
     if (isBrowser) {
       sound = new Howl({
+        html5,
         onload: () => {
           setIsLoading(src, false);
           setHasLoaded(true);
         },
-        preload: false,
+        preload: options.preload ?? false,
         src: src,
       });
     }
 
     return sound;
-  }, [src, isBrowser, setIsLoading]);
+  }, [src, isBrowser, setIsLoading, html5, options.preload]);
 
   useEffect(() => {
     if (sound) {
@@ -60,18 +62,23 @@ export function useSound(
     if (sound) sound.volume(options.volume ?? 0.5);
   }, [sound, options.volume]);
 
-  const play = useCallback(() => {
-    if (sound) {
-      if (!hasLoaded && !isLoading) {
-        setIsLoading(src, true);
-        sound.load();
-      }
+  const play = useCallback(
+    (cb?: () => void) => {
+      if (sound) {
+        if (!hasLoaded && !isLoading) {
+          setIsLoading(src, true);
+          sound.load();
+        }
 
-      if (!sound.playing()) {
-        sound.play();
+        if (!sound.playing()) {
+          sound.play();
+        }
+
+        if (typeof cb === 'function') sound.once('end', cb);
       }
-    }
-  }, [src, setIsLoading, sound, hasLoaded, isLoading]);
+    },
+    [src, setIsLoading, sound, hasLoaded, isLoading],
+  );
 
   const stop = useCallback(() => {
     if (sound) sound.stop();
