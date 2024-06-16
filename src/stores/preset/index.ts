@@ -5,8 +5,8 @@ import { v4 as uuid } from 'uuid';
 
 interface PresetStore {
   addPreset: (label: string, sounds: Record<string, number>) => void;
-  changeName: (index: number, newName: string) => void;
-  deletePreset: (index: number) => void;
+  changeName: (id: string, newName: string) => void;
+  deletePreset: (id: string) => void;
   presets: Array<{
     id: string;
     label: string;
@@ -21,9 +21,9 @@ export const usePresetStore = create<PresetStore>()(
         set({ presets: [{ id: uuid(), label, sounds }, ...get().presets] });
       },
 
-      changeName(index: number, newName: string) {
-        const presets = get().presets.map((preset, i) => {
-          if (i === index) return { ...preset, label: newName };
+      changeName(id: string, newName: string) {
+        const presets = get().presets.map(preset => {
+          if (preset.id === id) return { ...preset, label: newName };
 
           return preset;
         });
@@ -31,8 +31,8 @@ export const usePresetStore = create<PresetStore>()(
         set({ presets });
       },
 
-      deletePreset(index: number) {
-        set({ presets: get().presets.filter((_, i) => index !== i) });
+      deletePreset(id: string) {
+        set({ presets: get().presets.filter(preset => preset.id !== id) });
       },
 
       presets: [],
