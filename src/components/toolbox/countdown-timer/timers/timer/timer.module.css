@@ -93,6 +93,7 @@
       align-items: center;
       justify-content: center;
       width: 38px;
+      min-width: 38px;
       height: 38px;
       color: #f43f5e;
       cursor: pointer;
