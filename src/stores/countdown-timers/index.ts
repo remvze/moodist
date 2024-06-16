@@ -16,7 +16,7 @@ interface State {
 }
 
 interface Actions {
-  add: (timer: { name: string; total: number }) => void;
+  add: (timer: { name: string; total: number }) => string;
   delete: (id: string) => void;
   getTimer: (id: string) => Timer;
   rename: (id: string, newName: string) => void;
@@ -28,10 +28,12 @@ export const useCountdownTimers = create<State & Actions>()(
   persist(
     (set, get) => ({
       add({ name, total }) {
+        const id = uuid();
+
         set(state => ({
           timers: [
             {
-              id: uuid(),
+              id,
               name,
               spent: 0,
               total,
@@ -39,6 +41,8 @@ export const useCountdownTimers = create<State & Actions>()(
             ...state.timers,
           ],
         }));
+
+        return id;
       },
 
       delete(id) {

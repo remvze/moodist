@@ -139,7 +139,7 @@ export function Timer({ id }: TimerProps) {
   }, [isRunning, tick, id, spent, total, left]);
 
   return (
-    <div className={styles.timer}>
+    <div className={styles.timer} id={`timer-${id}`}>
       <header className={styles.header}>
         <div className={styles.bar}>
           <div

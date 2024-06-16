@@ -3,6 +3,7 @@ import { useState, useMemo } from 'react';
 import { Field } from './field';
 
 import { useCountdownTimers } from '@/stores/countdown-timers';
+import { waitUntil } from '@/helpers/wait';
 
 import styles from './form.module.css';
 
@@ -19,17 +20,23 @@ export function Form() {
 
   const add = useCountdownTimers(state => state.add);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (totalSeconds === 0) return;
 
-    add({
+    const id = add({
       name,
       total: totalSeconds,
     });
 
     setName('');
+
+    await waitUntil(() => !!document.getElementById(`timer-${id}`), 50);
+
+    document
+      .getElementById(`timer-${id}`)
+      ?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
