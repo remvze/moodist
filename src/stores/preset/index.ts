@@ -41,25 +41,7 @@ export const usePresetStore = create<PresetStore>()(
       merge: (persisted, current) =>
         merge(current, persisted as Partial<PresetStore>),
 
-      migrate: (persistedState, version) => {
-        const persisted = persistedState as Partial<PresetStore>;
-
-        /**
-         * In version 0, presets didn't have an ID
-         */
-        if (version === 0) {
-          return {
-            ...persisted,
-            presets: (persisted.presets || []).map(preset => {
-              if (preset.id) return preset;
-              return { ...preset, id: uuid() };
-            }),
-          } as PresetStore;
-        }
-
-        return persisted as PresetStore;
-      },
-
+      migrate,
       name: 'moodist-presets',
       partialize: state => ({ presets: state.presets }),
       skipHydration: true,
@@ -68,3 +50,22 @@ export const usePresetStore = create<PresetStore>()(
     },
   ),
 );
+
+function migrate(persistedState: unknown, version: number) {
+  let persisted = persistedState as Partial<PresetStore>;
+
+  /**
+   * In version 0, presets didn't have an ID
+   */
+  if (version < 1) {
+    persisted = {
+      ...persisted,
+      presets: (persisted.presets || []).map(preset => {
+        if (preset.id) return preset;
+        return { ...preset, id: uuid() };
+      }),
+    } as PresetStore;
+  }
+
+  return persisted as PresetStore;
+}
