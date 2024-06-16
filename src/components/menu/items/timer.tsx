@@ -2,12 +2,17 @@ import { MdOutlineTimer } from 'react-icons/md/index';
 
 import { Item } from '../item';
 
-export function CountdownTimer() {
+interface SleepTimerProps {
+  open: () => void;
+}
+
+export function Timer({ open }: SleepTimerProps) {
   return (
     <Item
-      href="https://timesy.app"
       icon={<MdOutlineTimer />}
       label="Countdown Timer"
+      shortcut="Shift + T"
+      onClick={open}
     />
   );
 }

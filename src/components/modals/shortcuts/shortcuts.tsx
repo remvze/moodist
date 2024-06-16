@@ -31,6 +31,10 @@ export function ShortcutsModal({ onClose, show }: ShortcutsModalProps) {
     },
     {
       keys: ['Shift', 'T'],
+      label: 'Countdown Timer',
+    },
+    {
+      keys: ['Shift', 'Alt', 'T'],
       label: 'Sleep Timer',
     },
     {
