@@ -40,6 +40,7 @@
     "react-hotkeys-hook": "3.2.1",
     "react-icons": "4.11.0",
     "react-wrap-balancer": "1.1.0",
+    "uuid": "10.0.0",
     "zustand": "4.4.3"
   },
   "devDependencies": {

@@ -1,12 +1,14 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import merge from 'deepmerge';
+import { v4 as uuid } from 'uuid';
 
 interface PresetStore {
   addPreset: (label: string, sounds: Record<string, number>) => void;
   changeName: (index: number, newName: string) => void;
   deletePreset: (index: number) => void;
   presets: Array<{
+    id: string;
     label: string;
     sounds: Record<string, number>;
   }>;
@@ -16,7 +18,7 @@ export const usePresetStore = create<PresetStore>()(
   persist(
     (set, get) => ({
       addPreset(label: string, sounds: Record<string, number>) {
-        set({ presets: [{ label, sounds }, ...get().presets] });
+        set({ presets: [{ id: uuid(), label, sounds }, ...get().presets] });
       },
 
       changeName(index: number, newName: string) {
@@ -37,16 +39,32 @@ export const usePresetStore = create<PresetStore>()(
     }),
     {
       merge: (persisted, current) =>
-        merge(
-          current,
-          // @ts-ignore
-          persisted,
-        ),
+        merge(current, persisted as Partial<PresetStore>),
+
+      migrate: (persistedState, version) => {
+        const persisted = persistedState as Partial<PresetStore>;
+
+        /**
+         * In version 0, presets didn't have an ID
+         */
+        if (version === 0) {
+          return {
+            ...persisted,
+            presets: (persisted.presets || []).map(preset => {
+              if (preset.id) return preset;
+              return { ...preset, id: uuid() };
+            }),
+          } as PresetStore;
+        }
+
+        return persisted as PresetStore;
+      },
+
       name: 'moodist-presets',
       partialize: state => ({ presets: state.presets }),
       skipHydration: true,
       storage: createJSONStorage(() => localStorage),
-      version: 0,
+      version: 1,
     },
   ),
 );
