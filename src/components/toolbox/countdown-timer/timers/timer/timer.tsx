@@ -5,6 +5,7 @@ import {
   IoRefresh,
   IoTrashOutline,
 } from 'react-icons/io5/index';
+import { motion } from 'framer-motion';
 
 import { ReverseTimer } from './reverse-timer';
 
@@ -29,13 +30,20 @@ export function Timer({ id }: TimerProps) {
 
   const { name, spent, total } = useCountdownTimers(state =>
     state.getTimer(id),
-  );
+  ) || { name: '', spent: 0, total: 0 };
+
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [snapshot, setSnapshot] = useState({ spent: 0, total: 0 });
+
   const tick = useCountdownTimers(state => state.tick);
   const rename = useCountdownTimers(state => state.rename);
   const reset = useCountdownTimers(state => state.reset);
   const deleteTimer = useCountdownTimers(state => state.delete);
 
-  const left = useMemo(() => total - spent, [total, spent]);
+  const left = useMemo(
+    () => (isDeleting ? snapshot.total - snapshot.spent : total - spent),
+    [total, spent, isDeleting, snapshot],
+  );
 
   const hours = useMemo(() => Math.floor(left / 3600), [left]);
   const minutes = useMemo(() => Math.floor((left % 3600) / 60), [left]);
@@ -67,6 +75,9 @@ export function Timer({ id }: TimerProps) {
 
   const handleDelete = () => {
     if (isRunning) return showSnackbar('Please first stop the timer.');
+
+    setIsDeleting(true);
+    setSnapshot({ spent, total });
 
     deleteTimer(id);
   };
@@ -128,8 +139,20 @@ export function Timer({ id }: TimerProps) {
     };
   }, [isRunning, tick, id, spent, total, left]);
 
+  const variants = {
+    enter: { opacity: 1 },
+    exit: { opacity: 0 },
+    initial: { opacity: 0 },
+  };
+
   return (
-    <div className={styles.timer}>
+    <motion.div
+      animate="enter"
+      className={styles.timer}
+      exit="exit"
+      initial="initial"
+      variants={variants}
+    >
       <header className={styles.header}>
         <div className={styles.bar}>
           <div
@@ -188,6 +211,6 @@ export function Timer({ id }: TimerProps) {
           <IoTrashOutline />
         </button>
       </footer>
-    </div>
+    </motion.div>
   );
 }
