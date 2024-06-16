@@ -11,7 +11,7 @@ export function CountdownTimer({ open }: SleepTimerProps) {
     <Item
       icon={<MdOutlineTimer />}
       label="Countdown Timer"
-      shortcut="Shift + T"
+      shortcut="Shift + C"
       onClick={open}
     />
   );
