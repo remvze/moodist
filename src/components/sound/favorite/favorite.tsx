@@ -8,6 +8,7 @@ import { fade } from '@/lib/motion';
 import styles from './favorite.module.css';
 
 import { useKeyboardButton } from '@/hooks/use-keyboard-button';
+import { waitUntil } from '@/helpers/wait';
 
 interface FavoriteProps {
   id: string;
@@ -18,11 +19,25 @@ export function Favorite({ id, label }: FavoriteProps) {
   const isFavorite = useSoundStore(state => state.sounds[id].isFavorite);
   const toggleFavorite = useSoundStore(state => state.toggleFavorite);
 
+  const handleToggle = async () => {
+    toggleFavorite(id);
+
+    // Check if false -> true
+    if (!isFavorite) {
+      await waitUntil(
+        () => !!document.getElementById('category-favorites'),
+        50,
+      );
+
+      document
+        .getElementById('category-favorites')
+        ?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const variants = fade();
 
-  const handleKeyDown = useKeyboardButton(() => {
-    toggleFavorite(id);
-  });
+  const handleKeyDown = useKeyboardButton(handleToggle);
 
   return (
     <AnimatePresence initial={false} mode="wait">
@@ -36,7 +51,7 @@ export function Favorite({ id, label }: FavoriteProps) {
         onKeyDown={handleKeyDown}
         onClick={e => {
           e.stopPropagation();
-          toggleFavorite(id);
+          handleToggle();
         }}
       >
         <motion.span
