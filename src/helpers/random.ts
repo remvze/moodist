@@ -28,7 +28,11 @@ export function randomInt(min: number, max: number): number {
  * @returns {T} A random element from the array.
  */
 export function pick<T>(array: Array<T>): T {
-  const randomIndex = random(0, array.length);
+  if (array.length === 0) {
+    throw new Error("The array shouldn't be empty");
+  }
+
+  const randomIndex = randomInt(0, array.length);
 
   return array[randomIndex];
 }
