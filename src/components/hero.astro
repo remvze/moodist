@@ -13,6 +13,7 @@ const count = soundCount();
     <div class="wrapper">
       <img
         alt="Faded Moodist Logo"
+        aria-hidden="true"
         class="logo"
         height={45}
         src="/logo.svg"
@@ -28,7 +29,7 @@ const count = soundCount();
       <h1 class="desc">Ambient sounds for focus and calm.</h1>
 
       <p class="sounds">
-        <span class="icon">
+        <span aria-hidden="true" class="icon">
           <BsSoundwave />
         </span>
         <span>{count} Sounds</span>

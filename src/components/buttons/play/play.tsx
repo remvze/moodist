@@ -48,14 +48,14 @@ export function PlayButton() {
     >
       {isPlaying ? (
         <>
-          <span>
+          <span aria-hidden="true">
             <BiPause />
           </span>{' '}
           Pause
         </>
       ) : (
         <>
-          <span>
+          <span aria-hidden="true">
             <BiPlay />
           </span>{' '}
           Play
