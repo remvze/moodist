@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "test": "vitest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro",
     "lint:fix": "npm run lint -- --fix",
     "lint:style": "stylelint ./**/*.{css,astro,html}",
@@ -23,14 +24,14 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@astrojs/react": "^3.0.3",
+    "@astrojs/react": "3.6.0",
     "@floating-ui/react": "0.26.0",
     "@radix-ui/react-dropdown-menu": "2.0.6",
     "@radix-ui/react-tooltip": "1.0.7",
     "@types/howler": "2.2.10",
     "@types/react": "^18.2.25",
     "@types/react-dom": "^18.2.10",
-    "astro": "4.0.3",
+    "astro": "4.10.3",
     "deepmerge": "4.3.1",
     "focus-trap-react": "10.2.3",
     "framer-motion": "10.16.4",
@@ -89,6 +90,7 @@
     "stylelint-config-html": "1.1.0",
     "stylelint-config-recess-order": "4.4.0",
     "stylelint-config-standard": "34.0.0",
-    "stylelint-prettier": "4.0.2"
+    "stylelint-prettier": "4.0.2",
+    "vitest": "1.6.0"
   }
 }

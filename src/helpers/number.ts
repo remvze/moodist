@@ -6,5 +6,9 @@
  * @returns {string} The padded number as a string.
  */
 export function padNumber(number: number, maxLength: number = 2): string {
-  return number.toString().padStart(maxLength, '0');
+  const isNegative = number < 0;
+  const absoluteNumber = Math.abs(number).toString();
+  const paddedNumber = absoluteNumber.padStart(maxLength, '0');
+
+  return isNegative ? `-${paddedNumber}` : paddedNumber;
 }
