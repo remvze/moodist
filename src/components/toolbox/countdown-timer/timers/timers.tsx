@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, forwardRef } from 'react';
 
 import { Timer } from './timer';
 import { Notice } from './notice';
@@ -7,7 +7,14 @@ import { useCountdownTimers } from '@/stores/countdown-timers';
 
 import styles from './timers.module.css';
 
-export function Timers() {
+interface TimersProps {
+  enableAnimations: (enabled: boolean) => void;
+}
+
+export const Timers = forwardRef(function Timers(
+  { enableAnimations }: TimersProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
   const timers = useCountdownTimers(state => state.timers);
   const spent = useCountdownTimers(state => state.spent());
   const total = useCountdownTimers(state => state.total());
@@ -30,13 +37,19 @@ export function Timers() {
             )}
           </header>
 
-          {timers.map(timer => (
-            <Timer id={timer.id} key={timer.id} />
-          ))}
+          <div ref={ref}>
+            {timers.map(timer => (
+              <Timer
+                enableAnimations={enableAnimations}
+                id={timer.id}
+                key={timer.id}
+              />
+            ))}
+          </div>
 
           <Notice />
         </div>
       ) : null}
     </div>
   );
-}
+});

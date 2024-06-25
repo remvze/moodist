@@ -7,7 +7,11 @@ import { waitUntil } from '@/helpers/wait';
 
 import styles from './form.module.css';
 
-export function Form() {
+interface FormProps {
+  enableAnimations: (enabled: boolean) => void;
+}
+
+export function Form({ enableAnimations }: FormProps) {
   const [name, setName] = useState('');
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(10);
@@ -25,6 +29,8 @@ export function Form() {
 
     if (totalSeconds === 0) return;
 
+    enableAnimations(false);
+
     const id = add({
       name,
       total: totalSeconds,
@@ -37,6 +43,8 @@ export function Form() {
     document
       .getElementById(`timer-${id}`)
       ?.scrollIntoView({ behavior: 'smooth' });
+
+    enableAnimations(true);
   };
 
   return (

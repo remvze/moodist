@@ -7,6 +7,7 @@ import {
 } from 'react-icons/io5/index';
 
 import { ReverseTimer } from './reverse-timer';
+import { Toolbar } from './toolbar';
 
 import { useCountdownTimers } from '@/stores/countdown-timers';
 import { useAlarm } from '@/hooks/use-alarm';
@@ -17,17 +18,18 @@ import { cn } from '@/helpers/styles';
 import styles from './timer.module.css';
 
 interface TimerProps {
+  enableAnimations: (enabled: boolean) => void;
   id: string;
 }
 
-export function Timer({ id }: TimerProps) {
+export function Timer({ enableAnimations, id }: TimerProps) {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const lastActiveTimeRef = useRef<number | null>(null);
   const lastStateRef = useRef<{ spent: number; total: number } | null>(null);
 
   const [isRunning, setIsRunning] = useState(false);
 
-  const { name, spent, total } = useCountdownTimers(state =>
+  const { first, last, name, spent, total } = useCountdownTimers(state =>
     state.getTimer(id),
   ) || { name: '', spent: 0, total: 0 };
 
@@ -75,10 +77,14 @@ export function Timer({ id }: TimerProps) {
   const handleDelete = () => {
     if (isRunning) return showSnackbar('Please first stop the timer.');
 
+    enableAnimations(false);
+
     setIsDeleting(true);
     setSnapshot({ spent, total });
 
     deleteTimer(id);
+
+    setTimeout(() => enableAnimations(true), 100);
   };
 
   useEffect(() => {
@@ -148,6 +154,8 @@ export function Timer({ id }: TimerProps) {
           />
         </div>
       </header>
+
+      <Toolbar first={first} id={id} last={last} />
 
       <ReverseTimer spent={spent} />
 

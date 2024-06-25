@@ -18,7 +18,9 @@ interface State {
 interface Actions {
   add: (timer: { name: string; total: number }) => string;
   delete: (id: string) => void;
-  getTimer: (id: string) => Timer;
+  getTimer: (id: string) => Timer & { first: boolean; last: boolean };
+  moveDown: (id: string) => void;
+  moveUp: (id: string) => void;
   rename: (id: string, newName: string) => void;
   reset: (id: string) => void;
   tick: (id: string, amount?: number) => void;
@@ -52,7 +54,53 @@ export const useCountdownTimers = create<State & Actions>()(
       },
 
       getTimer(id) {
-        return get().timers.filter(timer => timer.id === id)[0];
+        const timers = get().timers;
+        const timer = timers.filter(timer => timer.id === id)[0];
+        const index = timers.indexOf(timer);
+
+        return {
+          ...timer,
+          first: index === 0,
+          last: index === timers.length - 1,
+        };
+      },
+
+      moveDown(id) {
+        set(state => {
+          const index = state.timers.findIndex(timer => timer.id === id);
+
+          if (index < state.timers.length - 1) {
+            const newTimers = [...state.timers];
+
+            [newTimers[index + 1], newTimers[index]] = [
+              newTimers[index],
+              newTimers[index + 1],
+            ];
+
+            return { timers: newTimers };
+          }
+
+          return state;
+        });
+      },
+
+      moveUp(id) {
+        set(state => {
+          const index = state.timers.findIndex(timer => timer.id === id);
+
+          if (index > 0) {
+            const newTimers = [...state.timers];
+
+            [newTimers[index - 1], newTimers[index]] = [
+              newTimers[index],
+              newTimers[index - 1],
+            ];
+
+            return { timers: newTimers };
+          }
+
+          return state;
+        });
       },
 
       rename(id, newName) {
