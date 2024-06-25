@@ -1,9 +1,0 @@
-.reverseTimer {
-  position: absolute;
-  top: 15px;
-  left: 50%;
-  font-size: var(--font-xsm);
-  color: var(--color-foreground-subtle);
-  letter-spacing: 1px;
-  transform: translate(-50%);
-}

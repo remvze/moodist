@@ -1,12 +1,6 @@
 import { useRef, useMemo, useState, useEffect } from 'react';
-import {
-  IoPlay,
-  IoPause,
-  IoRefresh,
-  IoTrashOutline,
-} from 'react-icons/io5/index';
+import { IoPlay, IoPause, IoRefresh, IoTrashOutline } from 'react-icons/io5';
 
-import { ReverseTimer } from './reverse-timer';
 import { Toolbar } from './toolbar';
 
 import { useCountdownTimers } from '@/stores/countdown-timers';
@@ -31,24 +25,23 @@ export function Timer({ enableAnimations, id }: TimerProps) {
 
   const { first, last, name, spent, total } = useCountdownTimers(state =>
     state.getTimer(id),
-  ) || { name: '', spent: 0, total: 0 };
-
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [snapshot, setSnapshot] = useState({ spent: 0, total: 0 });
-
+  );
   const tick = useCountdownTimers(state => state.tick);
   const rename = useCountdownTimers(state => state.rename);
   const reset = useCountdownTimers(state => state.reset);
   const deleteTimer = useCountdownTimers(state => state.delete);
 
-  const left = useMemo(
-    () => (isDeleting ? snapshot.total - snapshot.spent : total - spent),
-    [total, spent, isDeleting, snapshot],
-  );
+  const left = useMemo(() => total - spent, [total, spent]);
 
   const hours = useMemo(() => Math.floor(left / 3600), [left]);
   const minutes = useMemo(() => Math.floor((left % 3600) / 60), [left]);
   const seconds = useMemo(() => left % 60, [left]);
+
+  const [isReversed, setIsReversed] = useState(false);
+
+  const spentHours = useMemo(() => Math.floor(spent / 3600), [spent]);
+  const spentMinutes = useMemo(() => Math.floor((spent % 3600) / 60), [spent]);
+  const spentSeconds = useMemo(() => spent % 60, [spent]);
 
   const playAlarm = useAlarm();
 
@@ -78,9 +71,6 @@ export function Timer({ enableAnimations, id }: TimerProps) {
     if (isRunning) return showSnackbar('Please first stop the timer.');
 
     enableAnimations(false);
-
-    setIsDeleting(true);
-    setSnapshot({ spent, total });
 
     deleteTimer(id);
 
@@ -157,14 +147,30 @@ export function Timer({ enableAnimations, id }: TimerProps) {
 
       <Toolbar first={first} id={id} last={last} />
 
-      <ReverseTimer spent={spent} />
-
-      <div className={styles.left}>
-        {padNumber(hours)}
-        <span>:</span>
-        {padNumber(minutes)}
-        <span>:</span>
-        {padNumber(seconds)}
+      <div
+        className={styles.left}
+        tabIndex={0}
+        onClick={() => setIsReversed(prev => !prev)}
+        onKeyDown={() => setIsReversed(prev => !prev)}
+      >
+        {!isReversed ? (
+          <>
+            {padNumber(hours)}
+            <span>:</span>
+            {padNumber(minutes)}
+            <span>:</span>
+            {padNumber(seconds)}
+          </>
+        ) : (
+          <>
+            <span>-</span>
+            {padNumber(spentHours)}
+            <span>:</span>
+            {padNumber(spentMinutes)}
+            <span>:</span>
+            {padNumber(spentSeconds)}
+          </>
+        )}
       </div>
 
       <footer className={styles.footer}>

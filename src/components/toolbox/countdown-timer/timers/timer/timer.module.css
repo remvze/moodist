@@ -118,6 +118,7 @@
     font-family: var(--font-mono);
     font-size: var(--font-2xlg);
     font-weight: 700;
+    cursor: pointer;
 
     & span {
       color: var(--color-foreground-subtle);
