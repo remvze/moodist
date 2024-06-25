@@ -1,5 +1,10 @@
 import { useRef, useMemo, useState, useEffect } from 'react';
-import { IoPlay, IoPause, IoRefresh, IoTrashOutline } from 'react-icons/io5';
+import {
+  IoPlay,
+  IoPause,
+  IoRefresh,
+  IoTrashOutline,
+} from 'react-icons/io5/index';
 
 import { Toolbar } from './toolbar';
 
