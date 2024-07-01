@@ -30,6 +30,10 @@ export function ShortcutsModal({ onClose, show }: ShortcutsModalProps) {
       label: 'Pomodoro Timer',
     },
     {
+      keys: ['Shift', 'B'],
+      label: 'Breathing Exercise',
+    },
+    {
       keys: ['Shift', 'C'],
       label: 'Countdown Timer',
     },

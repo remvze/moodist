@@ -76,6 +76,7 @@ export function Menu() {
   useHotkeys('shift+n', () => open('notepad'));
   useHotkeys('shift+p', () => open('pomodoro'));
   useHotkeys('shift+c', () => open('countdownTimer'));
+  useHotkeys('shift+b', () => open('breathingExercise'));
   useHotkeys('shift+alt+p', () => open('presets'));
   useHotkeys('shift+h', () => open('shortcuts'));
   useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });

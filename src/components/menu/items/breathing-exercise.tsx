@@ -1,4 +1,4 @@
-import { MdOutlineTimer } from 'react-icons/md/index';
+import { IoMdFlower } from 'react-icons/io/index';
 
 import { Item } from '../item';
 
@@ -9,7 +9,7 @@ interface BreathingExerciseProps {
 export function BreathingExercise({ open }: BreathingExerciseProps) {
   return (
     <Item
-      icon={<MdOutlineTimer />}
+      icon={<IoMdFlower />}
       label="Breathing Exercise"
       shortcut="Shift + B"
       onClick={open}
