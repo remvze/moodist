@@ -8,3 +8,4 @@ export { Presets as PresetsItem } from './presets';
 export { Shortcuts as ShortcutsItem } from './shortcuts';
 export { SleepTimer as SleepTimerItem } from './sleep-timer';
 export { CountdownTimer as CountdownTimerItem } from './countdown-timer';
+export { BreathingExercise as BreathingExerciseItem } from './breathing-exercise';
