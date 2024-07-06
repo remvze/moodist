@@ -22,12 +22,7 @@ import { ShareLinkModal } from '@/components/modals/share-link';
 import { PresetsModal } from '@/components/modals/presets';
 import { ShortcutsModal } from '@/components/modals/shortcuts';
 import { SleepTimerModal } from '@/components/modals/sleep-timer';
-import {
-  Notepad,
-  Pomodoro,
-  CountdownTimer,
-  BreathingExercise,
-} from '@/components/toolbox';
+import { Notepad, Pomodoro, BreathingExercise } from '@/components/toolbox';
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
 
@@ -43,7 +38,6 @@ export function Menu() {
   const initial = useMemo(
     () => ({
       breathingExercise: false,
-      countdownTimer: false,
       notepad: false,
       pomodoro: false,
       presets: false,
@@ -75,7 +69,6 @@ export function Menu() {
   useHotkeys('shift+m', () => setIsOpen(prev => !prev));
   useHotkeys('shift+n', () => open('notepad'));
   useHotkeys('shift+p', () => open('pomodoro'));
-  useHotkeys('shift+c', () => open('countdownTimer'));
   useHotkeys('shift+b', () => open('breathingExercise'));
   useHotkeys('shift+alt+p', () => open('presets'));
   useHotkeys('shift+h', () => open('shortcuts'));
@@ -124,7 +117,7 @@ export function Menu() {
                     />
                     <PomodoroItem open={() => open('pomodoro')} />
                     <NotepadItem open={() => open('notepad')} />
-                    <CountdownTimerItem open={() => open('countdownTimer')} />
+                    <CountdownTimerItem />
 
                     <Divider />
                     <ShortcutsItem open={() => open('shortcuts')} />
@@ -158,10 +151,6 @@ export function Menu() {
       <BreathingExercise
         show={modals.breathingExercise}
         onClose={() => close('breathingExercise')}
-      />
-      <CountdownTimer
-        show={modals.countdownTimer}
-        onClose={() => close('countdownTimer')}
       />
       <SleepTimerModal
         show={modals.sleepTimer}

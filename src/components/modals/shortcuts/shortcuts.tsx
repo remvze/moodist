@@ -34,10 +34,6 @@ export function ShortcutsModal({ onClose, show }: ShortcutsModalProps) {
       label: 'Breathing Exercise',
     },
     {
-      keys: ['Shift', 'C'],
-      label: 'Countdown Timer',
-    },
-    {
       keys: ['Shift', 'T'],
       label: 'Sleep Timer',
     },
