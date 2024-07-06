@@ -56,6 +56,7 @@ export function Favorite({ id, label }: FavoriteProps) {
       >
         <motion.span
           animate="show"
+          aria-hidden="true"
           exit="hidden"
           initial="hidden"
           key={isFavorite ? `${id}-is-favorite` : `${id}-not-favorite`}

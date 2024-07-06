@@ -97,11 +97,11 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
       <Favorite id={id} label={label} />
       <div className={styles.icon}>
         {isLoading ? (
-          <span className={styles.spinner}>
+          <span aria-hidden="true" className={styles.spinner}>
             <ImSpinner9 />
           </span>
         ) : (
-          icon
+          <span aria-hidden="true">{icon}</span>
         )}
       </div>
       <div className={styles.label} id={id}>

@@ -9,7 +9,7 @@ export function Donate() {
     <div className={styles.donate}>
       <div className={styles.iconContainer}>
         <div className={styles.tail} />
-        <div className={styles.icon}>
+        <div aria-hidden="true" className={styles.icon}>
           <FaCoffee />
         </div>
       </div>
