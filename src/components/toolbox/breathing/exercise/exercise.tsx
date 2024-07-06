@@ -55,16 +55,22 @@ export function Exercise() {
   );
 
   const animationVariants = {
-    exhale: { scale: 1, transition: { duration: durations.exhale } },
+    exhale: {
+      transform: 'translate(-50%, -50%) scale(1)',
+      transition: { duration: durations.exhale },
+    },
     holdExhale: {
-      scale: 1,
+      transform: 'translate(-50%, -50%) scale(1)',
       transition: { duration: durations.holdExhale || 4 },
     },
     holdInhale: {
-      scale: 1.5,
+      transform: 'translate(-50%, -50%) scale(1.5)',
       transition: { duration: durations.holdInhale || 4 },
     },
-    inhale: { scale: 1.5, transition: { duration: durations.inhale } },
+    inhale: {
+      transform: 'translate(-50%, -50%) scale(1.5)',
+      transition: { duration: durations.inhale },
+    },
   };
 
   useEffect(() => {
@@ -97,11 +103,7 @@ export function Exercise() {
           animate={phase}
           className={styles.circle}
           key={selectedExercise}
-          transition={{ ease: 'linear' }}
           variants={animationVariants}
-          transformTemplate={(_, generatedString) =>
-            `translate(-50%, -50%) ${generatedString}`
-          }
         />
         <p className={styles.phase}>{getLabel(phase)}</p>
       </div>
