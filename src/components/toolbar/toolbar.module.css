@@ -3,7 +3,7 @@
   bottom: 20px;
   left: 0;
   z-index: 15;
-  width: 100%;
+  width: 100vw;
 
   .container {
     display: flex;
