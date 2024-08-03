@@ -19,6 +19,8 @@ interface ModalProps {
   wide?: boolean;
 }
 
+const TRANSITION_DURATION = 300;
+
 export function Modal({
   children,
   lockBody = true,
@@ -34,9 +36,12 @@ export function Modal({
 
   useEffect(() => {
     if (show && lockBody) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflowY = 'hidden';
     } else if (lockBody) {
-      document.body.style.overflow = 'auto';
+      // Wait for transition to finish before allowing scrollbar to return
+      setTimeout(() => {
+        document.body.style.overflowY = 'auto';
+      }, TRANSITION_DURATION);
     }
   }, [show, lockBody]);
 
@@ -68,6 +73,7 @@ export function Modal({
         <motion.div
           {...animationProps}
           className={styles.overlay}
+          transition={{ duration: TRANSITION_DURATION / 1000 }}
           variants={variants.overlay}
           onClick={onClose}
           onKeyDown={onClose}
@@ -76,6 +82,7 @@ export function Modal({
           <motion.div
             {...animationProps}
             className={cn(styles.content, wide && styles.wide)}
+            transition={{ duration: TRANSITION_DURATION / 1000 }}
             variants={variants.modal}
           >
             <button className={styles.close} onClick={onClose}>
