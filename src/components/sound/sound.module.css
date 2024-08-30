@@ -47,6 +47,10 @@
     color: var(--color-foreground-subtler);
     transition: 0.2s;
 
+    & span {
+      line-height: 0;
+    }
+
     &::after {
       position: absolute;
       top: 0;
