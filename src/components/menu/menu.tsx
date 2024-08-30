@@ -8,14 +8,10 @@ import {
   ShuffleItem,
   ShareItem,
   DonateItem,
-  NotepadItem,
   SourceItem,
-  PomodoroItem,
-  CountdownTimerItem,
   PresetsItem,
   ShortcutsItem,
   SleepTimerItem,
-  BreathingExerciseItem,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
@@ -103,12 +99,6 @@ export function Menu() {
                     <ShareItem open={() => open('shareLink')} />
                     <ShuffleItem />
                     <SleepTimerItem open={() => open('sleepTimer')} />
-
-                    <Divider />
-                    <BreathingExerciseItem />
-                    <PomodoroItem />
-                    <NotepadItem />
-                    <CountdownTimerItem />
 
                     <Divider />
                     <ShortcutsItem open={() => open('shortcuts')} />

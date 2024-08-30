@@ -22,18 +22,6 @@ export function ShortcutsModal({ onClose, show }: ShortcutsModalProps) {
       label: 'Share Sounds',
     },
     {
-      keys: ['Shift', 'N'],
-      label: 'Notepad',
-    },
-    {
-      keys: ['Shift', 'P'],
-      label: 'Pomodoro Timer',
-    },
-    {
-      keys: ['Shift', 'B'],
-      label: 'Breathing Exercise',
-    },
-    {
       keys: ['Shift', 'T'],
       label: 'Sleep Timer',
     },
