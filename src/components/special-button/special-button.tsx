@@ -6,19 +6,20 @@ interface SpecialButtonProps {
   children: React.ReactNode;
   className?: string;
   href: string;
+  internal?: boolean;
 }
 
 export function SpecialButton({
   children,
   className,
   href,
+  internal,
 }: SpecialButtonProps) {
   return (
     <a
       className={cn(styles.button, className)}
       href={href}
-      rel="noreferrer"
-      target="_blank"
+      {...(!internal ? { rel: 'noreferrer', target: '_blank' } : {})}
     >
       {children}
     </a>

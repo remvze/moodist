@@ -1,5 +1,6 @@
 ---
 import { Container } from '../container';
+import { SpecialButton } from '../special-button';
 
 interface Props {
   text: string;
@@ -12,6 +13,17 @@ const { text } = Astro.props;
   <Container tight>
     <h3 class="title">About This Tool</h3>
     <p class="text">{text}</p>
+
+    <h3 class="title">About Moodist</h3>
+    <p class="text">
+      Immerse yourself in tranquility with Moodist, a simple ambient sound
+      generator. Create the perfect atmosphere for relaxation, focus, or sleep
+      by customizing soothing soundscapes to match your mood.
+    </p>
+
+    <div class="button">
+      <SpecialButton href="/" internal>Use Moodist</SpecialButton>
+    </div>
   </Container>
 </div>
 
@@ -25,10 +37,18 @@ const { text } = Astro.props;
     font-family: var(--font-heading);
     font-size: var(--font-md);
     font-weight: 600;
+
+    &:not(:first-of-type) {
+      margin-top: 40px;
+    }
   }
 
   .text {
     line-height: 1.6;
     color: var(--color-foreground-subtle);
+  }
+
+  .button {
+    margin-top: 24px;
   }
 </style>
