@@ -26,6 +26,10 @@ export function ShortcutsModal({ onClose, show }: ShortcutsModalProps) {
       label: 'Sleep Timer',
     },
     {
+      keys: ['Shift', 'B'],
+      label: 'Breathing Exercise',
+    },
+    {
       keys: ['Shift', 'Space'],
       label: 'Toggle Play',
     },
