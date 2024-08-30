@@ -14,7 +14,9 @@ export function Donate() {
         </div>
       </div>
 
-      <div className={styles.title}>Support Me</div>
+      <div className={styles.title}>
+        <span>Support Me</span>
+      </div>
       <p className={styles.desc}>Help me keep Moodist ad-free.</p>
       <SpecialButton
         className={styles.button}

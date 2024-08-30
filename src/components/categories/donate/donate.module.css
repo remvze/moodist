@@ -20,7 +20,10 @@
       width: 45px;
       height: 45px;
       font-size: var(--font-md);
-      background-color: var(--color-neutral-100);
+      background: linear-gradient(
+        var(--color-neutral-50),
+        var(--color-neutral-100)
+      );
       border: 1px solid var(--color-neutral-300);
       border-radius: 50%;
     }
@@ -31,6 +34,16 @@
     font-size: var(--font-lg);
     font-weight: 600;
     text-align: center;
+
+    & span {
+      background: linear-gradient(
+        135deg,
+        var(--color-foreground),
+        var(--color-foreground-subtle)
+      );
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
   }
 
   & .desc {

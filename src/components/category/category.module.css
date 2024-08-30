@@ -22,7 +22,10 @@
       width: 45px;
       height: 45px;
       font-size: var(--font-md);
-      background-color: var(--color-neutral-100);
+      background: linear-gradient(
+        var(--color-neutral-50),
+        var(--color-neutral-100)
+      );
       border: 1px solid var(--color-neutral-300);
       border-radius: 50%;
     }
