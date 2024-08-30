@@ -1,1 +1,0 @@
-export { BreathingExercises } from './breathing';

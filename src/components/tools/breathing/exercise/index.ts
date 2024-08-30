@@ -1,1 +1,0 @@
-export { Exercise } from './exercise';
