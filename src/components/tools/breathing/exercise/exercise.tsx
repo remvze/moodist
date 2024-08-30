@@ -1,111 +1,96 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
-
 import styles from './exercise.module.css';
 
 type Exercise = 'Box Breathing' | 'Resonant Breathing' | '4-7-8 Breathing';
 type Phase = 'inhale' | 'exhale' | 'holdInhale' | 'holdExhale';
 
+const EXERCISE_PHASES: Record<Exercise, Phase[]> = {
+  '4-7-8 Breathing': ['inhale', 'holdInhale', 'exhale'],
+  'Box Breathing': ['inhale', 'holdInhale', 'exhale', 'holdExhale'],
+  'Resonant Breathing': ['inhale', 'exhale'],
+};
+
+const EXERCISE_DURATIONS: Record<Exercise, Partial<Record<Phase, number>>> = {
+  '4-7-8 Breathing': { exhale: 8, holdInhale: 7, inhale: 4 },
+  'Box Breathing': { exhale: 4, holdExhale: 4, holdInhale: 4, inhale: 4 },
+  'Resonant Breathing': { exhale: 5, inhale: 5 }, // No holdExhale
+};
+
+const PHASE_LABELS: Record<Phase, string> = {
+  exhale: 'Exhale',
+  holdExhale: 'Hold',
+  holdInhale: 'Hold',
+  inhale: 'Inhale',
+};
+
 export function Exercise() {
   const [selectedExercise, setSelectedExercise] =
     useState<Exercise>('4-7-8 Breathing');
+  const [phaseIndex, setPhaseIndex] = useState(0);
 
-  const getAnimationPhases = (
-    exercise: Exercise,
-  ): Array<'inhale' | 'holdInhale' | 'exhale' | 'holdExhale'> => {
-    switch (exercise) {
-      case 'Box Breathing':
-        return ['inhale', 'holdInhale', 'exhale', 'holdExhale'];
-      case 'Resonant Breathing':
-        return ['inhale', 'exhale'];
-      case '4-7-8 Breathing':
-        return ['inhale', 'holdInhale', 'exhale'];
-      default:
-        return ['inhale', 'holdInhale', 'exhale', 'holdExhale'];
-    }
-  };
-
-  const getAnimationDurations = (exercise: Exercise) => {
-    switch (exercise) {
-      case 'Box Breathing':
-        return { exhale: 4, holdExhale: 4, holdInhale: 4, inhale: 4 };
-      case 'Resonant Breathing':
-        return { exhale: 5, inhale: 5 };
-      case '4-7-8 Breathing':
-        return { exhale: 8, holdInhale: 7, inhale: 4 };
-      default:
-        return { exhale: 4, holdExhale: 4, holdInhale: 4, inhale: 4 };
-    }
-  };
-
-  const getLabel = (phase: Phase) => {
-    switch (phase) {
-      case 'inhale':
-        return 'Inhale';
-      case 'exhale':
-        return 'Exhale';
-      default:
-        return 'Hold';
-    }
-  };
-
-  const [phase, setPhase] = useState<Phase>('inhale');
-  const [durations, setDurations] = useState(
-    getAnimationDurations(selectedExercise),
+  const phases = useMemo(
+    () => EXERCISE_PHASES[selectedExercise],
+    [selectedExercise],
+  );
+  const durations = useMemo(
+    () => EXERCISE_DURATIONS[selectedExercise],
+    [selectedExercise],
   );
 
-  const animationVariants = {
-    exhale: {
-      transform: 'translate(-50%, -50%) scale(1)',
-      transition: { duration: durations.exhale },
-    },
-    holdExhale: {
-      transform: 'translate(-50%, -50%) scale(1)',
-      transition: { duration: durations.holdExhale || 4 },
-    },
-    holdInhale: {
-      transform: 'translate(-50%, -50%) scale(1.5)',
-      transition: { duration: durations.holdInhale || 4 },
-    },
-    inhale: {
-      transform: 'translate(-50%, -50%) scale(1.5)',
-      transition: { duration: durations.inhale },
-    },
-  };
+  const currentPhase = phases[phaseIndex];
 
-  useEffect(() => {
-    setDurations(getAnimationDurations(selectedExercise));
-  }, [selectedExercise]);
-
-  useEffect(() => {
-    const phases = getAnimationPhases(selectedExercise);
-
-    let phaseIndex = 0;
-
-    setPhase(phases[phaseIndex]);
-
-    const interval = setInterval(
-      () => {
-        phaseIndex = (phaseIndex + 1) % phases.length;
-
-        setPhase(phases[phaseIndex]);
+  const animationVariants = useMemo(
+    () => ({
+      exhale: {
+        transform: 'translate(-50%, -50%) scale(1)',
+        transition: { duration: durations.exhale },
       },
-      (durations[phases[phaseIndex]] || 4) * 1000,
-    );
+      holdExhale: {
+        transform: 'translate(-50%, -50%) scale(1)',
+        transition: { duration: durations.holdExhale },
+      },
+      holdInhale: {
+        transform: 'translate(-50%, -50%) scale(1.5)',
+        transition: { duration: durations.holdInhale },
+      },
+      inhale: {
+        transform: 'translate(-50%, -50%) scale(1.5)',
+        transition: { duration: durations.inhale },
+      },
+    }),
+    [durations],
+  );
+
+  const resetExercise = useCallback(() => {
+    setPhaseIndex(0);
+  }, []);
+
+  const updatePhase = useCallback(() => {
+    setPhaseIndex(prevIndex => (prevIndex + 1) % phases.length);
+  }, [phases.length]);
+
+  useEffect(() => {
+    resetExercise();
+  }, [selectedExercise, resetExercise]);
+
+  useEffect(() => {
+    const intervalDuration = (durations[currentPhase] || 4) * 1000;
+    const interval = setInterval(updatePhase, intervalDuration);
 
     return () => clearInterval(interval);
-  }, [selectedExercise, durations]);
+  }, [currentPhase, durations, updatePhase]);
 
   return (
     <>
       <div className={styles.exercise}>
         <motion.div
-          animate={phase}
+          animate={currentPhase}
           className={styles.circle}
           key={selectedExercise}
           variants={animationVariants}
         />
-        <p className={styles.phase}>{getLabel(phase)}</p>
+        <p className={styles.phase}>{PHASE_LABELS[currentPhase]}</p>
       </div>
 
       <select
@@ -113,9 +98,11 @@ export function Exercise() {
         value={selectedExercise}
         onChange={e => setSelectedExercise(e.target.value as Exercise)}
       >
-        <option value="Box Breathing">Box Breathing</option>
-        <option value="Resonant Breathing">Resonant Breathing</option>
-        <option value="4-7-8 Breathing">4-7-8 Breathing</option>
+        {Object.keys(EXERCISE_PHASES).map(exercise => (
+          <option key={exercise} value={exercise}>
+            {exercise}
+          </option>
+        ))}
       </select>
     </>
   );
