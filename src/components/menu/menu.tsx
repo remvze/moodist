@@ -22,7 +22,6 @@ import { ShareLinkModal } from '@/components/modals/share-link';
 import { PresetsModal } from '@/components/modals/presets';
 import { ShortcutsModal } from '@/components/modals/shortcuts';
 import { SleepTimerModal } from '@/components/modals/sleep-timer';
-import { Notepad, Pomodoro, BreathingExercise } from '@/components/toolbox';
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
 
@@ -37,9 +36,6 @@ export function Menu() {
 
   const initial = useMemo(
     () => ({
-      breathingExercise: false,
-      notepad: false,
-      pomodoro: false,
       presets: false,
       shareLink: false,
       shortcuts: false,
@@ -67,9 +63,6 @@ export function Menu() {
   );
 
   useHotkeys('shift+m', () => setIsOpen(prev => !prev));
-  useHotkeys('shift+n', () => open('notepad'));
-  useHotkeys('shift+p', () => open('pomodoro'));
-  useHotkeys('shift+b', () => open('breathingExercise'));
   useHotkeys('shift+alt+p', () => open('presets'));
   useHotkeys('shift+h', () => open('shortcuts'));
   useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
@@ -112,11 +105,9 @@ export function Menu() {
                     <SleepTimerItem open={() => open('sleepTimer')} />
 
                     <Divider />
-                    <BreathingExerciseItem
-                      open={() => open('breathingExercise')}
-                    />
-                    <PomodoroItem open={() => open('pomodoro')} />
-                    <NotepadItem open={() => open('notepad')} />
+                    <BreathingExerciseItem />
+                    <PomodoroItem />
+                    <NotepadItem />
                     <CountdownTimerItem />
 
                     <Divider />
@@ -142,16 +133,6 @@ export function Menu() {
         onClose={() => close('shortcuts')}
       />
       <PresetsModal show={modals.presets} onClose={() => close('presets')} />
-      <Notepad show={modals.notepad} onClose={() => close('notepad')} />
-      <Pomodoro
-        open={() => open('pomodoro')}
-        show={modals.pomodoro}
-        onClose={() => close('pomodoro')}
-      />
-      <BreathingExercise
-        show={modals.breathingExercise}
-        onClose={() => close('breathingExercise')}
-      />
       <SleepTimerModal
         show={modals.sleepTimer}
         onClose={() => close('sleepTimer')}

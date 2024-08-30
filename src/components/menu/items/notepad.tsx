@@ -4,20 +4,15 @@ import { Item } from '../item';
 
 import { useNoteStore } from '@/stores/note';
 
-interface NotepadProps {
-  open: () => void;
-}
-
-export function Notepad({ open }: NotepadProps) {
+export function Notepad() {
   const note = useNoteStore(state => state.note);
 
   return (
     <Item
       active={!!note.length}
+      href="/tools/notepad"
       icon={<MdNotes />}
       label="Notepad"
-      shortcut="Shift + N"
-      onClick={open}
     />
   );
 }
