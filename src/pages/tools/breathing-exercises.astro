@@ -1,0 +1,19 @@
+---
+import Layout from '@/layouts/layout.astro';
+
+import Donate from '@/components/donate.astro';
+import Hero from '@/components/tools/hero.astro';
+import Footer from '@/components/footer.astro';
+import About from '@/components/tools/about.astro';
+import { Breathing } from '@/components/tools/breathing';
+---
+
+<Layout title="Breathing Exercises Tool — Moodist">
+  <Donate />
+  <Hero desc="Simple breathing exercises." title="Breathing Exercises" />
+  <Breathing client:load />
+  <About
+    text="Experience calm and focus with our simple breathing exercise tool. Designed to guide your breath, it helps reduce stress, enhance relaxation, and improve mindfulness in just a few minutes a day."
+  />
+  <Footer />
+</Layout>

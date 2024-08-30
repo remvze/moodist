@@ -1,0 +1,47 @@
+.exercise {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 75px 0;
+  margin-top: 12px;
+  background-color: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 8px;
+
+  & .phase {
+    font-family: var(--font-display);
+    font-size: var(--font-lg);
+    font-weight: 600;
+  }
+
+  & .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    height: 55%;
+    aspect-ratio: 1 / 1;
+    background-image: radial-gradient(
+      var(--color-neutral-50),
+      var(--color-neutral-100)
+    );
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.selectBox {
+  width: 100%;
+  min-width: 0;
+  height: 45px;
+  padding: 0 12px;
+  margin-top: 8px;
+  font-size: var(--font-sm);
+  color: var(--color-foreground);
+  background-color: var(--color-neutral-100);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 8px;
+}
