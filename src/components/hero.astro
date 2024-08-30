@@ -20,12 +20,7 @@ const count = soundCount();
         width={45}
       />
 
-      <div class="title">
-        <div class="left"></div>
-        <h2>Moodist</h2>
-        <div class="right"></div>
-      </div>
-
+      <h2 class="title"><span>Moodist</span></h2>
       <h1 class="desc">Ambient sounds for focus and calm.</h1>
 
       <p class="sounds">
@@ -50,48 +45,32 @@ const count = soundCount();
     & .logo {
       display: block;
       width: 45px;
-      margin: 0 auto 12px;
+      margin: 0 auto 16px;
+      animation-name: logo;
+      animation-duration: 30s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
     }
 
     & .title {
-      display: flex;
-      column-gap: 15px;
-      align-items: center;
+      font-family: var(--font-display);
+      font-size: var(--font-2xlg);
+      font-weight: 600;
+      line-height: 1;
 
-      & div {
-        flex-grow: 1;
-        height: 1px;
-
-        &.left {
-          background: linear-gradient(
-            90deg,
-            transparent,
-            transparent,
-            var(--color-neutral-200),
-            var(--color-neutral-300)
-          );
-        }
-
-        &.right {
-          background: linear-gradient(
-            90deg,
-            var(--color-neutral-300),
-            var(--color-neutral-200),
-            transparent,
-            transparent
-          );
-        }
-      }
-
-      & h2 {
-        font-family: var(--font-display);
-        font-size: var(--font-2xlg);
-        font-weight: 600;
+      & span {
+        background: linear-gradient(
+          135deg,
+          var(--color-foreground),
+          var(--color-foreground-subtle)
+        );
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
     }
 
     & .desc {
-      margin-top: 5px;
+      margin-top: 4px;
       line-height: 1.6;
       color: var(--color-foreground-subtle);
     }
@@ -138,6 +117,16 @@ const count = soundCount();
         );
         transform: translateX(-50%);
       }
+    }
+  }
+
+  @keyframes logo {
+    0% {
+      transform: rotate(0);
+    }
+
+    100% {
+      transform: rotate(360deg);
     }
   }
 </style>
