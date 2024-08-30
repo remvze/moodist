@@ -9,4 +9,8 @@
   background-color: var(--color-neutral-50);
   border: 1px solid var(--color-neutral-200);
   border-radius: 8px;
+
+  &.tall {
+    padding: 60px 0;
+  }
 }

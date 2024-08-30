@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import { FaUndo, FaPlay, FaPause } from 'react-icons/fa/index';
 import { IoMdSettings } from 'react-icons/io/index';
 
-import { Modal } from '@/components/modal';
 import { Button } from '../generics/button';
 import { Timer } from '@/components/timer';
 import { Tabs } from './tabs';
@@ -14,14 +13,9 @@ import { usePomodoroStore } from '@/stores/pomodoro';
 import { useCloseListener } from '@/hooks/use-close-listener';
 
 import styles from './pomodoro.module.css';
+import { Container } from '@/components/container';
 
-interface PomodoroProps {
-  onClose: () => void;
-  open: () => void;
-  show: boolean;
-}
-
-export function Pomodoro({ onClose, open, show }: PomodoroProps) {
+export function Pomodoro() {
   const [showSetting, setShowSetting] = useState(false);
 
   const [selectedTab, setSelectedTab] = useState('pomodoro');
@@ -120,46 +114,43 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
   };
 
   return (
-    <>
-      <Modal show={show} onClose={onClose}>
-        <header className={styles.header}>
-          <h2 className={styles.title}>Pomodoro Timer</h2>
+    <Container tight>
+      <header className={styles.header}>
+        <h2 className={styles.title}>Pomodoro Timer</h2>
 
-          <div className={styles.button}>
-            <Button
-              icon={<IoMdSettings />}
-              tooltip="Change Times"
-              onClick={() => {
-                onClose();
-                setShowSetting(true);
-              }}
-            />
-          </div>
-        </header>
-
-        <Tabs selectedTab={selectedTab} tabs={tabs} onSelect={setSelectedTab} />
-        <Timer timer={timer} />
-
-        <div className={styles.control}>
-          <p className={styles.completed}>
-            {completions[selectedTab] || 0} completed
-          </p>
-          <div className={styles.buttons}>
-            <Button
-              icon={<FaUndo />}
-              smallIcon
-              tooltip="Restart"
-              onClick={restart}
-            />
-            <Button
-              icon={running ? <FaPause /> : <FaPlay />}
-              smallIcon
-              tooltip={running ? 'Pause' : 'Start'}
-              onClick={toggleRunning}
-            />
-          </div>
+        <div className={styles.button}>
+          <Button
+            icon={<IoMdSettings />}
+            tooltip="Change Times"
+            onClick={() => {
+              setShowSetting(true);
+            }}
+          />
         </div>
-      </Modal>
+      </header>
+
+      <Tabs selectedTab={selectedTab} tabs={tabs} onSelect={setSelectedTab} />
+      <Timer tall timer={timer} />
+
+      <div className={styles.control}>
+        <p className={styles.completed}>
+          {completions[selectedTab] || 0} completed
+        </p>
+        <div className={styles.buttons}>
+          <Button
+            icon={<FaUndo />}
+            smallIcon
+            tooltip="Restart"
+            onClick={restart}
+          />
+          <Button
+            icon={running ? <FaPause /> : <FaPlay />}
+            smallIcon
+            tooltip={running ? 'Pause' : 'Start'}
+            onClick={toggleRunning}
+          />
+        </div>
+      </div>
 
       <Setting
         show={showSetting}
@@ -167,13 +158,11 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
         onChange={times => {
           setShowSetting(false);
           setTimes(times);
-          open();
         }}
         onClose={() => {
           setShowSetting(false);
-          open();
         }}
       />
-    </>
+    </Container>
   );
 }

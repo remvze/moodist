@@ -1,0 +1,21 @@
+---
+import Layout from '@/layouts/layout.astro';
+
+import Donate from '@/components/donate.astro';
+import Hero from '@/components/tools/hero.astro';
+import { Pomodoro as PomodoroTimer } from '@/components/tools/pomodoro';
+import Footer from '@/components/footer.astro';
+import About from '@/components/tools/about.astro';
+import Source from '@/components/source.astro';
+---
+
+<Layout title="Pomodoro Timer — Moodist">
+  <Donate />
+  <Hero desc="Super simple Pomodoro timer." title="Pomodoro Timer" />
+  <PomodoroTimer client:load />
+  <About
+    text="Boost your productivity with our simple Pomodoro timer. Designed to help you stay focused, it breaks your work into manageable intervals with regular breaks, making it easier to stay on track and avoid burnout."
+  />
+  <Source />
+  <Footer />
+</Layout>

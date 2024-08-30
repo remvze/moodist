@@ -1,13 +1,15 @@
 import { padNumber } from '@/helpers/number';
+import { cn } from '@/helpers/styles';
 
 import styles from './timer.module.css';
 
 interface TimerProps {
   displayHours?: boolean;
+  tall?: boolean;
   timer: number;
 }
 
-export function Timer({ displayHours = false, timer }: TimerProps) {
+export function Timer({ displayHours = false, tall, timer }: TimerProps) {
   let hours = Math.floor(timer / 3600);
   let minutes = Math.floor((timer % 3600) / 60);
   let seconds = timer % 60;
@@ -21,7 +23,7 @@ export function Timer({ displayHours = false, timer }: TimerProps) {
   const formattedSeconds = padNumber(seconds);
 
   return (
-    <div className={styles.timer}>
+    <div className={cn(styles.timer, tall && styles.tall)}>
       {displayHours ? (
         <>
           {formattedHours}:{formattedMinutes}:{formattedSeconds}
