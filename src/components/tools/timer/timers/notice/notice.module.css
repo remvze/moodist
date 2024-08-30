@@ -1,0 +1,10 @@
+.notice {
+  padding: 16px;
+  margin-top: 16px;
+  font-size: var(--font-sm);
+  line-height: 1.65;
+  color: var(--color-foreground-subtle);
+  text-align: center;
+  border: 1px dashed var(--color-neutral-200);
+  border-radius: 8px;
+}

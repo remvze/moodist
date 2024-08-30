@@ -1,0 +1,27 @@
+.field {
+  flex-grow: 1;
+
+  & .label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: var(--font-sm);
+    font-weight: 500;
+
+    & .optional {
+      font-weight: 400;
+      color: var(--color-foreground-subtle);
+    }
+  }
+
+  & .input {
+    width: 100%;
+    min-width: 0;
+    height: 40px;
+    padding: 0 16px;
+    color: var(--color-foreground);
+    background-color: var(--color-neutral-100);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 8px;
+    outline: none;
+  }
+}
