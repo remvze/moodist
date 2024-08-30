@@ -18,7 +18,7 @@
   justify-content: space-between;
 
   & .label {
-    font-weight: 500;
+    font-size: var(--font-sm);
     color: var(--color-foreground-subtle);
   }
 

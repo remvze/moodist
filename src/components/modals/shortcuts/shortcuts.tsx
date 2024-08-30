@@ -14,7 +14,7 @@ export function ShortcutsModal({ onClose, show }: ShortcutsModalProps) {
       label: 'Shortcuts List',
     },
     {
-      keys: ['Shift', 'Alt', 'P'],
+      keys: ['Shift', 'P'],
       label: 'Presets',
     },
     {

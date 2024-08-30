@@ -59,7 +59,7 @@ export function Menu() {
   );
 
   useHotkeys('shift+m', () => setIsOpen(prev => !prev));
-  useHotkeys('shift+alt+p', () => open('presets'));
+  useHotkeys('shift+p', () => open('presets'));
   useHotkeys('shift+h', () => open('shortcuts'));
   useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
   useHotkeys('shift+t', () => open('sleepTimer'));
