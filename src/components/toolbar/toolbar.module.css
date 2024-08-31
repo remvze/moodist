@@ -4,6 +4,7 @@
   left: 0;
   z-index: 15;
   width: 100vw;
+  pointer-events: none;
 
   .container {
     display: flex;
