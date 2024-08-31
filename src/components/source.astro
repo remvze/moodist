@@ -3,6 +3,10 @@ import { FaGithub } from 'react-icons/fa/index';
 
 import { SpecialButton } from './special-button';
 import { Container } from './container';
+
+import { generateRandomBinaryString } from '@/helpers/binary';
+
+const binary = generateRandomBinaryString(1000);
 ---
 
 <div class="source">
@@ -15,7 +19,7 @@ import { Container } from './container';
         </div>
       </div>
 
-      <h2 class="title">Open Source</h2>
+      <h2 class="title"><span>Open Source</span></h2>
       <p class="desc">Moodist is free and open-source!</p>
 
       <div class="button">
@@ -23,6 +27,8 @@ import { Container } from './container';
           Source Code
         </SpecialButton>
       </div>
+
+      <div class="binary">{binary}</div>
     </div>
   </Container>
 </div>
@@ -34,8 +40,26 @@ import { Container } from './container';
     & .wrapper {
       position: relative;
       padding: 0 20px 40px;
+      overflow: hidden;
       background: linear-gradient(transparent, rgb(24 24 27 / 70%));
       border-radius: 0 0 20px 20px;
+
+      & .binary {
+        position: absolute;
+        bottom: -2.1rem;
+        left: 50%;
+        width: calc(100% + 10px);
+        height: 200px;
+        overflow: hidden;
+        font-family: 'Nimbus Mono PS', 'Courier New', monospace;
+        color: var(--color-foreground-subtler);
+        word-break: break-all;
+        cursor: default;
+        user-select: none;
+        opacity: 0.35;
+        mask-image: linear-gradient(transparent, #000);
+        transform: translateX(-50%);
+      }
 
       &::after {
         position: absolute;
@@ -87,6 +111,16 @@ import { Container } from './container';
       font-size: var(--font-lg);
       font-weight: 600;
       text-align: center;
+
+      & span {
+        background: linear-gradient(
+          135deg,
+          var(--color-foreground),
+          var(--color-foreground-subtle)
+        );
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
     }
 
     & .desc {
