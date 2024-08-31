@@ -31,11 +31,11 @@ export function ShortcutsModal({ onClose, show }: ShortcutsModalProps) {
     },
     {
       keys: ['Shift', 'N'],
-      label: 'Notepad',
+      label: 'Simple Notepad',
     },
     {
       keys: ['Shift', 'P'],
-      label: 'Pomodoro',
+      label: 'Pomodoro Timer',
     },
     {
       keys: ['Shift', 'T'],
