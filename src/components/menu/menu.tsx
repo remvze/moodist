@@ -12,12 +12,14 @@ import {
   PresetsItem,
   ShortcutsItem,
   SleepTimerItem,
+  LofiItem,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
 import { PresetsModal } from '@/components/modals/presets';
 import { ShortcutsModal } from '@/components/modals/shortcuts';
 import { SleepTimerModal } from '@/components/modals/sleep-timer';
+import { LofiModal } from '../modals/lofi';
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
 
@@ -32,6 +34,7 @@ export function Menu() {
 
   const initial = useMemo(
     () => ({
+      lofi: false,
       presets: false,
       shareLink: false,
       shortcuts: false,
@@ -63,6 +66,7 @@ export function Menu() {
   useHotkeys('shift+h', () => open('shortcuts'));
   useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
   useHotkeys('shift+t', () => open('sleepTimer'));
+  useHotkeys('shift+l', () => open('lofi'));
 
   useCloseListener(closeAll);
 
@@ -99,6 +103,7 @@ export function Menu() {
                     <ShareItem open={() => open('shareLink')} />
                     <ShuffleItem />
                     <SleepTimerItem open={() => open('sleepTimer')} />
+                    <LofiItem open={() => open('lofi')} />
 
                     <Divider />
                     <ShortcutsItem open={() => open('shortcuts')} />
@@ -122,6 +127,7 @@ export function Menu() {
         show={modals.shortcuts}
         onClose={() => close('shortcuts')}
       />
+      <LofiModal show={modals.lofi} onClose={() => close('lofi')} />
       <PresetsModal show={modals.presets} onClose={() => close('presets')} />
       <SleepTimerModal
         show={modals.sleepTimer}
