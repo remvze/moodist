@@ -1,1 +1,0 @@
-export { BreathingExerciseModal } from './breathing';

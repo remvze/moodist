@@ -12,14 +12,12 @@ import {
   PresetsItem,
   ShortcutsItem,
   SleepTimerItem,
-  BreathingExerciseItem,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
 import { PresetsModal } from '@/components/modals/presets';
 import { ShortcutsModal } from '@/components/modals/shortcuts';
 import { SleepTimerModal } from '@/components/modals/sleep-timer';
-import { BreathingExerciseModal } from '../modals/breathing';
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
 
@@ -34,7 +32,6 @@ export function Menu() {
 
   const initial = useMemo(
     () => ({
-      breathing: false,
       presets: false,
       shareLink: false,
       shortcuts: false,
@@ -64,7 +61,6 @@ export function Menu() {
   useHotkeys('shift+m', () => setIsOpen(prev => !prev));
   useHotkeys('shift+p', () => open('presets'));
   useHotkeys('shift+h', () => open('shortcuts'));
-  useHotkeys('shift+b', () => open('breathing'));
   useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
   useHotkeys('shift+t', () => open('sleepTimer'));
 
@@ -103,7 +99,6 @@ export function Menu() {
                     <ShareItem open={() => open('shareLink')} />
                     <ShuffleItem />
                     <SleepTimerItem open={() => open('sleepTimer')} />
-                    <BreathingExerciseItem open={() => open('breathing')} />
 
                     <Divider />
                     <ShortcutsItem open={() => open('shortcuts')} />
@@ -122,10 +117,6 @@ export function Menu() {
       <ShareLinkModal
         show={modals.shareLink}
         onClose={() => close('shareLink')}
-      />
-      <BreathingExerciseModal
-        show={modals.breathing}
-        onClose={() => close('breathing')}
       />
       <ShortcutsModal
         show={modals.shortcuts}
