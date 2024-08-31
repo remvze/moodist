@@ -17,6 +17,7 @@ interface SleepTimerModalProps {
 
 export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
   const setActive = useSleepTimerStore(state => state.set);
+  const noSelected = useSoundStore(state => state.noSelected());
 
   const [running, setRunning] = useState(false);
 
@@ -47,6 +48,7 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
 
   const handleStart = () => {
     if (timerId.current) clearInterval(timerId.current);
+    if (noSelected) return;
     if (!isPlaying) play();
 
     if (totalSeconds > 0) {
