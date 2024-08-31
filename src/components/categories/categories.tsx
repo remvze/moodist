@@ -1,6 +1,6 @@
 import { AnimatePresence } from 'framer-motion';
 
-import { Category } from '@/components/category';
+import { Category } from './category';
 import { Donate } from './donate';
 
 import type { Categories } from '@/data/types';

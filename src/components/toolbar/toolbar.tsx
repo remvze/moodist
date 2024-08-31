@@ -1,6 +1,6 @@
 import { Container } from '@/components/container';
-import { Menu } from '@/components/menu';
-import { ScrollToTop } from '@/components/scroll-to-top';
+import { Menu } from './menu';
+import { ScrollToTop } from './scroll-to-top';
 
 import styles from './toolbar.module.css';
 
