@@ -26,6 +26,7 @@ export function LofiModal({ onClose, show }: LofiModalProps) {
     <Modal persist show={show} onClose={onClose}>
       <h2 className={styles.title}>Lofi Radios</h2>
       <p className={styles.desc}>A curated list of Lofi radios.</p>
+      <p className={styles.notice}>Works best on desktop.</p>
 
       <div className={styles.radios}>
         {radios.map((radio, index) => (

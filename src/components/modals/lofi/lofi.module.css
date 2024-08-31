@@ -9,6 +9,12 @@
   color: var(--color-foreground-subtle);
 }
 
+.notice {
+  margin-top: 4px;
+  font-size: var(--font-sm);
+  color: var(--color-foreground-subtler);
+}
+
 .radios {
   margin-top: 28px;
 
