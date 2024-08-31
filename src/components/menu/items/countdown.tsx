@@ -8,6 +8,11 @@ interface CountdownProps {
 
 export function Countdown({ open }: CountdownProps) {
   return (
-    <Item icon={<MdOutlineTimer />} label="Countdown Timer" onClick={open} />
+    <Item
+      icon={<MdOutlineTimer />}
+      label="Countdown Timer"
+      shortcut="Shift + C"
+      onClick={open}
+    />
   );
 }
