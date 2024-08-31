@@ -1,5 +1,8 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
+
+import { padNumber } from '@/helpers/number';
+
 import styles from './exercise.module.css';
 
 type Exercise = 'Box Breathing' | 'Resonant Breathing' | '4-7-8 Breathing';
@@ -81,9 +84,21 @@ export function Exercise() {
     return () => clearInterval(interval);
   }, [currentPhase, durations, updatePhase]);
 
+  const [timer, setTimer] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => setTimer(prev => prev + 1), 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       <div className={styles.exercise}>
+        <div className={styles.timer}>
+          {padNumber(Math.floor(timer / 60))}:{padNumber(timer % 60)}
+        </div>
+
         <motion.div
           animate={currentPhase}
           className={styles.circle}

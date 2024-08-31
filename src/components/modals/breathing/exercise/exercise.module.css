@@ -10,6 +10,21 @@
   border: 1px solid var(--color-neutral-200);
   border-radius: 8px;
 
+  & .timer {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    padding: 4px 12px;
+    font-size: var(--font-xsm);
+    color: var(--color-foreground-subtle);
+    background: linear-gradient(
+      var(--color-neutral-100),
+      var(--color-neutral-50)
+    );
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 4px;
+  }
+
   & .phase {
     font-family: var(--font-display);
     font-size: var(--font-lg);
