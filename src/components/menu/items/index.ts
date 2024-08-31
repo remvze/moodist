@@ -6,3 +6,5 @@ export { Presets as PresetsItem } from './presets';
 export { Shortcuts as ShortcutsItem } from './shortcuts';
 export { SleepTimer as SleepTimerItem } from './sleep-timer';
 export { BreathingExercise as BreathingExerciseItem } from './breathing-exercise';
+export { Pomodoro as PomodoroItem } from './pomodoro';
+export { Notepad as NotepadItem } from './notepad';

@@ -13,6 +13,8 @@ import {
   ShortcutsItem,
   SleepTimerItem,
   BreathingExerciseItem,
+  PomodoroItem,
+  NotepadItem,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
@@ -20,6 +22,7 @@ import { PresetsModal } from '@/components/modals/presets';
 import { ShortcutsModal } from '@/components/modals/shortcuts';
 import { SleepTimerModal } from '@/components/modals/sleep-timer';
 import { BreathingExerciseModal } from '../modals/breathing';
+import { Pomodoro, Notepad } from '../toolbox';
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
 
@@ -35,6 +38,8 @@ export function Menu() {
   const initial = useMemo(
     () => ({
       breathing: false,
+      notepad: false,
+      pomodoro: false,
       presets: false,
       shareLink: false,
       shortcuts: false,
@@ -103,7 +108,11 @@ export function Menu() {
                     <ShareItem open={() => open('shareLink')} />
                     <ShuffleItem />
                     <SleepTimerItem open={() => open('sleepTimer')} />
+
+                    <Divider />
                     <BreathingExerciseItem open={() => open('breathing')} />
+                    <PomodoroItem open={() => open('pomodoro')} />
+                    <NotepadItem open={() => open('notepad')} />
 
                     <Divider />
                     <ShortcutsItem open={() => open('shortcuts')} />
@@ -131,6 +140,12 @@ export function Menu() {
         show={modals.shortcuts}
         onClose={() => close('shortcuts')}
       />
+      <Pomodoro
+        open={() => open('pomodoro')}
+        show={modals.pomodoro}
+        onClose={() => close('pomodoro')}
+      />
+      <Notepad show={modals.notepad} onClose={() => close('notepad')} />
       <PresetsModal show={modals.presets} onClose={() => close('presets')} />
       <SleepTimerModal
         show={modals.sleepTimer}
