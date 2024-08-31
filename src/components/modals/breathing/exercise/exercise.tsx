@@ -1,7 +1,8 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import { padNumber } from '@/helpers/number';
+import { fade } from '@/lib/motion';
 
 import styles from './exercise.module.css';
 
@@ -92,6 +93,8 @@ export function Exercise() {
     return () => clearInterval(interval);
   }, []);
 
+  const variants = fade();
+
   return (
     <>
       <div className={styles.exercise}>
@@ -105,7 +108,19 @@ export function Exercise() {
           key={selectedExercise}
           variants={animationVariants}
         />
-        <p className={styles.phase}>{PHASE_LABELS[currentPhase]}</p>
+
+        <AnimatePresence initial={false} mode="wait">
+          <motion.p
+            animate="show"
+            className={styles.phase}
+            exit="hidden"
+            initial="hidden"
+            key={PHASE_LABELS[currentPhase]}
+            variants={variants}
+          >
+            {PHASE_LABELS[currentPhase]}
+          </motion.p>
+        </AnimatePresence>
       </div>
 
       <div className={styles.selectWrapper}>
