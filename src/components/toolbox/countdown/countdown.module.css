@@ -1,0 +1,128 @@
+.header {
+  margin-bottom: 16px;
+
+  & .title {
+    margin-bottom: 8px;
+    font-family: var(--font-heading);
+    font-size: var(--font-md);
+    font-weight: 600;
+  }
+
+  & .desc {
+    color: var(--color-foreground-subtle);
+  }
+}
+
+.formContainer {
+  & .inputContainer {
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
+
+    & .input {
+      display: block;
+      flex-grow: 1;
+      min-width: 0;
+      height: 45px;
+      padding: 0 8px;
+      color: var(--color-foreground);
+      background-color: var(--color-neutral-50);
+      border: 1px solid var(--color-neutral-200);
+      border-radius: 8px;
+    }
+
+    & span {
+      display: block;
+    }
+  }
+}
+
+.displayTime {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  background-color: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 8px;
+
+  &::before {
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    width: 80%;
+    height: 1px;
+    content: '';
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-neutral-300),
+      transparent
+    );
+    transform: translateX(-50%);
+  }
+
+  & span {
+    font-size: var(--font-xlg);
+    font-weight: 600;
+  }
+
+  & .reverse {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    padding: 4px 12px;
+    font-size: var(--font-xsm);
+    color: var(--color-foreground-subtle);
+    background: linear-gradient(
+      var(--color-neutral-100),
+      var(--color-neutral-50)
+    );
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 4px;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 12px;
+
+  & .button {
+    padding: 12px 16px;
+    font-family: var(--font-heading);
+    font-size: var(--font-sm);
+    font-weight: 600;
+    color: var(--color-foreground-subtle);
+    cursor: pointer;
+    background-color: var(--color-neutral-200);
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    transition: 0.2s;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-neutral-400);
+      outline-offset: 2px;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-foreground);
+      background-color: var(--color-neutral-300);
+    }
+
+    &.primary {
+      color: var(--color-neutral-200);
+      background-color: var(--color-neutral-950);
+
+      &:hover,
+      &:focus-visible {
+        background-color: var(--color-neutral-800);
+      }
+    }
+  }
+}

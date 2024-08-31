@@ -16,6 +16,7 @@ import {
   PomodoroItem,
   NotepadItem,
   TodoItem,
+  CountdownItem,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
@@ -23,7 +24,7 @@ import { PresetsModal } from '@/components/modals/presets';
 import { ShortcutsModal } from '@/components/modals/shortcuts';
 import { SleepTimerModal } from '@/components/modals/sleep-timer';
 import { BreathingExerciseModal } from '../modals/breathing';
-import { Pomodoro, Notepad, Todo } from '../toolbox';
+import { Pomodoro, Notepad, Todo, Countdown } from '../toolbox';
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
 
@@ -39,6 +40,7 @@ export function Menu() {
   const initial = useMemo(
     () => ({
       breathing: false,
+      countdown: false,
       notepad: false,
       pomodoro: false,
       presets: false,
@@ -115,6 +117,7 @@ export function Menu() {
                     <SleepTimerItem open={() => open('sleepTimer')} />
 
                     <Divider />
+                    <CountdownItem open={() => open('countdown')} />
                     <PomodoroItem open={() => open('pomodoro')} />
                     <NotepadItem open={() => open('notepad')} />
                     <TodoItem open={() => open('todo')} />
@@ -153,6 +156,7 @@ export function Menu() {
       />
       <Notepad show={modals.notepad} onClose={() => close('notepad')} />
       <Todo show={modals.todo} onClose={() => close('todo')} />
+      <Countdown show={modals.countdown} onClose={() => close('countdown')} />
       <PresetsModal show={modals.presets} onClose={() => close('presets')} />
       <SleepTimerModal
         show={modals.sleepTimer}
