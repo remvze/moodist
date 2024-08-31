@@ -13,6 +13,11 @@ import {
   ShortcutsItem,
   SleepTimerItem,
   LofiItem,
+  NotepadItem,
+  PomodoroItem,
+  CountdownItem,
+  BreathingExerciseItem,
+  TodoItem,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
@@ -20,6 +25,8 @@ import { PresetsModal } from '@/components/modals/presets';
 import { ShortcutsModal } from '@/components/modals/shortcuts';
 import { SleepTimerModal } from '@/components/modals/sleep-timer';
 import { LofiModal } from '../modals/lofi';
+import { BreathingExerciseModal } from '../modals/breathing';
+import { Notepad, Countdown, Pomodoro, Todo } from '../toolbox';
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
 
@@ -34,11 +41,16 @@ export function Menu() {
 
   const initial = useMemo(
     () => ({
+      breathing: false,
+      countdown: false,
       lofi: false,
+      notepad: false,
+      pomodoro: false,
       presets: false,
       shareLink: false,
       shortcuts: false,
       sleepTimer: false,
+      todo: false,
     }),
     [],
   );
@@ -62,10 +74,15 @@ export function Menu() {
   );
 
   useHotkeys('shift+m', () => setIsOpen(prev => !prev));
-  useHotkeys('shift+p', () => open('presets'));
+  useHotkeys('shift+alt+p', () => open('presets'));
   useHotkeys('shift+h', () => open('shortcuts'));
+  useHotkeys('shift+b', () => open('breathing'));
+  useHotkeys('shift+n', () => open('notepad'));
+  useHotkeys('shift+p', () => open('pomodoro'));
+  useHotkeys('shift+t', () => open('todo'));
+  useHotkeys('shift+c', () => open('countdown'));
   useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
-  useHotkeys('shift+t', () => open('sleepTimer'));
+  useHotkeys('shift+alt+t', () => open('sleepTimer'));
   useHotkeys('shift+l', () => open('lofi'));
 
   useCloseListener(closeAll);
@@ -106,6 +123,13 @@ export function Menu() {
                     <LofiItem open={() => open('lofi')} />
 
                     <Divider />
+                    <CountdownItem open={() => open('countdown')} />
+                    <PomodoroItem open={() => open('pomodoro')} />
+                    <NotepadItem open={() => open('notepad')} />
+                    <TodoItem open={() => open('todo')} />
+                    <BreathingExerciseItem open={() => open('breathing')} />
+
+                    <Divider />
                     <ShortcutsItem open={() => open('shortcuts')} />
 
                     <Divider />
@@ -127,7 +151,19 @@ export function Menu() {
         show={modals.shortcuts}
         onClose={() => close('shortcuts')}
       />
+      <BreathingExerciseModal
+        show={modals.breathing}
+        onClose={() => close('breathing')}
+      />
       <LofiModal show={modals.lofi} onClose={() => close('lofi')} />
+      <Notepad show={modals.notepad} onClose={() => close('notepad')} />
+      <Todo show={modals.todo} onClose={() => close('todo')} />
+      <Countdown show={modals.countdown} onClose={() => close('countdown')} />
+      <Pomodoro
+        open={() => open('pomodoro')}
+        show={modals.pomodoro}
+        onClose={() => close('pomodoro')}
+      />
       <PresetsModal show={modals.presets} onClose={() => close('presets')} />
       <SleepTimerModal
         show={modals.sleepTimer}
