@@ -15,7 +15,7 @@ export function SleepTimer({ open }: SleepTimerProps) {
       active={active}
       icon={<IoMoonSharp />}
       label="Sleep Timer"
-      shortcut="Shift + Alt + T"
+      shortcut="Shift + T"
       onClick={open}
     />
   );
