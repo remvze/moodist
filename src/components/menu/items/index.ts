@@ -8,3 +8,4 @@ export { SleepTimer as SleepTimerItem } from './sleep-timer';
 export { BreathingExercise as BreathingExerciseItem } from './breathing-exercise';
 export { Pomodoro as PomodoroItem } from './pomodoro';
 export { Notepad as NotepadItem } from './notepad';
+export { Todo as TodoItem } from './todo';
