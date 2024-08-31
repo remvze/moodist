@@ -1,1 +1,0 @@
-export { Setting } from './setting';

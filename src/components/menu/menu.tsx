@@ -12,19 +12,12 @@ import {
   PresetsItem,
   ShortcutsItem,
   SleepTimerItem,
-  NotepadItem,
-  PomodoroItem,
-  CountdownItem,
-  BreathingExerciseItem,
-  TodoItem,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
 import { PresetsModal } from '@/components/modals/presets';
 import { ShortcutsModal } from '@/components/modals/shortcuts';
 import { SleepTimerModal } from '@/components/modals/sleep-timer';
-import { BreathingExerciseModal } from '../modals/breathing';
-import { Notepad, Countdown, Pomodoro, Todo } from '../toolbox';
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
 
@@ -118,13 +111,6 @@ export function Menu() {
                     <SleepTimerItem open={() => open('sleepTimer')} />
 
                     <Divider />
-                    <CountdownItem open={() => open('countdown')} />
-                    <PomodoroItem open={() => open('pomodoro')} />
-                    <NotepadItem open={() => open('notepad')} />
-                    <TodoItem open={() => open('todo')} />
-                    <BreathingExerciseItem open={() => open('breathing')} />
-
-                    <Divider />
                     <ShortcutsItem open={() => open('shortcuts')} />
 
                     <Divider />
@@ -145,18 +131,6 @@ export function Menu() {
       <ShortcutsModal
         show={modals.shortcuts}
         onClose={() => close('shortcuts')}
-      />
-      <BreathingExerciseModal
-        show={modals.breathing}
-        onClose={() => close('breathing')}
-      />
-      <Notepad show={modals.notepad} onClose={() => close('notepad')} />
-      <Todo show={modals.todo} onClose={() => close('todo')} />
-      <Countdown show={modals.countdown} onClose={() => close('countdown')} />
-      <Pomodoro
-        open={() => open('pomodoro')}
-        show={modals.pomodoro}
-        onClose={() => close('pomodoro')}
       />
       <PresetsModal show={modals.presets} onClose={() => close('presets')} />
       <SleepTimerModal

@@ -5,8 +5,3 @@ export { Source as SourceItem } from './source';
 export { Presets as PresetsItem } from './presets';
 export { Shortcuts as ShortcutsItem } from './shortcuts';
 export { SleepTimer as SleepTimerItem } from './sleep-timer';
-export { Notepad as NotepadItem } from './notepad';
-export { Pomodoro as PomodoroItem } from './pomodoro';
-export { Countdown as CountdownItem } from './countdown';
-export { BreathingExercise as BreathingExerciseItem } from './breathing-exercise';
-export { Todo as TodoItem } from './todo';
