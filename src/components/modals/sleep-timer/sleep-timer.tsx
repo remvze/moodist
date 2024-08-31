@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useMemo } from 'react';
 
 import { Modal } from '@/components/modal';
-import { Timer } from '@/components/timer';
+import { Timer } from './timer';
 import { dispatch } from '@/lib/event';
 import { useSoundStore } from '@/stores/sound';
 import { cn } from '@/helpers/styles';
@@ -63,7 +63,7 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
   useEffect(() => {
     if (timeLeft === 0) {
       setRunning(false);
-      // pause();
+
       dispatch(FADE_OUT, { duration: 1000 });
 
       setTimeSpent(0);
@@ -107,7 +107,7 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
             )}
           </div>
 
-          {running ? <Timer displayHours={true} timer={timeLeft} /> : null}
+          {running ? <Timer reverse={timeSpent} timer={timeLeft} /> : null}
 
           <div className={styles.buttons}>
             {running && (

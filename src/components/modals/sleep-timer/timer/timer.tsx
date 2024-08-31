@@ -1,15 +1,15 @@
+import { Reverse } from './reverse';
+
 import { padNumber } from '@/helpers/number';
-import { cn } from '@/helpers/styles';
 
 import styles from './timer.module.css';
 
 interface TimerProps {
-  displayHours?: boolean;
-  tall?: boolean;
+  reverse: number;
   timer: number;
 }
 
-export function Timer({ displayHours = false, tall, timer }: TimerProps) {
+export function Timer({ reverse, timer }: TimerProps) {
   let hours = Math.floor(timer / 3600);
   let minutes = Math.floor((timer % 3600) / 60);
   let seconds = timer % 60;
@@ -23,16 +23,9 @@ export function Timer({ displayHours = false, tall, timer }: TimerProps) {
   const formattedSeconds = padNumber(seconds);
 
   return (
-    <div className={cn(styles.timer, tall && styles.tall)}>
-      {displayHours ? (
-        <>
-          {formattedHours}:{formattedMinutes}:{formattedSeconds}
-        </>
-      ) : (
-        <>
-          {formattedMinutes}:{formattedSeconds}
-        </>
-      )}
+    <div className={styles.timer}>
+      <Reverse time={reverse} />
+      {formattedHours}:{formattedMinutes}:{formattedSeconds}
     </div>
   );
 }

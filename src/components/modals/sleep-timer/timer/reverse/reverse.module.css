@@ -1,0 +1,30 @@
+.reverse {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 4px 8px;
+  font-size: var(--font-2xsm);
+  color: var(--color-foreground-subtle);
+  background: linear-gradient(
+    var(--color-neutral-50),
+    var(--color-neutral-100)
+  );
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 4px;
+
+  &::after {
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    width: 75%;
+    height: 1px;
+    content: '';
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-neutral-300),
+      transparent
+    );
+    transform: translateX(-50%);
+  }
+}
