@@ -69,11 +69,14 @@ export function Menu() {
   );
 
   useHotkeys('shift+m', () => setIsOpen(prev => !prev));
-  useHotkeys('shift+p', () => open('presets'));
+  useHotkeys('shift+alt+p', () => open('presets'));
   useHotkeys('shift+h', () => open('shortcuts'));
   useHotkeys('shift+b', () => open('breathing'));
+  useHotkeys('shift+n', () => open('notepad'));
+  useHotkeys('shift+p', () => open('pomodoro'));
+  useHotkeys('shift+t', () => open('todo'));
   useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
-  useHotkeys('shift+t', () => open('sleepTimer'));
+  useHotkeys('shift+alt+t', () => open('sleepTimer'));
 
   useCloseListener(closeAll);
 

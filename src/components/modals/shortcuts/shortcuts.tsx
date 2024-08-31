@@ -14,7 +14,7 @@ export function ShortcutsModal({ onClose, show }: ShortcutsModalProps) {
       label: 'Shortcuts List',
     },
     {
-      keys: ['Shift', 'P'],
+      keys: ['Shift', 'Alt', 'P'],
       label: 'Presets',
     },
     {
@@ -22,8 +22,20 @@ export function ShortcutsModal({ onClose, show }: ShortcutsModalProps) {
       label: 'Share Sounds',
     },
     {
-      keys: ['Shift', 'T'],
+      keys: ['Shift', 'Alt', 'T'],
       label: 'Sleep Timer',
+    },
+    {
+      keys: ['Shift', 'N'],
+      label: 'Notepad',
+    },
+    {
+      keys: ['Shift', 'P'],
+      label: 'Pomodoro',
+    },
+    {
+      keys: ['Shift', 'T'],
+      label: 'Todo Checklist',
     },
     {
       keys: ['Shift', 'B'],
