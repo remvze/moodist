@@ -112,10 +112,10 @@ export function Menu() {
                     <SleepTimerItem open={() => open('sleepTimer')} />
 
                     <Divider />
-                    <BreathingExerciseItem open={() => open('breathing')} />
                     <PomodoroItem open={() => open('pomodoro')} />
                     <NotepadItem open={() => open('notepad')} />
                     <TodoItem open={() => open('todo')} />
+                    <BreathingExerciseItem open={() => open('breathing')} />
 
                     <Divider />
                     <ShortcutsItem open={() => open('shortcuts')} />
