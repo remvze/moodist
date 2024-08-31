@@ -93,17 +93,19 @@ export function Exercise() {
         <p className={styles.phase}>{PHASE_LABELS[currentPhase]}</p>
       </div>
 
-      <select
-        className={styles.selectBox}
-        value={selectedExercise}
-        onChange={e => setSelectedExercise(e.target.value as Exercise)}
-      >
-        {Object.keys(EXERCISE_PHASES).map(exercise => (
-          <option key={exercise} value={exercise}>
-            {exercise}
-          </option>
-        ))}
-      </select>
+      <div className={styles.selectWrapper}>
+        <select
+          className={styles.selectBox}
+          value={selectedExercise}
+          onChange={e => setSelectedExercise(e.target.value as Exercise)}
+        >
+          {Object.keys(EXERCISE_PHASES).map(exercise => (
+            <option key={exercise} value={exercise}>
+              {exercise}
+            </option>
+          ))}
+        </select>
+      </div>
     </>
   );
 }

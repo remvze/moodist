@@ -33,15 +33,44 @@
   }
 }
 
-.selectBox {
+.selectWrapper {
+  position: relative;
   width: 100%;
-  min-width: 0;
   height: 45px;
   padding: 0 12px;
   margin-top: 8px;
-  font-size: var(--font-sm);
-  color: var(--color-foreground);
-  background-color: var(--color-neutral-100);
+  background-color: var(--color-neutral-50);
   border: 1px solid var(--color-neutral-200);
   border-radius: 8px;
+
+  &::before {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    width: 80%;
+    height: 1px;
+    content: '';
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-neutral-300),
+      transparent
+    );
+    transform: translateX(-50%);
+  }
+
+  & .selectBox {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    font-size: var(--font-sm);
+    color: var(--color-foreground);
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    & option {
+      color: var(--color-neutral-50);
+    }
+  }
 }
