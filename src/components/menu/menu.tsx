@@ -12,7 +12,6 @@ import {
   PresetsItem,
   ShortcutsItem,
   SleepTimerItem,
-  LofiItem,
   NotepadItem,
   PomodoroItem,
   CountdownItem,
@@ -24,7 +23,6 @@ import { ShareLinkModal } from '@/components/modals/share-link';
 import { PresetsModal } from '@/components/modals/presets';
 import { ShortcutsModal } from '@/components/modals/shortcuts';
 import { SleepTimerModal } from '@/components/modals/sleep-timer';
-import { LofiModal } from '../modals/lofi';
 import { BreathingExerciseModal } from '../modals/breathing';
 import { Notepad, Countdown, Pomodoro, Todo } from '../toolbox';
 import { fade, mix, slideY } from '@/lib/motion';
@@ -43,7 +41,6 @@ export function Menu() {
     () => ({
       breathing: false,
       countdown: false,
-      lofi: false,
       notepad: false,
       pomodoro: false,
       presets: false,
@@ -83,7 +80,6 @@ export function Menu() {
   useHotkeys('shift+c', () => open('countdown'));
   useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
   useHotkeys('shift+alt+t', () => open('sleepTimer'));
-  useHotkeys('shift+l', () => open('lofi'));
 
   useCloseListener(closeAll);
 
@@ -120,7 +116,6 @@ export function Menu() {
                     <ShareItem open={() => open('shareLink')} />
                     <ShuffleItem />
                     <SleepTimerItem open={() => open('sleepTimer')} />
-                    <LofiItem open={() => open('lofi')} />
 
                     <Divider />
                     <CountdownItem open={() => open('countdown')} />
@@ -155,7 +150,6 @@ export function Menu() {
         show={modals.breathing}
         onClose={() => close('breathing')}
       />
-      <LofiModal show={modals.lofi} onClose={() => close('lofi')} />
       <Notepad show={modals.notepad} onClose={() => close('notepad')} />
       <Todo show={modals.todo} onClose={() => close('todo')} />
       <Countdown show={modals.countdown} onClose={() => close('countdown')} />
