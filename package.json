@@ -37,6 +37,7 @@
     "focus-trap-react": "10.2.3",
     "framer-motion": "10.16.4",
     "howler": "2.2.4",
+    "js-confetti": "0.12.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hotkeys-hook": "3.2.1",

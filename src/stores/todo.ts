@@ -3,6 +3,8 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 import merge from 'deepmerge';
 import { v4 as uuid } from 'uuid';
 
+import { addConfetti } from '@/lib/confetti';
+
 interface TodoStore {
   addTodo: (todo: string) => void;
   deleteTodo: (id: string) => void;
@@ -71,6 +73,10 @@ export const useTodoStore = create<TodoStore>()(
             };
           }),
         });
+
+        if (get().doneCount() === get().todos.length) {
+          addConfetti();
+        }
       },
     }),
     {
