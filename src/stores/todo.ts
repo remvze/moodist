@@ -6,6 +6,7 @@ import { v4 as uuid } from 'uuid';
 interface TodoStore {
   addTodo: (todo: string) => void;
   deleteTodo: (id: string) => void;
+  doneCount: () => number;
   editTodo: (id: string, newTodo: string) => void;
   todos: Array<{
     createdAt: number;
@@ -32,11 +33,16 @@ export const useTodoStore = create<TodoStore>()(
           ],
         });
       },
-
       deleteTodo(id) {
         set({
           todos: get().todos.filter(todo => todo.id !== id),
         });
+      },
+
+      doneCount() {
+        const { todos } = get();
+
+        return todos.filter(todo => todo.done).length;
       },
 
       editTodo(id, newTodo) {

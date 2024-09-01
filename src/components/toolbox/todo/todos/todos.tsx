@@ -6,13 +6,16 @@ import styles from './todos.module.css';
 
 export function Todos() {
   const todos = useTodoStore(state => state.todos);
+  const doneCount = useTodoStore(state => state.doneCount());
 
   return (
     <div className={styles.todos}>
       <header>
         <p className={styles.label}>Your Todos</p>
         <div className={styles.divider} />
-        <p className={styles.counter}>0 / 0</p>
+        <p className={styles.counter}>
+          {doneCount} / {todos.length}
+        </p>
       </header>
 
       {todos.length > 0 ? (
