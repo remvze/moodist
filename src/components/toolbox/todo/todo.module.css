@@ -1,1 +1,14 @@
-/* WIP */
+.header {
+  margin-bottom: 16px;
+
+  & .title {
+    margin-bottom: 8px;
+    font-family: var(--font-heading);
+    font-size: var(--font-md);
+    font-weight: 600;
+  }
+
+  & .desc {
+    color: var(--color-foreground-subtle);
+  }
+}

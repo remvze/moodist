@@ -12,7 +12,11 @@ interface TodoProps {
 export function Todo({ onClose, show }: TodoProps) {
   return (
     <Modal show={show} onClose={onClose}>
-      <h2 className={styles.title}>Todos</h2>
+      <header className={styles.header}>
+        <h2 className={styles.title}>Todo Checklist</h2>
+        <p className={styles.desc}>Super simple todo list.</p>
+      </header>
+
       <Form />
       <Todos />
     </Modal>

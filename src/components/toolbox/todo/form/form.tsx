@@ -22,6 +22,7 @@ export function Form() {
     <form onSubmit={handleSubmit}>
       <div className={styles.wrapper}>
         <input
+          placeholder="I have to ..."
           type="text"
           value={value}
           onChange={e => setValue(e.target.value)}

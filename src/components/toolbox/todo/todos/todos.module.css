@@ -1,1 +1,31 @@
-/* WIP */
+.todos {
+  margin-top: 28px;
+
+  & header {
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
+
+    & .label {
+      font-size: var(--font-sm);
+      font-weight: 500;
+    }
+
+    & .divider {
+      flex-grow: 1;
+      height: 1px;
+      background-color: var(--color-neutral-200);
+    }
+
+    & .counter {
+      font-size: var(--font-sm);
+      color: var(--color-foreground-subtle);
+    }
+  }
+
+  & .empty {
+    margin-top: 16px;
+    font-size: var(--font-sm);
+    color: var(--color-foreground-subtle);
+  }
+}
