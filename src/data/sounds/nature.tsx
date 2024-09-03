@@ -1,4 +1,4 @@
-import { GiWaterfall } from 'react-icons/gi/index';
+import { GiWaterfall, GiStonePile } from 'react-icons/gi/index';
 import { BsFire, BsFillDropletFill } from 'react-icons/bs/index';
 import { BiSolidTree, BiWater } from 'react-icons/bi/index';
 import {
@@ -68,6 +68,12 @@ export const nature: Category = {
       id: 'walk-on-leaves',
       label: 'Walk on Leaves',
       src: '/sounds/nature/walk-on-leaves.mp3',
+    },
+    {
+      icon: <GiStonePile />,
+      id: 'walk-on-gravel',
+      label: 'Walk on Gravel',
+      src: '/sounds/nature/walk-on-gravel.mp3',
     },
     {
       icon: <BsFillDropletFill />,

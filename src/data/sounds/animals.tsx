@@ -8,6 +8,7 @@ import {
   GiEgyptianBird,
   GiChicken,
   GiCow,
+  GiSheep,
 } from 'react-icons/gi/index';
 import {
   FaDog,
@@ -113,6 +114,12 @@ export const animals: Category = {
       id: 'cows',
       label: 'Cows',
       src: '/sounds/animals/cows.mp3',
+    },
+    {
+      icon: <GiSheep />,
+      id: 'sheep',
+      label: 'Sheep',
+      src: '/sounds/animals/sheep.mp3',
     },
   ],
   title: 'Animals',
