@@ -12,6 +12,7 @@ import { Categories } from '@/components/categories';
 import { SharedModal } from '@/components/modals/shared';
 import { Toolbar } from '@/components/toolbar';
 import { SnackbarProvider } from '@/contexts/snackbar';
+import { SoundProvider } from '@/contexts/sound';
 
 import { sounds } from '@/data/sounds';
 import { FADE_OUT } from '@/constants/events';
@@ -86,17 +87,19 @@ export function App() {
   }, [favoriteSounds, categories]);
 
   return (
-    <SnackbarProvider>
-      <StoreConsumer>
-        <Container>
-          <div id="app" />
-          <Buttons />
-          <Categories categories={allCategories} />
-        </Container>
+    <SoundProvider>
+      <SnackbarProvider>
+        <StoreConsumer>
+          <Container>
+            <div id="app" />
+            <Buttons />
+            <Categories categories={allCategories} />
+          </Container>
 
-        <Toolbar />
-        <SharedModal />
-      </StoreConsumer>
-    </SnackbarProvider>
+          <Toolbar />
+          <SharedModal />
+        </StoreConsumer>
+      </SnackbarProvider>
+    </SoundProvider>
   );
 }

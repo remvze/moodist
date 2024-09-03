@@ -5,6 +5,7 @@ import { useLoadingStore } from '@/stores/loading';
 import { subscribe } from '@/lib/event';
 import { useSSR } from './use-ssr';
 import { FADE_OUT } from '@/constants/events';
+import { useSoundContext } from '@/contexts/sound';
 
 /**
  * A custom React hook to manage sound playback using Howler.js with additional features.
@@ -34,6 +35,8 @@ export function useSound(
   const setIsLoading = useLoadingStore(state => state.set);
 
   const { isBrowser } = useSSR();
+  const { connectBufferSource } = useSoundContext(); // Access SoundContext
+
   const sound = useMemo<Howl | null>(() => {
     let sound: Howl | null = null;
 
@@ -43,6 +46,14 @@ export function useSound(
         onload: () => {
           setIsLoading(src, false);
           setHasLoaded(true);
+
+          // Connect the buffer source to the MediaStreamDestination
+          // @ts-ignore
+          const source = sound!._sounds[0]._node.bufferSource;
+          if (source) {
+            console.log('DOOOOPE');
+            connectBufferSource(source);
+          }
         },
         preload: options.preload ?? false,
         src: src,
@@ -50,7 +61,14 @@ export function useSound(
     }
 
     return sound;
-  }, [src, isBrowser, setIsLoading, html5, options.preload]);
+  }, [
+    src,
+    isBrowser,
+    setIsLoading,
+    html5,
+    options.preload,
+    connectBufferSource,
+  ]);
 
   useEffect(() => {
     if (sound) {
