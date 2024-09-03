@@ -11,7 +11,7 @@ export function Presets({ open }: PresetsProps) {
     <Item
       icon={<RiPlayListFill />}
       label="Your Presets"
-      shortcut="Shift + P"
+      shortcut="Shift + Alt + P"
       onClick={open}
     />
   );
