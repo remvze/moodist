@@ -4,6 +4,7 @@ import { Howler } from 'howler';
 // Define the context's interface
 interface SoundContextType {
   connectBufferSource: (bufferSource: AudioBufferSourceNode) => void;
+  updateVolume: (volume: number) => void; // Add a function to update the volume
 }
 
 // Create the SoundContext with an empty initial value
@@ -57,16 +58,18 @@ export const SoundProvider: React.FC<SoundProviderProps> = ({ children }) => {
   const connectBufferSource = (bufferSource: AudioBufferSourceNode) => {
     if (dest) {
       bufferSource.connect(dest);
+    }
+  };
 
-      // Start playing the audio once the first buffer connects
-      if (audioTag && audioTag.paused) {
-        audioTag.play().catch(() => console.error('Failed to play audio'));
-      }
+  // Function to update the volume of the audio tag
+  const updateVolume = (volume: number) => {
+    if (audioTag) {
+      audioTag.volume = volume;
     }
   };
 
   return (
-    <SoundContext.Provider value={{ connectBufferSource }}>
+    <SoundContext.Provider value={{ connectBufferSource, updateVolume }}>
       {children}
     </SoundContext.Provider>
   );

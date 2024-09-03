@@ -35,7 +35,7 @@ export function useSound(
   const setIsLoading = useLoadingStore(state => state.set);
 
   const { isBrowser } = useSSR();
-  const { connectBufferSource } = useSoundContext(); // Access SoundContext
+  const { connectBufferSource, updateVolume } = useSoundContext(); // Access SoundContext
 
   const sound = useMemo<Howl | null>(() => {
     let sound: Howl | null = null;
@@ -51,7 +51,6 @@ export function useSound(
           // @ts-ignore
           const source = sound!._sounds[0]._node.bufferSource;
           if (source) {
-            console.log('DOOOOPE');
             connectBufferSource(source);
           }
         },
@@ -77,8 +76,11 @@ export function useSound(
   }, [sound, options.loop]);
 
   useEffect(() => {
-    if (sound) sound.volume(options.volume ?? 0.5);
-  }, [sound, options.volume]);
+    if (sound) {
+      sound.volume(options.volume ?? 0.5);
+      updateVolume(options.volume ?? 0.5); // Update the volume of the audio tag
+    }
+  }, [sound, options.volume, updateVolume]);
 
   const play = useCallback(
     (cb?: () => void) => {
@@ -113,9 +115,10 @@ export function useSound(
       setTimeout(() => {
         pause();
         sound?.volume(options.volume || 0.5);
+        updateVolume(options.volume || 0.5); // Ensure the volume is reset after fade-out
       }, duration);
     },
-    [options.volume, sound, pause],
+    [options.volume, sound, pause, updateVolume],
   );
 
   useEffect(() => {
