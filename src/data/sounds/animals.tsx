@@ -4,6 +4,8 @@ import {
   GiWolfHead,
   GiOwl,
   GiWhaleTail,
+  GiTreeBeehive,
+  GiEgyptianBird,
 } from 'react-icons/gi/index';
 import {
   FaDog,
@@ -85,6 +87,18 @@ export const animals: Category = {
       id: 'whale',
       label: 'Whale',
       src: '/sounds/animals/whale.mp3',
+    },
+    {
+      icon: <GiTreeBeehive />,
+      id: 'beehive',
+      label: 'Beehive',
+      src: '/sounds/animals/beehive.mp3',
+    },
+    {
+      icon: <GiEgyptianBird />,
+      id: 'woodpecker',
+      label: 'Woodpecker',
+      src: '/sounds/animals/woodpecker.mp3',
     },
   ],
   title: 'Animals',

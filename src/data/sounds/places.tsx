@@ -13,6 +13,7 @@ import {
 } from 'react-icons/md/index';
 import { HiOfficeBuilding } from 'react-icons/hi/index';
 import { AiFillExperiment } from 'react-icons/ai/index';
+import { IoRestaurant } from 'react-icons/io5/index';
 
 import type { Category } from '../types';
 
@@ -103,6 +104,12 @@ export const places: Category = {
       id: 'laundry-room',
       label: 'Laundry Room',
       src: '/sounds/places/laundry-room.mp3',
+    },
+    {
+      icon: <IoRestaurant />,
+      id: 'restaurant',
+      label: 'Restaurant',
+      src: '/sounds/places/restaurant.mp3',
     },
   ],
   title: 'Places',
