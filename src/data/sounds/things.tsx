@@ -10,6 +10,7 @@ import { TbBowlFilled } from 'react-icons/tb/index';
 import { RiFilePaper2Fill, RiBubbleChartFill } from 'react-icons/ri/index';
 import { BiSolidDryer } from 'react-icons/bi/index';
 import { IoIosRadio } from 'react-icons/io/index';
+import { PiVinylRecord } from 'react-icons/pi/index';
 
 import type { Category } from '../types';
 
@@ -100,6 +101,12 @@ export const things: Category = {
       id: 'washing-machine',
       label: 'Washing Machine',
       src: '/sounds/things/washing-machine.mp3',
+    },
+    {
+      icon: <PiVinylRecord />,
+      id: 'vinyl-effect',
+      label: 'Vinyl Effect',
+      src: '/sounds/things/vinyl-effect.mp3',
     },
   ],
   title: 'Things',
