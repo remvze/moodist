@@ -4,7 +4,7 @@ import {
   BsUmbrellaFill,
 } from 'react-icons/bs/index';
 import { GiWindow } from 'react-icons/gi/index';
-import { FaLeaf } from 'react-icons/fa/index';
+import { FaLeaf, FaCarSide } from 'react-icons/fa/index';
 import { PiTentFill } from 'react-icons/pi/index';
 import { MdOutlineThunderstorm } from 'react-icons/md/index';
 
@@ -37,6 +37,12 @@ export const rain: Category = {
       id: 'rain-on-window',
       label: 'Rain on Window',
       src: '/sounds/rain/rain-on-window.mp3',
+    },
+    {
+      icon: <FaCarSide />,
+      id: 'rain-on-car-roof',
+      label: 'Rain on Car Roof',
+      src: '/sounds/rain/rain-on-car-roof.mp3',
     },
     {
       icon: <BsUmbrellaFill />,

@@ -6,7 +6,7 @@ import {
 import { BsFillKeyboardFill } from 'react-icons/bs/index';
 import { FaKeyboard, FaClock, FaFan } from 'react-icons/fa/index';
 import { MdSmartToy, MdWaterDrop, MdRadio } from 'react-icons/md/index';
-import { TbBowlFilled } from 'react-icons/tb/index';
+import { TbBowlFilled, TbWiper } from 'react-icons/tb/index';
 import { RiFilePaper2Fill, RiBubbleChartFill } from 'react-icons/ri/index';
 import { BiSolidDryer } from 'react-icons/bi/index';
 import { IoIosRadio } from 'react-icons/io/index';
@@ -107,6 +107,12 @@ export const things: Category = {
       id: 'vinyl-effect',
       label: 'Vinyl Effect',
       src: '/sounds/things/vinyl-effect.mp3',
+    },
+    {
+      icon: <TbWiper />,
+      id: 'windshield-wipers',
+      label: 'Windshield Wipers',
+      src: '/sounds/things/windshield-wipers.mp3',
     },
   ],
   title: 'Things',
