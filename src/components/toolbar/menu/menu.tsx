@@ -18,6 +18,7 @@ import {
   TodoItem,
   CountdownItem,
   BinauralItem,
+  IsochronicItem,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
@@ -26,6 +27,7 @@ import { ShortcutsModal } from '@/components/modals/shortcuts';
 import { SleepTimerModal } from '@/components/modals/sleep-timer';
 import { BreathingExerciseModal } from '@/components/modals/breathing';
 import { BinauralModal } from '@/components/modals/binaural';
+import { IsochronicModal } from '@/components/modals/isochronic';
 import { Pomodoro, Notepad, Todo, Countdown } from '@/components/toolbox';
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
@@ -44,6 +46,7 @@ export function Menu() {
       binaural: false,
       breathing: false,
       countdown: false,
+      isochronic: false,
       notepad: false,
       pomodoro: false,
       presets: false,
@@ -120,6 +123,7 @@ export function Menu() {
                     <ShuffleItem />
                     <SleepTimerItem open={() => open('sleepTimer')} />
                     <BinauralItem open={() => open('binaural')} />
+                    <IsochronicItem open={() => open('isochronic')} />
 
                     <Divider />
                     <CountdownItem open={() => open('countdown')} />
@@ -168,6 +172,10 @@ export function Menu() {
         onClose={() => close('sleepTimer')}
       />
       <BinauralModal show={modals.binaural} onClose={() => close('binaural')} />
+      <IsochronicModal
+        show={modals.isochronic}
+        onClose={() => close('isochronic')}
+      />
     </>
   );
 }

@@ -11,3 +11,4 @@ export { Notepad as NotepadItem } from './notepad';
 export { Todo as TodoItem } from './todo';
 export { Countdown as CountdownItem } from './countdown';
 export { Binaural as BinauralItem } from './binaural';
+export { Isochronic as IsochronicItem } from './isochronic';
