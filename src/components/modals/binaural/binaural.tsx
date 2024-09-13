@@ -141,9 +141,12 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
 
   return (
     <Modal show={show} onClose={onClose}>
-      <h2 className={styles.title}>Binaural Beats</h2>
+      <header className={styles.header}>
+        <h2 className={styles.title}>Binaural Beat</h2>
+        <p className={styles.desc}>Binaural beat generator.</p>
+      </header>
 
-      <div>
+      <div className={styles.fieldWrapper}>
         <label>
           Presets:
           <select value={selectedPreset} onChange={handlePresetChange}>
@@ -157,7 +160,7 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
       </div>
       {selectedPreset === 'Custom' && (
         <>
-          <div>
+          <div className={styles.fieldWrapper}>
             <label>
               Base Frequency (Hz):
               <input
@@ -170,7 +173,7 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
               />
             </label>
           </div>
-          <div>
+          <div className={styles.fieldWrapper}>
             <label>
               Beat Frequency (Hz):
               <input
@@ -185,7 +188,7 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
           </div>
         </>
       )}
-      <div>
+      <div className={styles.fieldWrapper}>
         <label>
           Volume:
           <input
@@ -198,8 +201,12 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
           />
         </label>
       </div>
-      <div>
-        <button disabled={isPlaying} onClick={startSound}>
+      <div className={styles.buttons}>
+        <button
+          className={styles.primary}
+          disabled={isPlaying}
+          onClick={startSound}
+        >
           Start
         </button>
         <button disabled={!isPlaying} onClick={stopSound}>

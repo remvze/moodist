@@ -1,1 +1,72 @@
-/* WIP */
+.header {
+  margin-bottom: 16px;
+
+  & .title {
+    margin-bottom: 4px;
+    font-family: var(--font-heading);
+    font-size: var(--font-md);
+    font-weight: 600;
+  }
+
+  & .desc {
+    color: var(--color-foreground-subtle);
+  }
+}
+
+.fieldWrapper {
+  margin-bottom: 12px;
+
+  & label {
+    display: block;
+    font-size: var(--font-sm);
+    font-weight: 500;
+    color: var(--color-foreground);
+
+    & input,
+    select {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      height: 45px;
+      padding: 0 8px;
+      margin-top: 4px;
+      color: var(--color-foreground);
+      background-color: var(--color-neutral-50);
+      border: 1px solid var(--color-neutral-200);
+      border-radius: 8px;
+      outline: none;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+  margin-top: 12px;
+
+  & button {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    font-weight: 500;
+    color: var(--color-foreground);
+    cursor: pointer;
+    background-color: var(--color-neutral-200);
+    border: none;
+    border-radius: 8px;
+    outline: none;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.3;
+    }
+
+    &.primary {
+      color: var(--color-neutral-50);
+      background-color: var(--color-neutral-950);
+    }
+  }
+}

@@ -162,8 +162,12 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
 
   return (
     <Modal show={show} onClose={onClose}>
-      <h2 className={styles.title}>Isochronic Tones</h2>
-      <div>
+      <header className={styles.header}>
+        <h2 className={styles.title}>Isochronic Tone</h2>
+        <p className={styles.desc}>Isochronic tone generator.</p>
+      </header>
+
+      <div className={styles.fieldWrapper}>
         <label>
           Presets:
           <select value={selectedPreset} onChange={handlePresetChange}>
@@ -177,7 +181,7 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
       </div>
       {selectedPreset === 'Custom' && (
         <>
-          <div>
+          <div className={styles.fieldWrapper}>
             <label>
               Base Frequency (Hz):
               <input
@@ -190,7 +194,7 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
               />
             </label>
           </div>
-          <div>
+          <div className={styles.fieldWrapper}>
             <label>
               Tone Frequency (Hz):
               <input
@@ -203,7 +207,7 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
               />
             </label>
           </div>
-          <div>
+          <div className={styles.fieldWrapper}>
             <label>
               Waveform:
               <select
@@ -219,7 +223,7 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
           </div>
         </>
       )}
-      <div>
+      <div className={styles.fieldWrapper}>
         <label>
           Volume:
           <input
@@ -232,8 +236,12 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
           />
         </label>
       </div>
-      <div>
-        <button disabled={isPlaying} onClick={startSound}>
+      <div className={styles.buttons}>
+        <button
+          className={styles.primary}
+          disabled={isPlaying}
+          onClick={startSound}
+        >
           Start
         </button>
         <button disabled={!isPlaying} onClick={stopSound}>
