@@ -1,4 +1,4 @@
-import { RiPlayListFill } from 'react-icons/ri/index';
+import { TbWaveSine } from 'react-icons/tb/index';
 
 import { Item } from '../item';
 
@@ -7,7 +7,5 @@ interface IsochronicProps {
 }
 
 export function Isochronic({ open }: IsochronicProps) {
-  return (
-    <Item icon={<RiPlayListFill />} label="Isochronic Tones" onClick={open} />
-  );
+  return <Item icon={<TbWaveSine />} label="Isochronic Tones" onClick={open} />;
 }

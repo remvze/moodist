@@ -1,4 +1,4 @@
-import { RiPlayListFill } from 'react-icons/ri/index';
+import { FaHeadphonesAlt } from 'react-icons/fa/index';
 
 import { Item } from '../item';
 
@@ -8,6 +8,6 @@ interface BinauralProps {
 
 export function Binaural({ open }: BinauralProps) {
   return (
-    <Item icon={<RiPlayListFill />} label="Binaural Beats" onClick={open} />
+    <Item icon={<FaHeadphonesAlt />} label="Binaural Beats" onClick={open} />
   );
 }

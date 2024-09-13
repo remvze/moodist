@@ -122,8 +122,6 @@ export function Menu() {
                     <ShareItem open={() => open('shareLink')} />
                     <ShuffleItem />
                     <SleepTimerItem open={() => open('sleepTimer')} />
-                    <BinauralItem open={() => open('binaural')} />
-                    <IsochronicItem open={() => open('isochronic')} />
 
                     <Divider />
                     <CountdownItem open={() => open('countdown')} />
@@ -131,6 +129,10 @@ export function Menu() {
                     <NotepadItem open={() => open('notepad')} />
                     <TodoItem open={() => open('todo')} />
                     <BreathingExerciseItem open={() => open('breathing')} />
+
+                    <Divider />
+                    <BinauralItem open={() => open('binaural')} />
+                    <IsochronicItem open={() => open('isochronic')} />
 
                     <Divider />
                     <ShortcutsItem open={() => open('shortcuts')} />
