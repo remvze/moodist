@@ -190,7 +190,9 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
                 step="0.1"
                 type="number"
                 value={baseFrequency}
-                onChange={e => setBaseFrequency(parseFloat(e.target.value))}
+                onChange={e =>
+                  setBaseFrequency(parseFloat(e.target.value || '0'))
+                }
               />
             </label>
           </div>
@@ -203,7 +205,9 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
                 step="0.1"
                 type="number"
                 value={beatFrequency}
-                onChange={e => setBeatFrequency(parseFloat(e.target.value))}
+                onChange={e =>
+                  setBeatFrequency(parseFloat(e.target.value || '0'))
+                }
               />
             </label>
           </div>
