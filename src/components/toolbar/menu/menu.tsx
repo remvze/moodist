@@ -17,6 +17,7 @@ import {
   NotepadItem,
   TodoItem,
   CountdownItem,
+  BinauralItem,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
@@ -24,6 +25,7 @@ import { PresetsModal } from '@/components/modals/presets';
 import { ShortcutsModal } from '@/components/modals/shortcuts';
 import { SleepTimerModal } from '@/components/modals/sleep-timer';
 import { BreathingExerciseModal } from '@/components/modals/breathing';
+import { BinauralModal } from '@/components/modals/binaural';
 import { Pomodoro, Notepad, Todo, Countdown } from '@/components/toolbox';
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
@@ -39,6 +41,7 @@ export function Menu() {
 
   const initial = useMemo(
     () => ({
+      binaural: false,
       breathing: false,
       countdown: false,
       notepad: false,
@@ -116,6 +119,7 @@ export function Menu() {
                     <ShareItem open={() => open('shareLink')} />
                     <ShuffleItem />
                     <SleepTimerItem open={() => open('sleepTimer')} />
+                    <BinauralItem open={() => open('binaural')} />
 
                     <Divider />
                     <CountdownItem open={() => open('countdown')} />
@@ -163,6 +167,7 @@ export function Menu() {
         show={modals.sleepTimer}
         onClose={() => close('sleepTimer')}
       />
+      <BinauralModal show={modals.binaural} onClose={() => close('binaural')} />
     </>
   );
 }
