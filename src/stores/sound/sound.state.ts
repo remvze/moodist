@@ -6,6 +6,7 @@ import { sounds } from '@/data/sounds';
 
 export interface SoundState {
   getFavorites: () => Array<string>;
+  globalVolume: number;
   history: {
     [id: string]: {
       isFavorite: boolean;
@@ -39,6 +40,7 @@ export const createState: StateCreator<
 
       return favorites;
     },
+    globalVolume: 1,
     history: null,
     isPlaying: false,
     locked: false,

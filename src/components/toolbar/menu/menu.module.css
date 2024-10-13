@@ -40,3 +40,21 @@
   border: 1px solid var(--color-neutral-300);
   border-radius: 8px;
 }
+
+.globalVolume {
+  width: 100%;
+  padding: 12px;
+
+  & label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: var(--font-sm);
+    font-weight: 500;
+    color: var(--color-foreground-subtle);
+  }
+
+  & input {
+    width: 100%;
+    min-width: 0;
+  }
+}

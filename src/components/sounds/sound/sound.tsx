@@ -1,4 +1,4 @@
-import { useCallback, useEffect, forwardRef } from 'react';
+import { useCallback, useEffect, forwardRef, useMemo } from 'react';
 import { ImSpinner9 } from 'react-icons/im/index';
 
 import { Range } from './range';
@@ -31,13 +31,19 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
   const selectSound = useSoundStore(state => state.select);
   const unselectSound = useSoundStore(state => state.unselect);
   const setVolume = useSoundStore(state => state.setVolume);
-  const volume = useSoundStore(state => state.sounds[id].volume);
   const isSelected = useSoundStore(state => state.sounds[id].isSelected);
   const locked = useSoundStore(state => state.locked);
 
+  const volume = useSoundStore(state => state.sounds[id].volume);
+  const globalVolume = useSoundStore(state => state.globalVolume);
+  const adjustedVolume = useMemo(
+    () => volume * globalVolume,
+    [volume, globalVolume],
+  );
+
   const isLoading = useLoadingStore(state => state.loaders[src]);
 
-  const sound = useSound(src, { loop: true, volume });
+  const sound = useSound(src, { loop: true, volume: adjustedVolume });
 
   useEffect(() => {
     if (locked) return;

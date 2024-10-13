@@ -40,6 +40,8 @@ export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
 
   const noSelected = useSoundStore(state => state.noSelected());
+  const globalVolume = useSoundStore(state => state.globalVolume);
+  const setGlobalVolume = useSoundStore(state => state.setGlobalVolume);
 
   const initial = useMemo(
     () => ({
@@ -136,6 +138,27 @@ export function Menu() {
 
                     <Divider />
                     <ShortcutsItem open={() => open('shortcuts')} />
+                    <Divider />
+
+                    <div className={styles.globalVolume}>
+                      <label htmlFor="global-volume">Global Volume</label>
+
+                      <DropdownMenu.Item
+                        asChild
+                        onSelect={e => e.preventDefault()}
+                      >
+                        <input
+                          id="global-volume"
+                          max={100}
+                          min={0}
+                          type="range"
+                          value={globalVolume * 100}
+                          onChange={e =>
+                            setGlobalVolume(Number(e.target.value) / 100)
+                          }
+                        />
+                      </DropdownMenu.Item>
+                    </div>
 
                     <Divider />
                     <DonateItem />

@@ -11,6 +11,7 @@ export interface SoundActions {
   play: () => void;
   restoreHistory: () => void;
   select: (id: string) => void;
+  setGlobalVolume: (volume: number) => void;
   setVolume: (id: string, volume: number) => void;
   shuffle: () => void;
   toggleFavorite: (id: string) => void;
@@ -69,6 +70,12 @@ export const createActions: StateCreator<
           ...get().sounds,
           [id]: { ...get().sounds[id], isSelected: true },
         },
+      });
+    },
+
+    setGlobalVolume(volume) {
+      set({
+        globalVolume: volume,
       });
     },
 
