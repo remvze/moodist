@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { BiPause, BiPlay } from 'react-icons/bi/index';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 import { useSoundStore } from '@/stores/sound';
 import { useSnackbar } from '@/contexts/snackbar';
@@ -28,17 +29,7 @@ export function PlayButton() {
     if (isPlaying && noSelected) pause();
   }, [isPlaying, pause, noSelected]);
 
-  useEffect(() => {
-    const listener = (e: KeyboardEvent) => {
-      if (e.shiftKey && e.key === ' ') {
-        handleToggle();
-      }
-    };
-
-    document.addEventListener('keydown', listener);
-
-    return () => document.removeEventListener('keydown', listener);
-  }, [handleToggle]);
+  useHotkeys('shift+space', handleToggle, {}, [handleToggle]);
 
   return (
     <button

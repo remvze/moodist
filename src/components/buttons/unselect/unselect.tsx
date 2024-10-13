@@ -1,6 +1,7 @@
-import { useEffect, useCallback } from 'react';
+import { useCallback } from 'react';
 import { BiUndo, BiTrash } from 'react-icons/bi/index';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 import { Tooltip } from '@/components/tooltip';
 
@@ -28,17 +29,7 @@ export function UnselectButton() {
     else if (!noSelected) unselectAll(true);
   }, [hasHistory, noSelected, unselectAll, restoreHistory, locked]);
 
-  useEffect(() => {
-    const listener = (e: KeyboardEvent) => {
-      if (e.shiftKey && e.key === 'R') {
-        handleToggle();
-      }
-    };
-
-    document.addEventListener('keydown', listener);
-
-    return () => document.removeEventListener('keydown', listener);
-  }, [handleToggle]);
+  useHotkeys('shift+r', handleToggle, {}, [handleToggle]);
 
   return (
     <>
