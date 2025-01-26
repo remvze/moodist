@@ -29,17 +29,10 @@ import { useSoundStore } from '@/stores/sound';
 import styles from './menu.module.css';
 import { useCloseListener } from '@/hooks/use-close-listener';
 import { closeModals } from '@/lib/modal';
-import { MediaControls } from './items/media-controls';
-import { useMediaSessionStore } from '@/stores/media-session';
 
 export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const mediaControlsEnabled = useMediaSessionStore(state => state.enabled);
-  const toggleMediaControls = useMediaSessionStore(state => state.toggle);
-  const isMediaSessionSupported = useMediaSessionStore(
-    state => state.isSupported,
-  );
   const noSelected = useSoundStore(state => state.noSelected());
 
   const initial = useMemo(
@@ -115,12 +108,6 @@ export function Menu() {
                   >
                     <PresetsItem open={() => open('presets')} />
                     <ShareItem open={() => open('shareLink')} />
-                    {isMediaSessionSupported ? (
-                      <MediaControls
-                        active={mediaControlsEnabled}
-                        onClick={toggleMediaControls}
-                      />
-                    ) : null}
                     <ShuffleItem />
                     <SleepTimerItem open={() => open('sleepTimer')} />
 
