@@ -1,5 +1,7 @@
 import { FaRegTrashAlt } from 'react-icons/fa/index';
 
+import { Checkbox } from '@/components/checkbox';
+
 import { useTodoStore } from '@/stores/todo';
 import { cn } from '@/helpers/styles';
 
@@ -21,19 +23,16 @@ export function Todo({ done, id, todo }: TodoProps) {
 
   return (
     <div className={styles.wrapper}>
-      <input
-        checked={done}
-        className={styles.checkbox}
-        type="checkbox"
-        onChange={handleCheck}
-      />
+      <div className={styles.checkbox}>
+        <Checkbox checked={done} onChange={handleCheck} />
+      </div>
       <input
         className={cn(styles.textbox, done && styles.done)}
         type="text"
         value={todo}
         onChange={e => editTodo(id, e.target.value)}
       />
-      <button onClick={handleDelete}>
+      <button className={styles.delete} onClick={handleDelete}>
         <FaRegTrashAlt />
       </button>
     </div>
