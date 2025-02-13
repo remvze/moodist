@@ -29,6 +29,8 @@ import { BreathingExerciseModal } from '@/components/modals/breathing';
 import { BinauralModal } from '@/components/modals/binaural';
 import { IsochronicModal } from '@/components/modals/isochronic';
 import { Pomodoro, Notepad, Todo, Countdown } from '@/components/toolbox';
+import { Slider } from '@/components/slider';
+
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
 
@@ -147,15 +149,11 @@ export function Menu() {
                         asChild
                         onSelect={e => e.preventDefault()}
                       >
-                        <input
-                          id="global-volume"
+                        <Slider
                           max={100}
                           min={0}
-                          type="range"
                           value={globalVolume * 100}
-                          onChange={e =>
-                            setGlobalVolume(Number(e.target.value) / 100)
-                          }
+                          onChange={value => setGlobalVolume(value / 100)}
                         />
                       </DropdownMenu.Item>
                     </div>
