@@ -24,6 +24,7 @@
 1. 📓 Notepad for quick notes.
 1. 🍅 Pomodoro timer.
 1. ✅ Simple to-do list (soon).
+1. ⏯️ Media controls.
 1. ⌨️ Keyboard shortcuts for everything.
 1. 🥷 Privacy focused: no data collection.
 1. 💰 Completely free, open-source, and self-hostable.
