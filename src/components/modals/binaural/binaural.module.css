@@ -36,6 +36,10 @@
       border-radius: 8px;
       outline: none;
     }
+
+    & .volume {
+      margin-top: 4px;
+    }
   }
 }
 

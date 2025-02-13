@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 
 import { Modal } from '@/components/modal';
+import { Slider } from '@/components/slider';
 
 import styles from './isochornic.module.css';
 
@@ -28,7 +29,7 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
   const [baseFrequency, setBaseFrequency] = useState<number>(440); // Default A4 note
   const [beatFrequency, setBeatFrequency] = useState<number>(10); // Default 10 Hz beat
   const [volume, setVolume] = useState<number>(0.5); // Default volume at 50%
-  const [waveform, setWaveform] = useState<OscillatorType>('sine'); // Default waveform
+  const [waveform] = useState<OscillatorType>('sine'); // Default waveform
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [selectedPreset, setSelectedPreset] = useState<string>('Custom');
 
@@ -211,7 +212,7 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
               />
             </label>
           </div>
-          <div className={styles.fieldWrapper}>
+          {/* <div className={styles.fieldWrapper}>
             <label>
               Waveform:
               <select
@@ -224,19 +225,19 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
                 <option value="triangle">Triangle</option>
               </select>
             </label>
-          </div>
+          </div> */}
         </>
       )}
       <div className={styles.fieldWrapper}>
         <label>
           Volume:
-          <input
-            max="1"
-            min="0"
-            step="0.01"
-            type="range"
+          <Slider
+            className={styles.volume}
+            max={1}
+            min={0}
+            step={0.01}
             value={volume}
-            onChange={e => setVolume(parseFloat(e.target.value))}
+            onChange={value => setVolume(value)}
           />
         </label>
       </div>

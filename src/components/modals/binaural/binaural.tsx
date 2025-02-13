@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 
 import { Modal } from '@/components/modal';
+import { Slider } from '@/components/slider';
 
 import styles from './binaural.module.css';
 
@@ -195,13 +196,13 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
       <div className={styles.fieldWrapper}>
         <label>
           Volume:
-          <input
-            max="1"
-            min="0"
-            step="0.01"
-            type="range"
+          <Slider
+            className={styles.volume}
+            max={1}
+            min={0}
+            step={0.01}
             value={volume}
-            onChange={e => setVolume(parseFloat(e.target.value))}
+            onChange={value => setVolume(value)}
           />
         </label>
       </div>
