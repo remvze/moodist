@@ -21,8 +21,10 @@ const count = soundCount();
         width={45}
       />
 
-      <h2 class="title"><span>Moodist</span></h2>
-      <h1 class="desc">Ambient sounds for focus and calm.</h1>
+      <h1 class="title">
+        Ambient Sounds<span class="line">For Focus and Calm</span>
+      </h1>
+      <h2 class="desc">Free and Open-Source.</h2>
 
       <p class="sounds">
         <span aria-hidden="true" class="icon">
@@ -72,14 +74,25 @@ const count = soundCount();
 
     & .title {
       font-family: var(--font-display);
-      font-size: var(--font-2xlg);
+      font-size: var(--font-xlg);
       font-weight: 600;
       line-height: 1;
 
-      & span {
+      /* & .gradient {
         background: linear-gradient(
           135deg,
           var(--color-foreground),
+          var(--color-foreground-subtle)
+        );
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      } */
+
+      & .line {
+        display: block;
+        margin-top: 2px;
+        background: linear-gradient(
+          var(--color-foreground-subtler),
           var(--color-foreground-subtle)
         );
         background-clip: text;
@@ -88,7 +101,7 @@ const count = soundCount();
     }
 
     & .desc {
-      margin-top: 4px;
+      margin-top: 12px;
       line-height: 1.6;
       color: var(--color-foreground-subtle);
     }
