@@ -2,6 +2,7 @@
 import { BsSoundwave } from 'react-icons/bs/index';
 
 import { Container } from './container';
+import { CipherText } from './cipher';
 
 import { count as soundCount } from '@/lib/sounds';
 
@@ -24,7 +25,9 @@ const count = soundCount();
       <h1 class="title">
         Ambient Sounds<span class="line">For Focus and Calm</span>
       </h1>
-      <h2 class="desc">Free and Open-Source.</h2>
+      <h2 class="desc">
+        Free and <CipherText client:load text="Open-Source" />.
+      </h2>
 
       <p class="sounds">
         <span aria-hidden="true" class="icon">
