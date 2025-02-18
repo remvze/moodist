@@ -20,6 +20,58 @@ import { FADE_OUT } from '@/constants/events';
 import type { Sound } from '@/data/types';
 import { subscribe } from '@/lib/event';
 
+/**
+ * =========================================
+ */
+declare global {
+  interface Window {
+    __howlerStreamPatched?: boolean;
+  }
+}
+
+/**
+ * Patches Howler's master gain node to stream its output into a hidden HTML audio element.
+ * This helps prevent iOS from suspending audio when the app goes into the background.
+ */
+export function setupAudioStream(): void {
+  if (
+    typeof window !== 'undefined' &&
+    Howler.ctx &&
+    !window.__howlerStreamPatched
+  ) {
+    const audioCtx = Howler.ctx;
+    const masterGain = Howler.masterGain;
+
+    // Create a MediaStream destination node to capture the AudioContext output.
+    const streamDestination = audioCtx.createMediaStreamDestination();
+
+    // Disconnect the master gain from its default destination.
+    masterGain.disconnect();
+
+    // Reconnect the master gain to both the default destination and the stream destination.
+    masterGain.connect(audioCtx.destination);
+    masterGain.connect(streamDestination);
+
+    // Create a hidden HTML audio element to play the captured stream.
+    const audioElement = document.createElement('audio');
+    audioElement.setAttribute('playsinline', 'true'); // essential for iOS
+    audioElement.srcObject = streamDestination.stream;
+    audioElement.style.display = 'none';
+    document.body.appendChild(audioElement);
+
+    // Attempt to play the audio element. Note that iOS requires a user gesture.
+    audioElement.play().catch((err: unknown) => {
+      console.error('Failed to play background stream:', err);
+    });
+
+    // Mark the stream as patched so we don’t run this code again.
+    window.__howlerStreamPatched = true;
+  }
+}
+/**
+ * =========================================
+ */
+
 export function App() {
   const categories = useMemo(() => sounds.categories, []);
 
@@ -85,6 +137,19 @@ export function App() {
 
     return [...favorites, ...categories];
   }, [favoriteSounds, categories]);
+
+  useEffect(() => {
+    const handleUserInteraction = () => {
+      setupAudioStream();
+      document.removeEventListener('click', handleUserInteraction);
+    };
+
+    document.addEventListener('click', handleUserInteraction);
+
+    return () => {
+      document.removeEventListener('click', handleUserInteraction);
+    };
+  }, []);
 
   return (
     <SnackbarProvider>
