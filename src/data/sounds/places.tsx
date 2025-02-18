@@ -14,6 +14,7 @@ import {
 import { HiOfficeBuilding } from 'react-icons/hi/index';
 import { AiFillExperiment } from 'react-icons/ai/index';
 import { IoRestaurant } from 'react-icons/io5/index';
+import { FaBookOpen } from 'react-icons/fa6/index';
 
 import type { Category } from '../types';
 
@@ -110,6 +111,12 @@ export const places: Category = {
       id: 'restaurant',
       label: 'Restaurant',
       src: '/sounds/places/restaurant.mp3',
+    },
+    {
+      icon: <FaBookOpen />,
+      id: 'library',
+      label: 'Library',
+      src: '/sounds/places/library.mp3',
     },
   ],
   title: 'Places',
