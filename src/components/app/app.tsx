@@ -30,8 +30,9 @@ declare global {
 }
 
 /**
- * Patches Howler's master gain node to stream its output into a hidden HTML audio element.
- * This helps prevent iOS from suspending audio when the app goes into the background.
+ * Patches Howler's master gain node to route its output into a hidden HTML audio element.
+ * An intermediate splitter node is used in an attempt to reduce the banging noise observed on iOS.
+ * Also adds a listener to resume the AudioContext when the document becomes visible.
  */
 export function setupAudioStream(): void {
   if (
@@ -40,34 +41,52 @@ export function setupAudioStream(): void {
     !window.__howlerStreamPatched
   ) {
     const audioCtx = Howler.ctx;
-    const masterGain = Howler.masterGain;
 
-    // Create a MediaStream destination node to capture the AudioContext output.
+    // Create a MediaStream destination node to capture the output.
     const streamDestination = audioCtx.createMediaStreamDestination();
 
-    // Disconnect the master gain from its default destination.
-    masterGain.disconnect();
+    // Create a splitter gain node to help split the signal cleanly.
+    const splitter = audioCtx.createGain();
 
-    // Reconnect the master gain to both the default destination and the stream destination.
-    masterGain.connect(audioCtx.destination);
-    masterGain.connect(streamDestination);
+    // Disconnect the master gain.
+    Howler.masterGain.disconnect();
+
+    // Reconnect masterGain: one branch to the AudioContext's default destination,
+    // and one branch through the splitter to the MediaStream destination.
+    Howler.masterGain.connect(audioCtx.destination);
+    Howler.masterGain.connect(splitter);
+    splitter.connect(streamDestination);
 
     // Create a hidden HTML audio element to play the captured stream.
     const audioElement = document.createElement('audio');
-    audioElement.setAttribute('playsinline', 'true'); // essential for iOS
+    audioElement.setAttribute('playsinline', 'true'); // crucial for iOS playback
     audioElement.srcObject = streamDestination.stream;
     audioElement.style.display = 'none';
     document.body.appendChild(audioElement);
 
-    // Attempt to play the audio element. Note that iOS requires a user gesture.
+    // Attempt to start playback (must be triggered by a user gesture).
     audioElement.play().catch((err: unknown) => {
       console.error('Failed to play background stream:', err);
     });
 
-    // Mark the stream as patched so we don’t run this code again.
+    // Listen for visibility changes: if the document becomes visible and the AudioContext is suspended, resume it.
+    document.addEventListener('visibilitychange', () => {
+      if (
+        document.visibilityState === 'visible' &&
+        audioCtx.state === 'suspended'
+      ) {
+        audioCtx
+          .resume()
+          .catch((err: unknown) =>
+            console.error('Error resuming AudioContext:', err),
+          );
+      }
+    });
+
     window.__howlerStreamPatched = true;
   }
 }
+
 /**
  * =========================================
  */
