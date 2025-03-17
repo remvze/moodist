@@ -34,6 +34,7 @@ export function Slider({
       max={max}
       min={min}
       step={step}
+      tabIndex={0}
       value={value !== undefined ? [value] : undefined}
       onValueChange={handleValueChange}
     >

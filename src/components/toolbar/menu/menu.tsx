@@ -144,18 +144,12 @@ export function Menu() {
 
                     <div className={styles.globalVolume}>
                       <label htmlFor="global-volume">Global Volume</label>
-
-                      <DropdownMenu.Item
-                        asChild
-                        onSelect={e => e.preventDefault()}
-                      >
-                        <Slider
-                          max={100}
-                          min={0}
-                          value={globalVolume * 100}
-                          onChange={value => setGlobalVolume(value / 100)}
-                        />
-                      </DropdownMenu.Item>
+                      <Slider
+                        max={100}
+                        min={0}
+                        value={globalVolume * 100}
+                        onChange={value => setGlobalVolume(value / 100)}
+                      />
                     </div>
 
                     <Divider />
