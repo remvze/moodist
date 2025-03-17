@@ -36,7 +36,7 @@ export function MediaSessionTrack() {
       ...metadata,
       artwork: [
         {
-          sizes: '200x200',
+          sizes: '200x192',
           src: artworkURL,
           type: 'image/png',
         },

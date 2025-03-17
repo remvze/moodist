@@ -13,14 +13,16 @@ const count = soundCount();
   <Container>
     <div class="wrapper">
       <div class="pattern"></div>
-      <img
-        alt="Faded Moodist Logo"
-        aria-hidden="true"
-        class="logo"
-        height={45}
-        src="/logo.svg"
-        width={45}
-      />
+      <div class="logo-wrapper">
+        <img
+          alt="Faded Moodist Logo"
+          aria-hidden="true"
+          class="logo"
+          height={45}
+          src="/logo.svg"
+          width={45}
+        />
+      </div>
 
       <h1 class="title">
         Ambient Sounds<span class="line">For Focus and Calm</span>
@@ -65,14 +67,18 @@ const count = soundCount();
       }
     }
 
-    & .logo {
-      display: block;
-      width: 45px;
-      margin: 0 auto 16px;
-      animation-name: logo;
-      animation-duration: 45s;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
+    & .logo-wrapper {
+      mask-image: linear-gradient(#000, rgb(0 0 0 / 30%));
+
+      & .logo {
+        display: block;
+        width: 45px;
+        margin: 0 auto 16px;
+        animation-name: logo;
+        animation-duration: 60s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
     }
 
     & .title {
