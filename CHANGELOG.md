@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/remvze/moodist/compare/v2.0.0...v2.0.1) (2025-03-25)
+
+
+### 🐛 Bug Fixes
+
+* add delay to cipher text ([4895a72](https://github.com/remvze/moodist/commit/4895a7266d1b7458bc09a77dd6922058a247ea98))
+
 ## [2.0.0](https://github.com/remvze/moodist/compare/v1.5.1...v2.0.0) (2025-03-25)
 
 
