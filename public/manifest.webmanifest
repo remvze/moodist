@@ -1,0 +1,12 @@
+{
+  "name": "Moodist",
+  "short_name": "Moodist",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#000000",
+  "lang": "en",
+  "scope": "/",
+  "description": "Ambient sounds for focus and calm",
+  "theme_color": "#d4d4d8",
+  "orientation": "any",
+}
