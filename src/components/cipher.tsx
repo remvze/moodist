@@ -12,10 +12,12 @@ export function CipherText({ interval = 50, text }: CipherTextProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    setTimeout(() => setIsMounted(true), 2000);
   }, []);
 
   useEffect(() => {
+    if (!isMounted) return;
+
     let timer: NodeJS.Timeout;
 
     if (outputText !== text) {
@@ -29,7 +31,7 @@ export function CipherText({ interval = 50, text }: CipherTextProps) {
     }
 
     return () => clearInterval(timer);
-  }, [text, interval, outputText]);
+  }, [text, interval, outputText, isMounted]);
 
   useEffect(() => {
     if (outputText === text) {
