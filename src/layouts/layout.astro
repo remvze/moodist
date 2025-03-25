@@ -1,4 +1,8 @@
 ---
+import { pwaInfo } from 'virtual:pwa-info'; // eslint-disable-line
+
+import { Reload } from '@/components/reload';
+
 import { count } from '@/lib/sounds';
 
 import '@/styles/global.css';
@@ -35,8 +39,12 @@ const description =
     <meta content="https://moodist.app/og.png" property="og:image" />
 
     <meta content="summary_large_image" name="twitter:card" />
+
+    {pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
   </head>
   <body>
     <slot />
+
+    <Reload client:load />
   </body>
 </html>
