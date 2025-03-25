@@ -2,6 +2,162 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/remvze/moodist/compare/v1.5.1...v2.0.0) (2025-03-25)
+
+
+### ✅ Testing
+
+* add Vitest and some tests ([def9a57](https://github.com/remvze/moodist/commit/def9a57e0c6454f0e3ffd74b29153a01b33866be))
+* write more tests ([9cc0ccd](https://github.com/remvze/moodist/commit/9cc0ccd325cf769d64779f133bd2d59e6ba7ca58))
+* write tests for motion lib ([d356d77](https://github.com/remvze/moodist/commit/d356d77aa951b84a6ccbd0b1c6590286c042957b))
+* write tests for random helper ([cad85c7](https://github.com/remvze/moodist/commit/cad85c76676cff7fe8c47ccb8d332809f7276e28))
+
+
+### ⚡️ Performance Improvements
+
+* improve the breathing cricle ([3d83a14](https://github.com/remvze/moodist/commit/3d83a1427feaec1e858953899870da06d35b4631))
+
+
+### ♻️ Code Refactoring
+
+* add description for events ([2c8135d](https://github.com/remvze/moodist/commit/2c8135db43b1a1dad789277926af0d1be3e987fc))
+* add JSDoc for custom hooks ([0f50e6a](https://github.com/remvze/moodist/commit/0f50e6ae8b3d1615ed52fb168a48bbb2149090ac))
+* add JSDoc for helper functions ([4ae0504](https://github.com/remvze/moodist/commit/4ae05049377506f79f5ef9f68fa7cf396d7d0528))
+* change stores structure ([096251e](https://github.com/remvze/moodist/commit/096251ec0a459efbbe08d88cabab75c4ad775976))
+* refactor the breathing tool ([d56f8be](https://github.com/remvze/moodist/commit/d56f8be448aa746874c38ba0cc7e00e38d339f59))
+* relocate folders ([f3cea66](https://github.com/remvze/moodist/commit/f3cea668470ca06b2114a03b54660475cc560d44))
+* remove extra hook ([a4a31dd](https://github.com/remvze/moodist/commit/a4a31dd43eef5c3e1d2b62cf4bb6e491e382f988))
+* remove the timer store ([5ffb06b](https://github.com/remvze/moodist/commit/5ffb06be036acb1fe5d8fa4b91e4cbede39ebcc0))
+* rename components ([d73b2bc](https://github.com/remvze/moodist/commit/d73b2bc1ff7689ff85c6453710b2d89927973066))
+* rename stores folder ([2a86a88](https://github.com/remvze/moodist/commit/2a86a88ed6a232c4a8c2a10bbb06f586361f732d))
+* separate the migration ([c35409c](https://github.com/remvze/moodist/commit/c35409ce0a95d8376f0d84c96ed0975c9f3a1301))
+* use the ID instead of index ([7658842](https://github.com/remvze/moodist/commit/7658842324a92210a6a612c70c5479c6bb7f3c05))
+* write JSDoc for libs ([fddf75c](https://github.com/remvze/moodist/commit/fddf75cdca1f121160f9054c82a7a1ddedd6f2fa))
+
+
+### ✨ Features
+
+* add active indicator for sleep timer ([82d8240](https://github.com/remvze/moodist/commit/82d8240b9708a9d522f67ae305dc44e004ced6de))
+* add animation for labels ([48a85b2](https://github.com/remvze/moodist/commit/48a85b26016a8f3cc934e1b2298b0d897ffd9b43))
+* add basic form ([c272914](https://github.com/remvze/moodist/commit/c27291441625eb6528b28f55af3f88e1debd8a55))
+* add binary animation ([699f49b](https://github.com/remvze/moodist/commit/699f49bfa33420698962b56db23b49c8e14bb354))
+* add binaural beat generator without styles ([f40e820](https://github.com/remvze/moodist/commit/f40e8206f8126f1988e0e39ca522ac3c5eb8139f))
+* add breathing exercise ([1f2b6b9](https://github.com/remvze/moodist/commit/1f2b6b952c65c04828f19506134d783a7491df23))
+* add breathing exercise shortcut ([a3b794d](https://github.com/remvze/moodist/commit/a3b794d9748d4a9877e5727269178f207fbc03d5))
+* add breathing exercises and other tools ([eee7553](https://github.com/remvze/moodist/commit/eee755378a14d93d1363e8c265a908d50b9cc332))
+* add breathing exercises tool ([27f2578](https://github.com/remvze/moodist/commit/27f25785e1cfc0482d7ddd625ac1219fd5bb6863))
+* add cipher animation ([29bebb3](https://github.com/remvze/moodist/commit/29bebb3ec74d969fb42968696e470db00a07766e))
+* add confetti ([ace0d6e](https://github.com/remvze/moodist/commit/ace0d6eeccc65c96275a24c8a96e63988cf76134))
+* add countdown timer ([edd53d8](https://github.com/remvze/moodist/commit/edd53d8102871d53b0a11eaa9bae7323f874d988))
+* add countdown timer structure ([c5657d0](https://github.com/remvze/moodist/commit/c5657d06425aea84a4ba9a4b2f48e312be8b0271))
+* add custom checkbox ([cb340c5](https://github.com/remvze/moodist/commit/cb340c53a39917722137a8ee05b779af04a1203d))
+* add custom slider ([3b77c12](https://github.com/remvze/moodist/commit/3b77c12114e5e37c0a3a17c945a0e69e034a35a4))
+* add desktop notice ([07f37ef](https://github.com/remvze/moodist/commit/07f37ef17f8be893d3ceba8fbe4427a9ecda5c15))
+* add done counter ([aa8161a](https://github.com/remvze/moodist/commit/aa8161aac5eb238048c713500a091e9af1c98e6a))
+* add global volume ([3b829fc](https://github.com/remvze/moodist/commit/3b829fce07ed7adf11ca9993c33e33caab285763))
+* add header to todos ([c6cc61a](https://github.com/remvze/moodist/commit/c6cc61a17fcb8542ece3caccc0de536d8003b106))
+* add ID to presets ([78222be](https://github.com/remvze/moodist/commit/78222be011cf93998faed0b7926a5b49dcdeb470))
+* add isochronic tone generator without styles ([d759064](https://github.com/remvze/moodist/commit/d759064373fe791f641db39549e05341068ae8a2))
+* add lofi radios ([bb39b4b](https://github.com/remvze/moodist/commit/bb39b4ba98f20da13e1e7a440441f5474a823f32))
+* add Moodist description to tools ([5b3972b](https://github.com/remvze/moodist/commit/5b3972b3470f3c43903d9a20925ed49321f07440))
+* add more sounds ([d2e289e](https://github.com/remvze/moodist/commit/d2e289e5d5cccd050ca94860f05f00740b3cf139))
+* add more sounds ([554309e](https://github.com/remvze/moodist/commit/554309ebd87da2bce4555f09e5c9f34735d0b794))
+* add more sounds ([be38b92](https://github.com/remvze/moodist/commit/be38b92647209ce17032987b3d6f5d1800322db5))
+* add more sounds ([b497d16](https://github.com/remvze/moodist/commit/b497d16fd8b7d6ccf34c0c91b596fca75dff2f34))
+* add move up and down functionality ([3e11fb6](https://github.com/remvze/moodist/commit/3e11fb6123e4c6b6be9668ef4c274390a5acd16a))
+* add new logo ([c1ece58](https://github.com/remvze/moodist/commit/c1ece582f445906308a0d856181ebaca464ec25a))
+* add notepad tool ([a80289d](https://github.com/remvze/moodist/commit/a80289db57c1b002edd586b323444d3a474587ad))
+* add notepad tool page ([1fd02f9](https://github.com/remvze/moodist/commit/1fd02f927c55155ecd8d1af6325995c4635e0a29))
+* add persist mode to the modal ([4c0f417](https://github.com/remvze/moodist/commit/4c0f417469fb15adbe33cab9bb66459225653e68))
+* add pomodoro timer ([d2edeb4](https://github.com/remvze/moodist/commit/d2edeb48becef62f1002359a41ebe8ebfa1f34bb))
+* add pomodoro timer tool ([bee391a](https://github.com/remvze/moodist/commit/bee391acfecdaf36488c48ef1022b16a83059d58))
+* add PWA ([761c730](https://github.com/remvze/moodist/commit/761c7301295a3e5645326be804225431f823f808))
+* add reverse timer ([105f53e](https://github.com/remvze/moodist/commit/105f53ea028fadae4bd2ff7d8a1856e94f070b1a))
+* add shortcut for breathing exercise ([60cb453](https://github.com/remvze/moodist/commit/60cb453847f0968a4d1abc0fbb66773a54ebdfd9))
+* add simple breathing exercise tool ([fc4f521](https://github.com/remvze/moodist/commit/fc4f52146e2142a0c711b6d6a334c0107b1e1daa))
+* add store to the notepad ([47a63a7](https://github.com/remvze/moodist/commit/47a63a774ebede5db65f17a29a36f0b76d9ed85a))
+* add timer for breathing exercises ([5865fc8](https://github.com/remvze/moodist/commit/5865fc867dc97e03d0f0c79ea8c465e0c0f27411))
+* better heading ([10259d0](https://github.com/remvze/moodist/commit/10259d013f7cb1ae41808f7a78e836ddee3b07f1))
+* bring back all tools ([6a4dc1e](https://github.com/remvze/moodist/commit/6a4dc1ed95072c402cb553fa5b1becb646062c45))
+* bring back all tools ([e1de5c4](https://github.com/remvze/moodist/commit/e1de5c48b299e815f071f15c00424ba1b0189419))
+* change and add shortcuts ([a59db41](https://github.com/remvze/moodist/commit/a59db41dc5eaa7be5ab86c5cc407274eb7b57dfe))
+* change logos ([3d1d45c](https://github.com/remvze/moodist/commit/3d1d45cd4933335cfbe20381c0e758969a3bdcb9))
+* change shortcuts ([4f45279](https://github.com/remvze/moodist/commit/4f45279938f60ee6934c3e6047898b9833c2b9c6))
+* change shortcuts ([251f309](https://github.com/remvze/moodist/commit/251f30930c72a50120412c6b2182fdf4183b9d62))
+* fix modal and scrollbar layout shift ([e399673](https://github.com/remvze/moodist/commit/e3996734621b33c0598db29e82371f1258396147))
+* implement countdown timer functionality ([2bfb9b1](https://github.com/remvze/moodist/commit/2bfb9b181c490c9836e2410199e6a1cf8687e7aa))
+* media session support ([18ed2e6](https://github.com/remvze/moodist/commit/18ed2e6f055d7e32b4a9df33cdb724eaf1f930aa))
+* remove all extra tools ([973e0df](https://github.com/remvze/moodist/commit/973e0df6fb3a6749fd4b0f8d1cd976c67a7e8c43))
+* remove all tools ([2bbdc7e](https://github.com/remvze/moodist/commit/2bbdc7e09e053bd6e8bb052abb7aff723cb14eaa))
+* remove all tools ([b32d8b2](https://github.com/remvze/moodist/commit/b32d8b28034e018eeaf1c544e4128b91f4a95172))
+* remove lofi modal ([13d26b3](https://github.com/remvze/moodist/commit/13d26b3337b2e79d52c774807795b5924a4dcb76))
+* remove pre-made binaurals ([b8ed79f](https://github.com/remvze/moodist/commit/b8ed79f48ad2a315b93aedf1f932b6c5f075b157))
+* remove the breathing exercises ([76fdc74](https://github.com/remvze/moodist/commit/76fdc747100bc15ced92b77b1fefc8cba519d37f))
+* remove the countdown timer ([d6ed3fd](https://github.com/remvze/moodist/commit/d6ed3fd251df029100caba5df304996e723acd78))
+* replace reverse timer ([a6c7ac4](https://github.com/remvze/moodist/commit/a6c7ac41ad5210b9a98e0fe62f5cb387fe9c4e9a))
+* scroll into view after marking favorite ([74f6b58](https://github.com/remvze/moodist/commit/74f6b5851d3a0fac5f97d97cd24f12507c2c3b35))
+* scroll the new timer into view ([f4c66e3](https://github.com/remvze/moodist/commit/f4c66e309277414951b191e627b1f52aab79af6f))
+* update the menu items ([1768ba1](https://github.com/remvze/moodist/commit/1768ba1548a444c57dbfd5e351d77838238aed0d))
+* use custom slider in binaural and isochronic ([e61307a](https://github.com/remvze/moodist/commit/e61307a30263dca8cc016ec5136d52c4b18e5c3c))
+
+
+### 💄 Styling
+
+* add animation to presets ([787a9b6](https://github.com/remvze/moodist/commit/787a9b60b51334ec2a7423d489f71c305661039e))
+* add binary pattern ([ba3cd5c](https://github.com/remvze/moodist/commit/ba3cd5ca5be8435f32b93d5a499e37388340bff8))
+* add focus state ([af075b3](https://github.com/remvze/moodist/commit/af075b32e64a6ab923d60282558250b79cc12da3))
+* add min width ([18987cc](https://github.com/remvze/moodist/commit/18987cc33997c7b010aea2d4f1546ddcabe1a46b))
+* add pattern ([69eb883](https://github.com/remvze/moodist/commit/69eb8832dae026706f76ba21a74fcb248ba4309d))
+* add style to generators ([5c53678](https://github.com/remvze/moodist/commit/5c536786ea64e9722a67289ab2d7e56e7a259404))
+* add title to timer ([a3c384d](https://github.com/remvze/moodist/commit/a3c384d1054b81e056265eecd9344496c9b0b5ce))
+* center icons ([1cf9a85](https://github.com/remvze/moodist/commit/1cf9a85e13d50d3c5335dfb78fa57543ce6fda44))
+* change border radius ([5c9a2aa](https://github.com/remvze/moodist/commit/5c9a2aa23aa04f9386e7d7ac9a20759a2ed87acc))
+* change button style ([8a79ccf](https://github.com/remvze/moodist/commit/8a79ccf018cd7ee86b27b8bd187975376abea953))
+* change description ([9208663](https://github.com/remvze/moodist/commit/9208663050c340fdecf486b4835d30353852fd22))
+* change gradient ([9e38a8f](https://github.com/remvze/moodist/commit/9e38a8fd7da2d68c8c04c4c21cbda6444e9e247b))
+* change icons ([2e1fce4](https://github.com/remvze/moodist/commit/2e1fce46695b693c4b6aa11f18506e2f2cd9bb59))
+* change item order ([9198315](https://github.com/remvze/moodist/commit/919831538fea639eb60c8fb84fa93a79ec2cd9c5))
+* change logo ([4a92d2f](https://github.com/remvze/moodist/commit/4a92d2f1c12c12b4166500149937be51e6442f71))
+* change logo color ([4b01501](https://github.com/remvze/moodist/commit/4b015016e7c531afc3f3b1f51d62bf96232e3ea8))
+* change notice ([9d1d8f8](https://github.com/remvze/moodist/commit/9d1d8f80359097b9122673564d3d57c0827ff3db))
+* change other assets ([11e0ba2](https://github.com/remvze/moodist/commit/11e0ba2f938fc08984e4acba1ba6b4ac3239cacf))
+* fix pointer event ([12d3255](https://github.com/remvze/moodist/commit/12d3255d57083ff72ae919b6161922620dc1d6e2))
+* increase menu width ([96ca376](https://github.com/remvze/moodist/commit/96ca3768856806bbe761e773d5ef626dcd12c968))
+* minor change ([302a71c](https://github.com/remvze/moodist/commit/302a71cdc6472dd29d75372ddc6a3ef214dd68c4))
+* minor change ([b73fd0b](https://github.com/remvze/moodist/commit/b73fd0b16e57140350d0743aa98ec6933bdc5c64))
+* minor changes ([536db4c](https://github.com/remvze/moodist/commit/536db4cd156cb391a0b1ef9bf3e4fbbac06ccc11))
+* minor changes ([7f3ac26](https://github.com/remvze/moodist/commit/7f3ac26b982e629eef891f706004eca5f14e11c4))
+* minor changes ([4cc8597](https://github.com/remvze/moodist/commit/4cc85975e54cfd8195596e017c351a227184806b))
+* minor changes ([b27f24d](https://github.com/remvze/moodist/commit/b27f24d37484a04495a043170ccaf4b4923b31ac))
+* minor changes ([a29e2c2](https://github.com/remvze/moodist/commit/a29e2c20e4bac276495b409b20a6ffaa079122e2))
+* remove animation on change ([41845ff](https://github.com/remvze/moodist/commit/41845ffe5e282c07b3c4cdea56607f1668c636bd))
+* remove animations ([28abc16](https://github.com/remvze/moodist/commit/28abc16b9cbbc3986f7fb3feb17e57e553cda5dd))
+* remove pointer event ([c12ef12](https://github.com/remvze/moodist/commit/c12ef12b79c6db93c457b77f4bfccb2848dc8067))
+* reorder menu items ([0052b91](https://github.com/remvze/moodist/commit/0052b917a817ca7f83fe23521077d99ae78e81cd))
+
+
+### 🚚 Chores
+
+* add animation to countdown timer ([73a5c21](https://github.com/remvze/moodist/commit/73a5c21be918e1e105214078eaef8d76b168333b))
+* add library sound ([309dd89](https://github.com/remvze/moodist/commit/309dd89a8c13eb2647217c81d7fc0a82eb3ebaae))
+* add toolbox copy ([cfd2744](https://github.com/remvze/moodist/commit/cfd2744e92b7a2948597a750275bf9c900248d55))
+* comment out the banner ([c5adffb](https://github.com/remvze/moodist/commit/c5adffb4d777eda1e2a092e382c1cac616dd60f1))
+* update logos ([7a47282](https://github.com/remvze/moodist/commit/7a472821652d1359126568836b3040ce1fa454c5))
+* update logos ([2b85b27](https://github.com/remvze/moodist/commit/2b85b276eb11d862bf1abd1e6f099740d9b85c10))
+
+
+### 🐛 Bug Fixes
+
+* add default value ([14c331a](https://github.com/remvze/moodist/commit/14c331ab6e692ea3fcdaa056e32728f0a1cd2772))
+* better implement shortcuts ([e77c67b](https://github.com/remvze/moodist/commit/e77c67bc24f1831bb6de80a4335c51e5b84009ed))
+* change icon path ([09c0a6c](https://github.com/remvze/moodist/commit/09c0a6ce93f8b0f62149928218532201e0de16c5))
+* change shortcuts ([edd15f4](https://github.com/remvze/moodist/commit/edd15f4b9a0291b9794102fbb41048de10b0fd69))
+* correct link ([496c831](https://github.com/remvze/moodist/commit/496c831552442047d5556376a212698c8931b698))
+* disable the sleep timer when no sound is selected ([d42eb25](https://github.com/remvze/moodist/commit/d42eb25f7be64b5e77cd0bacd1538949d331aff7))
+* icons path ([1a1359c](https://github.com/remvze/moodist/commit/1a1359c989268a22cfdba20f198af192726ac2ce))
+* remove dropdown menu item from slider ([99e6941](https://github.com/remvze/moodist/commit/99e694161f16a3be03cbda0854687a244df42f21))
+* remove extra hook ([3ef4a07](https://github.com/remvze/moodist/commit/3ef4a076a2b48911d37f75067dc60ea15dd28405))
+
 ### [1.5.1](https://github.com/remvze/moodist/compare/v1.5.0...v1.5.1) (2024-06-14)
 
 
