@@ -25,6 +25,16 @@ const presets: Preset[] = [
   { baseFrequency: 440, beatFrequency: 10, name: 'Custom' },
 ];
 
+function computeBinauralBeatOscillatorFrequencies(
+  baseFrequency: number,
+  beatFrequency: number,
+) {
+  return {
+    leftFrequency: baseFrequency - beatFrequency / 2,
+    rightFrequency: baseFrequency + beatFrequency / 2,
+  };
+}
+
 export function BinauralModal({ onClose, show }: BinauralProps) {
   const [baseFrequency, setBaseFrequency] = useState<number>(440); // Default to A4 note
   const [beatFrequency, setBeatFrequency] = useState<number>(10); // Default to 10 Hz difference
@@ -61,10 +71,10 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
     )
       return;
 
-    leftOscillatorRef.current.frequency.value =
-      baseFrequency - beatFrequency / 2;
-    rightOscillatorRef.current.frequency.value =
-      baseFrequency + beatFrequency / 2;
+    const { leftFrequency, rightFrequency } =
+      computeBinauralBeatOscillatorFrequencies(baseFrequency, beatFrequency);
+    leftOscillatorRef.current.frequency.value = leftFrequency;
+    rightOscillatorRef.current.frequency.value = rightFrequency;
 
     // Pan oscillators to left and right
     const leftPanner = audioContext.createStereoPanner();
@@ -103,6 +113,16 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
       gainNodeRef.current.gain.value = volume;
     }
   }, [volume]);
+
+  useEffect(() => {
+    // Update base frequency for both left and right oscillators when it changes
+    if (leftOscillatorRef.current && rightOscillatorRef.current) {
+      const { leftFrequency, rightFrequency } =
+        computeBinauralBeatOscillatorFrequencies(baseFrequency, beatFrequency);
+      leftOscillatorRef.current.frequency.value = leftFrequency;
+      rightOscillatorRef.current.frequency.value = rightFrequency;
+    }
+  }, [baseFrequency, beatFrequency]);
 
   useEffect(() => {
     // Cleanup when component unmounts
