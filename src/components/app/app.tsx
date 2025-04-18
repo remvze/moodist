@@ -2,6 +2,8 @@ import { useMemo, useEffect } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import { BiSolidHeart } from 'react-icons/bi/index';
 import { Howler } from 'howler';
+import { I18nextProvider, useTranslation } from 'react-i18next';
+import i18n from '@/i18n';
 
 import { useSoundStore } from '@/stores/sound';
 
@@ -17,11 +19,24 @@ import { MediaControls } from '@/components/media-controls';
 import { sounds } from '@/data/sounds';
 import { FADE_OUT } from '@/constants/events';
 
-import type { Sound } from '@/data/types';
+import type { Sound, Category as CategoryType } from '@/data/types';
 import { subscribe } from '@/lib/event';
 
-export function App() {
-  const categories = useMemo(() => sounds.categories, []);
+interface AppProps {
+  locale: string; // 接收来自 Astro 的 locale
+}
+
+export function App({ locale }: AppProps) {
+  const { t } = useTranslation(); // 获取 t 函数，以便翻译 "Favorites"
+
+  useEffect(() => {
+    if (locale && i18n.language !== locale) {
+      i18n.changeLanguage(locale);
+    }
+  }, [locale]);
+
+  const categoriesData = useMemo(() => sounds.categories, []);
+  const categories = categoriesData; // 暂时不翻译
 
   const favorites = useSoundStore(useShallow(state => state.getFavorites()));
   const pause = useSoundStore(state => state.pause);
@@ -29,18 +44,20 @@ export function App() {
   const unlock = useSoundStore(state => state.unlock);
 
   const favoriteSounds = useMemo(() => {
-    const favoriteSounds = categories
+    const allFlatSounds = categoriesData
       .map(category => category.sounds)
-      .flat()
-      .filter(sound => favorites.includes(sound.id));
-
-    /**
-     * Reorder based on the order of favorites
-     */
-    return favorites.map(favorite =>
-      favoriteSounds.find(sound => sound.id === favorite),
+      .flat();
+    const favoriteSoundsData = allFlatSounds.filter(sound =>
+      favorites.includes(sound.id),
     );
-  }, [favorites, categories]);
+
+    // 暂时不翻译 sound labels
+    return favorites
+      .map(favoriteId =>
+        favoriteSoundsData.find(sound => sound.id === favoriteId),
+      )
+      .filter((s): s is Sound => s !== undefined);
+  }, [favorites, categoriesData]);
 
   useEffect(() => {
     const onChange = () => {
@@ -72,33 +89,33 @@ export function App() {
   }, [pause, lock, unlock]);
 
   const allCategories = useMemo(() => {
-    const favorites = [];
-
+    const favs: CategoryType[] = [];
     if (favoriteSounds.length) {
-      favorites.push({
+      favs.push({
         icon: <BiSolidHeart />,
         id: 'favorites',
-        sounds: favoriteSounds as Array<Sound>,
-        title: 'Favorites',
+        sounds: favoriteSounds,
+        title: t('categories.favorites'),
       });
     }
-
-    return [...favorites, ...categories];
-  }, [favoriteSounds, categories]);
+    return [...favs, ...categories];
+  }, [favoriteSounds, categories, t]);
 
   return (
-    <SnackbarProvider>
-      <StoreConsumer>
-        <MediaControls />
-        <Container>
-          <div id="app" />
-          <Buttons />
-          <Categories categories={allCategories} />
-        </Container>
+    <I18nextProvider i18n={i18n}>
+      <SnackbarProvider>
+        <StoreConsumer>
+          <MediaControls />
+          <Container>
+            <div id="app" />
+            <Buttons />
+            <Categories categories={allCategories} />
+          </Container>
 
-        <Toolbar />
-        <SharedModal />
-      </StoreConsumer>
-    </SnackbarProvider>
+          <Toolbar />
+          <SharedModal />
+        </StoreConsumer>
+      </SnackbarProvider>
+    </I18nextProvider>
   );
 }

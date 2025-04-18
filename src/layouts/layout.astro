@@ -3,7 +3,9 @@ import { pwaInfo } from 'virtual:pwa-info'; // eslint-disable-line
 
 import { Reload } from '@/components/reload';
 
-import { count } from '@/lib/sounds';
+import { count as soundCount } from '@/lib/sounds';
+
+import { getTranslator } from '@/i18n/utils';
 
 import '@/styles/global.css';
 
@@ -11,15 +13,16 @@ interface Props {
   description?: string;
   title?: string;
 }
+const currentLocale = Astro.currentLocale;
+const t = await getTranslator(currentLocale);
 
-const title = Astro.props.title || 'Moodist: Ambient Sounds for Focus and Calm';
-const description =
-  Astro.props.description ||
-  `Moodist is a free and open-source ambient sound generator featuring ${count()} carefully curated sounds. Create your ideal atmosphere for relaxation, focus, or creativity with this versatile tool.`;
+const count = soundCount();
+const title = Astro.props.title || t('site.title');
+const description = Astro.props.description || t('site.description', { count });
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={currentLocale}>
   <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width" name="viewport" />
@@ -33,7 +36,7 @@ const description =
 
     <meta content={title} property="og:title" />
     <meta content={description} property="og:description" />
-    <meta content="Moodist" property="og:site_name" />
+    <meta content={t('site.ogSiteName')} property="og:site_name" />
     <meta content="https://moodist.app" property="og:url" />
     <meta content="website" property="og:type" />
     <meta content="https://moodist.app/og.png" property="og:image" />

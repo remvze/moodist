@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { BiPause, BiPlay } from 'react-icons/bi/index';
 import { useHotkeys } from 'react-hotkeys-hook';
+import { useTranslation } from 'react-i18next';
 
 import { useSoundStore } from '@/stores/sound';
 import { useSnackbar } from '@/contexts/snackbar';
@@ -9,6 +10,7 @@ import { cn } from '@/helpers/styles';
 import styles from './play.module.css';
 
 export function PlayButton() {
+  const { t } = useTranslation();
   const isPlaying = useSoundStore(state => state.isPlaying);
   const pause = useSoundStore(state => state.pause);
   const toggle = useSoundStore(state => state.togglePlay);
@@ -20,10 +22,10 @@ export function PlayButton() {
   const handleToggle = useCallback(() => {
     if (locked) return;
 
-    if (noSelected) return showSnackbar('Please first select a sound to play.');
+    if (noSelected) return showSnackbar(t('buttons.playError'));
 
     toggle();
-  }, [showSnackbar, toggle, noSelected, locked]);
+  }, [showSnackbar, toggle, noSelected, locked, t]);
 
   useEffect(() => {
     if (isPlaying && noSelected) pause();
@@ -42,14 +44,14 @@ export function PlayButton() {
           <span aria-hidden="true">
             <BiPause />
           </span>{' '}
-          Pause
+          {t('common.pause')}
         </>
       ) : (
         <>
           <span aria-hidden="true">
             <BiPlay />
           </span>{' '}
-          Play
+          {t('common.play')}
         </>
       )}
     </button>
