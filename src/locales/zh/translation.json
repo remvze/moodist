@@ -4,6 +4,13 @@
     "description": "Moodist 是一个免费且开源的环境声音生成器，包含 {{count}} 种精心挑选的声音。使用这款多功能工具，为放松、专注或创造力营造理想的氛围。",
     "ogSiteName": "Moodist"
   },
+  "languages": {
+    "en": "English",
+    "zh": "简体中文"
+  },
+  "languageSwitcher": {
+    "label": "语言选择"
+  },
   "common": {
     "play": "播放",
     "pause": "暂停",

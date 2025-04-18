@@ -8,7 +8,7 @@ import { count as soundCount } from '@/lib/sounds';
 import { getTranslator } from '@/i18n/utils';
 
 import '@/styles/global.css';
-
+import LanguageSwitcher from '@/components/LanguageSwitcher.astro';
 interface Props {
   description?: string;
   title?: string;
@@ -46,8 +46,22 @@ const description = Astro.props.description || t('site.description', { count });
     {pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
   </head>
   <body>
+    <header class="page-header-controls">
+      <LanguageSwitcher />
+    </header>
     <slot />
 
     <Reload client:load />
   </body>
 </html>
+<style is:global>
+  .page-header-controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 1.5rem;
+  }
+</style>

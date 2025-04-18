@@ -4,6 +4,13 @@
     "description": "Moodist is a free and open-source ambient sound generator featuring {{count}} carefully curated sounds. Create your ideal atmosphere for relaxation, focus, or creativity with this versatile tool.",
     "ogSiteName": "Moodist"
   },
+  "languages": {
+    "en": "English",
+    "zh": "简体中文"
+  },
+  "languageSwitcher": {
+    "label": "Language selection"
+  },
   "common": {
     "play": "Play",
     "pause": "Pause",

@@ -1,0 +1,172 @@
+---
+import { getSupportedLangs, getTranslator } from '@/i18n/utils';
+import i18n from '@/i18n';
+import { IoChevronDown } from 'react-icons/io5';
+
+const { url } = Astro;
+// 使用 fallbackLng 作为回退值
+const currentLocale =
+  Astro.currentLocale ||
+  (Array.isArray(i18n.options.fallbackLng)
+    ? i18n.options.fallbackLng[0]
+    : i18n.options.fallbackLng) ||
+  'en';
+const t = await getTranslator(currentLocale);
+
+const supportedLangs = getSupportedLangs();
+const defaultLocaleCode = 'en';
+
+let basePath = url.pathname;
+const prefix = `/${currentLocale}`;
+
+// 只有当当前语言不是硬编码的默认语言时，才需要尝试移除前缀
+if (currentLocale !== defaultLocaleCode && basePath.startsWith(prefix)) {
+  basePath = basePath.substring(prefix.length) || '/';
+}
+if (basePath !== '/' && !basePath.startsWith('/')) {
+  basePath = '/' + basePath;
+}
+
+const currentLangName =
+  t(`languages.${currentLocale}`) || currentLocale.toUpperCase();
+---
+
+<div class="language-switcher-wrapper">
+  <details class="language-details">
+    <summary class="language-summary">
+      <span>{currentLangName}</span>
+      <IoChevronDown className="chevron-icon" />
+    </summary>
+    <ul class="language-list">
+      {
+        supportedLangs.map(langCode => {
+          if (langCode === currentLocale) return null;
+
+          const isDefaultLang = langCode === defaultLocaleCode;
+          let targetPath = isDefaultLang ? basePath : `/${langCode}${basePath}`;
+          targetPath = targetPath.replace('//', '/');
+          if (targetPath === '' && isDefaultLang) targetPath = '/';
+          if (targetPath === '' && !isDefaultLang) targetPath = `/${langCode}`;
+
+          return (
+            <li>
+              <a href={targetPath} hreflang={langCode}>
+                {t(`languages.${langCode}`) || langCode.toUpperCase()}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </details>
+</div>
+
+<style>
+  .language-switcher-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .language-details {
+    position: relative;
+  }
+
+  .language-summary {
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+    padding: 0.5rem 0.8rem;
+    font-size: var(--font-sm);
+    line-height: 1;
+    color: var(--color-foreground-subtle);
+    white-space: nowrap;
+    list-style: none;
+    cursor: pointer;
+    background-color: var(--color-neutral-100);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 6px;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .language-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .language-summary::marker {
+    display: none;
+  }
+
+  .language-summary:hover,
+  .language-details[open] .language-summary {
+    color: var(--color-foreground);
+    background-color: var(--color-neutral-200);
+    border-color: var(--color-neutral-300);
+  }
+
+  .language-summary:focus-visible {
+    outline: 2px solid var(--color-neutral-400);
+    outline-offset: 2px;
+  }
+
+  .chevron-icon {
+    font-size: 1em;
+    opacity: 0.8;
+    transition: transform 0.2s ease;
+  }
+
+  .language-details[open] .chevron-icon {
+    transform: rotate(180deg);
+  }
+
+  .language-list {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    left: auto;
+    z-index: 60;
+    display: none;
+    min-width: 100%;
+    max-height: 200px;
+    padding: 0.4rem 0;
+    margin: 0;
+    overflow-y: auto;
+    list-style: none;
+    background-color: var(--color-neutral-100);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+  }
+
+  .language-details[open] .language-list {
+    display: block;
+  }
+
+  .language-list li a {
+    display: block;
+    padding: 0.5rem 0.8rem;
+    font-size: var(--font-sm);
+    line-height: 1;
+    color: var(--color-foreground-subtle);
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .language-list li a:hover,
+  .language-list li a:focus {
+    color: var(--color-foreground);
+    background-color: var(--color-neutral-200);
+  }
+
+  .language-list li a:focus-visible {
+    color: var(--color-foreground);
+    background-color: var(--color-neutral-200);
+    outline: 2px solid var(--color-neutral-400);
+    outline-offset: -2px;
+  }
+</style>
