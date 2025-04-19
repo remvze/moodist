@@ -8,11 +8,156 @@
     "en": "English",
     "zh": "简体中文"
   },
+  "common": {
+    "save": "Save",
+    "untitled": "Untitled",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "override": "Override",
+    "done": "Done!",
+    "reset": "Reset",
+    "start": "Start",
+    "pause": "Pause",
+    "stop": "Stop",
+    "back": "Back",
+    "restart": "Restart",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "plural-suffix": "s"
+  },
+  "toolbar": {
+    "menu-aria-label": "Menu",
+    "global-volume-label": "Global Volume",
+    "items": {
+      "presets": "Your Presets",
+      "share": "Share Sounds",
+      "shuffle": "Shuffle Sounds",
+      "sleep-timer": "Sleep Timer",
+      "countdown": "Countdown Timer",
+      "pomodoro": "Pomodoro",
+      "notepad": "Notepad",
+      "todo": "Todo Checklist",
+      "breathing": "Breathing Exercise",
+      "binaural": "Binaural Beats",
+      "isochronic": "Isochronic Tones",
+      "shortcuts": "Shortcuts",
+      "buy-me-a-coffee": "Buy Me a Coffee",
+      "source-code": "Source Code"
+    }
+  },
   "modals": {
-    "reload": {
-      "title": "New Content",
-      "description": "New content available, click on reload button to update.",
-      "reloadButton": "Reload"
+    "presets": {
+      "title": "Presets",
+      "your-presets-title": "Your Presets",
+      "empty": "You don't have any presets yet.",
+      "new-preset-title": "New Preset",
+      "placeholder": "Preset's Name",
+      "play-button-tooltip": "Play preset",
+      "play-button-aria-label": "Play preset {{label}}",
+      "delete-button-tooltip": "Delete preset",
+      "delete-button-aria-label": "Delete preset {{label}}",
+      "no-selected-warning": "To make a preset, first select some sounds."
+    },
+    "share-link": {
+      "title": "Share your sound selection!",
+      "description": "Copy and send the following link to the person you want to share your selection with.",
+      "copy-button-aria-label": "Copy link"
+    },
+    "shared": {
+      "title": "New sound mix detected!",
+      "description": "Someone has shared the following mix with you. Would you want to override your current selection?",
+      "snackbar-message": "Done! You can now play the new selection."
+    },
+    "sleep-timer": {
+      "title": "Sleep Timer",
+      "description": "Stop sounds after a certain amount of time.",
+      "hours-label": "Hours",
+      "minutes-label": "Minutes"
+    },
+    "countdown": {
+      "title": "Countdown Timer",
+      "description": "Super simple countdown timer.",
+      "placeholder-hh": "HH",
+      "placeholder-mm": "MM",
+      "placeholder-ss": "SS"
+    },
+    "pomodoro": {
+      "title": "Pomodoro Timer",
+      "settings-tooltip": "Change Times",
+      "completed": "{{count}} completed",
+      "tabs": {
+        "pomodoro": "Pomodoro",
+        "short-break": "Break",
+        "long-break": "Long Break"
+      },
+      "settings": {
+        "title": "Change Times",
+        "pomodoro-label": "Pomodoro",
+        "short-break-label": "Short Break",
+        "long-break-label": "Long Break",
+        "minutes-unit": "minutes"
+      }
+    },
+    "notepad": {
+      "title-label": "Your Note",
+      "copy-tooltip": "Copy Note",
+      "download-tooltip": "Download Note",
+      "clear-tooltip": "Clear Note",
+      "restore-tooltip": "Restore Note",
+      "placeholder": "What is on your mind?",
+      "counter-stats": "{{chars}} character{{chars_plural}} • {{words}} word{{words_plural}}"
+    },
+    "todo": {
+      "title": "Todo Checklist",
+      "description": "Super simple todo list.",
+      "add-placeholder": "I have to ...",
+      "add-button": "Add",
+      "your-todos-label": "Your Todos",
+      "empty": "You don't have any todos.",
+      "delete-button-aria-label": "Delete todo"
+    },
+    "breathing": {
+      "title": "Breathing Exercise",
+      "phases": {
+        "inhale": "Inhale",
+        "exhale": "Exhale",
+        "hold": "Hold"
+      },
+      "exercises": {
+        "box": "Box Breathing",
+        "resonant": "Resonant Breathing",
+        "478": "4-7-8 Breathing"
+      }
+    },
+    "generators": {
+      "presets-label": "Presets:",
+      "base-frequency-label": "Base Frequency (Hz):",
+      "volume-label": "Volume:",
+      "presets": {
+        "delta": "Delta (Deep Sleep) 2 Hz",
+        "theta": "Theta (Meditation) 5 Hz",
+        "alpha": "Alpha (Relaxation) 10 Hz",
+        "beta": "Beta (Focus) 20 Hz",
+        "gamma": "Gamma (Cognition) 40 Hz",
+        "custom": "Custom"
+      }
+    },
+    "binaural": {
+      "title": "Binaural Beat",
+      "description": "Binaural beat generator.",
+      "beat-frequency-label": "Beat Frequency (Hz):"
+    },
+    "isochronic": {
+      "title": "Isochronic Tone",
+      "description": "Isochronic tone generator.",
+      "tone-frequency-label": "Tone Frequency (Hz):"
+    },
+    "shortcuts": {
+      "title": "Keyboard Shortcuts",
+      "labels": {
+        "toggle-play": "Toggle Play",
+        "unselect-all": "Unselect All Sounds"
+      }
     }
   },
   "buttons": {

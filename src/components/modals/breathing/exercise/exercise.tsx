@@ -1,8 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
-
+import { useTranslation } from 'react-i18next'; // Import
 import { padNumber } from '@/helpers/number';
-
 import styles from './exercise.module.css';
 
 type Exercise = 'Box Breathing' | 'Resonant Breathing' | '4-7-8 Breathing';
@@ -17,21 +16,27 @@ const EXERCISE_PHASES: Record<Exercise, Phase[]> = {
 const EXERCISE_DURATIONS: Record<Exercise, Partial<Record<Phase, number>>> = {
   '4-7-8 Breathing': { exhale: 8, holdInhale: 7, inhale: 4 },
   'Box Breathing': { exhale: 4, holdExhale: 4, holdInhale: 4, inhale: 4 },
-  'Resonant Breathing': { exhale: 5, inhale: 5 }, // No holdExhale
+  'Resonant Breathing': { exhale: 5, inhale: 5 },
 };
 
-const PHASE_LABELS: Record<Phase, string> = {
-  exhale: 'Exhale',
-  holdExhale: 'Hold',
-  holdInhale: 'Hold',
-  inhale: 'Inhale',
+const PHASE_LABEL_KEYS: Record<Phase, string> = {
+  exhale: 'modals.breathing.phases.exhale',
+  holdExhale: 'modals.breathing.phases.hold',
+  holdInhale: 'modals.breathing.phases.hold',
+  inhale: 'modals.breathing.phases.inhale',
 };
+
+const EXERCISE_SELECT_OPTIONS: { key: string; value: Exercise }[] = [
+  { key: 'modals.breathing.exercises.478', value: '4-7-8 Breathing' },
+  { key: 'modals.breathing.exercises.box', value: 'Box Breathing' },
+  { key: 'modals.breathing.exercises.resonant', value: 'Resonant Breathing' },
+];
 
 export function Exercise() {
+  const { t } = useTranslation();
   const [selectedExercise, setSelectedExercise] =
     useState<Exercise>('4-7-8 Breathing');
   const [phaseIndex, setPhaseIndex] = useState(0);
-
   const phases = useMemo(
     () => EXERCISE_PHASES[selectedExercise],
     [selectedExercise],
@@ -92,6 +97,8 @@ export function Exercise() {
     return () => clearInterval(interval);
   }, []);
 
+  const currentPhaseLabel = t(PHASE_LABEL_KEYS[currentPhase]);
+
   return (
     <>
       <div className={styles.exercise}>
@@ -105,7 +112,7 @@ export function Exercise() {
           key={selectedExercise}
           variants={animationVariants}
         />
-        <p className={styles.phase}>{PHASE_LABELS[currentPhase]}</p>
+        <p className={styles.phase}>{currentPhaseLabel}</p>
       </div>
 
       <div className={styles.selectWrapper}>
@@ -114,9 +121,9 @@ export function Exercise() {
           value={selectedExercise}
           onChange={e => setSelectedExercise(e.target.value as Exercise)}
         >
-          {Object.keys(EXERCISE_PHASES).map(exercise => (
-            <option key={exercise} value={exercise}>
-              {exercise}
+          {EXERCISE_SELECT_OPTIONS.map(option => (
+            <option key={option.value} value={option.value}>
+              {t(option.key)}
             </option>
           ))}
         </select>

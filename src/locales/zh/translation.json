@@ -8,11 +8,156 @@
     "en": "English",
     "zh": "简体中文"
   },
+  "common": {
+    "save": "保存",
+    "untitled": "未命名",
+    "copy": "复制",
+    "copied": "已复制！",
+    "override": "覆盖",
+    "done": "完成!",
+    "reset": "重置",
+    "start": "开始",
+    "pause": "暂停",
+    "stop": "停止",
+    "back": "返回",
+    "restart": "重新开始",
+    "cancel": "取消",
+    "delete": "删除",
+    "plural-suffix": ""
+  },
+  "toolbar": {
+    "menu-aria-label": "菜单",
+    "global-volume-label": "全局音量",
+    "items": {
+      "presets": "预设",
+      "share": "分享声音",
+      "shuffle": "随机播放",
+      "sleep-timer": "睡眠定时器",
+      "countdown": "倒计时器",
+      "pomodoro": "番茄钟",
+      "notepad": "记事本",
+      "todo": "待办清单",
+      "breathing": "呼吸练习",
+      "binaural": "双耳节拍",
+      "isochronic": "等时声频",
+      "shortcuts": "快捷键",
+      "buy-me-a-coffee": "请我喝咖啡",
+      "source-code": "源代码"
+    }
+  },
   "modals": {
-    "reload": {
-      "title": "发现新内容",
-      "description": "检测到可用新内容，点击“重新加载”按钮进行更新。",
-      "reloadButton": "重新加载"
+    "presets": {
+      "title": "预设",
+      "your-presets-title": "您的预设",
+      "empty": "您还没有任何预设。",
+      "new-preset-title": "新建预设",
+      "placeholder": "预设名称",
+      "play-button-tooltip": "播放预设",
+      "play-button-aria-label": "播放预设 {{label}}",
+      "delete-button-tooltip": "删除预设",
+      "delete-button-aria-label": "删除预设 {{label}}",
+      "no-selected-warning": "要创建预设，请先选择一些声音。"
+    },
+    "share-link": {
+      "title": "分享您的声音组合！",
+      "description": "复制下面的链接并发送给您想与之分享的人。",
+      "copy-button-aria-label": "复制链接"
+    },
+    "shared": {
+      "title": "检测到新的声音组合！",
+      "description": "有人与您分享了以下声音组合。您想覆盖当前的选择吗？",
+      "snackbar-message": "完成！您现在可以播放新的选择了。"
+    },
+    "sleep-timer": {
+      "title": "睡眠定时器",
+      "description": "在指定时间后停止播放声音。",
+      "hours-label": "小时",
+      "minutes-label": "分钟"
+    },
+    "countdown": {
+      "title": "倒计时器",
+      "description": "超级简单的倒计时器。",
+      "placeholder-hh": "时",
+      "placeholder-mm": "分",
+      "placeholder-ss": "秒"
+    },
+    "pomodoro": {
+      "title": "番茄钟",
+      "settings-tooltip": "更改时间",
+      "completed": "已完成 {{count}} 次",
+      "tabs": {
+        "pomodoro": "番茄钟",
+        "short-break": "短休息",
+        "long-break": "长休息"
+      },
+      "settings": {
+        "title": "更改时间",
+        "pomodoro-label": "番茄钟",
+        "short-break-label": "短休息",
+        "long-break-label": "长休息",
+        "minutes-unit": "分钟"
+      }
+    },
+    "notepad": {
+      "title-label": "您的笔记",
+      "copy-tooltip": "复制笔记",
+      "download-tooltip": "下载笔记",
+      "clear-tooltip": "清空笔记",
+      "restore-tooltip": "恢复笔记",
+      "placeholder": "您在想什么？",
+      "counter-stats": "共 {{chars}} 个字符"
+    },
+    "todo": {
+      "title": "待办清单",
+      "description": "超级简单的待办事项列表。",
+      "add-placeholder": "我需要做...",
+      "add-button": "添加",
+      "your-todos-label": "您的待办事项",
+      "empty": "您还没有任何待办事项。",
+      "delete-button-aria-label": "删除待办事项"
+    },
+    "breathing": {
+      "title": "呼吸练习",
+      "phases": {
+        "inhale": "吸气",
+        "exhale": "呼气",
+        "hold": "屏息"
+      },
+      "exercises": {
+        "box": "方形呼吸",
+        "resonant": "共振呼吸",
+        "478": "4-7-8 呼吸"
+      }
+    },
+    "generators": {
+      "presets-label": "预设:",
+      "base-frequency-label": "基础频率 (Hz):",
+      "volume-label": "音量:",
+      "presets": {
+        "delta": "Delta (深度睡眠) 2 Hz",
+        "theta": "Theta (冥想) 5 Hz",
+        "alpha": "Alpha (放松) 10 Hz",
+        "beta": "Beta (专注) 20 Hz",
+        "gamma": "Gamma (认知) 40 Hz",
+        "custom": "自定义"
+      }
+    },
+    "binaural": {
+      "title": "双耳节拍",
+      "description": "双耳节拍生成器。",
+      "beat-frequency-label": "节拍频率 (Hz):"
+    },
+    "isochronic": {
+      "title": "等时声频",
+      "description": "等时声频生成器。",
+      "tone-frequency-label": "声频频率 (Hz):"
+    },
+    "shortcuts": {
+      "title": "键盘快捷键",
+      "labels": {
+        "toggle-play": "播放/暂停",
+        "unselect-all": "取消全选声音"
+      }
     }
   },
   "buttons": {

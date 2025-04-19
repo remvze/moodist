@@ -3,7 +3,7 @@ import { IoMenu, IoClose } from 'react-icons/io5/index';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useHotkeys } from 'react-hotkeys-hook';
 import { AnimatePresence, motion } from 'framer-motion';
-
+import { useTranslation } from 'react-i18next';
 import {
   ShuffleItem,
   ShareItem,
@@ -39,6 +39,7 @@ import { useCloseListener } from '@/hooks/use-close-listener';
 import { closeModals } from '@/lib/modal';
 
 export function Menu() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   const noSelected = useSoundStore(state => state.noSelected());
@@ -100,7 +101,10 @@ export function Menu() {
       <div className={styles.wrapper}>
         <DropdownMenu.Root open={isOpen} onOpenChange={o => setIsOpen(o)}>
           <DropdownMenu.Trigger asChild>
-            <button aria-label="Menu" className={styles.menuButton}>
+            <button
+              aria-label={t('toolbar.menu-aria-label')}
+              className={styles.menuButton}
+            >
               {isOpen ? <IoClose /> : <IoMenu />}
             </button>
           </DropdownMenu.Trigger>
@@ -143,7 +147,9 @@ export function Menu() {
                     <Divider />
 
                     <div className={styles.globalVolume}>
-                      <label htmlFor="global-volume">Global Volume</label>
+                      <label htmlFor="global-volume">
+                        {t('toolbar.global-volume-label')}
+                      </label>
                       <Slider
                         max={100}
                         min={0}

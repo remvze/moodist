@@ -3,7 +3,7 @@ import { BiTrash } from 'react-icons/bi/index';
 import { LuCopy, LuDownload } from 'react-icons/lu/index';
 import { FaCheck } from 'react-icons/fa6/index';
 import { FaUndo } from 'react-icons/fa/index';
-
+import { useTranslation } from 'react-i18next';
 import { Modal } from '@/components/modal';
 import { Button } from './button';
 
@@ -19,6 +19,7 @@ interface NotepadProps {
 }
 
 export function Notepad({ onClose, show }: NotepadProps) {
+  const { t } = useTranslation();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const note = useNoteStore(state => state.note);
@@ -45,26 +46,42 @@ export function Notepad({ onClose, show }: NotepadProps) {
     if (e.key === 'Escape') onClose();
   };
 
+  const counterOptions = {
+    chars: characters,
+    chars_plural:
+      characters !== 1 ? t('common.plural-suffix', { defaultValue: 's' }) : '',
+    words: words,
+    words_plural:
+      words !== 1 ? t('common.plural-suffix', { defaultValue: 's' }) : '',
+  };
+
+  const clearOrRestoreTooltip = history
+    ? t('modals.notepad.restore-tooltip')
+    : t('modals.notepad.clear-tooltip');
+  const copyTooltip = copying
+    ? t('common.copied')
+    : t('modals.notepad.copy-tooltip');
+
   return (
     <Modal show={show} wide onClose={onClose}>
       <header className={styles.header}>
-        <h2 className={styles.label}>Your Note</h2>
+        <h2 className={styles.label}>{t('modals.notepad.title-label')}</h2>
         <div className={styles.buttons}>
           <Button
             icon={copying ? <FaCheck /> : <LuCopy />}
-            tooltip="Copy Note"
+            tooltip={copyTooltip}
             onClick={() => copy(note)}
           />
           <Button
             icon={<LuDownload />}
-            tooltip="Download Note"
-            onClick={() => download('Moodit Note.txt', note)}
+            tooltip={t('modals.notepad.download-tooltip')}
+            onClick={() => download('Moodist Note.txt', note)}
           />
           <Button
             critical={!history}
             icon={history ? <FaUndo /> : <BiTrash />}
             recommended={!!history}
-            tooltip={history ? 'Restore Note' : 'Clear Note'}
+            tooltip={clearOrRestoreTooltip}
             onClick={() => (history ? restore() : clear())}
           />
         </div>
@@ -73,7 +90,7 @@ export function Notepad({ onClose, show }: NotepadProps) {
       <textarea
         className={styles.textarea}
         dir="auto"
-        placeholder="What is on your mind?"
+        placeholder={t('modals.notepad.placeholder')}
         ref={textareaRef}
         spellCheck={false}
         value={note}
@@ -82,8 +99,7 @@ export function Notepad({ onClose, show }: NotepadProps) {
       />
 
       <p className={styles.counter}>
-        {characters} character{characters !== 1 && 's'} • {words} word
-        {words !== 1 && 's'}
+        {t('modals.notepad.counter-stats', counterOptions)}
       </p>
     </Modal>
   );

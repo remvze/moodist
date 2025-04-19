@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Todo } from './todo';
 
 import { useTodoStore } from '@/stores/todo';
@@ -5,13 +6,14 @@ import { useTodoStore } from '@/stores/todo';
 import styles from './todos.module.css';
 
 export function Todos() {
+  const { t } = useTranslation();
   const todos = useTodoStore(state => state.todos);
   const doneCount = useTodoStore(state => state.doneCount());
 
   return (
     <div className={styles.todos}>
       <header>
-        <p className={styles.label}>Your Todos</p>
+        <p className={styles.label}>{t('modals.todo.your-todos-label')}</p>
         <div className={styles.divider} />
         <p className={styles.counter}>
           {doneCount} / {todos.length}
@@ -30,7 +32,7 @@ export function Todos() {
           ))}
         </>
       ) : (
-        <p className={styles.empty}>You don&apos;t have any todos.</p>
+        <p className={styles.empty}>{t('modals.todo.empty')}</p>
       )}
     </div>
   );

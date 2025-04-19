@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { Modal } from '@/components/modal';
 
 import { useSoundEffect } from '@/hooks/use-sound-effect';
@@ -14,6 +14,7 @@ interface CountdownProps {
 }
 
 export function Countdown({ onClose, show }: CountdownProps) {
+  const { t } = useTranslation();
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
@@ -73,8 +74,8 @@ export function Countdown({ onClose, show }: CountdownProps) {
   return (
     <Modal show={show} onClose={onClose}>
       <header className={styles.header}>
-        <h2 className={styles.title}>Countdown Timer</h2>
-        <p className={styles.desc}>Super simple countdown timer.</p>
+        <h2 className={styles.title}>{t('modals.countdown.title')}</h2>
+        <p className={styles.desc}>{t('modals.countdown.description')}</p>
       </header>
 
       {isFormVisible ? (
@@ -82,21 +83,11 @@ export function Countdown({ onClose, show }: CountdownProps) {
           <div className={styles.inputContainer}>
             <input
               className={styles.input}
-              placeholder="HH"
+              placeholder={t('modals.countdown.placeholder-hh') || 'HH'} // Placeholder
               type="number"
-              value={hours}
-              onChange={e => setHours(Math.max(0, parseInt(e.target.value)))}
-            />
-
-            <span>:</span>
-
-            <input
-              className={styles.input}
-              placeholder="MM"
-              type="number"
-              value={minutes}
+              value={hours === 0 ? '' : hours} // Show empty if 0
               onChange={e =>
-                setMinutes(Math.max(0, Math.min(59, parseInt(e.target.value))))
+                setHours(Math.max(0, parseInt(e.target.value || '0')))
               }
             />
 
@@ -104,21 +95,34 @@ export function Countdown({ onClose, show }: CountdownProps) {
 
             <input
               className={styles.input}
-              placeholder="SS"
+              placeholder={t('modals.countdown.placeholder-mm') || 'MM'}
               type="number"
-              value={seconds}
+              value={minutes === 0 ? '' : minutes} // Show empty if 0
               onChange={e =>
-                setSeconds(Math.max(0, Math.min(59, parseInt(e.target.value))))
+                setMinutes(
+                  Math.max(0, Math.min(59, parseInt(e.target.value || '0'))),
+                )
+              }
+            />
+            <span>:</span>
+            <input
+              className={styles.input}
+              placeholder={t('modals.countdown.placeholder-ss') || 'SS'}
+              type="number"
+              value={seconds === 0 ? '' : seconds} // Show empty if 0
+              onChange={e =>
+                setSeconds(
+                  Math.max(0, Math.min(59, parseInt(e.target.value || '0'))),
+                )
               }
             />
           </div>
-
           <div className={styles.buttonContainer}>
             <button
               className={cn(styles.button, styles.primary)}
               onClick={handleStart}
             >
-              Start
+              {t('common.start')}
             </button>
           </div>
         </div>
@@ -128,17 +132,15 @@ export function Countdown({ onClose, show }: CountdownProps) {
             <p className={styles.reverse}>- {formatTime(elapsedTime)}</p>
             <span>{formatTime(timeLeft)}</span>
           </div>
-
           <div className={styles.buttonContainer}>
             <button className={styles.button} onClick={handleBack}>
-              Back
+              {t('common.back')}
             </button>
-
             <button
               className={cn(styles.button, styles.primary)}
               onClick={toggleTimer}
             >
-              {isActive ? 'Pause' : 'Start'}
+              {isActive ? t('common.pause') : t('common.start')}
             </button>
           </div>
         </div>

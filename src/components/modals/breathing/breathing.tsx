@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Modal } from '@/components/modal';
 import { Exercise } from './exercise';
 
@@ -9,9 +10,12 @@ interface TimerProps {
 }
 
 export function BreathingExerciseModal({ onClose, show }: TimerProps) {
+  const { t } = useTranslation(); // Get t function
   return (
     <Modal show={show} onClose={onClose}>
-      <h2 className={styles.title}>Breathing Exercise</h2>
+      <h2 className={styles.title || 'modal-title'}>
+        {t('modals.breathing.title')}
+      </h2>
       <Exercise />
     </Modal>
   );

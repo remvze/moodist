@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { cn } from '@/helpers/styles';
 import { useSoundStore } from '@/stores/sound';
 import { usePresetStore } from '@/stores/preset';
@@ -7,6 +7,7 @@ import { usePresetStore } from '@/stores/preset';
 import styles from './new.module.css';
 
 export function New() {
+  const { t } = useTranslation();
   const [name, setName] = useState('');
 
   const noSelected = useSoundStore(state => state.noSelected());
@@ -33,7 +34,7 @@ export function New() {
 
   return (
     <div className={styles.new}>
-      <h3 className={styles.title}>New Preset</h3>
+      <h3 className={styles.title}>{t('modals.presets.new-preset-title')}</h3>
 
       <form
         className={cn(styles.form, noSelected && styles.disabled)}
@@ -41,18 +42,18 @@ export function New() {
       >
         <input
           disabled={noSelected}
-          placeholder="Preset's Name"
+          placeholder={t('modals.presets.placeholder')}
           required
           type="text"
           value={name}
           onChange={e => setName(e.target.value)}
         />
-        <button disabled={noSelected}>Save</button>
+        <button disabled={noSelected}>{t('common.save')}</button>
       </form>
 
       {noSelected && (
         <p className={styles.noSelected}>
-          To make a preset, first select some sounds.
+          {t('modals.presets.no-selected-warning')}
         </p>
       )}
     </div>
