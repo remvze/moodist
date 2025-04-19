@@ -6,7 +6,9 @@
   },
   "languages": {
     "en": "English",
-    "zh": "简体中文"
+    "zh-CN": "简体中文",
+    "zh-TW": "繁體中文",
+    "ja": "日本語"
   },
   "common": {
     "save": "保存",

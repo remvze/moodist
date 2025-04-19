@@ -1,27 +1,23 @@
 ---
 import { getSupportedLangs, getTranslator } from '@/i18n/utils';
-import i18n from '@/i18n';
 import { IoChevronDown } from 'react-icons/io5';
 
 const { url } = Astro;
-// 使用 fallbackLng 作为回退值
-const currentLocale =
-  Astro.currentLocale ||
-  (Array.isArray(i18n.options.fallbackLng)
-    ? i18n.options.fallbackLng[0]
-    : i18n.options.fallbackLng) ||
-  'en';
+const defaultLocaleCode = 'en'; // 明确默认语言代码
+
+const currentLocale = Astro.currentLocale || defaultLocaleCode;
 const t = await getTranslator(currentLocale);
 
-const supportedLangs = getSupportedLangs();
-const defaultLocaleCode = 'en';
+const supportedLangs = getSupportedLangs(); // 如 ['en', 'zh-CN-CN', 'zh-CN-TW', 'ja']
 
 let basePath = url.pathname;
-const prefix = `/${currentLocale}`;
+const currentLangPrefix = `/${currentLocale}`;
 
-// 只有当当前语言不是硬编码的默认语言时，才需要尝试移除前缀
-if (currentLocale !== defaultLocaleCode && basePath.startsWith(prefix)) {
-  basePath = basePath.substring(prefix.length) || '/';
+if (
+  currentLocale !== defaultLocaleCode &&
+  basePath.startsWith(currentLangPrefix)
+) {
+  basePath = basePath.substring(currentLangPrefix.length) || '/'; // 获取前缀后的部分，空则为根
 }
 if (basePath !== '/' && !basePath.startsWith('/')) {
   basePath = '/' + basePath;
@@ -45,8 +41,9 @@ const currentLangName =
           const isDefaultLang = langCode === defaultLocaleCode;
           let targetPath = isDefaultLang ? basePath : `/${langCode}${basePath}`;
           targetPath = targetPath.replace('//', '/');
-          if (targetPath === '' && isDefaultLang) targetPath = '/';
-          if (targetPath === '' && !isDefaultLang) targetPath = `/${langCode}`;
+          if (isDefaultLang && targetPath === '') targetPath = '/';
+          if (!isDefaultLang && targetPath === `/${langCode}/`)
+            targetPath = `/${langCode}`;
 
           return (
             <li>
@@ -124,6 +121,8 @@ const currentLangName =
   .language-list {
     position: absolute;
     top: calc(100% + 4px);
+
+    /* 根据需要调整 left/right */
     right: 0;
     left: auto;
     z-index: 60;

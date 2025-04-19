@@ -2,22 +2,28 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 import enTranslation from './locales/en/translation.json';
-import zhTranslation from './locales/zh/translation.json';
+import zh_CN_Translation from './locales/zh-CN/translation.json';
+import zh_TW_Translation from './locales/zh-TW/translation.json';
+import jaTranslation from './locales/ja/translation.json';
 
 const resources = {
   en: {
     translation: enTranslation,
   },
-  zh: {
-    translation: zhTranslation,
+  ja: {
+    translation: jaTranslation,
+  },
+  'zh-CN': {
+    translation: zh_CN_Translation,
+  },
+  'zh-TW': {
+    translation: zh_TW_Translation,
   },
 };
 
 i18n.use(initReactI18next).init({
-  debug: true,
   fallbackLng: 'en',
   interpolation: { escapeValue: false },
-  lng: 'en',
   missingKeyHandler: (lngs, ns, key, fallbackValue, updateMissing, options) => {
     const resolvedLng = lngs && lngs.length > 0 ? lngs[0] : i18n.language;
     const value = i18n.getResource(resolvedLng, ns || 'translation', key);

@@ -1,0 +1,360 @@
+{
+  "site": {
+    "title": "Moodist：集中とリラックスのための環境サウンド",
+    "description": "Moodistは、厳選された{{count}}種類のサウンドを備えた、無料のオープンソース環境サウンドジェネレーターです。この多機能ツールで、リラックス、集中、または創造性のための理想的な雰囲気を作りましょう。",
+    "ogSiteName": "Moodist"
+  },
+  "languages": {
+    "en": "English",
+    "zh-CN": "简体中文",
+    "zh-TW": "繁體中文",
+    "ja": "日本語"
+  },
+  "common": {
+    "save": "保存",
+    "untitled": "無題",
+    "copy": "コピー",
+    "copied": "コピーしました！",
+    "override": "上書き",
+    "done": "完了！",
+    "reset": "リセット",
+    "play": "再生",
+    "close": "閉じる",
+    "reload": "再読み込み",
+    "start": "開始",
+    "pause": "一時停止",
+    "stop": "停止",
+    "back": "戻る",
+    "restart": "再開",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "plural-suffix": ""
+  },
+  "hero": {
+    "logo-alt": "Moodist ロゴ",
+    "title-line1": "Moodist",
+    "title-line2": "集中とリラックスのための環境音",
+    "desc-prefix": "無料、そして",
+    "desc-open-source": "オープンソース",
+    "sounds-count": "{{count}} 種類のサウンド"
+  },
+  "about": {
+    "section1": {
+      "title": "無料の環境サウンド",
+      "body": "日々の喧騒から逃れて、心を落ち着かせたいですか？集中力を高めたり、安らかな眠りに誘う完璧なサウンドスケープが必要ですか？Moodistは、あなたのための無料オープンソース環境サウンドジェネレーターです！サブスクリプションや登録は不要。Moodistで、心地よく没入感のあるオーディオ体験の世界を完全に無料で解き放ちましょう。"
+    },
+    "section2": {
+      "title": "厳選されたサウンド",
+      "body": "厳選された{{count}}種類のサウンドの広範なライブラリに飛び込みましょう。自然愛好家は、小川の穏やかなせせらぎ、リズミカルな波の音、またはキャンプファイヤーのパチパチと燃える暖かさの中に安らぎを見つけるでしょう。カフェの柔らかなざわめき、電車の規則的なガタンゴトンという音、または交通の静かなホワイトノイズで、街の風景が生き生きと蘇ります。より深い集中やリラクゼーションを求める方のために、Moodistはあなたの心の状態を高めるように設計されたバイノーラルビートとカラーノイズを提供します。"
+    },
+    "section3": {
+      "title": "あなたのサウンドスケープを作成",
+      "body": "Moodistの魅力は、そのシンプルさとカスタマイズ性にあります。複雑なメニューや紛らわしいオプションはありません。希望のサウンドを選択し、音量バランスを調整して再生ボタンを押すだけです。鳥の優しいさえずりと心地よい雨音をブレンドしたいですか？問題ありません！好きなだけサウンドを重ねて、あなただけのサウンドスケープ・オアシスを作りましょう。"
+    },
+    "section4": {
+      "title": "あらゆる瞬間のためのサウンド",
+      "body": "長い一日の後にリラックスしたいとき、仕事中に集中力を高めたいとき、または安らかな眠りに就きたいとき、Moodistはあなたにぴったりのサウンドスケープを用意しています。そして何よりも素晴らしいのは、完全に無料でオープンソースであるため、何の制約もなくその利点を享受できることです。今日からMoodistを使い始めて、あなたの新しい静寂と集中の聖域を発見してください！"
+    }
+  },
+  "donate": {
+    "prompt": "Moodistをお楽しみですか？",
+    "link-text": "寄付でサポートをお願いします！",
+    "section-title": "プロジェクトを支援",
+    "section-desc": "Moodistを広告なしで無料に保つためにご協力ください。",
+    "section-button": "コーヒー代を寄付する"
+  },
+  "source": {
+    "title": "オープンソース",
+    "desc": "Moodistは無料でオープンソースです！"
+  },
+  "toolbar": {
+    "menu-aria-label": "メニュー",
+    "global-volume-label": "全体の音量",
+    "items": {
+      "presets": "プリセット",
+      "share": "サウンドを共有",
+      "shuffle": "サウンドをシャッフル",
+      "sleep-timer": "スリープタイマー",
+      "countdown": "カウントダウンタイマー",
+      "pomodoro": "ポモドーロタイマー",
+      "notepad": "メモ帳",
+      "todo": "ToDoリスト",
+      "breathing": "呼吸エクササイズ",
+      "binaural": "バイノーラルビート",
+      "isochronic": "アイソクロニックトーン",
+      "shortcuts": "ショートカット",
+      "buy-me-a-coffee": "コーヒーをおごる",
+      "source-code": "ソースコード"
+    }
+  },
+  "scroll-to-top": {
+    "aria-label": "トップへスクロール"
+  },
+  "unselect": {
+    "tooltip": "すべてのサウンドの選択を解除します。",
+    "aria-label": "すべてのサウンドの選択を解除",
+    "restore": {
+      "tooltip": "選択解除したサウンドを復元します。",
+      "aria-label": "選択解除したサウンドを復元"
+    }
+  },
+  "favorite": {
+    "add": {
+      "aria-label": "{{label}} サウンドをお気に入りに追加"
+    },
+    "remove": {
+      "aria-label": "{{label}} サウンドをお気に入りから削除"
+    }
+  },
+  "volume": {
+    "aria-label": "{{label}} サウンドの音量"
+  },
+  "play-error": "再生するサウンドを選択してください。",
+  "use-moodist": "Moodistを使う",
+  "modals": {
+    "presets": {
+      "title": "サウンドプリセット",
+      "your-presets-title": "マイプリセット",
+      "empty": "まだプリセットがありません。",
+      "new-preset-title": "新規プリセット",
+      "placeholder": "プリセット名",
+      "play-button-tooltip": "プリセットを再生",
+      "play-button-aria-label": "プリセット {{label}} を再生",
+      "delete-button-tooltip": "プリセットを削除",
+      "delete-button-aria-label": "プリセット {{label}} を削除",
+      "no-selected-warning": "プリセットを作成するには、まずいくつかのサウンドを選択してください。"
+    },
+    "share-link": {
+      "title": "サウンドセレクションを共有！",
+      "description": "以下のリンクをコピーして、共有したい相手に送ってください。",
+      "copy-button-aria-label": "リンクをコピー"
+    },
+    "shared": {
+      "title": "新しいサウンドミックスが検出されました！",
+      "description": "誰かが以下のミックスをあなたと共有しました。現在のセレクションを上書きしますか？",
+      "snackbar-message": "完了！新しいセレクションを再生できます。"
+    },
+    "sleep-timer": {
+      "title": "スリープタイマー",
+      "description": "一定時間後にサウンドを停止します。",
+      "hours-label": "時間",
+      "minutes-label": "分"
+    },
+    "countdown": {
+      "title": "カウントダウンタイマー",
+      "description": "シンプルなカウントダウンタイマーです。",
+      "placeholder-hh": "時",
+      "placeholder-mm": "分",
+      "placeholder-ss": "秒"
+    },
+    "pomodoro": {
+      "title": "ポモドーロタイマー",
+      "settings-tooltip": "時間を変更",
+      "completed": "{{count}} 回完了",
+      "tabs": {
+        "pomodoro": "作業",
+        "short-break": "短い休憩",
+        "long-break": "長い休憩"
+      },
+      "settings": {
+        "title": "時間を変更",
+        "pomodoro-label": "作業時間",
+        "short-break-label": "短い休憩時間",
+        "long-break-label": "長い休憩時間",
+        "minutes-unit": "分"
+      }
+    },
+    "notepad": {
+      "title-label": "メモ帳",
+      "copy-tooltip": "メモをコピー",
+      "download-tooltip": "メモをダウンロード",
+      "clear-tooltip": "メモをクリア",
+      "restore-tooltip": "メモを復元",
+      "placeholder": "考え事を書き留めましょう...",
+      "counter-stats": "{{chars}} 文字 • {{words}} 単語"
+    },
+    "todo": {
+      "title": "ToDoリスト",
+      "description": "シンプルなToDoリストです。",
+      "add-placeholder": "やることを入力...",
+      "add-button": "追加",
+      "your-todos-label": "あなたのToDo",
+      "empty": "ToDoはまだありません。",
+      "delete-button-aria-label": "ToDoを削除"
+    },
+    "breathing": {
+      "title": "呼吸エクササイズ",
+      "phases": {
+        "inhale": "吸って",
+        "exhale": "吐いて",
+        "hold": "止めて"
+      },
+      "exercises": {
+        "box": "ボックス呼吸法",
+        "resonant": "レゾナント呼吸法",
+        "478": "4-7-8呼吸法"
+      }
+    },
+    "generators": {
+      "presets-label": "プリセット:",
+      "base-frequency-label": "基本周波数 (Hz):",
+      "volume-label": "音量:",
+      "presets": {
+        "delta": "デルタ波 (深い睡眠) 2 Hz",
+        "theta": "シータ波 (瞑想) 5 Hz",
+        "alpha": "アルファ波 (リラックス) 10 Hz",
+        "beta": "ベータ波 (集中) 20 Hz",
+        "gamma": "ガンマ波 (認知) 40 Hz",
+        "custom": "カスタム"
+      }
+    },
+    "binaural": {
+      "title": "バイノーラルビート",
+      "description": "バイノーラルビートジェネレーター。",
+      "beat-frequency-label": "ビート周波数 (Hz):"
+    },
+    "isochronic": {
+      "title": "アイソクロニックトーン",
+      "description": "アイソクロニックトーンジェネレーター。",
+      "tone-frequency-label": "トーン周波数 (Hz):"
+    },
+    "shortcuts": {
+      "title": "キーボードショートカット",
+      "labels": {
+        "toggle-play": "再生/一時停止 切り替え",
+        "unselect-all": "全サウンドの選択を解除"
+      }
+    },
+    "reload": {
+      "title": "新しいコンテンツが利用可能です",
+      "description": "新しいコンテンツが利用可能です。更新するには再読み込みボタンをクリックしてください。",
+      "closeButton": "閉じる",
+      "reloadButton": "再読み込み"
+    }
+  },
+  "sounds": {
+    "show-less": "少なく表示",
+    "show-more": "もっと表示",
+    "aria-label": "{{name}} サウンド",
+    "favorites": {
+      "title": "お気に入り"
+    },
+    "animals": {
+      "title": "動物",
+      "birds": "鳥のさえずり",
+      "seagulls": "カモメ",
+      "crickets": "コオロギ",
+      "wolf": "オオカミの遠吠え",
+      "owl": "フクロウ",
+      "frog": "カエル",
+      "dog-barking": "犬の吠え声",
+      "horse-galopp": "馬のギャロップ",
+      "cat-purring": "猫のゴロゴロ",
+      "crows": "カラス",
+      "whale": "クジラ",
+      "beehive": "ミツバチの巣",
+      "woodpecker": "キツツキ",
+      "chickens": "ニワトリ",
+      "cows": "牛",
+      "sheep": "羊"
+    },
+    "binaural": {
+      "title": "バイノーラル",
+      "binaural-delta": "デルタ波 (深い睡眠)",
+      "binaural-theta": "シータ波 (瞑想)",
+      "binaural-alpha": "アルファ波 (リラックス)",
+      "binaural-beta": "ベータ波 (集中)",
+      "binaural-gamma": "ガンマ波 (認知)"
+    },
+    "nature": {
+      "title": "自然",
+      "river": "川",
+      "waves": "波",
+      "campfire": "キャンプファイヤー",
+      "wind": "風",
+      "howling-wind": "風のうなり",
+      "wind-in-trees": "木々の間の風",
+      "waterfall": "滝",
+      "walk-in-snow": "雪の上を歩く",
+      "walk-on-leaves": "落ち葉の上を歩く",
+      "walk-on-gravel": "砂利の上を歩く",
+      "droplets": "水滴",
+      "jungle": "ジャングル"
+    },
+    "noise": {
+      "title": "ノイズ",
+      "white-noise": "ホワイトノイズ",
+      "pink-noise": "ピンクノイズ",
+      "brown-noise": "ブラウンノイズ"
+    },
+    "places": {
+      "title": "場所",
+      "cafe": "カフェ",
+      "airport": "空港",
+      "church": "教会",
+      "temple": "寺院",
+      "construction-site": "建設現場",
+      "underwater": "水中",
+      "crowded-bar": "混雑したバー",
+      "night-village": "夜の村",
+      "subway-station": "地下鉄の駅",
+      "office": "オフィス",
+      "supermarket": "スーパーマーケット",
+      "carousel": "メリーゴーランド",
+      "laboratory": "研究室",
+      "laundry-room": "ランドリールーム",
+      "restaurant": "レストラン",
+      "library": "図書館"
+    },
+    "rain": {
+      "title": "雨",
+      "light-rain": "小雨",
+      "heavy-rain": "大雨",
+      "thunder": "雷",
+      "rain-on-window": "窓に当たる雨",
+      "rain-on-car-roof": "車の屋根に当たる雨",
+      "rain-on-umbrella": "傘に当たる雨",
+      "rain-on-tent": "テントに当たる雨",
+      "rain-on-leaves": "葉に当たる雨"
+    },
+    "things": {
+      "title": "物",
+      "keyboard": "キーボード",
+      "typewriter": "タイプライター",
+      "paper": "紙",
+      "clock": "時計",
+      "wind-chimes": "風鈴",
+      "singing-bowl": "シンギングボウル",
+      "ceiling-fan": "シーリングファン",
+      "dryer": "乾燥機",
+      "slide-projector": "スライドプロジェクター",
+      "boiling-water": "沸騰したお湯",
+      "bubbles": "泡",
+      "tuning-radio": "ラジオのチューニング",
+      "morse-code": "モールス信号",
+      "washing-machine": "洗濯機",
+      "vinyl-effect": "レコードノイズ",
+      "windshield-wipers": "ワイパー"
+    },
+    "transport": {
+      "title": "乗り物",
+      "train": "電車",
+      "inside-a-train": "電車の中",
+      "airplane": "飛行機",
+      "submarine": "潜水艦",
+      "sailboat": "帆船",
+      "rowing-boat": "手漕ぎボート"
+    },
+    "urban": {
+      "title": "都市",
+      "highway": "高速道路",
+      "road": "道路",
+      "ambulance-siren": "救急車のサイレン",
+      "busy-street": "賑やかな通り",
+      "crowd": "人混み",
+      "traffic": "交通",
+      "fireworks": "花火"
+    }
+  },
+  "created-by": "{{authorLink}} によって作成されました"
+}
