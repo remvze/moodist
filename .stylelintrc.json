@@ -5,18 +5,22 @@
     "stylelint-config-html",
     "stylelint-prettier/recommended"
   ],
-
   "rules": {
     "import-notation": "string",
     "selector-class-pattern": null,
     "no-descending-specificity": null
   },
-
   "overrides": [
     {
-      "files": ["*.astro"],
+      "files": ["*.astro", "**/*.astro"],
       "rules": {
-        "prettier/prettier": null
+        "prettier/prettier": null,
+        "selector-pseudo-class-no-unknown": [
+          true,
+          {
+            "ignorePseudoClasses": ["global"]
+          }
+        ]
       }
     }
   ]
