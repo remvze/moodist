@@ -8,7 +8,7 @@ import { count as soundCount } from '@/lib/sounds';
 import { getTranslator } from '@/i18n/utils';
 
 import '@/styles/global.css';
-import LanguageSwitcher from '@/components/LanguageSwitcher.astro';
+import LanguageSwitcher from '@/components/language-switcher.astro';
 interface Props {
   description?: string;
   title?: string;
@@ -59,7 +59,7 @@ const description = Astro.props.description || t('site.description', { count });
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 50;
+    z-index: 20;
     display: flex;
     justify-content: flex-end;
     padding: 1rem 1.5rem;
