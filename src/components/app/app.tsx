@@ -27,13 +27,10 @@ interface AppProps {
 }
 
 export function App({ locale }: AppProps) {
-  const { t } = useTranslation(); // 获取 t 函数，以便翻译 "Favorites"
-
-  useEffect(() => {
-    if (locale && i18n.language !== locale) {
-      i18n.changeLanguage(locale);
-    }
-  }, [locale]);
+  if (locale && i18n.language !== locale) {
+    i18n.changeLanguage(locale);
+  }
+  const { t } = useTranslation();
 
   const categoriesData = useMemo(() => sounds.categories, []);
   const categories = categoriesData; // 暂时不翻译
