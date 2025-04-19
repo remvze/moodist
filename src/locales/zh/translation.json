@@ -8,14 +8,6 @@
     "en": "English",
     "zh": "简体中文"
   },
-  "languageSwitcher": {
-    "label": "语言选择"
-  },
-  "common": {
-    "play": "播放",
-    "pause": "暂停",
-    "close": "关闭"
-  },
   "modals": {
     "reload": {
       "title": "发现新内容",
@@ -24,11 +16,32 @@
     }
   },
   "buttons": {
-    "playError": "请先选择要播放的声音。",
-    "useMoodist": "使用 Moodist"
-  },
-  "categories": {
-    "favorites": "收藏夹"
+    "play": {
+      "label": "播放",
+      "error": "请先选择要播放的声音。"
+    },
+    "favorite": {
+      "add": {
+        "aria-label": "将 {{label}} 声音添加到收藏夹"
+      },
+      "remove": {
+        "aria-label": "从收藏夹移除 {{label}} 声音"
+      }
+    },
+    "unselect": {
+      "tooltip": "取消选择所有声音。",
+      "aria-label": "取消选择所有声音",
+      "restore": {
+        "tooltip": "恢复上次选择的声音。",
+        "aria-label": "恢复上次选择的声音"
+      }
+    },
+    "pause": {
+      "label": "暂停"
+    },
+    "use-moodist": {
+      "label": "使用 Moodist"
+    }
   },
   "about": {
     "section1": {
@@ -46,6 +59,133 @@
     "section4": {
       "title": "适合每一刻的声音",
       "body": "无论您是想在漫长的一天后放松身心，在工作时提高注意力，还是哄自己进入宁静的睡眠，Moodist 都有完美的声音景观等着您。最棒的是？它完全免费且开源，因此您可以无任何附加条件地享受其益处。立即开始使用 Moodist，发现您宁静与专注的新港湾！"
+    }
+  },
+  "volume": {
+    "aria-label": "{{label}} 声音音量"
+  },
+  "sounds": {
+    "show-less": "收起",
+    "show-more": "显示更多",
+    "aria-label": "{{name}} 声音",
+    "favorites": {
+      "title": "收藏夹"
+    },
+    "animals": {
+      "title": "动物",
+      "birds": "鸟鸣",
+      "seagulls": "海鸥",
+      "crickets": "蟋蟀",
+      "wolf": "狼嚎",
+      "owl": "猫头鹰",
+      "frog": "蛙鸣",
+      "dog-barking": "狗吠",
+      "horse-galopp": "马蹄",
+      "cat-purring": "猫打呼",
+      "crows": "乌鸦",
+      "whale": "鲸鱼",
+      "beehive": "蜂巢",
+      "woodpecker": "啄木鸟",
+      "chickens": "鸡",
+      "cows": "牛",
+      "sheep": "羊"
+    },
+    "binaural": {
+      "title": "双耳节拍",
+      "binaural-delta": "Delta 波",
+      "binaural-theta": "Theta 波",
+      "binaural-alpha": "Alpha 波",
+      "binaural-beta": "Beta 波",
+      "binaural-gamma": "Gamma 波"
+    },
+    "nature": {
+      "title": "自然",
+      "river": "河流",
+      "waves": "海浪",
+      "campfire": "篝火",
+      "wind": "风声",
+      "howling-wind": "呼啸的风",
+      "wind-in-trees": "林间风声",
+      "waterfall": "瀑布",
+      "walk-in-snow": "雪地行走",
+      "walk-on-leaves": "踩树叶",
+      "walk-on-gravel": "踩砾石",
+      "droplets": "水滴",
+      "jungle": "丛林"
+    },
+    "noise": {
+      "title": "噪音",
+      "white-noise": "白噪音",
+      "pink-noise": "粉红噪音",
+      "brown-noise": "布朗噪音"
+    },
+    "places": {
+      "title": "场所",
+      "cafe": "咖啡馆",
+      "airport": "机场",
+      "church": "教堂",
+      "temple": "寺庙",
+      "construction-site": "建筑工地",
+      "underwater": "水下",
+      "crowded-bar": "拥挤的酒吧",
+      "night-village": "夜晚村庄",
+      "subway-station": "地铁站",
+      "office": "办公室",
+      "supermarket": "超市",
+      "carousel": "旋转木马",
+      "laboratory": "实验室",
+      "laundry-room": "洗衣房",
+      "restaurant": "餐厅",
+      "library": "图书馆"
+    },
+    "rain": {
+      "title": "雨声",
+      "light-rain": "小雨",
+      "heavy-rain": "大雨",
+      "thunder": "雷声",
+      "rain-on-window": "雨打窗户",
+      "rain-on-car-roof": "雨打车顶",
+      "rain-on-umbrella": "雨打雨伞",
+      "rain-on-tent": "雨打帐篷",
+      "rain-on-leaves": "雨打树叶"
+    },
+    "things": {
+      "title": "物品",
+      "keyboard": "键盘",
+      "typewriter": "打字机",
+      "paper": "纸张",
+      "clock": "时钟",
+      "wind-chimes": "风铃",
+      "singing-bowl": "颂钵",
+      "ceiling-fan": "吊扇",
+      "dryer": "烘干机",
+      "slide-projector": "幻灯机",
+      "boiling-water": "沸水",
+      "bubbles": "气泡",
+      "tuning-radio": "调谐收音机",
+      "morse-code": "摩尔斯电码",
+      "washing-machine": "洗衣机",
+      "vinyl-effect": "黑胶唱片",
+      "windshield-wipers": "雨刮器"
+    },
+    "transport": {
+      "title": "交通",
+      "train": "火车",
+      "inside-a-train": "火车内部",
+      "airplane": "飞机",
+      "submarine": "潜水艇",
+      "sailboat": "帆船",
+      "rowing-boat": "划艇"
+    },
+    "urban": {
+      "title": "城市",
+      "highway": "高速公路",
+      "road": "马路",
+      "ambulance-siren": "救护车警报",
+      "busy-street": "繁忙街道",
+      "crowd": "人群",
+      "traffic": "交通",
+      "fireworks": "烟花"
     }
   }
 }

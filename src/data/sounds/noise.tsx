@@ -6,25 +6,26 @@ import type { Category } from '../types';
 export const noise: Category = {
   icon: <BsSoundwave />,
   id: 'noise',
+  // 修改
   sounds: [
     {
       icon: <GiSoundWaves />,
       id: 'white-noise',
-      label: 'White Noise',
+      labelKey: 'sounds.noise.white-noise',
       src: '/sounds/noise/white-noise.wav',
     },
     {
       icon: <GiSoundWaves />,
       id: 'pink-noise',
-      label: 'Pink Noise',
+      labelKey: 'sounds.noise.pink-noise',
       src: '/sounds/noise/pink-noise.wav',
     },
     {
       icon: <GiSoundWaves />,
       id: 'brown-noise',
-      label: 'Brown Noise',
+      labelKey: 'sounds.noise.brown-noise',
       src: '/sounds/noise/brown-noise.wav',
     },
   ],
-  title: 'Noise',
+  titleKey: 'sounds.noise.title',
 };

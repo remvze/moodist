@@ -1,5 +1,6 @@
 import { BiHeart, BiSolidHeart } from 'react-icons/bi/index';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 import { useSoundStore } from '@/stores/sound';
 import { cn } from '@/helpers/styles';
@@ -16,7 +17,8 @@ interface FavoriteProps {
 }
 
 export function Favorite({ id, label }: FavoriteProps) {
-  const isFavorite = useSoundStore(state => state.sounds[id].isFavorite);
+  const { t } = useTranslation();
+  const isFavorite = useSoundStore(state => state.sounds[id]?.isFavorite);
   const toggleFavorite = useSoundStore(state => state.toggleFavorite);
 
   const handleToggle = async () => {
@@ -36,18 +38,21 @@ export function Favorite({ id, label }: FavoriteProps) {
   };
 
   const variants = fade();
-
   const handleKeyDown = useKeyboardButton(handleToggle);
+
+  const ariaLabel = isFavorite
+    ? t('buttons.favorite.remove.aria-label', { label: label })
+    : t('buttons.favorite.add.aria-label', { label: label });
+
+  if (useSoundStore.getState().sounds[id] === undefined) {
+    return null;
+  }
 
   return (
     <AnimatePresence initial={false} mode="wait">
       <button
+        aria-label={ariaLabel}
         className={cn(styles.favoriteButton, isFavorite && styles.isFavorite)}
-        aria-label={
-          isFavorite
-            ? `Remove ${label} Sound from Favorites`
-            : `Add ${label} Sound to Favorites`
-        }
         onKeyDown={handleKeyDown}
         onClick={e => {
           e.stopPropagation();

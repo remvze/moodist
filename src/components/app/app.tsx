@@ -2,7 +2,7 @@ import { useMemo, useEffect } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import { BiSolidHeart } from 'react-icons/bi/index';
 import { Howler } from 'howler';
-import { I18nextProvider, useTranslation } from 'react-i18next';
+import { I18nextProvider } from 'react-i18next';
 import i18n from '@/i18n';
 
 import { useSoundStore } from '@/stores/sound';
@@ -23,17 +23,14 @@ import type { Sound, Category as CategoryType } from '@/data/types';
 import { subscribe } from '@/lib/event';
 
 interface AppProps {
-  locale: string; // 接收来自 Astro 的 locale
+  locale: string;
 }
 
 export function App({ locale }: AppProps) {
   if (locale && i18n.language !== locale) {
     i18n.changeLanguage(locale);
   }
-  const { t } = useTranslation();
-
   const categoriesData = useMemo(() => sounds.categories, []);
-  const categories = categoriesData; // 暂时不翻译
 
   const favorites = useSoundStore(useShallow(state => state.getFavorites()));
   const pause = useSoundStore(state => state.pause);
@@ -48,7 +45,6 @@ export function App({ locale }: AppProps) {
       favorites.includes(sound.id),
     );
 
-    // 暂时不翻译 sound labels
     return favorites
       .map(favoriteId =>
         favoriteSoundsData.find(sound => sound.id === favoriteId),
@@ -92,11 +88,11 @@ export function App({ locale }: AppProps) {
         icon: <BiSolidHeart />,
         id: 'favorites',
         sounds: favoriteSounds,
-        title: t('categories.favorites'),
+        titleKey: 'sounds.favorites.title',
       });
     }
-    return [...favs, ...categories];
-  }, [favoriteSounds, categories, t]);
+    return [...favs, ...categoriesData];
+  }, [favoriteSounds, categoriesData]);
 
   return (
     <I18nextProvider i18n={i18n}>

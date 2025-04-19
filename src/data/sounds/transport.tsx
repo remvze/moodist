@@ -8,43 +8,44 @@ import type { Category } from '../types';
 export const transport: Category = {
   icon: <FaCarSide />,
   id: 'transport',
+  // 修改
   sounds: [
     {
       icon: <BiSolidTrain />,
       id: 'train',
-      label: 'Train',
+      labelKey: 'sounds.transport.train',
       src: '/sounds/transport/train.mp3',
     },
     {
       icon: <BiSolidTrain />,
       id: 'inside-a-train',
-      label: 'Inside a Train',
+      labelKey: 'sounds.transport.inside-a-train',
       src: '/sounds/transport/inside-a-train.mp3',
     },
     {
       icon: <BiSolidPlaneAlt />,
       id: 'airplane',
-      label: 'Airplane',
+      labelKey: 'sounds.transport.airplane',
       src: '/sounds/transport/airplane.mp3',
     },
     {
       icon: <GiSubmarine />,
       id: 'submarine',
-      label: 'Submarine',
+      labelKey: 'sounds.transport.submarine',
       src: '/sounds/transport/submarine.mp3',
     },
     {
       icon: <GiSailboat />,
       id: 'sailboat',
-      label: 'Sailboat',
+      labelKey: 'sounds.transport.sailboat',
       src: '/sounds/transport/sailboat.mp3',
     },
     {
       icon: <TbSailboat />,
       id: 'rowing-boat',
-      label: 'Rowing Boat',
+      labelKey: 'sounds.transport.rowing-boat',
       src: '/sounds/transport/rowing-boat.mp3',
     },
   ],
-  title: 'Transport',
+  titleKey: 'sounds.transport.title',
 };

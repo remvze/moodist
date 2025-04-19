@@ -32,7 +32,9 @@ const paragraphKeys = [
         </div>
       ))
     }
-    <button class="button" id="use-moodist">{t('buttons.useMoodist')}</button>
+    <button class="button" id="use-moodist"
+      >{t('buttons.use-moodist.label')}</button
+    >
   </Container>
 </section>
 
@@ -60,8 +62,7 @@ const paragraphKeys = [
     & .paragraph {
       padding: 30px 0;
       background: linear-gradient(
-        transparent,
-        var(--color-neutral-50) 10%,
+        transparent var(--color-neutral-50) 10%,
         var(--color-neutral-50) 90%,
         transparent
       );

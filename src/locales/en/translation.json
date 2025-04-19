@@ -8,14 +8,6 @@
     "en": "English",
     "zh": "简体中文"
   },
-  "languageSwitcher": {
-    "label": "Language selection"
-  },
-  "common": {
-    "play": "Play",
-    "pause": "Pause",
-    "close": "Close"
-  },
   "modals": {
     "reload": {
       "title": "New Content",
@@ -23,13 +15,33 @@
       "reloadButton": "Reload"
     }
   },
-
   "buttons": {
-    "playError": "Please first select a sound to play.",
-    "useMoodist": "Use Moodist"
-  },
-  "categories": {
-    "favorites": "Favorites"
+    "play": {
+      "label": "Play",
+      "error": "Please select a sound to play."
+    },
+    "favorite": {
+      "add": {
+        "aria-label": "Add {{label}} Sound to Favorites"
+      },
+      "remove": {
+        "aria-label": "Remove {{label}} Sound from Favorites"
+      }
+    },
+    "unselect": {
+      "tooltip": "Unselect all sounds.",
+      "aria-label": "Unselect All Sounds",
+      "restore": {
+        "tooltip": "Restore unselected sounds.",
+        "aria-label": "Restore Unselected Sounds"
+      }
+    },
+    "pause": {
+      "label": "Pause"
+    },
+    "use-moodist": {
+      "label": "Use Moodist"
+    }
   },
   "about": {
     "section1": {
@@ -47,6 +59,133 @@
     "section4": {
       "title": "Sounds for Every Moment",
       "body": "Whether you're looking to unwind after a long day, enhance your focus during work, or lull yourself into a peaceful sleep, Moodist has the perfect soundscape waiting for you. The best part? It's completely free and open-source, so you can enjoy its benefits without any strings attached. Start using Moodist today and discover your new haven of tranquility and focus!"
+    }
+  },
+  "volume": {
+    "aria-label": "{{label}} sound volume"
+  },
+  "sounds": {
+    "show-less": "Show Less",
+    "show-more": "Show More",
+    "aria-label": "{{name}} sound",
+    "favorites": {
+      "title": "Favorites"
+    },
+    "animals": {
+      "title": "Animals",
+      "birds": "Birds",
+      "seagulls": "Seagulls",
+      "crickets": "Crickets",
+      "wolf": "Wolf",
+      "owl": "Owl",
+      "frog": "Frog",
+      "dog-barking": "Dog Barking",
+      "horse-galopp": "Horse Galopp",
+      "cat-purring": "Cat Purring",
+      "crows": "Crows",
+      "whale": "Whale",
+      "beehive": "Beehive",
+      "woodpecker": "Woodpecker",
+      "chickens": "Chickens",
+      "cows": "Cows",
+      "sheep": "Sheep"
+    },
+    "binaural": {
+      "title": "Binaural Beats",
+      "binaural-delta": "Delta",
+      "binaural-theta": "Theta",
+      "binaural-alpha": "Alpha",
+      "binaural-beta": "Beta",
+      "binaural-gamma": "Gamma"
+    },
+    "nature": {
+      "title": "Nature",
+      "river": "River",
+      "waves": "Waves",
+      "campfire": "Campfire",
+      "wind": "Wind",
+      "howling-wind": "Howling Wind",
+      "wind-in-trees": "Wind in Trees",
+      "waterfall": "Waterfall",
+      "walk-in-snow": "Walk in Snow",
+      "walk-on-leaves": "Walk on Leaves",
+      "walk-on-gravel": "Walk on Gravel",
+      "droplets": "Droplets",
+      "jungle": "Jungle"
+    },
+    "noise": {
+      "title": "Noise",
+      "white-noise": "White Noise",
+      "pink-noise": "Pink Noise",
+      "brown-noise": "Brown Noise"
+    },
+    "places": {
+      "title": "Places",
+      "cafe": "Cafe",
+      "airport": "Airport",
+      "church": "Church",
+      "temple": "Temple",
+      "construction-site": "Construction Site",
+      "underwater": "Underwater",
+      "crowded-bar": "Crowded Bar",
+      "night-village": "Night Village",
+      "subway-station": "Subway Station",
+      "office": "Office",
+      "supermarket": "Supermarket",
+      "carousel": "Carousel",
+      "laboratory": "Laboratory",
+      "laundry-room": "Laundry Room",
+      "restaurant": "Restaurant",
+      "library": "Library"
+    },
+    "rain": {
+      "title": "Rain",
+      "light-rain": "Light Rain",
+      "heavy-rain": "Heavy Rain",
+      "thunder": "Thunder",
+      "rain-on-window": "Rain on Window",
+      "rain-on-car-roof": "Rain on Car Roof",
+      "rain-on-umbrella": "Rain on Umbrella",
+      "rain-on-tent": "Rain on Tent",
+      "rain-on-leaves": "Rain on Leaves"
+    },
+    "things": {
+      "title": "Things",
+      "keyboard": "Keyboard",
+      "typewriter": "Typewriter",
+      "paper": "Paper",
+      "clock": "Clock",
+      "wind-chimes": "Wind Chimes",
+      "singing-bowl": "Singing Bowl",
+      "ceiling-fan": "Ceiling Fan",
+      "dryer": "Dryer",
+      "slide-projector": "Slide Projector",
+      "boiling-water": "Boiling Water",
+      "bubbles": "Bubbles",
+      "tuning-radio": "Tuning Radio",
+      "morse-code": "Morse Code",
+      "washing-machine": "Washing Machine",
+      "vinyl-effect": "Vinyl Effect",
+      "windshield-wipers": "Windshield Wipers"
+    },
+    "transport": {
+      "title": "Transport",
+      "train": "Train",
+      "inside-a-train": "Inside a Train",
+      "airplane": "Airplane",
+      "submarine": "Submarine",
+      "sailboat": "Sailboat",
+      "rowing-boat": "Rowing Boat"
+    },
+    "urban": {
+      "title": "Urban",
+      "highway": "Highway",
+      "road": "Road",
+      "ambulance-siren": "Ambulance Siren",
+      "busy-street": "Busy Street",
+      "crowd": "Crowd",
+      "traffic": "Traffic",
+      "fireworks": "Fireworks"
     }
   }
 }

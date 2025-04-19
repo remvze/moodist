@@ -13,55 +13,56 @@ import type { Category } from '../types';
 export const rain: Category = {
   icon: <BsFillCloudRainFill />,
   id: 'rain',
+  // 修改
   sounds: [
     {
       icon: <BsFillCloudRainFill />,
       id: 'light-rain',
-      label: 'Light Rain',
+      labelKey: 'sounds.rain.light-rain',
       src: '/sounds/rain/light-rain.mp3',
     },
     {
       icon: <BsFillCloudRainHeavyFill />,
       id: 'heavy-rain',
-      label: 'Heavy Rain',
+      labelKey: 'sounds.rain.heavy-rain',
       src: '/sounds/rain/heavy-rain.mp3',
     },
     {
       icon: <MdOutlineThunderstorm />,
       id: 'thunder',
-      label: 'Thunder',
+      labelKey: 'sounds.rain.thunder',
       src: '/sounds/rain/thunder.mp3',
     },
     {
       icon: <GiWindow />,
       id: 'rain-on-window',
-      label: 'Rain on Window',
+      labelKey: 'sounds.rain.rain-on-window',
       src: '/sounds/rain/rain-on-window.mp3',
     },
     {
       icon: <FaCarSide />,
       id: 'rain-on-car-roof',
-      label: 'Rain on Car Roof',
+      labelKey: 'sounds.rain.rain-on-car-roof',
       src: '/sounds/rain/rain-on-car-roof.mp3',
     },
     {
       icon: <BsUmbrellaFill />,
       id: 'rain-on-umbrella',
-      label: 'Rain on Umbrella',
+      labelKey: 'sounds.rain.rain-on-umbrella',
       src: '/sounds/rain/rain-on-umbrella.mp3',
     },
     {
       icon: <PiTentFill />,
       id: 'rain-on-tent',
-      label: 'Rain on Tent',
+      labelKey: 'sounds.rain.rain-on-tent',
       src: '/sounds/rain/rain-on-tent.mp3',
     },
     {
       icon: <FaLeaf />,
       id: 'rain-on-leaves',
-      label: 'Rain on Leaves',
+      labelKey: 'sounds.rain.rain-on-leaves',
       src: '/sounds/rain/rain-on-leaves.mp3',
     },
   ],
-  title: 'Rain',
+  titleKey: 'sounds.rain.title',
 };

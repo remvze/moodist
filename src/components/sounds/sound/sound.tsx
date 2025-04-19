@@ -1,5 +1,6 @@
 import { useCallback, useEffect, forwardRef, useMemo } from 'react';
 import { ImSpinner9 } from 'react-icons/im/index';
+import { useTranslation } from 'react-i18next'; // 导入 useTranslation
 
 import { Range } from './range';
 import { Favorite } from './favorite';
@@ -15,17 +16,21 @@ import type { Sound as SoundType } from '@/data/types';
 
 import { useKeyboardButton } from '@/hooks/use-keyboard-button';
 
-interface SoundProps extends SoundType {
+interface SoundProps extends Omit<SoundType, 'label'> {
   functional: boolean;
   hidden: boolean;
+  labelKey: string;
   selectHidden: (key: string) => void;
   unselectHidden: (key: string) => void;
 }
 
 export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
-  { functional, hidden, icon, id, label, selectHidden, src, unselectHidden },
+  { functional, hidden, icon, id, labelKey, selectHidden, src, unselectHidden },
   ref,
 ) {
+  const { t } = useTranslation(); // 获取 t 函数
+  const translatedLabel = useMemo(() => t(labelKey), [t, labelKey]);
+
   const isPlaying = useSoundStore(state => state.isPlaying);
   const play = useSoundStore(state => state.play);
   const selectSound = useSoundStore(state => state.select);
@@ -43,22 +48,22 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
 
   const isLoading = useLoadingStore(state => state.loaders[src]);
 
-  const sound = useSound(src, { loop: true, volume: adjustedVolume });
+  const soundControls = useSound(src, { loop: true, volume: adjustedVolume });
 
   useEffect(() => {
     if (locked) return;
 
     if (isSelected && isPlaying && functional) {
-      sound?.play();
+      soundControls?.play();
     } else {
-      sound?.pause();
+      soundControls?.pause();
     }
-  }, [isSelected, sound, isPlaying, functional, locked]);
+  }, [isSelected, soundControls, isPlaying, functional, locked]);
 
   useEffect(() => {
-    if (hidden && isSelected) selectHidden(label);
-    else if (hidden && !isSelected) unselectHidden(label);
-  }, [label, isSelected, hidden, selectHidden, unselectHidden]);
+    if (hidden && isSelected) selectHidden(labelKey);
+    else if (hidden && !isSelected) unselectHidden(labelKey);
+  }, [labelKey, isSelected, hidden, selectHidden, unselectHidden]);
 
   const select = useCallback(() => {
     if (locked) return;
@@ -82,13 +87,11 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
     toggle();
   }, [toggle]);
 
-  const handleKeyDown = useKeyboardButton(() => {
-    toggle();
-  });
+  const handleKeyDown = useKeyboardButton(toggle);
 
   return (
     <div
-      aria-label={`${label} sound`}
+      aria-label={t('sounds.aria-label', { name: translatedLabel })}
       ref={ref}
       role="button"
       tabIndex={0}
@@ -100,7 +103,7 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
       onClick={handleClick}
       onKeyDown={handleKeyDown}
     >
-      <Favorite id={id} label={label} />
+      <Favorite id={id} label={translatedLabel} />
       <div className={styles.icon}>
         {isLoading ? (
           <span aria-hidden="true" className={styles.spinner}>
@@ -111,9 +114,9 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
         )}
       </div>
       <div className={styles.label} id={id}>
-        {label}
+        {translatedLabel}
       </div>
-      <Range id={id} label={label} />
+      <Range id={id} label={translatedLabel} />
     </div>
   );
 });
