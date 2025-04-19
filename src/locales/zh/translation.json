@@ -1,7 +1,7 @@
 {
   "site": {
-    "title": "Moodist：专注与平静的环境声音",
-    "description": "Moodist 是一个免费且开源的环境声音生成器，包含 {{count}} 种精心挑选的声音。使用这款多功能工具，为放松、专注或创造力营造理想的氛围。",
+    "title": "Moodist：营造专注与平静的环境之声",
+    "description": "Moodist 是一款免费且开源的环境声音生成器，收录了 {{count}} 种精心挑选的声音。用这款多功能工具为放松、专注或激发创造力打造理想氛围。",
     "ogSiteName": "Moodist"
   },
   "languages": {
@@ -16,6 +16,9 @@
     "override": "覆盖",
     "done": "完成!",
     "reset": "重置",
+    "play": "播放",
+    "close": "关闭",
+    "reload": "刷新",
     "start": "开始",
     "pause": "暂停",
     "stop": "停止",
@@ -25,13 +28,50 @@
     "delete": "删除",
     "plural-suffix": ""
   },
+  "hero": {
+    "logo-alt": "Moodist 标志",
+    "title-line1": "Moodist",
+    "title-line2": "专注与平静的环境之声",
+    "desc-prefix": "免费且",
+    "desc-open-source": "完全开源",
+    "sounds-count": "{{count}} 种声音"
+  },
+  "about": {
+    "section1": {
+      "title": "免费环境声音",
+      "body": "渴望逃离日常喧嚣，寻觅片刻宁静？需要理想的声音环境来提升专注力，或是安然入睡？不妨试试 Moodist——您的免费开源环境声音生成器！无需订阅注册，即可免费解锁一个舒缓、沉浸式的音频世界。"
+    },
+    "section2": {
+      "title": "精选环境声音",
+      "body": "探索包含 {{count}} 种精心挑选声音的丰富音库。自然爱好者们可以在潺潺溪流、规律的海浪拍岸，或是噼啪作响的温暖篝火中寻得慰藉；城市景观则通过咖啡馆的轻柔低语、火车有节奏的行进声，或是平和的交通白噪音生动再现。对于寻求更深层次专注或放松的用户，Moodist 还提供了旨在帮助调整心境的双耳节拍和彩色噪音。"
+    },
+    "section3": {
+      "title": "打造您的专属音景",
+      "body": "Moodist 的魅力在于其简洁与个性化。没有复杂的菜单或令人困惑的选项——只需选择心仪的声音，调整音量平衡，即可播放。想将鸟儿的轻柔啁啾与舒缓的雨声混合？没问题！随心叠加任意数量的声音，创造您的专属声音绿洲。"
+    },
+    "section4": {
+      "title": "满足不同时刻的需求",
+      "body": "无论您是想在漫长一天后放松身心，在工作学习时集中注意力，还是需要安宁的氛围助您入睡，Moodist 都有适合您的理想音景。最棒的是，它完全免费且开源，让您可以无任何负担地享受。立即开始使用 Moodist，发现属于您的宁静与专注空间！"
+    }
+  },
+  "donate": {
+    "prompt": "喜欢 Moodist 吗？",
+    "link-text": "通过捐赠支持项目！",
+    "section-title": "支持项目",
+    "section-desc": "帮助 Moodist 保持免费和无广告。",
+    "section-button": "请我喝一杯咖啡"
+  },
+  "source": {
+    "title": "开源",
+    "desc": "Moodist 是免费且开源的！"
+  },
   "toolbar": {
     "menu-aria-label": "菜单",
     "global-volume-label": "全局音量",
     "items": {
       "presets": "预设",
       "share": "分享声音",
-      "shuffle": "随机播放",
+      "shuffle": "随机组合",
       "sleep-timer": "睡眠定时器",
       "countdown": "倒计时器",
       "pomodoro": "番茄钟",
@@ -41,80 +81,104 @@
       "binaural": "双耳节拍",
       "isochronic": "等时声频",
       "shortcuts": "快捷键",
-      "buy-me-a-coffee": "请我喝咖啡",
+      "buy-me-a-coffee": "请我喝杯咖啡",
       "source-code": "源代码"
     }
   },
+  "scroll-to-top": {
+    "aria-label": "滚动到顶部"
+  },
+  "unselect": {
+    "tooltip": "取消选择所有声音。",
+    "aria-label": "取消选择所有声音",
+    "restore": {
+      "tooltip": "恢复上次的选择。",
+      "aria-label": "恢复上次的选择"
+    }
+  },
+  "favorite": {
+    "add": {
+      "aria-label": "收藏 {{label}} 声音"
+    },
+    "remove": {
+      "aria-label": "取消收藏 {{label}} 声音"
+    }
+  },
+  "volume": {
+    "aria-label": "{{label}} 声音音量"
+  },
+  "play-error": "请先选择要播放的声音。",
+  "use-moodist": "开始使用 Moodist",
   "modals": {
     "presets": {
-      "title": "预设",
-      "your-presets-title": "您的预设",
-      "empty": "您还没有任何预设。",
+      "title": "声音预设",
+      "your-presets-title": "我的预设",
+      "empty": "您还没有保存任何预设。",
       "new-preset-title": "新建预设",
       "placeholder": "预设名称",
       "play-button-tooltip": "播放预设",
       "play-button-aria-label": "播放预设 {{label}}",
       "delete-button-tooltip": "删除预设",
       "delete-button-aria-label": "删除预设 {{label}}",
-      "no-selected-warning": "要创建预设，请先选择一些声音。"
+      "no-selected-warning": "请先选择声音，再创建预设。"
     },
     "share-link": {
-      "title": "分享您的声音组合！",
-      "description": "复制下面的链接并发送给您想与之分享的人。",
+      "title": "分享您的声音组合",
+      "description": "复制下方链接，分享给他人。",
       "copy-button-aria-label": "复制链接"
     },
     "shared": {
-      "title": "检测到新的声音组合！",
-      "description": "有人与您分享了以下声音组合。您想覆盖当前的选择吗？",
-      "snackbar-message": "完成！您现在可以播放新的选择了。"
+      "title": "检测到分享的声音组合！",
+      "description": "有人向您分享了以下声音组合，是否覆盖当前选择？",
+      "snackbar-message": "加载成功！现在可以播放分享的组合了。"
     },
     "sleep-timer": {
       "title": "睡眠定时器",
-      "description": "在指定时间后停止播放声音。",
+      "description": "在设定的时间后自动停止播放声音。",
       "hours-label": "小时",
       "minutes-label": "分钟"
     },
     "countdown": {
       "title": "倒计时器",
-      "description": "超级简单的倒计时器。",
+      "description": "简洁实用的倒计时器。",
       "placeholder-hh": "时",
       "placeholder-mm": "分",
       "placeholder-ss": "秒"
     },
     "pomodoro": {
       "title": "番茄钟",
-      "settings-tooltip": "更改时间",
-      "completed": "已完成 {{count}} 次",
+      "settings-tooltip": "设置时长",
+      "completed": "已完成 {{count}} 个番茄钟",
       "tabs": {
-        "pomodoro": "番茄钟",
+        "pomodoro": "工作",
         "short-break": "短休息",
         "long-break": "长休息"
       },
       "settings": {
-        "title": "更改时间",
-        "pomodoro-label": "番茄钟",
-        "short-break-label": "短休息",
-        "long-break-label": "长休息",
+        "title": "设置时长",
+        "pomodoro-label": "工作时长",
+        "short-break-label": "短休息时长",
+        "long-break-label": "长休息时长",
         "minutes-unit": "分钟"
       }
     },
     "notepad": {
-      "title-label": "您的笔记",
+      "title-label": "随手记",
       "copy-tooltip": "复制笔记",
       "download-tooltip": "下载笔记",
       "clear-tooltip": "清空笔记",
       "restore-tooltip": "恢复笔记",
-      "placeholder": "您在想什么？",
-      "counter-stats": "共 {{chars}} 个字符"
+      "placeholder": "记录您的想法...",
+      "counter-stats": "{{chars}} 个字符 • {{words}} 个词语"
     },
     "todo": {
       "title": "待办清单",
-      "description": "超级简单的待办事项列表。",
-      "add-placeholder": "我需要做...",
+      "description": "简洁实用的待办事项列表。",
+      "add-placeholder": "添加待办事项...",
       "add-button": "添加",
-      "your-todos-label": "您的待办事项",
-      "empty": "您还没有任何待办事项。",
-      "delete-button-aria-label": "删除待办事项"
+      "your-todos-label": "我的待办",
+      "empty": "这里还没有待办事项。",
+      "delete-button-aria-label": "删除此待办事项"
     },
     "breathing": {
       "title": "呼吸练习",
@@ -124,9 +188,9 @@
         "hold": "屏息"
       },
       "exercises": {
-        "box": "方形呼吸",
-        "resonant": "共振呼吸",
-        "478": "4-7-8 呼吸"
+        "box": "方形呼吸法",
+        "resonant": "同步呼吸法",
+        "478": "4-7-8 呼吸法"
       }
     },
     "generators": {
@@ -134,22 +198,22 @@
       "base-frequency-label": "基础频率 (Hz):",
       "volume-label": "音量:",
       "presets": {
-        "delta": "Delta (深度睡眠) 2 Hz",
-        "theta": "Theta (冥想) 5 Hz",
-        "alpha": "Alpha (放松) 10 Hz",
-        "beta": "Beta (专注) 20 Hz",
-        "gamma": "Gamma (认知) 40 Hz",
+        "delta": "Delta 波 (深度睡眠) 2 Hz",
+        "theta": "Theta 波 (冥想) 5 Hz",
+        "alpha": "Alpha 波 (放松) 10 Hz",
+        "beta": "Beta 波 (专注) 20 Hz",
+        "gamma": "Gamma 波 (认知) 40 Hz",
         "custom": "自定义"
       }
     },
     "binaural": {
       "title": "双耳节拍",
-      "description": "双耳节拍生成器。",
+      "description": "生成双耳节拍声音。",
       "beat-frequency-label": "节拍频率 (Hz):"
     },
     "isochronic": {
       "title": "等时声频",
-      "description": "等时声频生成器。",
+      "description": "生成等时声频声音。",
       "tone-frequency-label": "声频频率 (Hz):"
     },
     "shortcuts": {
@@ -158,63 +222,20 @@
         "toggle-play": "播放/暂停",
         "unselect-all": "取消全选声音"
       }
+    },
+    "reload": {
+      "title": "有新的更新可用",
+      "description": "检测到新版本，点击“刷新”按钮以更新。",
+      "closeButton": "关闭",
+      "reloadButton": "刷新"
     }
-  },
-  "buttons": {
-    "play": {
-      "label": "播放",
-      "error": "请先选择要播放的声音。"
-    },
-    "favorite": {
-      "add": {
-        "aria-label": "将 {{label}} 声音添加到收藏夹"
-      },
-      "remove": {
-        "aria-label": "从收藏夹移除 {{label}} 声音"
-      }
-    },
-    "unselect": {
-      "tooltip": "取消选择所有声音。",
-      "aria-label": "取消选择所有声音",
-      "restore": {
-        "tooltip": "恢复上次选择的声音。",
-        "aria-label": "恢复上次选择的声音"
-      }
-    },
-    "pause": {
-      "label": "暂停"
-    },
-    "use-moodist": {
-      "label": "使用 Moodist"
-    }
-  },
-  "about": {
-    "section1": {
-      "title": "免费环境声音",
-      "body": "渴望从日常喧嚣中获得平静的休憩？需要完美的声音环境来提升专注力或助您安然入睡？Moodist 就是您的答案——免费且开源的环境声音生成器！无需订阅和注册，Moodist 为您免费解锁一个舒缓、沉浸式的音频体验世界。"
-    },
-    "section2": {
-      "title": "精心挑选的声音",
-      "body": "探索包含 {{count}} 种精心策划声音的广阔音库。自然爱好者可以在潺潺溪流、规律的海浪拍岸或噼啪作响的温暖篝火中找到慰藉。城市景观在咖啡馆的轻柔嗡嗡声、火车有节奏的哐当声或交通的平静白噪音中栩栩如生。对于寻求更深层次专注或放松的人，Moodist 提供旨在改善您心境的双耳节拍和彩色噪音。"
-    },
-    "section3": {
-      "title": "创建您的声音景观",
-      "body": "Moodist 的美妙之处在于其简洁和可定制性。没有复杂的菜单或令人困惑的选项——只需选择您想要的声音，调整音量平衡，然后点击播放。想将鸟儿的轻柔啁啾与舒缓的雨声混合？没问题！随心所欲地叠加任意数量的声音，创造您个性化的声音绿洲。"
-    },
-    "section4": {
-      "title": "适合每一刻的声音",
-      "body": "无论您是想在漫长的一天后放松身心，在工作时提高注意力，还是哄自己进入宁静的睡眠，Moodist 都有完美的声音景观等着您。最棒的是？它完全免费且开源，因此您可以无任何附加条件地享受其益处。立即开始使用 Moodist，发现您宁静与专注的新港湾！"
-    }
-  },
-  "volume": {
-    "aria-label": "{{label}} 声音音量"
   },
   "sounds": {
     "show-less": "收起",
-    "show-more": "显示更多",
+    "show-more": "展开更多",
     "aria-label": "{{name}} 声音",
     "favorites": {
-      "title": "收藏夹"
+      "title": "我的收藏"
     },
     "animals": {
       "title": "动物",
@@ -225,23 +246,23 @@
       "owl": "猫头鹰",
       "frog": "蛙鸣",
       "dog-barking": "狗吠",
-      "horse-galopp": "马蹄",
-      "cat-purring": "猫打呼",
+      "horse-galopp": "马蹄声",
+      "cat-purring": "猫打呼噜",
       "crows": "乌鸦",
       "whale": "鲸鱼",
       "beehive": "蜂巢",
       "woodpecker": "啄木鸟",
-      "chickens": "鸡",
-      "cows": "牛",
-      "sheep": "羊"
+      "chickens": "鸡鸣",
+      "cows": "牛叫",
+      "sheep": "羊叫"
     },
     "binaural": {
-      "title": "双耳节拍",
-      "binaural-delta": "Delta 波",
-      "binaural-theta": "Theta 波",
-      "binaural-alpha": "Alpha 波",
-      "binaural-beta": "Beta 波",
-      "binaural-gamma": "Gamma 波"
+      "title": "脑波",
+      "binaural-delta": "Delta 波 (深度睡眠)",
+      "binaural-theta": "Theta 波 (冥想)",
+      "binaural-alpha": "Alpha 波 (放松)",
+      "binaural-beta": "Beta 波 (专注)",
+      "binaural-gamma": "Gamma 波 (认知)"
     },
     "nature": {
       "title": "自然",
@@ -249,14 +270,14 @@
       "waves": "海浪",
       "campfire": "篝火",
       "wind": "风声",
-      "howling-wind": "呼啸的风",
+      "howling-wind": "风啸声",
       "wind-in-trees": "林间风声",
       "waterfall": "瀑布",
-      "walk-in-snow": "雪地行走",
-      "walk-on-leaves": "踩树叶",
-      "walk-on-gravel": "踩砾石",
+      "walk-in-snow": "雪地脚步",
+      "walk-on-leaves": "落叶脚步",
+      "walk-on-gravel": "碎石脚步",
       "droplets": "水滴",
-      "jungle": "丛林"
+      "jungle": "丛林声"
     },
     "noise": {
       "title": "噪音",
@@ -272,8 +293,8 @@
       "temple": "寺庙",
       "construction-site": "建筑工地",
       "underwater": "水下",
-      "crowded-bar": "拥挤的酒吧",
-      "night-village": "夜晚村庄",
+      "crowded-bar": "嘈杂酒吧",
+      "night-village": "乡村夜晚",
       "subway-station": "地铁站",
       "office": "办公室",
       "supermarket": "超市",
@@ -296,10 +317,10 @@
     },
     "things": {
       "title": "物品",
-      "keyboard": "键盘",
-      "typewriter": "打字机",
-      "paper": "纸张",
-      "clock": "时钟",
+      "keyboard": "键盘声",
+      "typewriter": "打字机声",
+      "paper": "纸张翻动",
+      "clock": "时钟滴答",
       "wind-chimes": "风铃",
       "singing-bowl": "颂钵",
       "ceiling-fan": "吊扇",
@@ -307,30 +328,31 @@
       "slide-projector": "幻灯机",
       "boiling-water": "沸水",
       "bubbles": "气泡",
-      "tuning-radio": "调谐收音机",
+      "tuning-radio": "收音机调频",
       "morse-code": "摩尔斯电码",
       "washing-machine": "洗衣机",
-      "vinyl-effect": "黑胶唱片",
+      "vinyl-effect": "黑胶唱片噪音",
       "windshield-wipers": "雨刮器"
     },
     "transport": {
       "title": "交通",
-      "train": "火车",
-      "inside-a-train": "火车内部",
-      "airplane": "飞机",
-      "submarine": "潜水艇",
-      "sailboat": "帆船",
-      "rowing-boat": "划艇"
+      "train": "火车声",
+      "inside-a-train": "车厢内",
+      "airplane": "飞机声",
+      "submarine": "潜艇声",
+      "sailboat": "帆船航行",
+      "rowing-boat": "划艇声"
     },
     "urban": {
       "title": "城市",
       "highway": "高速公路",
-      "road": "马路",
-      "ambulance-siren": "救护车警报",
+      "road": "街道",
+      "ambulance-siren": "救护车警笛",
       "busy-street": "繁忙街道",
-      "crowd": "人群",
-      "traffic": "交通",
+      "crowd": "人群嘈杂",
+      "traffic": "交通噪音",
       "fireworks": "烟花"
     }
-  }
+  },
+  "created-by": "由 {{authorLink}} 创建"
 }

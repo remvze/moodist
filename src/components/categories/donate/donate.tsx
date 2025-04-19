@@ -1,10 +1,12 @@
 import { FaCoffee } from 'react-icons/fa/index';
-
+import { useTranslation } from 'react-i18next';
 import { SpecialButton } from '@/components/special-button';
 
 import styles from './donate.module.css';
 
 export function Donate() {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.donate}>
       <div className={styles.iconContainer}>
@@ -15,14 +17,14 @@ export function Donate() {
       </div>
 
       <div className={styles.title}>
-        <span>Support Me</span>
+        <span>{t('donate.section-title')}</span>
       </div>
-      <p className={styles.desc}>Help me keep Moodist ad-free.</p>
+      <p className={styles.desc}>{t('donate.section-desc')}</p>
       <SpecialButton
         className={styles.button}
         href="https://buymeacoffee.com/remvze"
       >
-        Donate Today
+        {t('donate.section-button')}
       </SpecialButton>
     </div>
   );

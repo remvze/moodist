@@ -1,17 +1,21 @@
 ---
+import { getTranslator } from '@/i18n/utils';
 import { Container } from './container';
+
+const currentLocale = Astro.currentLocale || 'en';
+const t = await getTranslator(currentLocale);
 ---
 
 <Container>
   <section class="wrapper">
     <p class="text">
-      Enjoy Moodist?{' '}
+      {t('donate.prompt')}{' '}
       <a
         href="https://buymeacoffee.com/remvze"
         rel="noreferrer"
         target="_blank"
       >
-        Support with a donation!
+        {t('donate.link-text')}
       </a>
     </p>
   </section>

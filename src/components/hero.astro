@@ -1,10 +1,12 @@
 ---
 import { BsSoundwave } from 'react-icons/bs/index';
-
+import { getTranslator } from '@/i18n/utils';
 import { Container } from './container';
 import { CipherText } from './cipher';
-
 import { count as soundCount } from '@/lib/sounds';
+
+const currentLocale = Astro.currentLocale || 'en';
+const t = await getTranslator(currentLocale);
 
 const count = soundCount();
 ---
@@ -15,7 +17,7 @@ const count = soundCount();
       <div class="pattern"></div>
       <div class="logo-wrapper">
         <img
-          alt="Faded Moodist Logo"
+          alt={t('hero.logo-alt')}
           aria-hidden="true"
           class="logo"
           height={48}
@@ -25,17 +27,19 @@ const count = soundCount();
       </div>
 
       <h1 class="title">
-        Ambient Sounds<span class="line">For Focus and Calm</span>
+        {t('hero.title-line1')}<span class="line">{t('hero.title-line2')}</span>
       </h1>
       <h2 class="desc">
-        Free and <CipherText client:load text="Open-Source" />.
+        {t('hero.desc-prefix')}
+        <CipherText client:load text={t('hero.desc-open-source')} />
+         .
       </h2>
 
       <p class="sounds">
         <span aria-hidden="true" class="icon">
           <BsSoundwave />
         </span>
-        <span>{count} Sounds</span>
+        <span>{t('hero.sounds-count', { count: count })}</span>
       </p>
     </div>
   </Container>

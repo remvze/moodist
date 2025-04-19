@@ -147,7 +147,7 @@ export function Menu() {
                     <Divider />
 
                     <div className={styles.globalVolume}>
-                      <label htmlFor="global-volume">
+                      <label htmlFor="global-volume" id="global-volume-label">
                         {t('toolbar.global-volume-label')}
                       </label>
                       <Slider

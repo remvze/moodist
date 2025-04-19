@@ -2,7 +2,7 @@
   "site": {
     "title": "Moodist: Ambient Sounds for Focus and Calm",
     "description": "Moodist is a free and open-source ambient sound generator featuring {{count}} carefully curated sounds. Create your ideal atmosphere for relaxation, focus, or creativity with this versatile tool.",
-    "ogSiteName": "Moodist"
+    "og-site-name": "Moodist"
   },
   "languages": {
     "en": "English",
@@ -16,6 +16,9 @@
     "override": "Override",
     "done": "Done!",
     "reset": "Reset",
+    "play": "Play",
+    "close": "Close",
+    "reload": "Reload",
     "start": "Start",
     "pause": "Pause",
     "stop": "Stop",
@@ -24,6 +27,43 @@
     "cancel": "Cancel",
     "delete": "Delete",
     "plural-suffix": "s"
+  },
+  "hero": {
+    "logo-alt": "Faded Moodist Logo",
+    "title-line1": "Ambient Sounds",
+    "title-line2": "For Focus and Calm",
+    "desc-prefix": "Free and",
+    "desc-open-source": "Open-Source",
+    "sounds-count": "{{count}} Sounds"
+  },
+  "about": {
+    "section1": {
+      "title": "Free Ambient Sounds",
+      "body": "Craving a calming escape from the daily grind? Do you need the perfect soundscape to boost your focus or lull you into peaceful sleep? Look no further than Moodist, your free and open-source ambient sound generator! Ditch the subscriptions and registrations – with Moodist, you unlock a world of soothing and immersive audio experiences, entirely for free."
+    },
+    "section2": {
+      "title": "Carefully Curated Sounds",
+      "body": "Dive into an expansive library of {{count}} carefully curated sounds. Nature lovers will find solace in the gentle murmur of streams, the rhythmic crash of waves, or the crackling warmth of a campfire. Cityscapes come alive with the soft hum of cafes, the rhythmic clatter of trains, or the calming white noise of traffic. And for those seeking deeper focus or relaxation, Moodist offers binaural beats and color noise designed to enhance your state of mind."
+    },
+    "section3": {
+      "title": "Create Your Soundscape",
+      "body": "The beauty of Moodist lies in its simplicity and customization. No complex menus or confusing options – just choose your desired sounds, adjust the volume balance, and hit play. Want to blend the gentle chirping of birds with the soothing sound of rain? No problem! Layer as many sounds as you like to create your personalized soundscape oasis."
+    },
+    "section4": {
+      "title": "Sounds for Every Moment",
+      "body": "Whether you're looking to unwind after a long day, enhance your focus during work, or lull yourself into a peaceful sleep, Moodist has the perfect soundscape waiting for you. The best part? It's completely free and open-source, so you can enjoy its benefits without any strings attached. Start using Moodist today and discover your new haven of tranquility and focus!"
+    }
+  },
+  "donate": {
+    "prompt": "Enjoy Moodist?",
+    "link-text": "Support with a donation!",
+    "section-title": "Support Me",
+    "section-desc": "Help me keep Moodist ad-free.",
+    "section-button": "Donate Today"
+  },
+  "source": {
+    "title": "Open Source",
+    "desc": "Moodist is free and open-source!"
   },
   "toolbar": {
     "menu-aria-label": "Menu",
@@ -45,6 +85,30 @@
       "source-code": "Source Code"
     }
   },
+  "scroll-to-top": {
+    "aria-label": "Scroll to top"
+  },
+  "unselect": {
+    "tooltip": "Unselect all sounds.",
+    "aria-label": "Unselect All Sounds",
+    "restore": {
+      "tooltip": "Restore unselected sounds.",
+      "aria-label": "Restore Unselected Sounds"
+    }
+  },
+  "favorite": {
+    "add": {
+      "aria-label": "Add {{label}} Sound to Favorites"
+    },
+    "remove": {
+      "aria-label": "Remove {{label}} Sound from Favorites"
+    }
+  },
+  "volume": {
+    "aria-label": "{{label}} sound volume"
+  },
+  "play-error": "Please select a sound to play.",
+  "use-moodist": "Use Moodist",
   "modals": {
     "presets": {
       "title": "Presets",
@@ -158,56 +222,13 @@
         "toggle-play": "Toggle Play",
         "unselect-all": "Unselect All Sounds"
       }
+    },
+    "reload": {
+      "title": "New Content Available",
+      "description": "New content is available, click the reload button to update.",
+      "closeButton": "Close",
+      "reloadButton": "Reload"
     }
-  },
-  "buttons": {
-    "play": {
-      "label": "Play",
-      "error": "Please select a sound to play."
-    },
-    "favorite": {
-      "add": {
-        "aria-label": "Add {{label}} Sound to Favorites"
-      },
-      "remove": {
-        "aria-label": "Remove {{label}} Sound from Favorites"
-      }
-    },
-    "unselect": {
-      "tooltip": "Unselect all sounds.",
-      "aria-label": "Unselect All Sounds",
-      "restore": {
-        "tooltip": "Restore unselected sounds.",
-        "aria-label": "Restore Unselected Sounds"
-      }
-    },
-    "pause": {
-      "label": "Pause"
-    },
-    "use-moodist": {
-      "label": "Use Moodist"
-    }
-  },
-  "about": {
-    "section1": {
-      "title": "Free Ambient Sounds",
-      "body": "Craving a calming escape from the daily grind? Do you need the perfect soundscape to boost your focus or lull you into peaceful sleep? Look no further than Moodist, your free and open-source ambient sound generator! Ditch the subscriptions and registrations – with Moodist, you unlock a world of soothing and immersive audio experiences, entirely for free."
-    },
-    "section2": {
-      "title": "Carefully Curated Sounds",
-      "body": "Dive into an expansive library of {{count}} carefully curated sounds. Nature lovers will find solace in the gentle murmur of streams, the rhythmic crash of waves, or the crackling warmth of a campfire. Cityscapes come alive with the soft hum of cafes, the rhythmic clatter of trains, or the calming white noise of traffic. And for those seeking deeper focus or relaxation, Moodist offers binaural beats and color noise designed to enhance your state of mind."
-    },
-    "section3": {
-      "title": "Create Your Soundscape",
-      "body": "The beauty of Moodist lies in its simplicity and customization. No complex menus or confusing options – just choose your desired sounds, adjust the volume balance, and hit play. Want to blend the gentle chirping of birds with the soothing sound of rain? No problem! Layer as many sounds as you like to create your personalized soundscape oasis."
-    },
-    "section4": {
-      "title": "Sounds for Every Moment",
-      "body": "Whether you're looking to unwind after a long day, enhance your focus during work, or lull yourself into a peaceful sleep, Moodist has the perfect soundscape waiting for you. The best part? It's completely free and open-source, so you can enjoy its benefits without any strings attached. Start using Moodist today and discover your new haven of tranquility and focus!"
-    }
-  },
-  "volume": {
-    "aria-label": "{{label}} sound volume"
   },
   "sounds": {
     "show-less": "Show Less",
@@ -332,5 +353,6 @@
       "traffic": "Traffic",
       "fireworks": "Fireworks"
     }
-  }
+  },
+  "created-by": "Created by {{authorLink}}"
 }

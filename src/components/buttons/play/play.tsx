@@ -44,14 +44,14 @@ export function PlayButton() {
           <span aria-hidden="true">
             <BiPause />
           </span>{' '}
-          {t('buttons.pause.label')}
+          {t('common.pause')}
         </>
       ) : (
         <>
           <span aria-hidden="true">
             <BiPlay />
           </span>{' '}
-          {t('buttons.play.label')}
+          {t('common.play')}
         </>
       )}
     </button>

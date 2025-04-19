@@ -41,8 +41,8 @@ export function Favorite({ id, label }: FavoriteProps) {
   const handleKeyDown = useKeyboardButton(handleToggle);
 
   const ariaLabel = isFavorite
-    ? t('buttons.favorite.remove.aria-label', { label: label })
-    : t('buttons.favorite.add.aria-label', { label: label });
+    ? t('favorite.remove.aria-label', { label: label })
+    : t('favorite.add.aria-label', { label: label });
 
   if (useSoundStore.getState().sounds[id] === undefined) {
     return null;

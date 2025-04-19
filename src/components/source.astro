@@ -1,9 +1,12 @@
 ---
 import { FaGithub } from 'react-icons/fa/index';
-
+import { getTranslator } from '@/i18n/utils';
 import { SpecialButton } from './special-button';
 import { Container } from './container';
 import { Binary } from './binary';
+
+const currentLocale = Astro.currentLocale || 'en';
+const t = await getTranslator(currentLocale);
 ---
 
 <div class="source">
@@ -16,12 +19,12 @@ import { Binary } from './binary';
         </div>
       </div>
 
-      <h2 class="title"><span>Open Source</span></h2>
-      <p class="desc">Moodist is free and open-source!</p>
+      <h2 class="title"><span>{t('source.title')}</span></h2>
+      <p class="desc">{t('source.desc')}</p>
 
       <div class="button">
         <SpecialButton href="https://github.com/remvze/moodist">
-          Source Code
+          {t('toolbar.items.source-code')}
         </SpecialButton>
       </div>
 

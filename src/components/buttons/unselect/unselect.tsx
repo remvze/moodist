@@ -47,16 +47,16 @@ export function UnselectButton() {
               showDelay={0}
               content={
                 hasHistory
-                  ? t('buttons.unselect.restore.tooltip')
-                  : t('buttons.unselect.tooltip')
+                  ? t('unselect.restore.tooltip')
+                  : t('unselect.tooltip')
               }
             >
               <button
                 disabled={noSelected && !hasHistory}
                 aria-label={
                   hasHistory
-                    ? t('buttons.unselect.restore.aria-label')
-                    : t('buttons.unselect.aria-label')
+                    ? t('unselect.restore.aria-label')
+                    : t('unselect.aria-label')
                 }
                 className={cn(
                   styles.unselectButton,
