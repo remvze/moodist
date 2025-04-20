@@ -1,22 +1,22 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 import { Sound } from './sound';
 import { useLocalStorage } from '@/hooks/use-local-storage';
 import { cn } from '@/helpers/styles';
 import { fade, scale, mix } from '@/lib/motion';
-
 import styles from './sounds.module.css';
-
-import type { Sounds } from '@/data/types';
+import type { Sounds as SoundsType } from '@/data/types';
 
 interface SoundsProps {
   functional: boolean;
   id: string;
-  sounds: Sounds;
+  sounds: SoundsType;
 }
 
 export function Sounds({ functional, id, sounds }: SoundsProps) {
+  const { t } = useTranslation();
   const [showAll, setShowAll] = useLocalStorage(`${id}-show-more`, false);
   const [clickedMore, setClickedMore] = useState(false);
 
@@ -71,7 +71,7 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
       <div className={styles.sounds}>
         {sounds.map((sound, index) => (
           <Sound
-            key={sound.label}
+            key={sound.id}
             {...sound}
             functional={functional}
             hidden={!showAll && index > 5}
@@ -84,7 +84,7 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
         {sounds.length < 2 &&
           new Array(2 - sounds.length)
             .fill(null)
-            .map((_, index) => <div key={index} />)}
+            .map((_, index) => <div key={`placeholder-${index}`} />)}
       </div>
 
       {sounds.length > 6 && (
@@ -106,7 +106,7 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
               onAnimationComplete={() => setIsAnimating(false)}
               onAnimationStart={() => setIsAnimating(true)}
             >
-              {showAll ? 'Show Less' : 'Show More'}
+              {showAll ? t('sounds.show-less') : t('sounds.show-more')}
             </motion.span>
           </AnimatePresence>
         </button>

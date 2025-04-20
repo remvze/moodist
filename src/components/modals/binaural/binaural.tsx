@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { Modal } from '@/components/modal';
 import { Slider } from '@/components/slider';
 
@@ -14,15 +14,46 @@ interface Preset {
   baseFrequency: number;
   beatFrequency: number;
   name: string;
+  translationKey: string;
 }
 
 const presets: Preset[] = [
-  { baseFrequency: 100, beatFrequency: 2, name: 'Delta (Deep Sleep) 2 Hz' },
-  { baseFrequency: 100, beatFrequency: 5, name: 'Theta (Meditation) 5 Hz' },
-  { baseFrequency: 100, beatFrequency: 10, name: 'Alpha (Relaxation) 10 Hz' },
-  { baseFrequency: 100, beatFrequency: 20, name: 'Beta (Focus) 20 Hz' },
-  { baseFrequency: 100, beatFrequency: 40, name: 'Gamma (Cognition) 40 Hz' },
-  { baseFrequency: 440, beatFrequency: 10, name: 'Custom' },
+  {
+    baseFrequency: 100,
+    beatFrequency: 2,
+    name: 'Delta (Deep Sleep) 2 Hz',
+    translationKey: 'modals.generators.presets.delta',
+  },
+  {
+    baseFrequency: 100,
+    beatFrequency: 5,
+    name: 'Theta (Meditation) 5 Hz',
+    translationKey: 'modals.generators.presets.theta',
+  },
+  {
+    baseFrequency: 100,
+    beatFrequency: 10,
+    name: 'Alpha (Relaxation) 10 Hz',
+    translationKey: 'modals.generators.presets.alpha',
+  },
+  {
+    baseFrequency: 100,
+    beatFrequency: 20,
+    name: 'Beta (Focus) 20 Hz',
+    translationKey: 'modals.generators.presets.beta',
+  },
+  {
+    baseFrequency: 100,
+    beatFrequency: 40,
+    name: 'Gamma (Cognition) 40 Hz',
+    translationKey: 'modals.generators.presets.gamma',
+  },
+  {
+    baseFrequency: 440,
+    beatFrequency: 10,
+    name: 'Custom',
+    translationKey: 'modals.generators.presets.custom',
+  },
 ];
 
 function computeBinauralBeatOscillatorFrequencies(
@@ -36,6 +67,7 @@ function computeBinauralBeatOscillatorFrequencies(
 }
 
 export function BinauralModal({ onClose, show }: BinauralProps) {
+  const { t } = useTranslation();
   const [baseFrequency, setBaseFrequency] = useState<number>(440); // Default to A4 note
   const [beatFrequency, setBeatFrequency] = useState<number>(10); // Default to 10 Hz difference
   const [volume, setVolume] = useState<number>(0.5); // Default volume at 50%
@@ -145,15 +177,14 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
   }, [selectedPreset]);
 
   const handlePresetChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selected = e.target.value;
-    setSelectedPreset(selected);
+    const selectedName = e.target.value;
+    setSelectedPreset(selectedName);
 
-    if (selected === 'Custom') {
-      // Allow user to input custom frequencies
+    if (selectedName === 'Custom') {
       return;
     }
 
-    const preset = presets.find(p => p.name === selected);
+    const preset = presets.find(p => p.name === selectedName);
     if (preset) {
       setBaseFrequency(preset.baseFrequency);
       setBeatFrequency(preset.beatFrequency);
@@ -163,17 +194,17 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
   return (
     <Modal show={show} onClose={onClose}>
       <header className={styles.header}>
-        <h2 className={styles.title}>Binaural Beat</h2>
-        <p className={styles.desc}>Binaural beat generator.</p>
+        <h2 className={styles.title}>{t('modals.binaural.title')}</h2>
+        <p className={styles.desc}>{t('modals.binaural.description')}</p>
       </header>
 
       <div className={styles.fieldWrapper}>
         <label>
-          Presets:
+          {t('modals.generators.presets-label')}
           <select value={selectedPreset} onChange={handlePresetChange}>
             {presets.map(preset => (
               <option key={preset.name} value={preset.name}>
-                {preset.name}
+                {t(preset.translationKey)}
               </option>
             ))}
           </select>
@@ -183,7 +214,7 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
         <>
           <div className={styles.fieldWrapper}>
             <label>
-              Base Frequency (Hz):
+              {t('modals.generators.base-frequency-label')}
               <input
                 max="1500"
                 min="20"
@@ -198,7 +229,7 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
           </div>
           <div className={styles.fieldWrapper}>
             <label>
-              Beat Frequency (Hz):
+              {t('modals.binaural.beat-frequency-label')}
               <input
                 max="40"
                 min="0.1"
@@ -213,9 +244,10 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
           </div>
         </>
       )}
+
       <div className={styles.fieldWrapper}>
         <label>
-          Volume:
+          {t('modals.generators.volume-label')}
           <Slider
             className={styles.volume}
             max={1}
@@ -232,10 +264,10 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
           disabled={isPlaying}
           onClick={startSound}
         >
-          Start
+          {t('common.start')}
         </button>
         <button disabled={!isPlaying} onClick={stopSound}>
-          Stop
+          {t('common.stop')}
         </button>
       </div>
     </Modal>

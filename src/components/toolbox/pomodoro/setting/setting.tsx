@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { Modal } from '@/components/modal';
 
 import styles from './setting.module.css';
@@ -12,6 +12,7 @@ interface SettingProps {
 }
 
 export function Setting({ onChange, onClose, show, times }: SettingProps) {
+  const { t } = useTranslation();
   const [values, setValues] = useState<Record<string, number | string>>(times);
 
   useEffect(() => {
@@ -46,34 +47,34 @@ export function Setting({ onChange, onClose, show, times }: SettingProps) {
 
   return (
     <Modal lockBody={false} show={show} onClose={onClose}>
-      <h2 className={styles.title}>Change Times</h2>
+      <h2 className={styles.title}>{t('modals.pomodoro.settings.title')}</h2>
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <Field
           id="pomodoro"
-          label="Pomodoro"
+          labelKey="modals.pomodoro.settings.pomodoro-label"
           value={values.pomodoro}
           onChange={handleChange('pomodoro')}
         />
         <Field
           id="short"
-          label="Short Break"
+          labelKey="modals.pomodoro.settings.short-break-label"
           value={values.short}
           onChange={handleChange('short')}
         />
         <Field
           id="long"
-          label="Long Break"
+          labelKey="modals.pomodoro.settings.long-break-label"
           value={values.long}
           onChange={handleChange('long')}
         />
 
         <div className={styles.buttons}>
           <button type="button" onClick={handleCancel}>
-            Cancel
+            {t('common.cancel')}
           </button>
           <button className={styles.primary} type="submit">
-            Save
+            {t('common.save')}
           </button>
         </div>
       </form>
@@ -83,19 +84,22 @@ export function Setting({ onChange, onClose, show, times }: SettingProps) {
 
 interface FieldProps {
   id: string;
-  label: string;
+  labelKey: string;
   onChange: (value: number | string) => void;
   value: number | string;
 }
 
-function Field({ id, label, onChange, value }: FieldProps) {
+function Field({ id, labelKey, onChange, value }: FieldProps) {
+  const { t } = useTranslation(); // 获取翻译函数
   return (
     <div className={styles.field}>
       <label className={styles.label} htmlFor={id}>
-        {label} <span>(minutes)</span>
+        {t(labelKey)}{' '}
+        <span>({t('modals.pomodoro.settings.minutes-unit')})</span>{' '}
       </label>
       <input
         className={styles.input}
+        id={id}
         max={120}
         min={1}
         required

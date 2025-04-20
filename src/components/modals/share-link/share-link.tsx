@@ -1,12 +1,13 @@
 import { useMemo, useEffect, useState } from 'react';
 import { IoCopyOutline, IoCheckmark } from 'react-icons/io5/index';
-
+import { useTranslation } from 'react-i18next';
 import { Modal } from '@/components/modal';
 
 import { useCopy } from '@/hooks/use-copy';
 import { useSoundStore } from '@/stores/sound';
 
 import styles from './share-link.module.css';
+import { Tooltip } from '@/components/tooltip'; // Import Tooltip
 
 interface ShareLinkModalProps {
   onClose: () => void;
@@ -14,6 +15,7 @@ interface ShareLinkModalProps {
 }
 
 export function ShareLinkModal({ onClose, show }: ShareLinkModalProps) {
+  const { t } = useTranslation();
   const [isMounted, setIsMounted] = useState(false);
   const sounds = useSoundStore(state => state.sounds);
   const { copy, copying } = useCopy();
@@ -51,16 +53,25 @@ export function ShareLinkModal({ onClose, show }: ShareLinkModalProps) {
 
   return (
     <Modal show={show} onClose={onClose}>
-      <h1 className={styles.heading}>Share your sound selection!</h1>
-      <p className={styles.desc}>
-        Copy and send the following link to the person you want to share your
-        selection with.
-      </p>
+      <h1 className={styles.heading}>{t('modals.share-link.title')}</h1>
+      <p className={styles.desc}>{t('modals.share-link.description')}</p>
       <div className={styles.inputWrapper}>
         <input readOnly type="text" value={url} />
-        <button onClick={() => copy(url)}>
-          {copying ? <IoCheckmark /> : <IoCopyOutline />}
-        </button>
+        <Tooltip
+          content={copying ? t('common.copied') : t('common.copy')}
+          showDelay={0}
+        >
+          <button
+            aria-label={
+              copying
+                ? t('common.copied')
+                : t('modals.share-link.copy-button-aria-label')
+            }
+            onClick={() => copy(url)}
+          >
+            {copying ? <IoCheckmark /> : <IoCopyOutline />}
+          </button>
+        </Tooltip>
       </div>
     </Modal>
   );

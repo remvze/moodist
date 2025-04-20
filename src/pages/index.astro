@@ -1,20 +1,78 @@
 ---
+// src/pages/index.astro
 import Layout from '@/layouts/layout.astro';
-
 import Donate from '@/components/donate.astro';
 import Hero from '@/components/hero.astro';
 import About from '@/components/about.astro';
 import Source from '@/components/source.astro';
 import Footer from '@/components/footer.astro';
-
 import { App } from '@/components/app';
+
+// !! Make sure the defaultLocale and locales here are consistent with astro.config.mjs !!
+const defaultLocale = 'en';
+const supportedLocales = ['en', 'zh-CN', 'zh-TW', 'ja'];
+
+const currentLocale = Astro.currentLocale || defaultLocale;
 ---
 
-<Layout title="Moodist: Ambient Sounds for Focus and Calm">
+<Layout>
   <Donate />
   <Hero />
-  <App client:load />
+  <App client:load locale={currentLocale} />
   <About />
   <Source />
   <Footer />
 </Layout>
+
+<script define:vars={{ defaultLocale, supportedLocales }}>
+  (function () {
+    if (typeof window !== 'undefined' && window.location.pathname === '/') {
+      const sessionRedirectKey = 'lang_redirect_attempted';
+
+      if (sessionStorage.getItem(sessionRedirectKey)) {
+        console.log('Language redirect already attempted this session.');
+        return;
+      }
+
+      sessionStorage.setItem(sessionRedirectKey, 'true');
+
+      const browserLangs = navigator.languages || [navigator.language]; // navigator.language 作为备选
+
+      let preferredLocale = null;
+
+      for (const lang of browserLangs) {
+        if (supportedLocales.includes(lang)) {
+          preferredLocale = lang;
+          break;
+        }
+        const baseLang = lang.split('-')[0];
+        if (supportedLocales.includes(baseLang)) {
+          preferredLocale = baseLang;
+        }
+        if (
+          preferredLocale &&
+          lang.split('-')[0] !== preferredLocale.split('-')[0]
+        ) {
+          break;
+        }
+      }
+
+      console.log('Browser Languages:', browserLangs);
+      console.log('Detected Preferred Locale:', preferredLocale);
+
+      if (preferredLocale && preferredLocale !== defaultLocale) {
+        const targetPath = `/${preferredLocale}${
+          window.location.pathname === '/' ? '' : window.location.pathname
+        }${window.location.search}${window.location.hash}`;
+        console.log(
+          `Redirecting to preferred locale: ${preferredLocale} at ${targetPath}`,
+        );
+        window.location.replace(targetPath);
+      } else {
+        console.log(
+          'No preferred non-default locale found or already on preferred locale. No redirect needed.',
+        );
+      }
+    }
+  })();
+</script>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { Modal } from '@/components/modal';
 
 import { useSoundStore } from '@/stores/sound';
@@ -11,14 +11,16 @@ import { sounds } from '@/data/sounds';
 import styles from './shared.module.css';
 
 export function SharedModal() {
+  const { t } = useTranslation(); // Get t function
   const override = useSoundStore(state => state.override);
   const showSnackbar = useSnackbar();
 
   const [isOpen, setIsOpen] = useState(false);
+
   const [sharedSounds, setSharedSounds] = useState<
     Array<{
       id: string;
-      label: string;
+      labelKey: string;
       volume: number;
     }>
   >([]);
@@ -30,26 +32,26 @@ export function SharedModal() {
     if (share) {
       try {
         const parsed = JSON.parse(decodeURIComponent(share));
-        const allSounds: Record<string, string> = {};
-
+        // Map sound IDs to their labelKeys for quick lookup
+        const allSoundLabelKeys: Record<string, string> = {};
         sounds.categories.forEach(category => {
           category.sounds.forEach(sound => {
-            allSounds[sound.id] = sound.label;
+            allSoundLabelKeys[sound.id] = sound.labelKey; // Get the labelKey
           });
         });
 
         const _sharedSounds: Array<{
           id: string;
-          label: string;
+          labelKey: string;
           volume: number;
         }> = [];
-
-        Object.keys(parsed).forEach(sound => {
-          if (allSounds[sound]) {
+        Object.keys(parsed).forEach(soundId => {
+          // Check if the soundId exists and has a labelKey
+          if (allSoundLabelKeys[soundId]) {
             _sharedSounds.push({
-              id: sound,
-              label: allSounds[sound],
-              volume: Number(parsed[sound]),
+              id: soundId,
+              labelKey: allSoundLabelKeys[soundId], // Store the key
+              volume: Number(parsed[soundId]),
             });
           }
         });
@@ -59,12 +61,13 @@ export function SharedModal() {
           setSharedSounds(_sharedSounds);
         }
       } catch (error) {
-        return;
+        console.error('Error parsing shared URL:', error); // Log error
+        return; // Stop execution if parsing fails
       } finally {
         history.pushState({}, '', location.href.split('?')[0]);
       }
     }
-  }, []);
+  }, []); // Run only once on mount
 
   const handleOverride = () => {
     const newSounds: Record<string, number> = {};
@@ -75,34 +78,31 @@ export function SharedModal() {
 
     override(newSounds);
     setIsOpen(false);
-    showSnackbar('Done! You can now play the new selection.');
+    showSnackbar(t('modals.shared.snackbar-message'));
   };
 
   useCloseListener(() => setIsOpen(false));
 
   return (
     <Modal show={isOpen} onClose={() => setIsOpen(false)}>
-      <h1 className={styles.heading}>New sound mix detected!</h1>
-      <p className={styles.desc}>
-        Someone has shared the following mix with you. Would you want to
-        override your current selection?
-      </p>
+      <h1 className={styles.heading}>{t('modals.shared.title')}</h1>
+      <p className={styles.desc}>{t('modals.shared.description')}</p>
       <div className={styles.sounds}>
         {sharedSounds.map(sound => (
           <div className={styles.sound} key={sound.id}>
-            {sound.label}
+            {t(sound.labelKey)}
           </div>
         ))}
       </div>
       <div className={styles.footer}>
         <button className={cn(styles.button)} onClick={() => setIsOpen(false)}>
-          Cancel
+          {t('common.cancel')}
         </button>
         <button
           className={cn(styles.button, styles.primary)}
           onClick={handleOverride}
         >
-          Override
+          {t('common.override')}
         </button>
       </div>
     </Modal>

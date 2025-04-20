@@ -1,7 +1,7 @@
 export interface Sound {
   icon: React.ReactNode;
   id: string;
-  label: string;
+  labelKey: string;
   src: string;
 }
 
@@ -11,7 +11,7 @@ export interface Category {
   icon: React.ReactNode;
   id: string;
   sounds: Sounds;
-  title: string;
+  titleKey: string;
 }
 
 export type Categories = Array<Category>;

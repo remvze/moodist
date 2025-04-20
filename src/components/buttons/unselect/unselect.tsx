@@ -11,13 +11,15 @@ import { fade, mix, slideX } from '@/lib/motion';
 
 import styles from './unselect.module.css';
 
+import { useTranslation } from 'react-i18next';
+
 export function UnselectButton() {
   const noSelected = useSoundStore(state => state.noSelected());
   const restoreHistory = useSoundStore(state => state.restoreHistory);
   const hasHistory = useSoundStore(state => !!state.history);
   const unselectAll = useSoundStore(state => state.unselectAll);
   const locked = useSoundStore(state => state.locked);
-
+  const { t } = useTranslation();
   const variants = {
     ...mix(fade(), slideX(15)),
     exit: { opacity: 0 },
@@ -45,16 +47,16 @@ export function UnselectButton() {
               showDelay={0}
               content={
                 hasHistory
-                  ? 'Restore unselected sounds.'
-                  : 'Unselect all sounds.'
+                  ? t('unselect.restore.tooltip')
+                  : t('unselect.tooltip')
               }
             >
               <button
                 disabled={noSelected && !hasHistory}
                 aria-label={
                   hasHistory
-                    ? 'Restore Unselected Sounds'
-                    : 'Unselect All Sounds'
+                    ? t('unselect.restore.aria-label')
+                    : t('unselect.aria-label')
                 }
                 className={cn(
                   styles.unselectButton,

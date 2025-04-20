@@ -1,11 +1,12 @@
+import { useTranslation } from 'react-i18next';
 import { Sounds } from '@/components/sounds';
 
 import styles from './category.module.css';
+import type { Category as CategoryType } from '@/data/types';
 
-import type { Category } from '@/data/types';
-
-interface CategoryProps extends Category {
+interface CategoryProps extends Omit<CategoryType, 'title'> {
   functional?: boolean;
+  titleKey: string;
 }
 
 export function Category({
@@ -13,8 +14,10 @@ export function Category({
   icon,
   id,
   sounds,
-  title,
+  titleKey,
 }: CategoryProps) {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.category} id={`category-${id}`}>
       <div className={styles.iconContainer}>
@@ -24,7 +27,7 @@ export function Category({
         </div>
       </div>
 
-      <div className={styles.title}>{title}</div>
+      <div className={styles.title}>{t(titleKey)}</div>
 
       <Sounds functional={functional} id={id} sounds={sounds} />
     </div>

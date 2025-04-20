@@ -2,26 +2,18 @@
 import { Container } from '@/components/container';
 
 import { count as soundCount } from '@/lib/sounds';
+import { getTranslator } from '@/i18n/utils';
+
+const currentLocale = Astro.currentLocale;
+const t = await getTranslator(currentLocale);
 
 const count = soundCount();
 
-const paragraphs = [
-  {
-    body: 'Craving a calming escape from the daily grind? Do you need the perfect soundscape to boost your focus or lull you into peaceful sleep? Look no further than Moodist, your free and open-source ambient sound generator! Ditch the subscriptions and registrations – with Moodist, you unlock a world of soothing and immersive audio experiences, entirely for free.',
-    title: 'Free Ambient Sounds',
-  },
-  {
-    body: `Dive into an expansive library of ${count} carefully curated sounds. Nature lovers will find solace in the gentle murmur of streams, the rhythmic crash of waves, or the crackling warmth of a campfire. Cityscapes come alive with the soft hum of cafes, the rhythmic clatter of trains, or the calming white noise of traffic. And for those seeking deeper focus or relaxation, Moodist offers binaural beats and color noise designed to enhance your state of mind.`,
-    title: 'Carefully Curated Sounds',
-  },
-  {
-    body: 'The beauty of Moodist lies in its simplicity and customization. No complex menus or confusing options – just choose your desired sounds, adjust the volume balance, and hit play. Want to blend the gentle chirping of birds with the soothing sound of rain? No problem! Layer as many sounds as you like to create your personalized soundscape oasis.',
-    title: 'Create Your Soundscape',
-  },
-  {
-    body: "Whether you're looking to unwind after a long day, enhance your focus during work, or lull yourself into a peaceful sleep, Moodist has the perfect soundscape waiting for you. The best part? It's completely free and open-source, so you can enjoy its benefits without any strings attached. Start using Moodist today and discover your new haven of tranquility and focus!",
-    title: 'Sounds for Every Moment',
-  },
+const paragraphKeys = [
+  'about.section1',
+  'about.section2',
+  'about.section3',
+  'about.section4',
 ];
 ---
 
@@ -30,19 +22,17 @@ const paragraphs = [
 
   <Container tight>
     {
-      paragraphs.map((paragraph, index) => (
+      paragraphKeys.map((key, index) => (
         <div class="paragraph">
           <div class="counter">
-            <span>0{index + 1}</span> / 0{paragraphs.length}
+            <span>0{index + 1}</span> / 0{paragraphKeys.length}
           </div>
-
-          <h2 class="title">{paragraph.title}</h2>
-          <p class="body">{paragraph.body}</p>
+          <h2 class="title">{t(`${key}.title`)}</h2>
+          <p class="body">{t(`${key}.body`, { count: count })}</p>
         </div>
       ))
     }
-
-    <button class="button" id="use-moodist"> Use Moodist</button>
+    <button class="button" id="use-moodist">{t('use-moodist')}</button>
   </Container>
 </section>
 
@@ -70,8 +60,7 @@ const paragraphs = [
     & .paragraph {
       padding: 30px 0;
       background: linear-gradient(
-        transparent,
-        var(--color-neutral-50) 10%,
+        transparent var(--color-neutral-50) 10%,
         var(--color-neutral-50) 90%,
         transparent
       );

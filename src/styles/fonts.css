@@ -42,3 +42,29 @@
   src: url('/fonts/inter-tight-v7-latin-700.woff2') format('woff2');
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'LXGW WenKai Lite';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/lxgw-wenkai-lite/LXGWWenKaiLite-Light.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'LXGW WenKai Lite';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/lxgw-wenkai-lite/LXGWWenKaiLite-Regular.woff2')
+    format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'LXGW WenKai Lite';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/lxgw-wenkai-lite/LXGWWenKaiLite-Medium.woff2')
+    format('woff2');
+  font-display: swap;
+}

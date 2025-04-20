@@ -4,6 +4,13 @@ import react from '@astrojs/react';
 import AstroPWA from '@vite-pwa/astro';
 
 export default defineConfig({
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'zh-CN', 'zh-TW', 'ja'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   integrations: [
     react(),
     AstroPWA({

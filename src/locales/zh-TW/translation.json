@@ -1,0 +1,360 @@
+{
+  "site": {
+    "title": "Moodist：保持專注，靜下心來",
+    "description": "Moodist 是一款免費且開源的環境音產生器，精選 {{count}} 種聲音。無論是想放鬆身心、專注工作，還是激發創造力，都可以使用這款多用途小工具來營造理想氛圍。",
+    "ogSiteName": "Moodist"
+  },
+  "languages": {
+    "en": "English",
+    "zh-CN": "简体中文",
+    "zh-TW": "繁體中文",
+    "ja": "日本語"
+  },
+  "common": {
+    "save": "儲存",
+    "untitled": "未命名",
+    "copy": "複製",
+    "copied": "已複製！",
+    "override": "覆蓋",
+    "done": "已完成!",
+    "reset": "重設",
+    "play": "播放",
+    "close": "關閉",
+    "reload": "重新載入",
+    "start": "開始",
+    "pause": "暫停",
+    "stop": "停止",
+    "back": "返回",
+    "restart": "重新開始",
+    "cancel": "取消",
+    "delete": "刪除",
+    "plural-suffix": ""
+  },
+  "hero": {
+    "logo-alt": "漸層色 Moodist 標誌",
+    "title-line1": "Moodist",
+    "title-line2": "保持專注，靜下心來",
+    "desc-prefix": "免費且",
+    "desc-open-source": "完全開源",
+    "sounds-count": "{{count}} 種聲音"
+  },
+  "about": {
+    "section1": {
+      "title": "免費環境聲音",
+      "body": "渴望逃離日常喧囂，尋求一隅寧靜？是否需要提升專注，或幫助入眠的理想聲音？千萬別錯過 Moodist，一款免費開源的環境聲音產生器！無需訂閱註冊，即刻帶您進入一個舒緩、沉浸式的音訊世界，且完全免費。"
+    },
+    "section2": {
+      "title": "經過精心挑選",
+      "body": "這裡有 {{count}} 種精心挑選的聲音。如果您是自然愛好者，可以在潺潺的溪流聲、規律的海浪聲、溫暖的營火聲中找到心靈慰藉。如果您偏愛城市景觀，咖啡館的輕語聲、火車的行進聲、平和的交通白噪音，都能令人置身其中。如果您渴望深度專注與徹底放鬆，Moodist 還提供雙耳節拍和彩色噪音，有助於調整心境。"
+    },
+    "section3": {
+      "title": "打造專屬音景",
+      "body": "Moodist 的魅力在於它介面簡潔，內容可客製化。它沒有複雜的選單，也沒有眼花撩亂的選項，您只需選擇自己喜歡的聲音，調整音量大小，然後點擊播放即可。想將溫婉的鳥鳴和舒適的雨聲混在一起？完全沒問題！您可以隨心疊加多個聲音，創造屬於自己的個人化聲音饗宴。"
+    },
+    "section4": {
+      "title": "滿足不同需求",
+      "body": "無論是想消除一整天的疲憊，提升工作學習時的專注力，還是輔助安然入眠，Moodist 都能給您帶來完美的聲音環境。最棒的一點是，Moodist 完全免費且開源，您可以無條件享受它帶來的好處。現在就開始使用 Moodist 吧，打造屬於自己的全新專注靜心空間！"
+    }
+  },
+  "donate": {
+    "prompt": "喜歡 Moodist 嗎？",
+    "link-text": "歡迎贊助！",
+    "section-title": "支持專案",
+    "section-desc": "幫助 Moodist 保持免費且無廣告。",
+    "section-button": "請我喝杯咖啡"
+  },
+  "source": {
+    "title": "開源",
+    "desc": "Moodist 是免費且開源的！"
+  },
+  "toolbar": {
+    "menu-aria-label": "選單",
+    "global-volume-label": "整體音量",
+    "items": {
+      "presets": "預設",
+      "share": "分享聲音",
+      "shuffle": "隨機組合",
+      "sleep-timer": "睡眠定時器",
+      "countdown": "倒數計時器",
+      "pomodoro": "番茄鐘",
+      "notepad": "記事本",
+      "todo": "待辦清單",
+      "breathing": "呼吸練習",
+      "binaural": "雙耳節拍",
+      "isochronic": "等時聲頻",
+      "shortcuts": "快速鍵",
+      "buy-me-a-coffee": "請我喝杯咖啡",
+      "source-code": "原始碼"
+    }
+  },
+  "scroll-to-top": {
+    "aria-label": "捲動到頂部"
+  },
+  "unselect": {
+    "tooltip": "取消選取所有聲音",
+    "aria-label": "取消選取所有聲音",
+    "restore": {
+      "tooltip": "回復選取的聲音",
+      "aria-label": "回復選取的聲音"
+    }
+  },
+  "favorite": {
+    "add": {
+      "aria-label": "將 {{label}} 加入收藏"
+    },
+    "remove": {
+      "aria-label": "將 {{label}} 取消收藏"
+    }
+  },
+  "volume": {
+    "aria-label": "{{label}} 音量"
+  },
+  "play-error": "請先選擇至少一種聲音進行播放。",
+  "use-moodist": "開始使用 Moodist",
+  "modals": {
+    "presets": {
+      "title": "聲音預設",
+      "your-presets-title": "我的預設",
+      "empty": "您還沒有儲存任何預設。",
+      "new-preset-title": "新增預設",
+      "placeholder": "預設名稱",
+      "play-button-tooltip": "播放預設",
+      "play-button-aria-label": "播放預設 {{label}}",
+      "delete-button-tooltip": "刪除預設",
+      "delete-button-aria-label": "刪除預設 {{label}}",
+      "no-selected-warning": "請先選擇聲音，再建立預設。"
+    },
+    "share-link": {
+      "title": "分享聲音組合！",
+      "description": "複製下方連結，將選定的聲音組合分享給他人。",
+      "copy-button-aria-label": "複製連結"
+    },
+    "shared": {
+      "title": "偵測到聲音組合！",
+      "description": "有人向您分享了以下聲音組合，是否要覆蓋目前的選擇？",
+      "snackbar-message": "已完成！現在可以播放新的聲音組合了。"
+    },
+    "sleep-timer": {
+      "title": "睡眠定時器",
+      "description": "設定時間後自動停止播放聲音。",
+      "hours-label": "小時",
+      "minutes-label": "分鐘"
+    },
+    "countdown": {
+      "title": "倒數計時器",
+      "description": "簡潔實用的倒數計時器。",
+      "placeholder-hh": "時",
+      "placeholder-mm": "分",
+      "placeholder-ss": "秒"
+    },
+    "pomodoro": {
+      "title": "番茄鐘",
+      "settings-tooltip": "設定時長",
+      "completed": "已完成 {{count}} 個番茄鐘",
+      "tabs": {
+        "pomodoro": "工作",
+        "short-break": "短休息",
+        "long-break": "長休息"
+      },
+      "settings": {
+        "title": "設定時長",
+        "pomodoro-label": "工作時長",
+        "short-break-label": "短休息時長",
+        "long-break-label": "長休息時長",
+        "minutes-unit": "分鐘"
+      }
+    },
+    "notepad": {
+      "title-label": "隨手記",
+      "copy-tooltip": "複製筆記",
+      "download-tooltip": "下載筆記",
+      "clear-tooltip": "清空筆記",
+      "restore-tooltip": "還原筆記",
+      "placeholder": "記錄您的想法...",
+      "counter-stats": "{{chars}} 個字元"
+    },
+    "todo": {
+      "title": "待辦清單",
+      "description": "簡潔實用的待辦事項列表。",
+      "add-placeholder": "新增待辦事項...",
+      "add-button": "新增",
+      "your-todos-label": "我的待辦",
+      "empty": "尚無待辦事項。",
+      "delete-button-aria-label": "刪除此待辦事項"
+    },
+    "breathing": {
+      "title": "呼吸練習",
+      "phases": {
+        "inhale": "吸氣",
+        "exhale": "吐氣",
+        "hold": "屏息"
+      },
+      "exercises": {
+        "box": "方形呼吸法",
+        "resonant": "同步呼吸法",
+        "478": "4-7-8 呼吸法"
+      }
+    },
+    "generators": {
+      "presets-label": "預設:",
+      "base-frequency-label": "基礎頻率 (Hz):",
+      "volume-label": "音量:",
+      "presets": {
+        "delta": "Delta 波 (深度睡眠) 2 Hz",
+        "theta": "Theta 波 (冥想) 5 Hz",
+        "alpha": "Alpha 波 (放鬆) 10 Hz",
+        "beta": "Beta 波 (專注) 20 Hz",
+        "gamma": "Gamma 波 (認知) 40 Hz",
+        "custom": "自訂"
+      }
+    },
+    "binaural": {
+      "title": "雙耳節拍",
+      "description": "產生雙耳節拍聲音。",
+      "beat-frequency-label": "節拍頻率 (Hz):"
+    },
+    "isochronic": {
+      "title": "等時聲頻",
+      "description": "產生等時聲頻聲音。",
+      "tone-frequency-label": "聲頻頻率 (Hz):"
+    },
+    "shortcuts": {
+      "title": "鍵盤快速鍵",
+      "labels": {
+        "toggle-play": "播放/暫停",
+        "unselect-all": "取消選取所有聲音"
+      }
+    },
+    "reload": {
+      "title": "有新的更新可用",
+      "description": "偵測到新版本，點擊「重新載入」按鈕以更新。",
+      "closeButton": "關閉",
+      "reloadButton": "重新載入"
+    }
+  },
+  "sounds": {
+    "show-less": "收合",
+    "show-more": "展開更多",
+    "aria-label": "{{name}} 聲音",
+    "favorites": {
+      "title": "我的收藏"
+    },
+    "animals": {
+      "title": "動物",
+      "birds": "鳥鳴",
+      "seagulls": "海鷗",
+      "crickets": "蟋蟀",
+      "wolf": "狼嚎",
+      "owl": "貓頭鷹",
+      "frog": "蛙鳴",
+      "dog-barking": "狗吠",
+      "horse-galopp": "馬蹄聲",
+      "cat-purring": "貓呼嚕聲",
+      "crows": "烏鴉",
+      "whale": "鯨魚",
+      "beehive": "蜂巢",
+      "woodpecker": "啄木鳥",
+      "chickens": "雞鳴",
+      "cows": "牛叫",
+      "sheep": "羊叫"
+    },
+    "binaural": {
+      "title": "雙耳節拍",
+      "binaural-delta": "Delta 波 (深度睡眠)",
+      "binaural-theta": "Theta 波 (冥想)",
+      "binaural-alpha": "Alpha 波 (放鬆)",
+      "binaural-beta": "Beta 波 (專注)",
+      "binaural-gamma": "Gamma 波 (認知)"
+    },
+    "nature": {
+      "title": "自然",
+      "river": "河流",
+      "waves": "海浪",
+      "campfire": "營火",
+      "wind": "風聲",
+      "howling-wind": "風嘯聲",
+      "wind-in-trees": "林間風聲",
+      "waterfall": "瀑布",
+      "walk-in-snow": "雪地腳步聲",
+      "walk-on-leaves": "落葉腳步聲",
+      "walk-on-gravel": "碎石路腳步聲",
+      "droplets": "水滴聲",
+      "jungle": "叢林聲"
+    },
+    "noise": {
+      "title": "噪音",
+      "white-noise": "白噪音",
+      "pink-noise": "粉噪音",
+      "brown-noise": "棕噪音"
+    },
+    "places": {
+      "title": "場所",
+      "cafe": "咖啡館",
+      "airport": "機場",
+      "church": "教堂",
+      "temple": "寺廟",
+      "construction-site": "建築工地",
+      "underwater": "水下",
+      "crowded-bar": "吵雜酒吧",
+      "night-village": "鄉村夜晚",
+      "subway-station": "地鐵站",
+      "office": "辦公室",
+      "supermarket": "超級市場",
+      "carousel": "旋轉木馬",
+      "laboratory": "實驗室",
+      "laundry-room": "洗衣間",
+      "restaurant": "餐廳",
+      "library": "圖書館"
+    },
+    "rain": {
+      "title": "雨聲",
+      "light-rain": "小雨",
+      "heavy-rain": "大雨",
+      "thunder": "雷聲",
+      "rain-on-window": "雨打窗戶",
+      "rain-on-car-roof": "雨打車頂",
+      "rain-on-umbrella": "雨打雨傘",
+      "rain-on-tent": "雨打帳篷",
+      "rain-on-leaves": "雨打樹葉"
+    },
+    "things": {
+      "title": "物品",
+      "keyboard": "鍵盤聲",
+      "typewriter": "打字機",
+      "paper": "紙張翻動",
+      "clock": "時鐘",
+      "wind-chimes": "風鈴",
+      "singing-bowl": "頌缽",
+      "ceiling-fan": "吊扇",
+      "dryer": "烘衣機",
+      "slide-projector": "幻燈機",
+      "boiling-water": "沸水聲",
+      "bubbles": "氣泡聲",
+      "tuning-radio": "收音機調頻",
+      "morse-code": "摩斯電碼",
+      "washing-machine": "洗衣機",
+      "vinyl-effect": "黑膠唱片雜音",
+      "windshield-wipers": "雨刷"
+    },
+    "transport": {
+      "title": "交通",
+      "train": "火車",
+      "inside-a-train": "火車車廂",
+      "airplane": "飛機",
+      "submarine": "潛水艇",
+      "sailboat": "帆船",
+      "rowing-boat": "划船"
+    },
+    "urban": {
+      "title": "城市",
+      "highway": "高速公路",
+      "road": "街道",
+      "ambulance-siren": "救護車警笛",
+      "busy-street": "繁忙街道",
+      "crowd": "人群吵雜聲",
+      "traffic": "車流聲",
+      "fireworks": "煙火"
+    }
+  },
+  "created-by": "由 {{authorLink}} 建立"
+}

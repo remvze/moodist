@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useSoundStore } from '@/stores/sound';
 
 import styles from './range.module.css';
@@ -8,14 +9,20 @@ interface RangeProps {
 }
 
 export function Range({ id, label }: RangeProps) {
+  const { t } = useTranslation();
   const setVolume = useSoundStore(state => state.setVolume);
-  const volume = useSoundStore(state => state.sounds[id].volume);
-  const isSelected = useSoundStore(state => state.sounds[id].isSelected);
+  const soundState = useSoundStore(state => state.sounds[id]);
   const locked = useSoundStore(state => state.locked);
+
+  if (!soundState) {
+    return null;
+  }
+
+  const { isSelected, volume } = soundState;
 
   return (
     <input
-      aria-label={`${label} sound volume`}
+      aria-label={t('volume.aria-label', { label: label })}
       autoComplete="off"
       className={styles.range}
       disabled={!isSelected}

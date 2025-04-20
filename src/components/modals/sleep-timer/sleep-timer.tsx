@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useMemo } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { Modal } from '@/components/modal';
 import { Timer } from './timer';
 import { dispatch } from '@/lib/event';
@@ -15,7 +15,37 @@ interface SleepTimerModalProps {
   show: boolean;
 }
 
+interface FieldProps {
+  labelKey: string;
+  onChange: (value: string) => void;
+  value: string;
+}
+
+function Field({ labelKey, onChange, value }: FieldProps) {
+  const { t } = useTranslation();
+  const label = t(labelKey);
+  return (
+    <div className={styles.field}>
+      <label className={styles.label} htmlFor={labelKey}>
+        {' '}
+        {label}
+      </label>
+      <input
+        className={styles.input}
+        id={labelKey}
+        max="59"
+        min="0"
+        required
+        type="number"
+        value={value}
+        onChange={e => onChange(e.target.value === '' ? '' : e.target.value)}
+      />
+    </div>
+  );
+}
+
 export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
+  const { t } = useTranslation();
   const setActive = useSleepTimerStore(state => state.set);
   const noSelected = useSoundStore(state => state.noSelected());
 
@@ -91,21 +121,27 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
   return (
     <Modal show={show} onClose={onClose}>
       <header className={styles.header}>
-        <h2 className={styles.title}>Sleep Timer</h2>
-        <p className={styles.desc}>
-          Stop sounds after a certain amount of time.
-        </p>
+        <h2 className={styles.title}>{t('modals.sleep-timer.title')}</h2>
+        <p className={styles.desc}>{t('modals.sleep-timer.description')}</p>
       </header>
 
       <form onSubmit={handleSubmit}>
         <div className={styles.controls}>
           <div className={styles.inputs}>
             {!running && (
-              <Field label="Hours" value={hours} onChange={setHours} />
+              <Field
+                labelKey="modals.sleep-timer.hours-label"
+                value={hours}
+                onChange={setHours}
+              />
             )}
 
             {!running && (
-              <Field label="Minutes" value={minutes} onChange={setMinutes} />
+              <Field
+                labelKey="modals.sleep-timer.minutes-label"
+                value={minutes}
+                onChange={setMinutes}
+              />
             )}
           </div>
 
@@ -118,7 +154,7 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
                 type="button"
                 onClick={handleReset}
               >
-                Reset
+                {t('common.reset')}
               </button>
             )}
 
@@ -127,38 +163,12 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
                 className={cn(styles.button, styles.primary)}
                 type="submit"
               >
-                Start
+                {t('common.start')}
               </button>
             )}
           </div>
         </div>
       </form>
     </Modal>
-  );
-}
-
-interface FieldProps {
-  label: string;
-  onChange: (value: string) => void;
-  value: string;
-}
-
-function Field({ label, onChange, value }: FieldProps) {
-  return (
-    <div className={styles.field}>
-      <label className={styles.label} htmlFor={label.toLocaleLowerCase()}>
-        {label}
-      </label>
-      <input
-        className={styles.input}
-        id={label.toLocaleLowerCase()}
-        max="59"
-        min="0"
-        required
-        type="number"
-        value={value}
-        onChange={e => onChange(e.target.value === '' ? '' : e.target.value)}
-      />
-    </div>
   );
 }

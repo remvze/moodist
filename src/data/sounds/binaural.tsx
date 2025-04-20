@@ -6,37 +6,38 @@ import type { Category } from '../types';
 export const binaural: Category = {
   icon: <TbWaveSine />,
   id: 'binaural',
+  // 修改
   sounds: [
     {
       icon: <BsSoundwave />,
       id: 'binaural-delta',
-      label: 'Delta',
+      labelKey: 'sounds.binaural.binaural-delta',
       src: '/sounds/binaural/binaural-delta.wav',
     },
     {
       icon: <BsSoundwave />,
       id: 'binaural-theta',
-      label: 'Theta',
+      labelKey: 'sounds.binaural.binaural-theta',
       src: '/sounds/binaural/binaural-theta.wav',
     },
     {
       icon: <BsSoundwave />,
       id: 'binaural-alpha',
-      label: 'Alpha',
+      labelKey: 'sounds.binaural.binaural-alpha',
       src: '/sounds/binaural/binaural-alpha.wav',
     },
     {
       icon: <BsSoundwave />,
       id: 'binaural-beta',
-      label: 'Beta',
+      labelKey: 'sounds.binaural.binaural-beta',
       src: '/sounds/binaural/binaural-beta.wav',
     },
     {
       icon: <BsSoundwave />,
       id: 'binaural-gamma',
-      label: 'Gamma',
+      labelKey: 'sounds.binaural.binaural-gamma',
       src: '/sounds/binaural/binaural-gamma.wav',
     },
   ],
-  title: 'Binaural Beats',
+  titleKey: 'sounds.binaural.title',
 };
