@@ -1,7 +1,7 @@
 {
   "site": {
-    "title": "Moodist：營造專注與平靜的環境之聲",
-    "description": "Moodist 是一款免費且開源的環境聲音產生器，收錄了 {{count}} 種精心挑選的聲音。用這款多功能工具為放鬆、專注或激發創造力打造理想氛圍。",
+    "title": "Moodist：保持專注，靜下心來",
+    "description": "Moodist 是一款免費且開源的環境音產生器，精選 {{count}} 種聲音。無論是想放鬆身心、專注工作，還是激發創造力，都可以使用這款多用途小工具來營造理想氛圍。",
     "ogSiteName": "Moodist"
   },
   "languages": {
@@ -16,7 +16,7 @@
     "copy": "複製",
     "copied": "已複製！",
     "override": "覆蓋",
-    "done": "完成!",
+    "done": "已完成!",
     "reset": "重設",
     "play": "播放",
     "close": "關閉",
@@ -31,9 +31,9 @@
     "plural-suffix": ""
   },
   "hero": {
-    "logo-alt": "Moodist 標誌",
+    "logo-alt": "漸層色 Moodist 標誌",
     "title-line1": "Moodist",
-    "title-line2": "專注與平靜的環境之聲",
+    "title-line2": "保持專注，靜下心來",
     "desc-prefix": "免費且",
     "desc-open-source": "完全開源",
     "sounds-count": "{{count}} 種聲音"
@@ -41,27 +41,27 @@
   "about": {
     "section1": {
       "title": "免費環境聲音",
-      "body": "渴望逃離日常喧囂，尋覓片刻寧靜？需要理想的聲音環境來提升專注力，或是安然入睡？不妨試試 Moodist——您的免費開源環境聲音產生器！無需訂閱註冊，即可免費解鎖一個舒緩、沉浸式的音訊世界。"
+      "body": "渴望逃離日常喧囂，尋求一隅寧靜？是否需要提升專注，或幫助入眠的理想聲音？千萬別錯過 Moodist，一款免費開源的環境聲音產生器！無需訂閱註冊，即刻帶您進入一個舒緩、沉浸式的音訊世界，且完全免費。"
     },
     "section2": {
-      "title": "精選環境聲音",
-      "body": "探索包含 {{count}} 種精心挑選聲音的豐富音庫。自然愛好者們可以在潺潺溪流、規律的海浪拍岸，或是劈啪作響的溫暖營火中尋得慰藉；城市景觀則透過咖啡館的輕柔低語、火車有節奏的行進聲，或是平和的交通白噪音生動再現。對於尋求更深層次專注或放鬆的使用者，Moodist 還提供了旨在幫助調整心境的雙耳節拍和彩色噪音。"
+      "title": "經過精心挑選",
+      "body": "這裡有 {{count}} 種精心挑選的聲音。如果您是自然愛好者，可以在潺潺的溪流聲、規律的海浪聲、溫暖的營火聲中找到心靈慰藉。如果您偏愛城市景觀，咖啡館的輕語聲、火車的行進聲、平和的交通白噪音，都能令人置身其中。如果您渴望深度專注與徹底放鬆，Moodist 還提供雙耳節拍和彩色噪音，有助於調整心境。"
     },
     "section3": {
-      "title": "打造您的專屬音景",
-      "body": "Moodist 的魅力在於其簡潔與個人化。沒有複雜的選單或令人困惑的選項——只需選擇心儀的聲音，調整音量平衡，即可播放。想將鳥兒的輕柔啁啾與舒緩的雨聲混合？沒問題！隨心疊加任意數量的聲音，創造您的專屬聲音綠洲。"
+      "title": "打造專屬音景",
+      "body": "Moodist 的魅力在於它介面簡潔，內容可客製化。它沒有複雜的選單，也沒有眼花撩亂的選項，您只需選擇自己喜歡的聲音，調整音量大小，然後點擊播放即可。想將溫婉的鳥鳴和舒適的雨聲混在一起？完全沒問題！您可以隨心疊加多個聲音，創造屬於自己的個人化聲音饗宴。"
     },
     "section4": {
-      "title": "滿足不同時刻的需求",
-      "body": "無論您是想在漫長一天後放鬆身心，在工作學習時集中注意力，還是需要安寧的氛圍助您入睡，Moodist 都有適合您的理想音景。最棒的是，它完全免費且開源，讓您可以無任何負擔地享受。立即開始使用 Moodist，發現屬於您的寧靜與專注空間！"
+      "title": "滿足不同需求",
+      "body": "無論是想消除一整天的疲憊，提升工作學習時的專注力，還是輔助安然入眠，Moodist 都能給您帶來完美的聲音環境。最棒的一點是，Moodist 完全免費且開源，您可以無條件享受它帶來的好處。現在就開始使用 Moodist 吧，打造屬於自己的全新專注靜心空間！"
     }
   },
   "donate": {
     "prompt": "喜歡 Moodist 嗎？",
-    "link-text": "透過贊助支持项目！",
+    "link-text": "歡迎贊助！",
     "section-title": "支持專案",
-    "section-desc": "幫助 Moodist 保持免費和無廣告。",
-    "section-button": "贊助一杯咖啡"
+    "section-desc": "幫助 Moodist 保持免費且無廣告。",
+    "section-button": "請我喝杯咖啡"
   },
   "source": {
     "title": "開源",
@@ -69,15 +69,15 @@
   },
   "toolbar": {
     "menu-aria-label": "選單",
-    "global-volume-label": "全域音量",
+    "global-volume-label": "整體音量",
     "items": {
       "presets": "預設",
       "share": "分享聲音",
       "shuffle": "隨機組合",
       "sleep-timer": "睡眠定時器",
       "countdown": "倒數計時器",
-      "pomodoro": "番茄工作法",
-      "notepad": "記事簿",
+      "pomodoro": "番茄鐘",
+      "notepad": "記事本",
       "todo": "待辦清單",
       "breathing": "呼吸練習",
       "binaural": "雙耳節拍",
@@ -91,25 +91,25 @@
     "aria-label": "捲動到頂部"
   },
   "unselect": {
-    "tooltip": "取消選擇所有聲音。",
-    "aria-label": "取消選擇所有聲音",
+    "tooltip": "取消選取所有聲音",
+    "aria-label": "取消選取所有聲音",
     "restore": {
-      "tooltip": "還原上次的選擇。",
-      "aria-label": "還原上次的選擇"
+      "tooltip": "回復選取的聲音",
+      "aria-label": "回復選取的聲音"
     }
   },
   "favorite": {
     "add": {
-      "aria-label": "收藏 {{label}} 聲音"
+      "aria-label": "將 {{label}} 加入收藏"
     },
     "remove": {
-      "aria-label": "取消收藏 {{label}} 聲音"
+      "aria-label": "將 {{label}} 取消收藏"
     }
   },
   "volume": {
-    "aria-label": "{{label}} 聲音音量"
+    "aria-label": "{{label}} 音量"
   },
-  "play-error": "請先選擇要播放的聲音。",
+  "play-error": "請先選擇至少一種聲音進行播放。",
   "use-moodist": "開始使用 Moodist",
   "modals": {
     "presets": {
@@ -125,18 +125,18 @@
       "no-selected-warning": "請先選擇聲音，再建立預設。"
     },
     "share-link": {
-      "title": "分享您的聲音組合",
-      "description": "複製下方連結，分享給他人。",
+      "title": "分享聲音組合！",
+      "description": "複製下方連結，將選定的聲音組合分享給他人。",
       "copy-button-aria-label": "複製連結"
     },
     "shared": {
-      "title": "偵測到分享的聲音組合！",
-      "description": "有人向您分享了以下聲音組合，是否覆蓋目前選擇？",
-      "snackbar-message": "載入成功！現在可以播放分享的組合了。"
+      "title": "偵測到聲音組合！",
+      "description": "有人向您分享了以下聲音組合，是否要覆蓋目前的選擇？",
+      "snackbar-message": "已完成！現在可以播放新的聲音組合了。"
     },
     "sleep-timer": {
       "title": "睡眠定時器",
-      "description": "在設定的時間後自動停止播放聲音。",
+      "description": "設定時間後自動停止播放聲音。",
       "hours-label": "小時",
       "minutes-label": "分鐘"
     },
@@ -148,7 +148,7 @@
       "placeholder-ss": "秒"
     },
     "pomodoro": {
-      "title": "番茄工作法",
+      "title": "番茄鐘",
       "settings-tooltip": "設定時長",
       "completed": "已完成 {{count}} 個番茄鐘",
       "tabs": {
@@ -171,7 +171,7 @@
       "clear-tooltip": "清空筆記",
       "restore-tooltip": "還原筆記",
       "placeholder": "記錄您的想法...",
-      "counter-stats": "{{chars}} 個字元 • {{words}} 個詞語"
+      "counter-stats": "{{chars}} 個字元"
     },
     "todo": {
       "title": "待辦清單",
@@ -179,7 +179,7 @@
       "add-placeholder": "新增待辦事項...",
       "add-button": "新增",
       "your-todos-label": "我的待辦",
-      "empty": "這裡還沒有待辦事項。",
+      "empty": "尚無待辦事項。",
       "delete-button-aria-label": "刪除此待辦事項"
     },
     "breathing": {
@@ -222,7 +222,7 @@
       "title": "鍵盤快速鍵",
       "labels": {
         "toggle-play": "播放/暫停",
-        "unselect-all": "取消全選聲音"
+        "unselect-all": "取消選取所有聲音"
       }
     },
     "reload": {
@@ -259,7 +259,7 @@
       "sheep": "羊叫"
     },
     "binaural": {
-      "title": "腦波",
+      "title": "雙耳節拍",
       "binaural-delta": "Delta 波 (深度睡眠)",
       "binaural-theta": "Theta 波 (冥想)",
       "binaural-alpha": "Alpha 波 (放鬆)",
@@ -275,17 +275,17 @@
       "howling-wind": "風嘯聲",
       "wind-in-trees": "林間風聲",
       "waterfall": "瀑布",
-      "walk-in-snow": "雪地腳步",
-      "walk-on-leaves": "落葉腳步",
-      "walk-on-gravel": "碎石腳步",
-      "droplets": "水滴",
+      "walk-in-snow": "雪地腳步聲",
+      "walk-on-leaves": "落葉腳步聲",
+      "walk-on-gravel": "碎石路腳步聲",
+      "droplets": "水滴聲",
       "jungle": "叢林聲"
     },
     "noise": {
       "title": "噪音",
       "white-noise": "白噪音",
-      "pink-noise": "粉紅噪音",
-      "brown-noise": "布朗噪音"
+      "pink-noise": "粉噪音",
+      "brown-noise": "棕噪音"
     },
     "places": {
       "title": "場所",
@@ -295,7 +295,7 @@
       "temple": "寺廟",
       "construction-site": "建築工地",
       "underwater": "水下",
-      "crowded-bar": "嘈雜酒吧",
+      "crowded-bar": "吵雜酒吧",
       "night-village": "鄉村夜晚",
       "subway-station": "地鐵站",
       "office": "辦公室",
@@ -320,30 +320,30 @@
     "things": {
       "title": "物品",
       "keyboard": "鍵盤聲",
-      "typewriter": "打字機聲",
+      "typewriter": "打字機",
       "paper": "紙張翻動",
-      "clock": "時鐘滴答",
+      "clock": "時鐘",
       "wind-chimes": "風鈴",
       "singing-bowl": "頌缽",
       "ceiling-fan": "吊扇",
-      "dryer": "烘乾機",
+      "dryer": "烘衣機",
       "slide-projector": "幻燈機",
-      "boiling-water": "沸水",
-      "bubbles": "氣泡",
+      "boiling-water": "沸水聲",
+      "bubbles": "氣泡聲",
       "tuning-radio": "收音機調頻",
       "morse-code": "摩斯電碼",
       "washing-machine": "洗衣機",
-      "vinyl-effect": "黑膠唱片噪音",
+      "vinyl-effect": "黑膠唱片雜音",
       "windshield-wipers": "雨刷"
     },
     "transport": {
       "title": "交通",
-      "train": "火車聲",
-      "inside-a-train": "車廂內",
-      "airplane": "飛機聲",
-      "submarine": "潛艇聲",
-      "sailboat": "帆船航行",
-      "rowing-boat": "划艇聲"
+      "train": "火車",
+      "inside-a-train": "火車車廂",
+      "airplane": "飛機",
+      "submarine": "潛水艇",
+      "sailboat": "帆船",
+      "rowing-boat": "划船"
     },
     "urban": {
       "title": "城市",
@@ -351,8 +351,8 @@
       "road": "街道",
       "ambulance-siren": "救護車警笛",
       "busy-street": "繁忙街道",
-      "crowd": "人群嘈雜",
-      "traffic": "交通噪音",
+      "crowd": "人群吵雜聲",
+      "traffic": "車流聲",
       "fireworks": "煙火"
     }
   },
