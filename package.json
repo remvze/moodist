@@ -62,6 +62,7 @@
     "@storybook/react": "8.0.9",
     "@storybook/react-vite": "8.0.9",
     "@storybook/test": "8.0.9",
+    "@tauri-apps/cli": "^2.6.2",
     "@typescript-eslint/eslint-plugin": "6.7.4",
     "@typescript-eslint/parser": "6.7.4",
     "astro-eslint-parser": "0.16.0",
