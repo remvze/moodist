@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { getSilenceDataURL } from '@/helpers/sound';
 import { BrowserDetect } from '@/helpers/browser-detect';
 
 import { useSoundStore } from '@/stores/sound';
@@ -25,7 +24,9 @@ export function MediaSessionTrack() {
 
   const generateSilence = useCallback(async () => {
     if (!masterAudioSoundRef.current) return;
-    masterAudioSoundRef.current.src = await getSilenceDataURL();
+
+    masterAudioSoundRef.current.src = '/sounds/silence.mp3';
+
     setIsGenerated(true);
   }, []);
 
