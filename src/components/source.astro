@@ -3,7 +3,7 @@ import { FaGithub } from 'react-icons/fa/index';
 
 import { SpecialButton } from './special-button';
 import { Container } from './container';
-import { Binary } from './binary';
+import Binary from './binary.astro';
 ---
 
 <div class="source">
@@ -25,7 +25,7 @@ import { Binary } from './binary';
         </SpecialButton>
       </div>
 
-      <div class="binary"><Binary client:load /></div>
+      <div class="binary"><Binary /></div>
     </div>
   </Container>
 </div>
