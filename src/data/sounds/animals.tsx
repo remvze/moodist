@@ -69,9 +69,9 @@ export const animals: Category = {
     },
     {
       icon: <FaHorseHead />,
-      id: 'horse-galopp',
-      label: 'Horse Galopp',
-      src: '/sounds/animals/horse-galopp.mp3',
+      id: 'horse-gallop',
+      label: 'Horse Gallop',
+      src: '/sounds/animals/horse-gallop.mp3',
     },
     {
       icon: <FaCat />,
