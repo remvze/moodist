@@ -3,6 +3,8 @@ import { BsSoundwave } from 'react-icons/bs/index';
 
 import type { Category } from '../types';
 
+import { getAssetPath } from '@/helpers/path';
+
 export const binaural: Category = {
   icon: <TbWaveSine />,
   id: 'binaural',
@@ -11,31 +13,31 @@ export const binaural: Category = {
       icon: <BsSoundwave />,
       id: 'binaural-delta',
       label: 'Delta',
-      src: '/sounds/binaural/binaural-delta.wav',
+      src: getAssetPath('/sounds/binaural/binaural-delta.wav'),
     },
     {
       icon: <BsSoundwave />,
       id: 'binaural-theta',
       label: 'Theta',
-      src: '/sounds/binaural/binaural-theta.wav',
+      src: getAssetPath('/sounds/binaural/binaural-theta.wav'),
     },
     {
       icon: <BsSoundwave />,
       id: 'binaural-alpha',
       label: 'Alpha',
-      src: '/sounds/binaural/binaural-alpha.wav',
+      src: getAssetPath('/sounds/binaural/binaural-alpha.wav'),
     },
     {
       icon: <BsSoundwave />,
       id: 'binaural-beta',
       label: 'Beta',
-      src: '/sounds/binaural/binaural-beta.wav',
+      src: getAssetPath('/sounds/binaural/binaural-beta.wav'),
     },
     {
       icon: <BsSoundwave />,
       id: 'binaural-gamma',
       label: 'Gamma',
-      src: '/sounds/binaural/binaural-gamma.wav',
+      src: getAssetPath('/sounds/binaural/binaural-gamma.wav'),
     },
   ],
   title: 'Binaural Beats',
