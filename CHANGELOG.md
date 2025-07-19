@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/remvze/moodist/compare/v2.0.1...v2.1.0) (2025-07-19)
+
+
+### 🚚 Chores
+
+* add banner ([fb82117](https://github.com/remvze/moodist/commit/fb82117742c2a0beb8937a76fcd5f313230cd418))
+* refine logo ([755c442](https://github.com/remvze/moodist/commit/755c4422635e475b8d3b0f26e3cf493a59ff3065))
+* update banner ([a0a7f94](https://github.com/remvze/moodist/commit/a0a7f94c3328c65d4fc756ca52455461a05657ab))
+* update banner ([2f994c6](https://github.com/remvze/moodist/commit/2f994c6094ad1948c14346badbc4462ae7782904))
+* update the logo ([348fc1e](https://github.com/remvze/moodist/commit/348fc1e8c4561481e5ad1d4528e8ee480d0e2fb4))
+
+
+### 🐛 Bug Fixes
+
+* **component:** update oscillators frequency on preset change ([dcc91e0](https://github.com/remvze/moodist/commit/dcc91e038d806994382baa19b3d238da4a8ecaae))
+* fixate the binary pattern ([4996cc8](https://github.com/remvze/moodist/commit/4996cc893c480ab77cf27a27801dba96771eadc5))
+* replace generator with static silent audio ([af09607](https://github.com/remvze/moodist/commit/af096077aed6c42d4ff77303e6f3c1d39cd87209))
+
+
+### ✨ Features
+
+* add lofi music play ([fcbe50c](https://github.com/remvze/moodist/commit/fcbe50c78c30e4422aea2ed698fff777fcaea1c4))
+
 ### [2.0.1](https://github.com/remvze/moodist/compare/v2.0.0...v2.0.1) (2025-03-25)
 
 
