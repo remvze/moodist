@@ -61,6 +61,20 @@ const count = soundCount();
         background-size: 21px 21px;
         opacity: 0.8;
         mask-image: linear-gradient(#fff, transparent, transparent);
+
+        &::before {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          width: 300px;
+          height: 100px;
+          content: '';
+          background: var(--color-neutral-200);
+          filter: blur(50px);
+          border-radius: 100%;
+          opacity: 0.8;
+          transform: translate(-50%, -50%);
+        }
       }
     }
 
