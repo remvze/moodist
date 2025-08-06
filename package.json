@@ -41,6 +41,7 @@
     "framer-motion": "10.16.4",
     "howler": "2.2.4",
     "js-confetti": "0.12.0",
+    "motion": "12.23.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hotkeys-hook": "3.2.1",

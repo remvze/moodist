@@ -5,7 +5,7 @@ import {
   useRef,
   useContext,
 } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'motion/react';
 
 import { Snackbar } from '@/components/snackbar';
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BiUpArrowAlt } from 'react-icons/bi/index';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'motion/react';
 
 import { mix, fade, slideY } from '@/lib/motion';
 
@@ -30,22 +30,20 @@ export function ScrollToTop() {
   const variants = mix(fade(), slideY(10, 0));
 
   return (
-    <AnimatePresence>
-      {isVisible ? (
-        <motion.button
-          animate="show"
-          aria-label="Scroll to top"
-          className={styles.button}
-          exit="hidden"
-          initial="hidden"
-          variants={variants}
-          onClick={scrollToTop}
-        >
-          <BiUpArrowAlt />
-        </motion.button>
-      ) : (
-        <div />
-      )}
-    </AnimatePresence>
+    <motion.button
+      animate={isVisible ? 'show' : 'hidden'}
+      aria-label="Scroll to top"
+      className={styles.button}
+      exit="hidden"
+      initial="hidden"
+      variants={variants}
+      style={{
+        pointerEvents: isVisible ? 'auto' : 'none',
+        visibility: isVisible ? 'visible' : 'hidden',
+      }}
+      onClick={scrollToTop}
+    >
+      <BiUpArrowAlt />
+    </motion.button>
   );
 }

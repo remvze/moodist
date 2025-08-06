@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { BiUndo, BiTrash } from 'react-icons/bi/index';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
 import { Tooltip } from '@/components/tooltip';

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 
 import { slideX, slideY, mix, fade } from '@/lib/motion';
