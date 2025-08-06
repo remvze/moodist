@@ -8,7 +8,7 @@
   text-align: center;
   background: linear-gradient(var(--color-neutral-100), transparent);
   border: 1px solid var(--color-neutral-200);
-  border-radius: 8px;
+  border-radius: 12px;
   transition: 0.2s;
 
   &:focus-visible {
