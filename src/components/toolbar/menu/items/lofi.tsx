@@ -1,4 +1,4 @@
-import { FaHeadphonesAlt } from 'react-icons/fa/index';
+import { IoIosMusicalNote } from 'react-icons/io/index';
 
 import { Item } from '../item';
 
@@ -7,5 +7,11 @@ interface LofiProps {
 }
 
 export function Lofi({ open }: LofiProps) {
-  return <Item icon={<FaHeadphonesAlt />} label="Lofi Music" onClick={open} />;
+  return (
+    <Item
+      icon={<IoIosMusicalNote />}
+      label="Lofi Music Player"
+      onClick={open}
+    />
+  );
 }
