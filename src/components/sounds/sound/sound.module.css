@@ -6,7 +6,7 @@
   justify-content: center;
   padding: 25px 20px;
   text-align: center;
-  background: linear-gradient(var(--color-neutral-100), transparent);
+  background: linear-gradient(rgb(24 24 27 / 50%), transparent);
   border: 1px solid var(--color-neutral-200);
   border-radius: 12px;
   transition: 0.2s;
