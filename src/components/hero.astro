@@ -2,6 +2,7 @@
 import { BsSoundwave } from 'react-icons/bs/index';
 
 import { Container } from './container';
+import { LanguageSwitcher } from './language-switcher';
 
 import { count as soundCount } from '@/lib/sounds';
 
@@ -12,6 +13,12 @@ const count = soundCount();
   <Container>
     <div class="wrapper">
       <div class="pattern"></div>
+      
+      <!-- Language Switcher -->
+      <div class="language-switcher-container">
+        <LanguageSwitcher client:load />
+      </div>
+      
       <div class="logo-wrapper">
         <img
           alt="Faded Moodist Logo"
@@ -24,19 +31,70 @@ const count = soundCount();
       </div>
 
       <h1 class="title">
-        Ambient Sounds<span class="line">For Focus and Calm</span>
+        <span class="title-text" data-lang="en">Ambient Sounds</span>
+        <span class="title-text" data-lang="zh">环境音效</span>
+        <span class="line">
+          <span class="line-text" data-lang="en">For Focus and Calm</span>
+          <span class="line-text" data-lang="zh">专注与平静</span>
+        </span>
       </h1>
-      <h2 class="desc">Free and Open-Source.</h2>
+      <h2 class="desc">
+        <span class="desc-text" data-lang="en">Free and Open-Source.</span>
+        <span class="desc-text" data-lang="zh">免费且开源。</span>
+      </h2>
 
       <p class="sounds">
         <span aria-hidden="true" class="icon">
           <BsSoundwave />
         </span>
-        <span>{count} Sounds</span>
+        <span class="sounds-text">
+          <span class="sounds-count" data-lang="en">{count} Sounds</span>
+          <span class="sounds-count" data-lang="zh">{count} 种音效</span>
+        </span>
       </p>
     </div>
   </Container>
 </div>
+
+<script>
+  // Language switching logic
+  function getCurrentLanguage() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        return localStorage.getItem('moodist-language') || 'en';
+      } catch {
+        return 'en';
+      }
+    }
+    return 'en';
+  }
+  
+  function updateLanguageDisplay(lang) {
+    // 更新所有文本元素
+    const allElements = document.querySelectorAll('[data-lang]');
+    
+    allElements.forEach(el => {
+      if (el instanceof HTMLElement) {
+        if (el.getAttribute('data-lang') === lang) {
+          el.style.display = 'block';
+        } else {
+          el.style.display = 'none';
+        }
+      }
+    });
+  }
+  
+  // Initialize with current language
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentLang = getCurrentLanguage();
+    updateLanguageDisplay(currentLang);
+    
+    // Listen for language changes from other components
+    window.addEventListener('languageChanged', (event) => {
+      updateLanguageDisplay(event.detail.language);
+    });
+  });
+</script>
 
 <style>
   .hero {
@@ -78,6 +136,13 @@ const count = soundCount();
       }
     }
 
+    .language-switcher-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+    }
+
     & .logo-wrapper {
       mask-image: linear-gradient(#000, rgb(0 0 0 / 40%), rgb(0 0 0 / 5%));
 
@@ -99,6 +164,14 @@ const count = soundCount();
       font-weight: 600;
       line-height: 1.1;
 
+      & .title-text {
+        display: block;
+        
+        &[data-lang="zh"] {
+          display: none;
+        }
+      }
+
       & .line {
         display: block;
         margin-top: 2px;
@@ -108,6 +181,14 @@ const count = soundCount();
         );
         background-clip: text;
         -webkit-text-fill-color: transparent;
+        
+        & .line-text {
+          display: block;
+          
+          &[data-lang="zh"] {
+            display: none;
+          }
+        }
       }
     }
 
@@ -115,6 +196,14 @@ const count = soundCount();
       margin-top: 12px;
       line-height: 1.6;
       color: var(--color-foreground-subtle);
+      
+      & .desc-text {
+        display: block;
+        
+        &[data-lang="zh"] {
+          display: none;
+        }
+      }
     }
 
     & .sounds {
@@ -142,6 +231,16 @@ const count = soundCount();
         color: var(--color-foreground);
         border-right: 1px solid var(--color-neutral-200);
         border-radius: 0 100px 100px 0;
+      }
+      
+      & .sounds-text {
+        & .sounds-count {
+          display: block;
+          
+          &[data-lang="zh"] {
+            display: none;
+          }
+        }
       }
 
       &::before {

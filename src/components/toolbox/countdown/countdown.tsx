@@ -8,6 +8,18 @@ import { padNumber } from '@/helpers/number';
 
 import styles from './countdown.module.css';
 
+// 安全地获取localStorage
+function getLocalStorageItem(key: string, defaultValue: string = 'en'): string {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    try {
+      return localStorage.getItem(key) || defaultValue;
+    } catch {
+      return defaultValue;
+    }
+  }
+  return defaultValue;
+}
+
 interface CountdownProps {
   onClose: () => void;
   show: boolean;
@@ -21,8 +33,26 @@ export function Countdown({ onClose, show }: CountdownProps) {
   const [initialTime, setInitialTime] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isFormVisible, setIsFormVisible] = useState(true);
+  const [currentLang, setCurrentLang] = useState('en');
 
   const alarm = useSoundEffect('/sounds/alarm.mp3');
+
+  // 在客户端初始化语言
+  useEffect(() => {
+    const lang = getLocalStorageItem('moodist-language');
+    setCurrentLang(lang);
+    
+    // 监听语言变化
+    const handleLanguageChange = (event: CustomEvent) => {
+      setCurrentLang(event.detail.language);
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
+    
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
+    };
+  }, []);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -70,11 +100,18 @@ export function Countdown({ onClose, show }: CountdownProps) {
 
   const elapsedTime = initialTime - timeLeft;
 
+  // 获取本地化文本
+  const titleText = currentLang === 'zh' ? '倒计时定时器' : 'Countdown Timer';
+  const descText = currentLang === 'zh' ? '超级简单的倒计时定时器。' : 'Super simple countdown timer.';
+  const startText = currentLang === 'zh' ? '开始' : 'Start';
+  const backText = currentLang === 'zh' ? '返回' : 'Back';
+  const pauseText = currentLang === 'zh' ? '暂停' : 'Pause';
+
   return (
     <Modal show={show} onClose={onClose}>
       <header className={styles.header}>
-        <h2 className={styles.title}>Countdown Timer</h2>
-        <p className={styles.desc}>Super simple countdown timer.</p>
+        <h2 className={styles.title}>{titleText}</h2>
+        <p className={styles.desc}>{descText}</p>
       </header>
 
       {isFormVisible ? (
@@ -118,7 +155,7 @@ export function Countdown({ onClose, show }: CountdownProps) {
               className={cn(styles.button, styles.primary)}
               onClick={handleStart}
             >
-              Start
+              {startText}
             </button>
           </div>
         </div>
@@ -131,14 +168,14 @@ export function Countdown({ onClose, show }: CountdownProps) {
 
           <div className={styles.buttonContainer}>
             <button className={styles.button} onClick={handleBack}>
-              Back
+              {backText}
             </button>
 
             <button
               className={cn(styles.button, styles.primary)}
               onClick={toggleTimer}
             >
-              {isActive ? 'Pause' : 'Start'}
+              {isActive ? pauseText : startText}
             </button>
           </div>
         </div>

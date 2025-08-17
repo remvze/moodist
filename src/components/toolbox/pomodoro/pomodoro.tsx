@@ -15,6 +15,18 @@ import { useCloseListener } from '@/hooks/use-close-listener';
 
 import styles from './pomodoro.module.css';
 
+// 安全地获取localStorage
+function getLocalStorageItem(key: string, defaultValue: string = 'en'): string {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    try {
+      return localStorage.getItem(key) || defaultValue;
+    } catch {
+      return defaultValue;
+    }
+  }
+  return defaultValue;
+}
+
 interface PomodoroProps {
   onClose: () => void;
   open: () => void;
@@ -22,7 +34,33 @@ interface PomodoroProps {
 }
 
 export function Pomodoro({ onClose, open, show }: PomodoroProps) {
+  const [currentLang, setCurrentLang] = useState('en');
   const [showSetting, setShowSetting] = useState(false);
+
+  // 在客户端初始化语言
+  useEffect(() => {
+    const lang = getLocalStorageItem('moodist-language');
+    setCurrentLang(lang);
+    
+    // 监听语言变化
+    const handleLanguageChange = (event: CustomEvent) => {
+      setCurrentLang(event.detail.language);
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
+    
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
+    };
+  }, []);
+
+  // 获取本地化文本
+  const titleText = currentLang === 'zh' ? '番茄钟定时器' : 'Pomodoro Timer';
+  const changeTimesTooltip = currentLang === 'zh' ? '更改时间' : 'Change Times';
+  const completedText = currentLang === 'zh' ? '已完成' : 'completed';
+  const restartTooltip = currentLang === 'zh' ? '重新开始' : 'Restart';
+  const pauseTooltip = currentLang === 'zh' ? '暂停' : 'Pause';
+  const startTooltip = currentLang === 'zh' ? '开始' : 'Start';
 
   const [selectedTab, setSelectedTab] = useState('pomodoro');
 
@@ -56,11 +94,11 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
 
   const tabs = useMemo(
     () => [
-      { id: 'pomodoro', label: 'Pomodoro' },
-      { id: 'short', label: 'Break' },
-      { id: 'long', label: 'Long Break' },
+      { id: 'pomodoro', label: currentLang === 'zh' ? '番茄钟' : 'Pomodoro' },
+      { id: 'short', label: currentLang === 'zh' ? '短休息' : 'Break' },
+      { id: 'long', label: currentLang === 'zh' ? '长休息' : 'Long Break' },
     ],
-    [],
+    [currentLang],
   );
 
   useCloseListener(() => setShowSetting(false));
@@ -123,12 +161,12 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
     <>
       <Modal show={show} onClose={onClose}>
         <header className={styles.header}>
-          <h2 className={styles.title}>Pomodoro Timer</h2>
+          <h2 className={styles.title}>{titleText}</h2>
 
           <div className={styles.button}>
             <Button
               icon={<IoMdSettings />}
-              tooltip="Change Times"
+              tooltip={changeTimesTooltip}
               onClick={() => {
                 onClose();
                 setShowSetting(true);
@@ -142,19 +180,19 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
 
         <div className={styles.control}>
           <p className={styles.completed}>
-            {completions[selectedTab] || 0} completed
+            {completions[selectedTab] || 0} {completedText}
           </p>
           <div className={styles.buttons}>
             <Button
               icon={<FaUndo />}
               smallIcon
-              tooltip="Restart"
+              tooltip={restartTooltip}
               onClick={restart}
             />
             <Button
               icon={running ? <FaPause /> : <FaPlay />}
               smallIcon
-              tooltip={running ? 'Pause' : 'Start'}
+              tooltip={running ? pauseTooltip : startTooltip}
               onClick={toggleRunning}
             />
           </div>

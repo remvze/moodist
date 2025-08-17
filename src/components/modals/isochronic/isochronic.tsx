@@ -5,6 +5,18 @@ import { Slider } from '@/components/slider';
 
 import styles from './isochornic.module.css';
 
+// 安全地获取localStorage
+function getLocalStorageItem(key: string, defaultValue: string = 'en'): string {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    try {
+      return localStorage.getItem(key) || defaultValue;
+    } catch {
+      return defaultValue;
+    }
+  }
+  return defaultValue;
+}
+
 interface IsochronicProps {
   onClose: () => void;
   show: boolean;
@@ -32,12 +44,30 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
   const [waveform] = useState<OscillatorType>('sine'); // Default waveform
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [selectedPreset, setSelectedPreset] = useState<string>('Custom');
+  const [currentLang, setCurrentLang] = useState('en');
 
   const audioContextRef = useRef<AudioContext | null>(null);
   const oscillatorRef = useRef<OscillatorNode | null>(null);
   const gainNodeRef = useRef<GainNode | null>(null);
   const beatGainRef = useRef<GainNode | null>(null);
   const modulatorRef = useRef<OscillatorNode | null>(null);
+
+  // 在客户端初始化语言
+  useEffect(() => {
+    const lang = getLocalStorageItem('moodist-language');
+    setCurrentLang(lang);
+    
+    // 监听语言变化
+    const handleLanguageChange = (event: CustomEvent) => {
+      setCurrentLang(event.detail.language);
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
+    
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
+    };
+  }, []);
 
   const startSound = () => {
     if (isPlaying) return;
@@ -90,9 +120,21 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
   const stopSound = useCallback(() => {
     if (!isPlaying) return;
 
-    oscillatorRef.current?.stop();
-    modulatorRef.current?.stop();
-    audioContextRef.current?.close();
+    // Stop oscillators
+    if (oscillatorRef.current) {
+      oscillatorRef.current.stop();
+      oscillatorRef.current = null;
+    }
+    if (modulatorRef.current) {
+      modulatorRef.current.stop();
+      modulatorRef.current = null;
+    }
+
+    // Close audio context
+    if (audioContextRef.current) {
+      audioContextRef.current.close();
+      audioContextRef.current = null;
+    }
 
     setIsPlaying(false);
   }, [isPlaying]);
@@ -161,20 +203,53 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
     }
   };
 
+  // 获取本地化文本
+  const titleText = currentLang === 'zh' ? '等时音调' : 'Isochronic Tone';
+  const descText = currentLang === 'zh' ? '等时音调发生器。' : 'Isochronic tone generator.';
+  const presetsText = currentLang === 'zh' ? '预设:' : 'Presets:';
+  const baseFreqText = currentLang === 'zh' ? '基础频率 (Hz):' : 'Base Frequency (Hz):';
+  const toneFreqText = currentLang === 'zh' ? '音调频率 (Hz):' : 'Tone Frequency (Hz):';
+  const volumeText = currentLang === 'zh' ? '音量:' : 'Volume:';
+  const startText = currentLang === 'zh' ? '开始' : 'Start';
+  const stopText = currentLang === 'zh' ? '停止' : 'Stop';
+
+  // 获取本地化的预设名称
+  const getLocalizedPresetName = (preset: Preset) => {
+    if (currentLang === 'zh') {
+      switch (preset.name) {
+        case 'Delta (Deep Sleep) 2 Hz':
+          return 'Delta (深度睡眠) 2 Hz';
+        case 'Theta (Meditation) 5 Hz':
+          return 'Theta (冥想) 5 Hz';
+        case 'Alpha (Relaxation) 10 Hz':
+          return 'Alpha (放松) 10 Hz';
+        case 'Beta (Focus) 20 Hz':
+          return 'Beta (专注) 20 Hz';
+        case 'Gamma (Cognition) 40 Hz':
+          return 'Gamma (认知) 40 Hz';
+        case 'Custom':
+          return '自定义';
+        default:
+          return preset.name;
+      }
+    }
+    return preset.name;
+  };
+
   return (
     <Modal show={show} onClose={onClose}>
       <header className={styles.header}>
-        <h2 className={styles.title}>Isochronic Tone</h2>
-        <p className={styles.desc}>Isochronic tone generator.</p>
+        <h2 className={styles.title}>{titleText}</h2>
+        <p className={styles.desc}>{descText}</p>
       </header>
 
       <div className={styles.fieldWrapper}>
         <label>
-          Presets:
+          {presetsText}
           <select value={selectedPreset} onChange={handlePresetChange}>
             {presets.map(preset => (
               <option key={preset.name} value={preset.name}>
-                {preset.name}
+                {getLocalizedPresetName(preset)}
               </option>
             ))}
           </select>
@@ -184,7 +259,7 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
         <>
           <div className={styles.fieldWrapper}>
             <label>
-              Base Frequency (Hz):
+              {baseFreqText}
               <input
                 max="2000"
                 min="20"
@@ -199,7 +274,7 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
           </div>
           <div className={styles.fieldWrapper}>
             <label>
-              Tone Frequency (Hz):
+              {toneFreqText}
               <input
                 max="40"
                 min="0.1"
@@ -230,7 +305,7 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
       )}
       <div className={styles.fieldWrapper}>
         <label>
-          Volume:
+          {volumeText}
           <Slider
             className={styles.volume}
             max={1}
@@ -247,10 +322,10 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
           disabled={isPlaying}
           onClick={startSound}
         >
-          Start
+          {startText}
         </button>
         <button disabled={!isPlaying} onClick={stopSound}>
-          Stop
+          {stopText}
         </button>
       </div>
     </Modal>

@@ -35,6 +35,7 @@ import { Slider } from '@/components/slider';
 
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
+import { getLocalizedText } from '@/utils/language';
 
 import styles from './menu.module.css';
 import { useCloseListener } from '@/hooks/use-close-listener';
@@ -147,7 +148,7 @@ export function Menu() {
                     <Divider />
 
                     <div className={styles.globalVolume}>
-                      <label htmlFor="global-volume">Global Volume</label>
+                      <label htmlFor="global-volume">{getLocalizedText('globalVolume')}</label>
                       <Slider
                         max={100}
                         min={0}

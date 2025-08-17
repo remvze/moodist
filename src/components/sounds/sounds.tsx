@@ -1,28 +1,58 @@
-import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 
 import { Sound } from './sound';
 import { useLocalStorage } from '@/hooks/use-local-storage';
 import { cn } from '@/helpers/styles';
-import { fade, scale, mix } from '@/lib/motion';
+import { fade, mix, scale } from '@/lib/motion';
 
 import styles from './sounds.module.css';
 
-import type { Sounds } from '@/data/types';
+import type { Sound as SoundType } from '@/data/types';
 
 interface SoundsProps {
   functional: boolean;
   id: string;
-  sounds: Sounds;
+  sounds: SoundType[];
+}
+
+// 安全地获取localStorage
+function getLocalStorageItem(key: string, defaultValue: string = 'en'): string {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    try {
+      return localStorage.getItem(key) || defaultValue;
+    } catch {
+      return defaultValue;
+    }
+  }
+  return defaultValue;
 }
 
 export function Sounds({ functional, id, sounds }: SoundsProps) {
+  const [currentLang, setCurrentLang] = useState('en');
   const [showAll, setShowAll] = useLocalStorage(`${id}-show-more`, false);
   const [clickedMore, setClickedMore] = useState(false);
 
   const [isAnimating, setIsAnimating] = useState(false);
 
   const firstNewSound = useRef<HTMLDivElement>(null);
+
+  // 在客户端初始化语言
+  useEffect(() => {
+    const lang = getLocalStorageItem('moodist-language');
+    setCurrentLang(lang);
+    
+    // 监听语言变化
+    const handleLanguageChange = (event: CustomEvent) => {
+      setCurrentLang(event.detail.language);
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
+    
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
+    };
+  }, []);
 
   useEffect(() => {
     if (showAll && clickedMore) {
@@ -66,6 +96,10 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
 
   const variants = mix(fade(), scale(0.9));
 
+  // 获取本地化文本
+  const showMoreText = currentLang === 'zh' ? '显示更多' : 'Show More';
+  const showLessText = currentLang === 'zh' ? '收起' : 'Show Less';
+
   return (
     <div>
       <div className={styles.sounds}>
@@ -106,7 +140,7 @@ export function Sounds({ functional, id, sounds }: SoundsProps) {
               onAnimationComplete={() => setIsAnimating(false)}
               onAnimationStart={() => setIsAnimating(true)}
             >
-              {showAll ? 'Show Less' : 'Show More'}
+              {showAll ? showLessText : showMoreText}
             </motion.span>
           </AnimatePresence>
         </button>
