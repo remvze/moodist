@@ -1,4 +1,4 @@
-import { useMemo, useEffect } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import { BiSolidHeart } from 'react-icons/bi/index';
 import { Howler } from 'howler';
@@ -20,13 +20,43 @@ import { FADE_OUT } from '@/constants/events';
 import type { Sound } from '@/data/types';
 import { subscribe } from '@/lib/event';
 
+// 安全地获取localStorage
+function getLocalStorageItem(key: string, defaultValue: string = 'en'): string {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    try {
+      return localStorage.getItem(key) || defaultValue;
+    } catch {
+      return defaultValue;
+    }
+  }
+  return defaultValue;
+}
+
 export function App() {
+  const [currentLang, setCurrentLang] = useState('en');
   const categories = useMemo(() => sounds.categories, []);
 
   const favorites = useSoundStore(useShallow(state => state.getFavorites()));
   const pause = useSoundStore(state => state.pause);
   const lock = useSoundStore(state => state.lock);
   const unlock = useSoundStore(state => state.unlock);
+
+  // 在客户端初始化语言
+  useEffect(() => {
+    const lang = getLocalStorageItem('moodist-language');
+    setCurrentLang(lang);
+    
+    // 监听语言变化
+    const handleLanguageChange = (event: CustomEvent) => {
+      setCurrentLang(event.detail.language);
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
+    
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
+    };
+  }, []);
 
   const favoriteSounds = useMemo(() => {
     const favoriteSounds = categories
@@ -75,16 +105,18 @@ export function App() {
     const favorites = [];
 
     if (favoriteSounds.length) {
+      const favoritesTitle = currentLang === 'zh' ? '收藏' : 'Favorites';
+      
       favorites.push({
         icon: <BiSolidHeart />,
         id: 'favorites',
         sounds: favoriteSounds as Array<Sound>,
-        title: 'Favorites',
+        title: favoritesTitle,
       });
     }
 
     return [...favorites, ...categories];
-  }, [favoriteSounds, categories]);
+  }, [favoriteSounds, categories, currentLang]);
 
   return (
     <SnackbarProvider>

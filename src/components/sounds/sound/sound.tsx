@@ -1,8 +1,9 @@
-import { useCallback, useEffect, forwardRef, useMemo } from 'react';
+import { useCallback, useEffect, forwardRef, useMemo, useState } from 'react';
 import { ImSpinner9 } from 'react-icons/im/index';
 
 import { Range } from './range';
 import { Favorite } from './favorite';
+import { getLocalizedSoundLabel } from '@/utils/sound-labels';
 
 import { useSound } from '@/hooks/use-sound';
 import { useSoundStore } from '@/stores/sound';
@@ -22,10 +23,23 @@ interface SoundProps extends SoundType {
   unselectHidden: (key: string) => void;
 }
 
+// 安全地获取localStorage
+function getLocalStorageItem(key: string, defaultValue: string = 'en'): string {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    try {
+      return localStorage.getItem(key) || defaultValue;
+    } catch {
+      return defaultValue;
+    }
+  }
+  return defaultValue;
+}
+
 export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
   { functional, hidden, icon, id, label, selectHidden, src, unselectHidden },
   ref,
 ) {
+  const [currentLang, setCurrentLang] = useState('en');
   const isPlaying = useSoundStore(state => state.isPlaying);
   const play = useSoundStore(state => state.play);
   const selectSound = useSoundStore(state => state.select);
@@ -44,6 +58,23 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
   const isLoading = useLoadingStore(state => state.loaders[src]);
 
   const sound = useSound(src, { loop: true, volume: adjustedVolume });
+
+  // 在客户端初始化语言
+  useEffect(() => {
+    const lang = getLocalStorageItem('moodist-language');
+    setCurrentLang(lang);
+    
+    // 监听语言变化
+    const handleLanguageChange = (event: CustomEvent) => {
+      setCurrentLang(event.detail.language);
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
+    
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
+    };
+  }, []);
 
   useEffect(() => {
     if (locked) return;
@@ -86,9 +117,12 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
     toggle();
   });
 
+  // 获取本地化的音效标签
+  const localizedLabel = getLocalizedSoundLabel(id);
+
   return (
     <div
-      aria-label={`${label} sound`}
+      aria-label={`${localizedLabel} sound`}
       ref={ref}
       role="button"
       tabIndex={0}
@@ -100,7 +134,7 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
       onClick={handleClick}
       onKeyDown={handleKeyDown}
     >
-      <Favorite id={id} label={label} />
+      <Favorite id={id} label={localizedLabel} />
       <div className={styles.icon}>
         {isLoading ? (
           <span aria-hidden="true" className={styles.spinner}>
@@ -111,9 +145,9 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
         )}
       </div>
       <div className={styles.label} id={id}>
-        {label}
+        {localizedLabel}
       </div>
-      <Range id={id} label={label} />
+      <Range id={id} label={localizedLabel} />
     </div>
   );
 });

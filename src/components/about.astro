@@ -1,58 +1,119 @@
 ---
-import { Container } from '@/components/container';
+import { Container } from './container';
 
-import { count as soundCount } from '@/lib/sounds';
-
-const count = soundCount();
-
-const paragraphs = [
+const enParagraphs = [
   {
-    body: 'Craving a calming escape from the daily grind? Do you need the perfect soundscape to boost your focus or lull you into peaceful sleep? Look no further than Moodist, your free and open-source ambient sound generator! Ditch the subscriptions and registrations – with Moodist, you unlock a world of soothing and immersive audio experiences, entirely for free.',
+    counter: '01',
     title: 'Free Ambient Sounds',
+    body: 'Craving a calming escape from the daily grind? Do you need the perfect soundscape to boost your focus or lull you into peaceful sleep? Look no further than Moodist, your free and open-source ambient sound generator! Ditch the subscriptions and registrations – with Moodist, you unlock a world of soothing and immersive audio experiences, entirely for free.'
   },
   {
-    body: `Dive into an expansive library of ${count} carefully curated sounds. Nature lovers will find solace in the gentle murmur of streams, the rhythmic crash of waves, or the crackling warmth of a campfire. Cityscapes come alive with the soft hum of cafes, the rhythmic clatter of trains, or the calming white noise of traffic. And for those seeking deeper focus or relaxation, Moodist offers binaural beats and color noise designed to enhance your state of mind.`,
+    counter: '02',
     title: 'Carefully Curated Sounds',
+    body: 'Dive into an expansive library of carefully curated sounds. Nature lovers will find solace in the gentle murmur of streams, the rhythmic crash of waves, or the crackling warmth of a campfire. Cityscapes come alive with the soft hum of cafes, the rhythmic clatter of trains, or the calming white noise of traffic. And for those seeking deeper focus or relaxation, Moodist offers binaural beats and color noise designed to enhance your state of mind.'
   },
   {
-    body: 'The beauty of Moodist lies in its simplicity and customization. No complex menus or confusing options – just choose your desired sounds, adjust the volume balance, and hit play. Want to blend the gentle chirping of birds with the soothing sound of rain? No problem! Layer as many sounds as you like to create your personalized soundscape oasis.',
+    counter: '03',
     title: 'Create Your Soundscape',
+    body: 'The beauty of Moodist lies in its simplicity and customization. No complex menus or confusing options – just choose your desired sounds, adjust the volume balance, and hit play. Want to blend the gentle chirping of birds with the soothing sound of rain? No problem! Layer as many sounds as you like to create your personalized soundscape oasis.'
   },
   {
-    body: "Whether you're looking to unwind after a long day, enhance your focus during work, or lull yourself into a peaceful sleep, Moodist has the perfect soundscape waiting for you. The best part? It's completely free and open-source, so you can enjoy its benefits without any strings attached. Start using Moodist today and discover your new haven of tranquility and focus!",
+    counter: '04',
     title: 'Sounds for Every Moment',
+    body: "Whether you're looking to unwind after a long day, enhance your focus during work, or lull yourself into a peaceful sleep, Moodist has the perfect soundscape waiting for you. The best part? It's completely free and open-source, so you can enjoy its benefits without any strings attached. Start using Moodist today and discover your new haven of tranquility and focus!"
+  }
+];
+
+const zhParagraphs = [
+  {
+    counter: '01',
+    title: '免费环境音效',
+    body: '渴望从日常忙碌中逃离，寻找平静？需要完美的音景来提升专注力或帮助您安然入睡？Moodist就是您的答案！这是一个免费且开源的环境音效生成器！告别订阅和注册——使用Moodist，您可以免费解锁一个舒缓且沉浸式的音频体验世界。'
   },
+  {
+    counter: '02',
+    title: '精心策划的音效',
+    body: '深入探索精心策划的音效库。自然爱好者会在溪流的轻柔低语、海浪的节奏拍打或篝火的温暖噼啪声中找到慰藉。城市景观因咖啡馆的柔和嗡嗡声、火车的节奏咔嗒声或交通的平静白噪音而生动起来。对于那些寻求更深层专注或放松的人来说，Moodist提供双耳节拍和彩色噪音，旨在增强您的心理状态。'
+  },
+  {
+    counter: '03',
+    title: '创建您的音景',
+    body: 'Moodist的美在于其简单性和可定制性。没有复杂的菜单或令人困惑的选项——只需选择您想要的音效，调整音量平衡，然后点击播放。想要将鸟儿的轻柔啁啾声与雨声的舒缓声混合？没问题！叠加任意数量的音效来创建您个性化的音景绿洲。'
+  },
+  {
+    counter: '04',
+    title: '每个时刻的音效',
+    body: '无论您是想在漫长的一天后放松，在工作时提升专注力，还是让自己安然入睡，Moodist都有完美的音景等着您。最好的部分？它完全免费且开源，所以您可以享受其好处而无需任何附加条件。今天就开始使用Moodist，发现您新的宁静和专注天堂！'
+  }
 ];
 ---
 
-<section class="about">
-  <div class="effect"></div>
+<div class="about">
+  <Container>
+    <div class="effect"></div>
 
-  <Container tight>
-    {
-      paragraphs.map((paragraph, index) => (
-        <div class="paragraph">
-          <div class="counter">
-            <span>0{index + 1}</span> / 0{paragraphs.length}
-          </div>
-
-          <h2 class="title">{paragraph.title}</h2>
-          <p class="body">{paragraph.body}</p>
+    {enParagraphs.map((paragraph, index) => (
+      <div class="paragraph">
+        <div class="counter">
+          <span data-lang="en">{paragraph.counter}</span>
+          <span data-lang="zh">{zhParagraphs[index].counter}</span>
         </div>
-      ))
-    }
+        <h3 class="title">
+          <span data-lang="en">{paragraph.title}</span>
+          <span data-lang="zh">{zhParagraphs[index].title}</span>
+        </h3>
+        <p class="body">
+          <span data-lang="en">{paragraph.body}</span>
+          <span data-lang="zh">{zhParagraphs[index].body}</span>
+        </p>
+      </div>
+    ))}
 
-    <button class="button" id="use-moodist"> Use Moodist</button>
+    <div class="button" id="use-moodist">
+      <span data-lang="en">Use Moodist</span>
+      <span data-lang="zh">使用Moodist</span>
+    </div>
   </Container>
-</section>
+</div>
 
-<script lang="ts">
-  const button = document.getElementById('use-moodist');
+<script>
+  // Language switching logic
+  function getCurrentLanguage() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        return localStorage.getItem('moodist-language') || 'en';
+      } catch {
+        return 'en';
+      }
+    }
+    return 'en';
+  }
 
-  button.addEventListener('click', () => {
-    const app = document.getElementById('app');
+  function updateLanguageDisplay(lang) {
+    const contents = document.querySelectorAll('.paragraph [data-lang]');
+    contents.forEach(content => {
+      if (content instanceof HTMLElement) {
+        content.style.display = content.getAttribute('data-lang') === lang ? 'block' : 'none';
+      }
+    });
 
-    app?.scrollIntoView();
+    const buttonTexts = document.querySelectorAll('#use-moodist [data-lang]');
+    buttonTexts.forEach(text => {
+      if (text instanceof HTMLElement) {
+        text.style.display = text.getAttribute('data-lang') === lang ? 'inline' : 'none';
+      }
+    });
+  }
+
+  // Initialize with current language
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentLang = getCurrentLanguage();
+    updateLanguageDisplay(currentLang);
+    
+    // Listen for language changes from other components
+    window.addEventListener('languageChanged', (event) => {
+      updateLanguageDisplay(event.detail.language);
+    });
   });
 </script>
 

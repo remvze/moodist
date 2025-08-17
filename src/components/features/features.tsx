@@ -1,6 +1,7 @@
 import { BiMoney, BiUserCircle, BiLogoGithub } from 'react-icons/bi/index';
 import { BsSoundwave, BsStars } from 'react-icons/bs/index';
 import { RxMixerHorizontal } from 'react-icons/rx/index';
+import { useState, useEffect } from 'react';
 
 import { Balancer } from 'react-wrap-balancer';
 
@@ -9,61 +10,95 @@ import { count as soundCount } from '@/lib/sounds';
 
 import styles from './features.module.css';
 
+// 安全地获取localStorage
+function getLocalStorageItem(key: string, defaultValue: string = 'en'): string {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    try {
+      return localStorage.getItem(key) || defaultValue;
+    } catch {
+      return defaultValue;
+    }
+  }
+  return defaultValue;
+}
+
 export function Features() {
+  const [currentLang, setCurrentLang] = useState('en');
   const count = soundCount();
+
+  // 在客户端初始化语言
+  useEffect(() => {
+    const lang = getLocalStorageItem('moodist-language');
+    setCurrentLang(lang);
+    
+    // 监听语言变化
+    const handleLanguageChange = (event: CustomEvent) => {
+      setCurrentLang(event.detail.language);
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
+    
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
+    };
+  }, []);
+
+  // 获取本地化文本
+  const comingSoonText = currentLang === 'zh' ? '即将推出' : 'Coming Soon';
+  const featuresTitle = currentLang === 'zh' ? '功能特性' : 'Features';
 
   const features = [
     {
       Icon: BiMoney,
-      body: 'Immerse yourself in sound without spending a dime.',
+      body: currentLang === 'zh' ? '完全免费使用，无需花费一分钱即可沉浸在声音中。' : 'Immerse yourself in sound without spending a dime.',
       id: 'free-access',
-      label: 'Free Access',
+      label: currentLang === 'zh' ? '免费使用' : 'Free Access',
     },
     {
       Icon: BiUserCircle,
-      body: 'Dive right in, no sign-up hoops to jump through.',
+      body: currentLang === 'zh' ? '直接开始使用，无需注册，没有繁琐的步骤。' : 'Dive right in, no sign-up hoops to jump through.',
       id: 'no-registration',
-      label: 'No Registration',
+      label: currentLang === 'zh' ? '无需注册' : 'No Registration',
     },
     {
       Icon: BsSoundwave,
-      body: `Explore ${count} unique soundscapes, from rainforests to cityscapes.`,
+      body: currentLang === 'zh' ? `探索${count}个独特的音景，从雨林到城市景观。` : `Explore ${count} unique soundscapes, from rainforests to cityscapes.`,
       id: 'diverse-sounds',
-      label: 'Diverse Sounds',
+      label: currentLang === 'zh' ? '丰富音效' : 'Diverse Sounds',
     },
     {
       Icon: RxMixerHorizontal,
-      body: 'Craft your perfect soundscape by blending and adjusting sounds.',
+      body: currentLang === 'zh' ? '通过混合和调整声音，打造您完美的音景。' : 'Craft your perfect soundscape by blending and adjusting sounds.',
       id: 'customizable-mixes',
-      label: 'Customizable Mixes',
+      label: currentLang === 'zh' ? '自定义混音' : 'Customizable Mixes',
     },
     {
       Icon: BiLogoGithub,
-      body: 'Contribute and collaborate, making the best even better.',
+      body: currentLang === 'zh' ? '贡献和协作，让最好的变得更好。' : 'Contribute and collaborate, making the best even better.',
       id: 'open-source',
-      label: 'Open-Source',
+      label: currentLang === 'zh' ? '开源项目' : 'Open-Source',
       link: {
-        label: 'Source Code',
+        label: currentLang === 'zh' ? '源代码' : 'Source Code',
         url: 'https://github.com/remvze/moodist',
       },
     },
     {
       Icon: BsStars,
-      body: 'Uninterrupted immersion, focus on the sounds, not the tech.',
+      body: currentLang === 'zh' ? '不间断的沉浸体验，专注于声音，而不是技术。' : 'Uninterrupted immersion, focus on the sounds, not the tech.',
       id: 'seamless-experience',
-      label: 'Seamless Experience',
+      label: currentLang === 'zh' ? '流畅体验' : 'Seamless Experience',
     },
     {
       Icon: BsStars,
-      body: 'Spread the calm, easily share your customized sound blends.',
+      body: currentLang === 'zh' ? '传播平静，轻松分享您定制的音效组合。' : 'Spread the calm, easily share your customized sound blends.',
       id: 'share-selections',
-      label: 'Share Selections',
+      label: currentLang === 'zh' ? '分享选择' : 'Share Selections',
     },
     {
       Icon: BsStars,
-      body: 'Lock in your favorite mixes for instant return to your sonic haven.',
+      body: currentLang === 'zh' ? '锁定您最喜爱的混音，立即回到您的音效天堂。' : 'Lock in your favorite mixes for instant return to your sonic haven.',
       id: 'save-presets',
-      label: 'Save Presets',
+      label: currentLang === 'zh' ? '保存预设' : 'Save Presets',
       soon: true,
     },
   ];
@@ -78,7 +113,7 @@ export function Features() {
           </div>
         </div>
 
-        <h2 className={styles.title}>Features</h2>
+        <h2 className={styles.title}>{featuresTitle}</h2>
 
         <div className={styles.features}>
           {features.map(feature => (
@@ -97,7 +132,7 @@ export function Features() {
                 </a>
               )}
 
-              {feature.soon && <div className={styles.soon}>Coming Soon</div>}
+              {feature.soon && <div className={styles.soon}>{comingSoonText}</div>}
             </div>
           ))}
         </div>

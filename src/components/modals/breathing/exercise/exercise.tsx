@@ -8,6 +8,18 @@ import styles from './exercise.module.css';
 type Exercise = 'Box Breathing' | 'Resonant Breathing' | '4-7-8 Breathing';
 type Phase = 'inhale' | 'exhale' | 'holdInhale' | 'holdExhale';
 
+// 安全地获取localStorage
+function getLocalStorageItem(key: string, defaultValue: string = 'en'): string {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    try {
+      return localStorage.getItem(key) || defaultValue;
+    } catch {
+      return defaultValue;
+    }
+  }
+  return defaultValue;
+}
+
 const EXERCISE_PHASES: Record<Exercise, Phase[]> = {
   '4-7-8 Breathing': ['inhale', 'holdInhale', 'exhale'],
   'Box Breathing': ['inhale', 'holdInhale', 'exhale', 'holdExhale'],
@@ -20,17 +32,69 @@ const EXERCISE_DURATIONS: Record<Exercise, Partial<Record<Phase, number>>> = {
   'Resonant Breathing': { exhale: 5, inhale: 5 }, // No holdExhale
 };
 
-const PHASE_LABELS: Record<Phase, string> = {
-  exhale: 'Exhale',
-  holdExhale: 'Hold',
-  holdInhale: 'Hold',
-  inhale: 'Inhale',
-};
+// 获取本地化的阶段标签
+function getLocalizedPhaseLabels(): Record<Phase, string> {
+  const currentLang = getLocalStorageItem('moodist-language');
+  
+  if (currentLang === 'zh') {
+    return {
+      exhale: '呼气',
+      holdExhale: '保持',
+      holdInhale: '保持',
+      inhale: '吸气',
+    };
+  }
+  
+  return {
+    exhale: 'Exhale',
+    holdExhale: 'Hold',
+    holdInhale: 'Hold',
+    inhale: 'Inhale',
+  };
+}
+
+// 获取本地化的练习名称
+function getLocalizedExerciseName(exercise: Exercise): string {
+  const currentLang = getLocalStorageItem('moodist-language');
+  
+  if (currentLang === 'zh') {
+    switch (exercise) {
+      case 'Box Breathing':
+        return '方形呼吸';
+      case 'Resonant Breathing':
+        return '共振呼吸';
+      case '4-7-8 Breathing':
+        return '4-7-8呼吸';
+      default:
+        return exercise;
+    }
+  }
+  
+  return exercise;
+}
 
 export function Exercise() {
   const [selectedExercise, setSelectedExercise] =
     useState<Exercise>('4-7-8 Breathing');
   const [phaseIndex, setPhaseIndex] = useState(0);
+  const [currentLang, setCurrentLang] = useState('en');
+
+  // 在客户端初始化语言
+  useEffect(() => {
+    const lang = getLocalStorageItem('moodist-language');
+    setCurrentLang(lang);
+    
+    // 监听语言变化
+    const handleLanguageChange = (event: CustomEvent) => {
+      setCurrentLang(event.detail.language);
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
+    
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
+    };
+  }, []);
 
   const phases = useMemo(
     () => EXERCISE_PHASES[selectedExercise],
@@ -92,6 +156,9 @@ export function Exercise() {
     return () => clearInterval(interval);
   }, []);
 
+  // 获取本地化的阶段标签
+  const phaseLabels = getLocalizedPhaseLabels();
+
   return (
     <>
       <div className={styles.exercise}>
@@ -105,7 +172,7 @@ export function Exercise() {
           key={selectedExercise}
           variants={animationVariants}
         />
-        <p className={styles.phase}>{PHASE_LABELS[currentPhase]}</p>
+        <p className={styles.phase}>{phaseLabels[currentPhase]}</p>
       </div>
 
       <div className={styles.selectWrapper}>
@@ -116,7 +183,7 @@ export function Exercise() {
         >
           {Object.keys(EXERCISE_PHASES).map(exercise => (
             <option key={exercise} value={exercise}>
-              {exercise}
+              {getLocalizedExerciseName(exercise as Exercise)}
             </option>
           ))}
         </select>

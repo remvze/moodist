@@ -16,12 +16,19 @@ import Binary from './binary.astro';
         </div>
       </div>
 
-      <h2 class="title"><span>Open Source</span></h2>
-      <p class="desc">Moodist is free and open-source!</p>
+      <h2 class="title">
+        <span data-lang="en">Open Source</span>
+        <span data-lang="zh">开源项目</span>
+      </h2>
+      <p class="desc">
+        <span data-lang="en">Moodist is free and open-source!</span>
+        <span data-lang="zh">Moodist免费且开源！</span>
+      </p>
 
       <div class="button">
         <SpecialButton href="https://github.com/remvze/moodist">
-          Source Code
+          <span data-lang="en">Source Code</span>
+          <span data-lang="zh">源代码</span>
         </SpecialButton>
       </div>
 
@@ -29,6 +36,47 @@ import Binary from './binary.astro';
     </div>
   </Container>
 </div>
+
+<script>
+  // Language switching logic
+  function getCurrentLanguage() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        return localStorage.getItem('moodist-language') || 'en';
+      } catch {
+        return 'en';
+      }
+    }
+    return 'en';
+  }
+
+  function updateLanguageDisplay(lang) {
+    const elements = document.querySelectorAll(`[data-lang="${lang}"]`);
+    elements.forEach(el => {
+      if (el instanceof HTMLElement) {
+        el.style.display = 'block';
+      }
+    });
+    
+    const otherElements = document.querySelectorAll(`[data-lang="${lang === 'en' ? 'zh' : 'en'}"]`);
+    otherElements.forEach(el => {
+      if (el instanceof HTMLElement) {
+        el.style.display = 'none';
+      }
+    });
+  }
+  
+  // Initialize with current language
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentLang = getCurrentLanguage();
+    updateLanguageDisplay(currentLang);
+    
+    // Listen for language changes from other components
+    window.addEventListener('languageChanged', (event) => {
+      updateLanguageDisplay(event.detail.language);
+    });
+  });
+</script>
 
 <style>
   .source {

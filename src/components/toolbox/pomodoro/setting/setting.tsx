@@ -4,6 +4,18 @@ import { Modal } from '@/components/modal';
 
 import styles from './setting.module.css';
 
+// 安全地获取localStorage
+function getLocalStorageItem(key: string, defaultValue: string = 'en'): string {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    try {
+      return localStorage.getItem(key) || defaultValue;
+    } catch {
+      return defaultValue;
+    }
+  }
+  return defaultValue;
+}
+
 interface SettingProps {
   onChange: (newTimes: Record<string, number>) => void;
   onClose: () => void;
@@ -13,6 +25,24 @@ interface SettingProps {
 
 export function Setting({ onChange, onClose, show, times }: SettingProps) {
   const [values, setValues] = useState<Record<string, number | string>>(times);
+  const [currentLang, setCurrentLang] = useState('en');
+
+  // 在客户端初始化语言
+  useEffect(() => {
+    const lang = getLocalStorageItem('moodist-language');
+    setCurrentLang(lang);
+    
+    // 监听语言变化
+    const handleLanguageChange = (event: CustomEvent) => {
+      setCurrentLang(event.detail.language);
+    };
+    
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
+    
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
+    };
+  }, []);
 
   useEffect(() => {
     if (show) setValues(times);
@@ -44,36 +74,44 @@ export function Setting({ onChange, onClose, show, times }: SettingProps) {
     onClose();
   };
 
+  // 获取本地化文本
+  const titleText = currentLang === 'zh' ? '更改时间' : 'Change Times';
+  const pomodoroLabel = currentLang === 'zh' ? '番茄钟' : 'Pomodoro';
+  const shortBreakLabel = currentLang === 'zh' ? '短休息' : 'Short Break';
+  const longBreakLabel = currentLang === 'zh' ? '长休息' : 'Long Break';
+  const cancelText = currentLang === 'zh' ? '取消' : 'Cancel';
+  const saveText = currentLang === 'zh' ? '保存' : 'Save';
+
   return (
     <Modal lockBody={false} show={show} onClose={onClose}>
-      <h2 className={styles.title}>Change Times</h2>
+      <h2 className={styles.title}>{titleText}</h2>
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <Field
           id="pomodoro"
-          label="Pomodoro"
+          label={pomodoroLabel}
           value={values.pomodoro}
           onChange={handleChange('pomodoro')}
         />
         <Field
           id="short"
-          label="Short Break"
+          label={shortBreakLabel}
           value={values.short}
           onChange={handleChange('short')}
         />
         <Field
           id="long"
-          label="Long Break"
+          label={longBreakLabel}
           value={values.long}
           onChange={handleChange('long')}
         />
 
         <div className={styles.buttons}>
           <button type="button" onClick={handleCancel}>
-            Cancel
+            {cancelText}
           </button>
           <button className={styles.primary} type="submit">
-            Save
+            {saveText}
           </button>
         </div>
       </form>

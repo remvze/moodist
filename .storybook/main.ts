@@ -22,11 +22,11 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
-  
+
   viteFinal(config) {
     return {
       ...config,
-      
+
       define: {
         'process.env.NODE_DEBUG': false, // https://github.com/storybookjs/storybook/issues/18920
       },
@@ -39,8 +39,8 @@ const config: StorybookConfig = {
           },
         ],
       },
-    }
-  }
+    };
+  },
 };
 
 export default config;
