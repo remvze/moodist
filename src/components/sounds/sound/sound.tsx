@@ -14,6 +14,7 @@ import styles from './sound.module.css';
 import type { Sound as SoundType } from '@/data/types';
 
 import { useKeyboardButton } from '@/hooks/use-keyboard-button';
+import { BrowserDetect } from '@/helpers/browser-detect';
 
 interface SoundProps extends SoundType {
   functional: boolean;
@@ -43,7 +44,12 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
 
   const isLoading = useLoadingStore(state => state.loaders[src]);
 
-  const sound = useSound(src, { loop: true, volume: adjustedVolume });
+  const sound = useSound(
+    src,
+    { loop: true, volume: adjustedVolume },
+    BrowserDetect.isIOS() 
+  );
+
 
   useEffect(() => {
     if (locked) return;
