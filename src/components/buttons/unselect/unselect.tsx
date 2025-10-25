@@ -41,30 +41,31 @@ export function UnselectButton() {
             initial="hidden"
             variants={variants}
           >
-            <Tooltip
-              showDelay={0}
-              content={
-                hasHistory
-                  ? 'Restore unselected sounds.'
-                  : 'Unselect all sounds.'
-              }
-            >
-              <button
-                disabled={noSelected && !hasHistory}
-                aria-label={
+            <Tooltip.Provider delayDuration={0}>
+              <Tooltip
+                content={
                   hasHistory
-                    ? 'Restore Unselected Sounds'
-                    : 'Unselect All Sounds'
+                    ? 'Restore unselected sounds.'
+                    : 'Unselect all sounds.'
                 }
-                className={cn(
-                  styles.unselectButton,
-                  noSelected && !hasHistory && styles.disabled,
-                )}
-                onClick={handleToggle}
               >
-                {hasHistory ? <BiUndo /> : <BiTrash />}
-              </button>
-            </Tooltip>
+                <button
+                  disabled={noSelected && !hasHistory}
+                  aria-label={
+                    hasHistory
+                      ? 'Restore Unselected Sounds'
+                      : 'Unselect All Sounds'
+                  }
+                  className={cn(
+                    styles.unselectButton,
+                    noSelected && !hasHistory && styles.disabled,
+                  )}
+                  onClick={handleToggle}
+                >
+                  {hasHistory ? <BiUndo /> : <BiTrash />}
+                </button>
+              </Tooltip>
+            </Tooltip.Provider>
           </motion.div>
         )}
       </AnimatePresence>

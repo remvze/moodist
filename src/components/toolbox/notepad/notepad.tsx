@@ -12,6 +12,7 @@ import { useCopy } from '@/hooks/use-copy';
 import { download } from '@/helpers/download';
 
 import styles from './notepad.module.css';
+import { Tooltip } from '@/components/tooltip';
 
 interface NotepadProps {
   onClose: () => void;
@@ -50,23 +51,25 @@ export function Notepad({ onClose, show }: NotepadProps) {
       <header className={styles.header}>
         <h2 className={styles.label}>Your Note</h2>
         <div className={styles.buttons}>
-          <Button
-            icon={copying ? <FaCheck /> : <LuCopy />}
-            tooltip="Copy Note"
-            onClick={() => copy(note)}
-          />
-          <Button
-            icon={<LuDownload />}
-            tooltip="Download Note"
-            onClick={() => download('Moodit Note.txt', note)}
-          />
-          <Button
-            critical={!history}
-            icon={history ? <FaUndo /> : <BiTrash />}
-            recommended={!!history}
-            tooltip={history ? 'Restore Note' : 'Clear Note'}
-            onClick={() => (history ? restore() : clear())}
-          />
+          <Tooltip.Provider delayDuration={0}>
+            <Button
+              icon={copying ? <FaCheck /> : <LuCopy />}
+              tooltip="Copy Note"
+              onClick={() => copy(note)}
+            />
+            <Button
+              icon={<LuDownload />}
+              tooltip="Download Note"
+              onClick={() => download('Moodit Note.txt', note)}
+            />
+            <Button
+              critical={!history}
+              icon={history ? <FaUndo /> : <BiTrash />}
+              recommended={!!history}
+              tooltip={history ? 'Restore Note' : 'Clear Note'}
+              onClick={() => (history ? restore() : clear())}
+            />
+          </Tooltip.Provider>
         </div>
       </header>
 

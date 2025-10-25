@@ -20,14 +20,16 @@ export function Button({
   tooltip,
 }: ButtonProps) {
   return (
-    <Tooltip content={tooltip} placement="bottom" showDelay={0}>
-      <button
-        className={cn(styles.button, smallIcon && styles.smallIcon)}
-        disabled={disabled}
-        onClick={onClick}
-      >
-        {icon}
-      </button>
-    </Tooltip>
+    <Tooltip.Provider delayDuration={0}>
+      <Tooltip content={tooltip} placement="bottom">
+        <button
+          className={cn(styles.button, smallIcon && styles.smallIcon)}
+          disabled={disabled}
+          onClick={onClick}
+        >
+          {icon}
+        </button>
+      </Tooltip>
+    </Tooltip.Provider>
   );
 }

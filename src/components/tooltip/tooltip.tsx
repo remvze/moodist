@@ -24,14 +24,12 @@ interface TooltipProps {
   children: JSX.Element;
   content: string;
   placement?: Placement;
-  showDelay?: number;
 }
 
 export function Tooltip({
   children,
   content,
   placement = 'top',
-  showDelay = 500,
 }: TooltipProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -52,35 +50,56 @@ export function Tooltip({
   const variants = mix(fade(), slide!);
 
   return (
-    <TooltipPrimitive.Provider delayDuration={showDelay}>
-      <TooltipPrimitive.Root open={isOpen} onOpenChange={o => setIsOpen(o)}>
-        <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
+    <TooltipPrimitive.Root open={isOpen} onOpenChange={o => setIsOpen(o)}>
+      <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
 
-        <AnimatePresence>
-          {isOpen && (
-            <TooltipPrimitive.Portal forceMount>
-              <TooltipPrimitive.Content
-                align={align}
-                asChild
+      <AnimatePresence>
+        {isOpen && (
+          <TooltipPrimitive.Portal forceMount>
+            <TooltipPrimitive.Content
+              align={align}
+              asChild
+              className={styles.tooltip}
+              collisionPadding={8}
+              side={side}
+              sideOffset={12}
+            >
+              <motion.div
+                animate="show"
                 className={styles.tooltip}
-                collisionPadding={8}
-                side={side}
-                sideOffset={12}
+                exit="hidden"
+                initial="hidden"
+                variants={variants}
               >
-                <motion.div
-                  animate="show"
-                  className={styles.tooltip}
-                  exit="hidden"
-                  initial="hidden"
-                  variants={variants}
-                >
-                  {content}
-                </motion.div>
-              </TooltipPrimitive.Content>
-            </TooltipPrimitive.Portal>
-          )}
-        </AnimatePresence>
-      </TooltipPrimitive.Root>
+                {content}
+              </motion.div>
+            </TooltipPrimitive.Content>
+          </TooltipPrimitive.Portal>
+        )}
+      </AnimatePresence>
+    </TooltipPrimitive.Root>
+  );
+}
+
+interface TooltipProviderProps {
+  children: React.ReactNode;
+  delayDuration?: number;
+  skipDelayDuration?: number;
+}
+
+function Provider({
+  children,
+  delayDuration = 500,
+  skipDelayDuration = 0,
+}: TooltipProviderProps) {
+  return (
+    <TooltipPrimitive.Provider
+      delayDuration={delayDuration}
+      skipDelayDuration={skipDelayDuration}
+    >
+      {children}
     </TooltipPrimitive.Provider>
   );
 }
+
+Tooltip.Provider = Provider;

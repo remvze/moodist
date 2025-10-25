@@ -9,14 +9,16 @@ export function Shuffle() {
   const shuffle = useSoundStore(state => state.shuffle);
 
   return (
-    <Tooltip content="Shuffle sounds" showDelay={0}>
-      <button
-        aria-label="Shuffle sounds"
-        className={styles.button}
-        onClick={shuffle}
-      >
-        <BiShuffle />
-      </button>
-    </Tooltip>
+    <Tooltip.Provider delayDuration={0}>
+      <Tooltip content="Shuffle sounds">
+        <button
+          aria-label="Shuffle sounds"
+          className={styles.button}
+          onClick={shuffle}
+        >
+          <BiShuffle />
+        </button>
+      </Tooltip>
+    </Tooltip.Provider>
   );
 }
