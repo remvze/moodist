@@ -19,6 +19,10 @@
     cursor: not-allowed;
   }
 
+  &:active {
+    transform: scale(0.97);
+  }
+
   &:hover,
   &:focus-visible {
     background-color: var(--color-neutral-200);

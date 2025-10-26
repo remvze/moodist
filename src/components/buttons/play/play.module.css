@@ -18,6 +18,10 @@
     background-color: var(--color-neutral-800);
   }
 
+  &:not(.disabled):active {
+    transform: scale(0.97);
+  }
+
   &:disabled,
   &.disabled {
     cursor: not-allowed;
