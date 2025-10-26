@@ -6,6 +6,7 @@
   justify-content: center;
   padding: 25px 20px;
   text-align: center;
+  cursor: pointer;
   background: linear-gradient(rgb(24 24 27 / 50%), transparent);
   border: 1px solid var(--color-neutral-200);
   border-radius: 12px;
@@ -107,7 +108,6 @@
     font-size: var(--font-sm);
     font-weight: 600;
     line-height: 1.6;
-    cursor: default;
   }
 }
 
