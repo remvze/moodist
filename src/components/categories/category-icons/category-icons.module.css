@@ -1,0 +1,50 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 80px;
+
+  & .title {
+    font-family: var(--font-display);
+    font-size: var(--font-lg);
+    font-weight: 600;
+    text-align: center;
+  }
+
+  & .categoryIconsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+
+    & a {
+      color: inherit;
+      text-decoration: none;
+
+      & .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        font-size: var(--font-lg);
+        background: linear-gradient(
+          var(--color-neutral-50),
+          var(--color-neutral-100)
+        );
+        border: 1px solid var(--color-neutral-300);
+        border-radius: 50%;
+        transition: 0.2s;
+
+        &:hover {
+          background: linear-gradient(
+            var(--color-neutral-100),
+            var(--color-neutral-200)
+          );
+          transform: scale(1.15);
+        }
+      }
+    }
+  }
+}
