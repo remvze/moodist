@@ -1,0 +1,83 @@
+# 多平台构建 Dockerfile
+# 使用: docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile.multiplatform -t wheesys/moodist:latest --push .
+
+# 使用官方Node.js镜像作为构建环境
+FROM --platform=linux/amd64,linux/arm64 node:20-alpine AS base
+
+# 安装必要的系统依赖
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+
+# 复制package文件
+COPY package*.json ./
+
+# 安装依赖（使用npm ci进行更快、更可靠的安装）
+RUN npm ci --only=production && npm cache clean --force
+
+# 构建阶段
+FROM base AS builder
+COPY . .
+
+# 设置构建环境变量
+ARG NODE_ENV=production
+ARG BUILD_DATE
+ARG VERSION
+ARG VCS_REF
+
+ENV NODE_ENV=$NODE_ENV
+ENV BUILD_DATE=$BUILD_DATE
+ENV VERSION=$VERSION
+ENV VCS_REF=$VCS_REF
+
+# 构建应用
+RUN npm run build
+
+# 生产运行阶段 - 使用轻量级Nginx
+FROM nginx:alpine AS runtime
+
+# 安装curl用于健康检查
+RUN apk add --no-cache curl
+
+# 创建非root用户提高安全性
+RUN addgroup -g 1001 -S nginx && \
+    adduser -S nginx -u 1001 -G nginx
+
+# 复制自定义nginx配置
+COPY docker/nginx/nginx.conf /etc/nginx/nginx.conf
+
+# 从构建阶段复制构建产物
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# 设置正确的权限
+RUN chown -R nginx:nginx /usr/share/nginx/html && \
+    chown -R nginx:nginx /var/cache/nginx && \
+    chown -R nginx:nginx /var/log/nginx && \
+    chown -R nginx:nginx /etc/nginx/conf.d
+
+# 创建nginx运行时需要的目录
+RUN touch /var/run/nginx.pid && \
+    chown -R nginx:nginx /var/run/nginx.pid
+
+# 切换到非root用户
+USER nginx
+
+# 暴露端口
+EXPOSE 8080
+
+# 健康检查
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:8080/ || exit 1
+
+# 启动nginx
+CMD ["nginx", "-g", "daemon off;"]
+
+# 添加标签信息
+LABEL maintainer="walllee" \
+      org.opencontainers.image.title="Moodist" \
+      org.opencontainers.image.description="Ambient sounds for focus and calm - 多语言环境音应用" \
+      org.opencontainers.image.version=$VERSION \
+      org.opencontainers.image.created=$BUILD_DATE \
+      org.opencontainers.image.revision=$VCS_REF \
+      org.opencontainers.image.source="https://github.com/wheesys/moodist" \
+      org.opencontainers.image.licenses="MIT"

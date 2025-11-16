@@ -1,3 +1,9 @@
+## 🌍 Language / 语言
+
+**[English](README.md)** | **[简体中文](README.zh-CN.md)**
+
+---
+
 <div align="center">
   <img src="/assets/banner.png" alt="Moodist Logo Banner" />
   <h2>Moodist 🌲</h2>

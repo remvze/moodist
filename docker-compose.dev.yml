@@ -1,0 +1,88 @@
+version: '3.8'
+
+services:
+  moodist-dev:
+    # 构建上下文
+    build:
+      context: .
+      dockerfile: Dockerfile.optimized
+      target: builder  # 只构建到builder阶段用于开发
+      args:
+        - NODE_ENV=development
+        - BUILD_DATE=${BUILD_DATE:-$(date -u +'%Y-%m-%dT%H:%M:%SZ')}
+        - VERSION=dev
+        - VCS_REF=${VCS_REF:-dev}
+
+    container_name: moodist-dev
+    restart: unless-stopped
+
+    # 开发端口映射
+    ports:
+      - "3000:3000"  # Astro开发服务器
+      - "8080:8080"  # 预览服务器
+
+    # 开发环境变量
+    environment:
+      - NODE_ENV=development
+      - TZ=Asia/Shanghai
+
+    # 卷挂载用于开发
+    volumes:
+      - .:/app
+      - /app/node_modules  # 防止node_modules被覆盖
+      - moodist-dist:/app/dist
+
+    # 工作目录
+    working_dir: /app
+
+    # 开发命令
+    command: npm run dev
+
+    # 健康检查
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+    # 开发资源配置
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+
+    # 日志配置
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"
+
+    networks:
+      - moodist-network
+
+  # 开发工具容器
+  dev-tools:
+    image: node:20-alpine
+    container_name: moodist-dev-tools
+    working_dir: /app
+    volumes:
+      - .:/app
+    networks:
+      - moodist-network
+    profiles:
+      - tools
+    command: sh -c "npm install && tail -f /dev/null"
+
+volumes:
+  moodist-dist:
+    driver: local
+
+networks:
+  moodist-network:
+    driver: bridge

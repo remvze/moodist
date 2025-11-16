@@ -21,7 +21,14 @@
     "release:minor": "npm run release -- --release-as minor",
     "release:patch": "npm run release -- --release-as patch",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "docker:build": "./scripts/build-local.sh",
+    "docker:push": "./scripts/build-docker-simple.sh",
+    "docker:push-and-upload": "./scripts/build-docker-simple.sh latest push",
+    "docker:multi": "./scripts/build-docker-compatible.sh",
+    "docker:dev": "docker-compose -f docker-compose.dev.yml up -d",
+    "docker:prod": "docker-compose -f docker-compose.optimized.yml up -d",
+    "docker:logs": "docker-compose -f docker-compose.optimized.yml logs -f"
   },
   "dependencies": {
     "@astrojs/react": "3.6.0",
