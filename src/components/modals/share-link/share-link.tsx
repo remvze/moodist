@@ -51,14 +51,16 @@ export function ShareLinkModal({ onClose, show }: ShareLinkModalProps) {
 
   return (
     <Modal show={show} onClose={onClose}>
-      <h1 className={styles.heading}>Share your sound selection!</h1>
-      <p className={styles.desc}>
+      <h1 className={styles.heading} data-i18n="modals.share.title">
+        Share your sound selection!
+      </h1>
+      <p className={styles.desc} data-i18n="modals.share.description">
         Copy and send the following link to the person you want to share your
         selection with.
       </p>
       <div className={styles.inputWrapper}>
         <input readOnly type="text" value={url} />
-        <button onClick={() => copy(url)}>
+        <button onClick={() => copy(url)} aria-label="Copy link">
           {copying ? <IoCheckmark /> : <IoCopyOutline />}
         </button>
       </div>

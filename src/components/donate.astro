@@ -1,17 +1,25 @@
 ---
 import { Container } from './container';
+import { getTranslation } from '@/data/i18n';
+
+// Get language from URL path
+const url = Astro.url;
+const pathname = url.pathname;
+const isZhPage = pathname === '/zh' || pathname.startsWith('/zh/');
+const lang = isZhPage ? 'zh-CN' : 'en';
+const t = getTranslation(lang);
 ---
 
 <Container>
   <section class="wrapper">
     <p class="text">
-      Enjoy Moodist?{' '}
+      {t.enjoyMoodist}{' '}
       <a
         href="https://buymeacoffee.com/remvze"
         rel="noreferrer"
         target="_blank"
       >
-        Support with a donation!
+        {t.supportWithDonation}
       </a>
     </p>
   </section>

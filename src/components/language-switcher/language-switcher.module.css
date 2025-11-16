@@ -1,0 +1,43 @@
+.languageSwitcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 8px;
+  background-color: var(--color-neutral-50);
+  color: var(--color-foreground);
+  font-size: var(--font-xsm);
+  transition: all 0.2s ease;
+}
+
+.icon {
+  color: var(--color-foreground-subtle);
+  font-size: 14px;
+}
+
+.select {
+  background: transparent;
+  border: none;
+  color: var(--color-foreground);
+  font-size: var(--font-xsm);
+  cursor: pointer;
+  outline: none;
+  padding: 2px;
+  border-radius: 4px;
+  min-width: 80px;
+}
+
+.select:hover {
+  background-color: var(--color-neutral-100);
+}
+
+.select:focus-visible {
+  outline: 2px solid var(--color-neutral-400);
+  outline-offset: 2px;
+}
+
+.languageSwitcher:hover {
+  background-color: var(--color-neutral-100);
+  border-color: var(--color-neutral-300);
+}

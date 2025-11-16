@@ -1,4 +1,5 @@
 import { useSoundStore } from '@/stores/sound';
+import { useTranslation } from '@/hooks/useTranslation';
 
 import styles from './range.module.css';
 
@@ -8,6 +9,7 @@ interface RangeProps {
 }
 
 export function Range({ id, label }: RangeProps) {
+  const { t } = useTranslation();
   const setVolume = useSoundStore(state => state.setVolume);
   const volume = useSoundStore(state => state.sounds[id].volume);
   const isSelected = useSoundStore(state => state.sounds[id].isSelected);
@@ -15,7 +17,7 @@ export function Range({ id, label }: RangeProps) {
 
   return (
     <input
-      aria-label={`${label} sound volume`}
+      aria-label={`${label} ${t('volume').toLowerCase()}`}
       autoComplete="off"
       className={styles.range}
       disabled={!isSelected}

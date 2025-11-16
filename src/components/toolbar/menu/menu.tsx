@@ -32,6 +32,7 @@ import { IsochronicModal } from '@/components/modals/isochronic';
 import { LofiModal } from '@/components/modals/lofi';
 import { Pomodoro, Notepad, Todo, Countdown } from '@/components/toolbox';
 import { Slider } from '@/components/slider';
+import { useTranslation } from '@/hooks/useTranslation';
 
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
@@ -41,6 +42,7 @@ import { useCloseListener } from '@/hooks/use-close-listener';
 import { closeModals } from '@/lib/modal';
 
 export function Menu() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   const noSelected = useSoundStore(state => state.noSelected());
@@ -103,7 +105,7 @@ export function Menu() {
       <div className={styles.wrapper}>
         <DropdownMenu.Root open={isOpen} onOpenChange={o => setIsOpen(o)}>
           <DropdownMenu.Trigger asChild>
-            <button aria-label="Menu" className={styles.menuButton}>
+            <button aria-label={t('menu')} className={styles.menuButton}>
               {isOpen ? <IoClose /> : <IoMenu />}
             </button>
           </DropdownMenu.Trigger>
@@ -147,7 +149,7 @@ export function Menu() {
                     <Divider />
 
                     <div className={styles.globalVolume}>
-                      <label htmlFor="global-volume">Global Volume</label>
+                      <label htmlFor="global-volume">{t('globalVolume')}</label>
                       <Slider
                         max={100}
                         min={0}

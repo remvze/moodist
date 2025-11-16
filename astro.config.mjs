@@ -33,4 +33,9 @@ export default defineConfig({
       },
     }),
   ],
+  vite: {
+    define: {
+      global: 'globalThis',
+    },
+  },
 });

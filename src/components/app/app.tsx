@@ -4,6 +4,8 @@ import { BiSolidHeart } from 'react-icons/bi/index';
 import { Howler } from 'howler';
 
 import { useSoundStore } from '@/stores/sound';
+import { useLocalizedSounds } from '@/hooks/useLocalizedSounds';
+import { useTranslation } from '@/hooks/useTranslation';
 
 import { Container } from '@/components/container';
 import { StoreConsumer } from '@/components/store-consumer';
@@ -21,15 +23,17 @@ import type { Sound } from '@/data/types';
 import { subscribe } from '@/lib/event';
 
 export function App() {
-  const categories = useMemo(() => sounds.categories, []);
+  const localizedCategories = useLocalizedSounds();
+  const { t } = useTranslation();
 
+  const categories = useMemo(() => sounds.categories, []);
   const favorites = useSoundStore(useShallow(state => state.getFavorites()));
   const pause = useSoundStore(state => state.pause);
   const lock = useSoundStore(state => state.lock);
   const unlock = useSoundStore(state => state.unlock);
 
   const favoriteSounds = useMemo(() => {
-    const favoriteSounds = categories
+    const favoriteSounds = localizedCategories
       .map(category => category.sounds)
       .flat()
       .filter(sound => favorites.includes(sound.id));
@@ -40,7 +44,7 @@ export function App() {
     return favorites.map(favorite =>
       favoriteSounds.find(sound => sound.id === favorite),
     );
-  }, [favorites, categories]);
+  }, [favorites, localizedCategories]);
 
   useEffect(() => {
     const onChange = () => {
@@ -79,12 +83,12 @@ export function App() {
         icon: <BiSolidHeart />,
         id: 'favorites',
         sounds: favoriteSounds as Array<Sound>,
-        title: 'Favorites',
+        title: t('favorite'),
       });
     }
 
-    return [...favorites, ...categories];
-  }, [favoriteSounds, categories]);
+    return [...favorites, ...localizedCategories];
+  }, [favoriteSounds, localizedCategories, t]);
 
   return (
     <SnackbarProvider>

@@ -4,11 +4,13 @@ import { useHotkeys } from 'react-hotkeys-hook';
 
 import { useSoundStore } from '@/stores/sound';
 import { useSnackbar } from '@/contexts/snackbar';
+import { useTranslation } from '@/hooks/useTranslation';
 import { cn } from '@/helpers/styles';
 
 import styles from './play.module.css';
 
 export function PlayButton() {
+  const { t } = useTranslation();
   const isPlaying = useSoundStore(state => state.isPlaying);
   const pause = useSoundStore(state => state.pause);
   const toggle = useSoundStore(state => state.togglePlay);
@@ -42,14 +44,14 @@ export function PlayButton() {
           <span aria-hidden="true">
             <BiPause />
           </span>{' '}
-          Pause
+          {t('pause')}
         </>
       ) : (
         <>
           <span aria-hidden="true">
             <BiPlay />
           </span>{' '}
-          Play
+          {t('play')}
         </>
       )}
     </button>

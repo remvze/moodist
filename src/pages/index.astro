@@ -3,18 +3,26 @@ import Layout from '@/layouts/layout.astro';
 
 import Donate from '@/components/donate.astro';
 import Hero from '@/components/hero.astro';
-import About from '@/components/about.astro';
-import Source from '@/components/source.astro';
-import Footer from '@/components/footer.astro';
+import About from '@/components/about-unified.astro';
 
 import { App } from '@/components/app';
+import { getTranslation } from '@/data/i18n';
+
+// Get language from URL path
+const url = Astro.url;
+const pathname = url.pathname;
+const isZhPage = pathname === '/zh' || pathname.startsWith('/zh/');
+const lang = isZhPage ? 'zh-CN' : 'en';
+const t = getTranslation(lang);
+const pageTitle = lang === 'zh-CN' ? 'Moodist：专注与放松的环境音' : 'Moodist: Ambient Sounds for Focus and Calm';
+const pageDesc = lang === 'zh-CN'
+  ? 'Moodist 是一个免费开源的环境音生成器，提供精心挑选的声音，帮您创造放松、专注或创意的理想氛围。'
+  : 'Moodist is a free and open-source ambient sound generator featuring carefully curated sounds. Create your ideal atmosphere for relaxation, focus, or creativity with this versatile tool.';
 ---
 
-<Layout title="Moodist: Ambient Sounds for Focus and Calm">
+<Layout title={pageTitle} description={pageDesc}>
   <Donate />
   <Hero />
   <App client:load />
   <About />
-  <Source />
-  <Footer />
 </Layout>
