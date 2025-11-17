@@ -15,10 +15,11 @@ body {
   font-family: var(--font-body);
   font-size: var(--font-base);
   color: var(--color-foreground);
-  background-color: var(--color-neutral-50);
+  background-color: var(--bg-primary);
   /* Workaround for modal and scrollbar layout shifts */
   width: 100vw;
   overflow-x: hidden;
+  transition: background-color 0.3s ease;
 }
 
 ::selection {

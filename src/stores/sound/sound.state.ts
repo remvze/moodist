@@ -12,6 +12,11 @@ export interface SoundState {
       isFavorite: boolean;
       isSelected: boolean;
       volume: number;
+      speed: number;
+      rate: number;
+      isRandomSpeed: boolean;
+      isRandomVolume: boolean;
+      isRandomRate: boolean;
     };
   } | null;
   isPlaying: boolean;
@@ -22,6 +27,11 @@ export interface SoundState {
       isFavorite: boolean;
       isSelected: boolean;
       volume: number;
+      speed: number;
+      rate: number;
+      isRandomSpeed: boolean;
+      isRandomVolume: boolean;
+      isRandomRate: boolean;
     };
   };
 }
@@ -63,6 +73,11 @@ export const createState: StateCreator<
         isFavorite: false,
         isSelected: false,
         volume: 0.5,
+        speed: 1.0,
+        rate: 1.0,
+        isRandomSpeed: false,
+        isRandomVolume: false,
+        isRandomRate: false,
       };
     });
   });

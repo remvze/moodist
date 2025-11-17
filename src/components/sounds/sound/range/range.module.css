@@ -1,7 +1,47 @@
+.controlsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 150px;
+}
+
+.volumeContainer,
+.speedContainer,
+.rateContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.volumeIcon,
+.speedIcon,
+.rateIcon {
+  color: var(--color-foreground-subtle);
+  font-size: 14px;
+  flex-shrink: 0;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.volumeContainer:hover .volumeIcon,
+.speedContainer:hover .speedIcon,
+.rateContainer:hover .rateIcon {
+  opacity: 1;
+}
+
+/* 当进度条禁用时，容器内的图标也要相应调整 */
+.volumeContainer:has(.range:disabled) .volumeIcon,
+.speedContainer:has(.range:disabled) .speedIcon,
+.rateContainer:has(.range:disabled) .rateIcon {
+  opacity: 0.4;
+}
+
 .range {
   width: 100%;
-  max-width: 120px;
-  margin-top: 10px;
+  flex: 1;
 
   /********** Range Input Styles **********/
 
@@ -25,7 +65,7 @@
 
   &::-webkit-slider-runnable-track {
     height: 0.5rem;
-    background-color: #27272a;
+    background-color: var(--bg-secondary);
     border-radius: 0.5rem;
   }
 
@@ -34,14 +74,14 @@
     height: 14px;
     margin-top: -3px;
     appearance: none;
-    background-color: #3f3f46;
-    border: 1px solid #52525b;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--color-border);
     border-radius: 50%;
   }
 
   &:not(:disabled):focus::-webkit-slider-thumb {
-    border: 1px solid #053a5f;
-    outline: 3px solid #053a5f;
+    border: 1px solid var(--color-foreground);
+    outline: 3px solid var(--color-foreground);
     outline-offset: 0.125rem;
   }
 
@@ -49,7 +89,7 @@
 
   &::-moz-range-track {
     height: 0.5rem;
-    background-color: #27272a;
+    background-color: var(--bg-secondary);
     border-radius: 0.5rem;
   }
 
@@ -57,16 +97,16 @@
     width: 14px;
     height: 14px;
     margin-top: -3px;
-    background-color: #3f3f46;
+    background-color: var(--bg-tertiary);
     border: none;
-    border: 1px solid #52525b;
+    border: 1px solid var(--color-border);
     border-radius: 0;
     border-radius: 50%;
   }
 
   &:not(:disabled):focus::-moz-range-thumb {
-    border: 1px solid #053a5f;
-    outline: 3px solid #053a5f;
+    border: 1px solid var(--color-foreground);
+    outline: 3px solid var(--color-foreground);
     outline-offset: 0.125rem;
   }
 }

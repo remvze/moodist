@@ -1,4 +1,4 @@
-import { useTranslation } from '@/hooks/use-translation';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export function useTranslatedSounds() {
   const { t } = useTranslation();

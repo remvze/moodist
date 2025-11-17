@@ -15,6 +15,7 @@ import { SharedModal } from '@/components/modals/shared';
 import { Toolbar } from '@/components/toolbar';
 import { SnackbarProvider } from '@/contexts/snackbar';
 import { MediaControls } from '@/components/media-controls';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 import { sounds } from '@/data/sounds';
 import { FADE_OUT } from '@/constants/events';
@@ -93,6 +94,7 @@ export function App() {
   return (
     <SnackbarProvider>
       <StoreConsumer>
+        <ThemeToggle />
         <MediaControls />
         <Container>
           <div id="app" />

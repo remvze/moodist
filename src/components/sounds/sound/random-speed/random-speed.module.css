@@ -1,4 +1,4 @@
-.favoriteButton {
+.randomSpeedButton {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,7 +23,7 @@
     outline-offset: 2px;
   }
 
-  &.isFavorite {
+  &.isRandomSpeed {
     color: var(--color-foreground);
     background-color: var(--component-active);
   }
