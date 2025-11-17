@@ -21,10 +21,11 @@ interface SoundProps extends SoundType {
   hidden: boolean;
   selectHidden: (key: string) => void;
   unselectHidden: (key: string) => void;
+  displayMode?: boolean; // 新增：展示模式参数
 }
 
 export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
-  { functional, hidden, icon, id, label, selectHidden, src, unselectHidden },
+  { functional, hidden, icon, id, label, selectHidden, src, unselectHidden, displayMode = false },
   ref,
 ) {
   const isPlaying = useSoundStore(state => state.isPlaying);
@@ -60,12 +61,15 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
   useEffect(() => {
     if (locked) return;
 
-    if (isSelected && isPlaying && functional) {
+    // 在展示模式下或者功能模式下，只要选中且在播放就应该播放
+    const shouldPlay = isSelected && isPlaying && (functional || displayMode);
+
+    if (shouldPlay) {
       sound?.play();
     } else {
       sound?.pause();
     }
-  }, [isSelected, sound, isPlaying, functional, locked]);
+  }, [isSelected, sound, isPlaying, functional, displayMode, locked]);
 
   useEffect(() => {
     if (hidden && isSelected) selectHidden(label);
@@ -75,7 +79,8 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
   // 改进的随机逻辑 - 每次只随机调整一个参数，频率为1分钟
   useEffect(() => {
     const hasAnyRandom = isRandomSpeed || isRandomVolume || isRandomRate;
-    if (!hasAnyRandom || !isSelected || !isPlaying) return;
+    const isActiveMode = functional || displayMode;
+    if (!hasAnyRandom || !isSelected || !isPlaying || !isActiveMode) return;
 
     const interval = setInterval(() => {
       // 获取当前启用的随机选项列表

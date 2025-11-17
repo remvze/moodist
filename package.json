@@ -1,7 +1,7 @@
 {
   "name": "moodist",
   "type": "module",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

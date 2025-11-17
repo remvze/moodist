@@ -39,6 +39,7 @@ export interface Translations {
   pause: string;
   favorite: string;
   volume: string;
+  selected_sounds: string;
 
   // Support & Donate
   supportMe: string;
@@ -261,6 +262,7 @@ export const translations: Record<string, Translations> = {
     pause: 'Pause',
     favorite: 'Favorite',
     volume: 'Volume',
+    selected_sounds: 'Current Sounds',
 
     // Support & Donate
     supportMe: 'Support Me',
@@ -483,6 +485,7 @@ export const translations: Record<string, Translations> = {
     pause: '暂停',
     favorite: '收藏',
     volume: '音量',
+    selected_sounds: '当前声音',
 
     // Support & Donate
     supportMe: '支持我',
