@@ -52,23 +52,23 @@ export function ThemeToggle() {
 
       // 明亮主题 - 参考现代简洁设计，更干净的白色系
       root.style.setProperty('--bg-primary', '#ffffff');          // 主背景 - 纯白色
-      root.style.setProperty('--bg-secondary', '#fafbfc');        // 次要背景 - 极浅灰白
-      root.style.setProperty('--bg-tertiary', '#f6f8fa');         // 第三背景 - 浅灰白
-      root.style.setProperty('--bg-quaternary', '#e1e4e8');       // 第四背景 - 浅灰色
+      root.style.setProperty('--bg-secondary', '#f8fafc');        // 次要背景 - 浅灰白（更深一点）
+      root.style.setProperty('--bg-tertiary', '#f1f5f9');         // 第三背景 - 中浅灰（更深一点）
+      root.style.setProperty('--bg-quaternary', '#e2e8f0');       // 第四背景 - 中灰色（更深一点）
 
       // 前景色 - 明亮主题使用深色文字，确保良好对比度
-      root.style.setProperty('--color-foreground', '#24292f');    // 主前景色 - 深灰（GitHub风格）
-      root.style.setProperty('--color-foreground-subtle', '#656d76'); // 次要前景色 - 中灰色
-      root.style.setProperty('--color-foreground-subtler', '#57606a'); // 更次要前景色 - 深灰色
-      root.style.setProperty('--color-muted', '#8b949e');         // 静音色 - 灰色
-      root.style.setProperty('--color-border', '#d0d7de');        // 边框色 - 柔和浅灰
+      root.style.setProperty('--color-foreground', '#1e293b');    // 主前景色 - 深灰蓝（更深一点）
+      root.style.setProperty('--color-foreground-subtle', '#475569'); // 次要前景色 - 中深灰（更深一点）
+      root.style.setProperty('--color-foreground-subtler', '#64748b'); // 更次要前景色 - 中灰色（更深一点）
+      root.style.setProperty('--color-muted', '#94a3b8');         // 静音色 - 中灰（更深一点）
+      root.style.setProperty('--color-border', '#cbd5e1');        // 边框色 - 中浅灰（更深一点）
 
-      // 组件特定背景
-      root.style.setProperty('--component-bg', '#ffffff');        // 组件背景
-      root.style.setProperty('--component-hover', '#f3f4f6');     // 组件悬停背景
-      root.style.setProperty('--component-active', '#e5e7eb');    // 组件激活背景
-      root.style.setProperty('--modal-bg', '#ffffff');            // 模态框背景
-      root.style.setProperty('--input-bg', '#ffffff');            // 输入框背景
+      // 组件特定背景 - 明亮模式下使用浅色系
+      root.style.setProperty('--component-bg', '#ffffff');        // 组件背景 - 白色
+      root.style.setProperty('--component-hover', '#f8fafc');     // 组件悬停背景 - 浅灰白
+      root.style.setProperty('--component-active', '#f1f5f9');    // 组件激活背景 - 中浅灰
+      root.style.setProperty('--modal-bg', '#ffffff');            // 模态框背景 - 白色
+      root.style.setProperty('--input-bg', '#ffffff');            // 输入框背景 - 白色
 
       // 直接设置body背景为白色
       body.style.backgroundColor = '#ffffff';

@@ -7,7 +7,7 @@
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  color: var(--color-foreground, #1e293b);
+  color: var(--color-foreground);
   transition: all 0.2s ease;
   font-size: 18px;
   line-height: 1;
@@ -17,17 +17,17 @@
   top: 1rem;
   right: 1rem;
   z-index: 1000;
-  background: var(--bg-secondary, #f8fafc);
-  border: 1px solid var(--color-border, #cbd5e1);
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-border);
 }
 
 .themeToggle:hover {
-  background: var(--bg-tertiary, #e2e8f0);
+  background: var(--bg-tertiary);
   transform: scale(1.05);
 }
 
 .themeToggle:focus {
-  outline: 2px solid var(--color-foreground, #1e293b);
+  outline: 2px solid var(--color-foreground);
   outline-offset: 2px;
 }
 
@@ -37,10 +37,10 @@
 
 /* 暗色主题下的特殊样式 */
 :global(.dark-theme) .themeToggle {
-  background: var(--bg-secondary, #27272a);
-  border: 1px solid var(--color-border, #52525b);
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-border);
 }
 
 :global(.dark-theme) .themeToggle:hover {
-  background: var(--bg-tertiary, #3f3f46);
+  background: var(--bg-tertiary);
 }
