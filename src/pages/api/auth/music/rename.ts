@@ -1,44 +1,69 @@
 import type { APIRoute } from 'astro';
 import { updateMusicName } from '@/lib/database';
-import { authenticateUser } from '@/lib/database';
+import { authenticateJWTRequest, parseRequestBody, handleApiError } from '@/lib/jwt-auth-middleware';
 
 export const POST: APIRoute = async ({ request }) => {
+  // 首先进行JWT认证
+  const authResult = await authenticateJWTRequest(request);
+  if (!authResult.success) {
+    return new Response(JSON.stringify({ error: authResult.error!.message }), {
+      status: authResult.error!.status,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
+  // 解析请求体
+  const bodyResult = await parseRequestBody(request, ['musicId', 'name']);
+  if (!bodyResult.success) {
+    return new Response(JSON.stringify({ error: bodyResult.error!.message }), {
+      status: bodyResult.error!.status,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
   try {
-    const body = await request.text();
-
-    if (!body.trim()) {
-      return new Response(JSON.stringify({ error: '请求体不能为空' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-
-    const { musicId, name, username, password } = JSON.parse(body);
+    const { user } = authResult;
+    const { data } = bodyResult;
+    const { musicId, name } = data;
 
     // 验证输入
-    if (!musicId || !name || !username || !password) {
-      return new Response(JSON.stringify({ error: '音乐ID、新名称和用户信息不能为空' }), {
+    if (!musicId || (typeof musicId !== 'string' && typeof musicId !== 'number')) {
+      return new Response(JSON.stringify({
+        error: '音乐ID不能为空且必须是有效的标识符'
+      }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       });
     }
 
-    // 验证用户身份
-    const user = authenticateUser(username, password);
-    if (!user) {
-      return new Response(JSON.stringify({ error: '用户认证失败' }), {
-        status: 401,
-        headers: { 'Content-Type': 'application/json' },
+    if (!name || typeof name !== 'string' || name.trim().length === 0) {
+      return new Response(JSON.stringify({
+        error: '音乐名称不能为空且必须是有效的字符串'
+      }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    // 验证名称长度
+    if (name.trim().length > 100) {
+      return new Response(JSON.stringify({
+        error: '音乐名称长度不能超过100个字符'
+      }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
       });
     }
 
     // 更新音乐名称
-    const success = updateMusicName(musicId, name, user.id);
+    const success = updateMusicName(musicId.toString(), name.trim(), user!.id);
 
     if (!success) {
-      return new Response(JSON.stringify({ error: '音乐不存在或无权限修改' }), {
+      return new Response(JSON.stringify({
+        error: '音乐不存在或无权限修改'
+      }), {
         status: 404,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       });
     }
 
@@ -47,23 +72,10 @@ export const POST: APIRoute = async ({ request }) => {
       message: '音乐名称更新成功'
     }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' }
     });
 
   } catch (error) {
-    console.error('重命名音乐错误:', error);
-
-    let errorMessage = '重命名音乐失败，请稍后再试';
-
-    if (error instanceof SyntaxError && error.message.includes('JSON')) {
-      errorMessage = '请求格式错误';
-    } else if (error instanceof Error) {
-      errorMessage = error.message;
-    }
-
-    return new Response(JSON.stringify({ error: errorMessage }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return handleApiError(error, '重命名音乐');
   }
 };

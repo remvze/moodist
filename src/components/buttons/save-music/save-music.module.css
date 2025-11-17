@@ -1,0 +1,48 @@
+.saveButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 32px; /* 与输入框内容区域高度一致 (14px字体 + 8px*2 = 30px) */
+  padding: 6px 8px;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  line-height: 1;
+  color: var(--color-foreground);
+  cursor: pointer;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 6px; /* 与输入框圆角一致 */
+  transition: 0.2s;
+  gap: 4px;
+  flex-shrink: 0;
+
+  &:hover:not(:disabled) {
+    background-color: var(--bg-tertiary);
+  }
+
+  &:not(.disabled):active {
+    transform: scale(0.97);
+  }
+
+  &:disabled,
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  & span {
+    font-size: var(--font-base);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-muted);
+    outline-offset: 2px;
+  }
+
+  &.saving {
+    background-color: var(--color-muted);
+  }
+}
+
+/* 使用统一的 .loginPrompt 样式，定义在 sounds.module.css 中 */

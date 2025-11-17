@@ -74,9 +74,10 @@
     height: 14px;
     margin-top: -3px;
     appearance: none;
-    background-color: var(--bg-tertiary);
+    background-color: var(--color-neutral-700);
     border: 1px solid var(--color-border);
     border-radius: 50%;
+    box-shadow: 0 0 2px var(--color-neutral-400);
   }
 
   &:not(:disabled):focus::-webkit-slider-thumb {
@@ -97,11 +98,12 @@
     width: 14px;
     height: 14px;
     margin-top: -3px;
-    background-color: var(--bg-tertiary);
+    background-color: var(--color-neutral-700);
     border: none;
     border: 1px solid var(--color-border);
     border-radius: 0;
     border-radius: 50%;
+    box-shadow: 0 0 2px var(--color-neutral-400);
   }
 
   &:not(:disabled):focus::-moz-range-thumb {

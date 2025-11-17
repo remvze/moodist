@@ -5,6 +5,7 @@ import { AnimatePresence } from 'motion/react';
 import { useAuthStore } from '@/stores/auth';
 import { useSoundStore } from '@/stores/sound';
 import { useTranslation } from '@/hooks/useTranslation';
+import { ApiClient } from '@/lib/api-client';
 
 import type { SavedMusic } from '@/lib/database';
 
@@ -16,7 +17,7 @@ interface SavedMusicListProps {
 
 export function SavedMusicList({ onMusicSelect }: SavedMusicListProps) {
   const { t } = useTranslation();
-  const { isAuthenticated, user, sessionPassword } = useAuthStore();
+  const { isAuthenticated, user } = useAuthStore();
   const [savedMusicList, setSavedMusicList] = useState<SavedMusic[]>([]);
   const [loading, setLoading] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -36,22 +37,13 @@ export function SavedMusicList({ onMusicSelect }: SavedMusicListProps) {
 
   // 获取用户保存的音乐列表
   const fetchSavedMusic = async () => {
-    if (!isAuthenticated || !user || !sessionPassword) return;
+    if (!isAuthenticated || !user) return;
 
     setLoading(true);
     setError(null);
 
     try {
-      const response = await fetch('/api/auth/music/list', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: user.username,
-          password: sessionPassword, // 使用会话密码
-        }),
-      });
+      const response = await ApiClient.post('/api/auth/music/list');
 
       if (!response.ok) {
         throw new Error('获取音乐列表失败');
@@ -76,17 +68,9 @@ export function SavedMusicList({ onMusicSelect }: SavedMusicListProps) {
     if (!isAuthenticated || !user) return;
 
     try {
-      const response = await fetch('/api/auth/music/rename', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          musicId,
-          name: newName,
-          username: user.username,
-          password: sessionPassword,
-        }),
+      const response = await ApiClient.post('/api/auth/music/rename', {
+        musicId,
+        name: newName
       });
 
       if (!response.ok) {
@@ -121,16 +105,8 @@ export function SavedMusicList({ onMusicSelect }: SavedMusicListProps) {
     }
 
     try {
-      const response = await fetch('/api/auth/music/delete', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          musicId,
-          username: user.username,
-          password: sessionPassword,
-        }),
+      const response = await ApiClient.post('/api/auth/music/delete', {
+        musicId
       });
 
       if (!response.ok) {
@@ -221,12 +197,12 @@ export function SavedMusicList({ onMusicSelect }: SavedMusicListProps) {
 
   // 当用户认证状态改变时，获取音乐列表
   useEffect(() => {
-    if (isAuthenticated && user && sessionPassword) {
+    if (isAuthenticated && user) {
       fetchSavedMusic();
     } else {
       setSavedMusicList([]);
     }
-  }, [isAuthenticated, user, sessionPassword]);
+  }, [isAuthenticated, user]);
 
   // 如果用户未登录，不显示组件
   if (!isAuthenticated) {

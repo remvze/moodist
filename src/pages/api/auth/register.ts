@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { createUser } from '@/lib/database';
+import { createJWT } from '@/lib/jwt';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -39,13 +40,21 @@ export const POST: APIRoute = async ({ request }) => {
     // 创建用户
     const user = await createUser({ username, password });
 
+    // 创建JWT token
+    const token = createJWT({
+      userId: user.id,
+      username: user.username
+    });
+
     return new Response(JSON.stringify({
       success: true,
       user: {
         id: user.id,
         username: user.username,
         created_at: user.created_at
-      }
+      },
+      token,
+      expiresIn: 7 * 24 * 60 * 60 // 7天，单位：秒
     }), {
       status: 201,
       headers: { 'Content-Type': 'application/json' },

@@ -12,7 +12,7 @@ interface AuthState {
   isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;
-  sessionPassword: string | null; // 仅当前会话使用的密码，不持久化
+  token: string | null; // JWT token
 }
 
 interface AuthStore extends AuthState {
@@ -23,6 +23,8 @@ interface AuthStore extends AuthState {
   clearError: () => void;
   setLoading: (loading: boolean) => void;
   checkAuth: () => Promise<void>;
+  getToken: () => string | null;
+  setToken: (token: string) => void;
 }
 
 /**
@@ -57,7 +59,7 @@ export const useAuthStore = create<AuthStore>()(
       isAuthenticated: false,
       isLoading: false,
       error: null,
-      sessionPassword: null,
+      token: null,
 
       // Actions
       login: async (userData) => {
@@ -66,20 +68,14 @@ export const useAuthStore = create<AuthStore>()(
         try {
           const result = await apiCall('/api/auth/login', userData);
           const user = result.user;
+          const token = result.token;
 
           set({
             user,
             isAuthenticated: true,
             isLoading: false,
             error: null,
-          });
-
-          set({
-            user,
-            isAuthenticated: true,
-            isLoading: false,
-            error: null,
-            sessionPassword: userData.password, // 保存密码用于当前会话的API调用
+            token,
           });
 
           console.log('✅ 用户登录成功:', user.username);
@@ -90,7 +86,7 @@ export const useAuthStore = create<AuthStore>()(
             isAuthenticated: false,
             isLoading: false,
             error: errorMessage,
-            sessionPassword: null,
+            token: null,
           });
           console.error('❌ 登录失败:', error);
           throw error;
@@ -103,20 +99,14 @@ export const useAuthStore = create<AuthStore>()(
         try {
           const result = await apiCall('/api/auth/register', userData);
           const user = result.user;
+          const token = result.token;
 
           set({
             user,
             isAuthenticated: true,
             isLoading: false,
             error: null,
-          });
-
-          set({
-            user,
-            isAuthenticated: true,
-            isLoading: false,
-            error: null,
-            sessionPassword: userData.password, // 保存密码用于当前会话的API调用
+            token,
           });
 
           console.log('✅ 用户注册成功:', user.username);
@@ -127,7 +117,7 @@ export const useAuthStore = create<AuthStore>()(
             isAuthenticated: false,
             isLoading: false,
             error: errorMessage,
-            sessionPassword: null,
+            token: null,
           });
           console.error('❌ 注册失败:', error);
           throw error;
@@ -140,7 +130,7 @@ export const useAuthStore = create<AuthStore>()(
           isAuthenticated: false,
           isLoading: false,
           error: null,
-          sessionPassword: null, // 清除会话密码
+          token: null,
         });
         console.log('✅ 用户已登出');
       },
@@ -154,37 +144,33 @@ export const useAuthStore = create<AuthStore>()(
       },
 
       checkAuth: async () => {
-        const { user, isAuthenticated } = get();
+        const { user, isAuthenticated, token } = get();
 
         // 如果已经有用户信息且已认证，则直接返回
-        if (user && isAuthenticated) {
+        if (user && isAuthenticated && token) {
           return;
         }
 
-        // 这里可以添加token验证或会话验证逻辑
-        // 目前简单检查本地存储的用户信息
-        set({ isLoading: true });
-
-        try {
-          // 如果有用户信息但未认证，可以尝试验证
-          if (user && !isAuthenticated) {
-            set({
-              isAuthenticated: true,
-              isLoading: false,
-              error: null,
-            });
-          } else {
-            set({ isLoading: false });
-          }
-        } catch (error) {
-          console.error('❌ 认证检查失败:', error);
+        // zustand persist会自动从localStorage恢复token
+        // 如果有token但没有用户信息，说明token可能无效
+        if (token && !user) {
+          console.warn('发现token但缺少用户信息，可能需要重新登录');
           set({
-            user: null,
-            isAuthenticated: false,
-            isLoading: false,
-            error: '认证检查失败',
+            token: null,
+            isAuthenticated: false
           });
         }
+
+        set({ isLoading: false });
+      },
+
+      getToken: () => {
+        const { token } = get();
+        return token;
+      },
+
+      setToken: (newToken: string) => {
+        set({ token: newToken });
       },
     }),
     {
@@ -192,7 +178,7 @@ export const useAuthStore = create<AuthStore>()(
       partialize: (state) => ({
         user: state.user,
         isAuthenticated: state.isAuthenticated,
-        // 不包含 sessionPassword，仅存储在内存中
+        token: state.token, // 现在也保存token
       }),
     }
   )

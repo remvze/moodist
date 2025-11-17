@@ -1,0 +1,90 @@
+.notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1002;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: notificationSlideIn 0.3s ease-out;
+  max-width: 400px;
+  width: calc(100vw - 40px);
+}
+
+.notificationContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  gap: 12px;
+}
+
+.notificationMessage {
+  font-size: 14px;
+  color: white;
+  font-weight: 500;
+}
+
+.notificationClose {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
+  opacity: 0.7;
+}
+
+.notificationClose:hover {
+  opacity: 1;
+}
+
+/* 成功通知样式 */
+.notification.success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border: 1px solid #059669;
+}
+
+/* 错误通知样式 */
+.notification.error {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border: 1px solid #dc2626;
+}
+
+/* 通知动画 */
+@keyframes notificationSlideIn {
+  from {
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .notification {
+    top: 15px;
+    max-width: calc(100vw - 30px);
+    width: calc(100vw - 30px);
+  }
+
+  .notificationContent {
+    padding: 10px 14px;
+  }
+
+  .notificationMessage {
+    font-size: 13px;
+  }
+}

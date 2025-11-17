@@ -1,44 +1,50 @@
 import type { APIRoute } from 'astro';
 import { deleteMusic } from '@/lib/database';
-import { authenticateUser } from '@/lib/database';
+import { authenticateJWTRequest, parseRequestBody, handleApiError } from '@/lib/jwt-auth-middleware';
 
 export const POST: APIRoute = async ({ request }) => {
+  // 首先进行JWT认证
+  const authResult = await authenticateJWTRequest(request);
+  if (!authResult.success) {
+    return new Response(JSON.stringify({ error: authResult.error!.message }), {
+      status: authResult.error!.status,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
+  // 解析请求体
+  const bodyResult = await parseRequestBody(request, ['musicId']);
+  if (!bodyResult.success) {
+    return new Response(JSON.stringify({ error: bodyResult.error!.message }), {
+      status: bodyResult.error!.status,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
   try {
-    const body = await request.text();
+    const { user } = authResult;
+    const { data } = bodyResult;
+    const { musicId } = data;
 
-    if (!body.trim()) {
-      return new Response(JSON.stringify({ error: '请求体不能为空' }), {
+    // 验证音乐ID
+    if (!musicId || (typeof musicId !== 'string' && typeof musicId !== 'number')) {
+      return new Response(JSON.stringify({
+        error: '音乐ID不能为空且必须是有效的标识符'
+      }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-
-    const { musicId, username, password } = JSON.parse(body);
-
-    // 验证输入
-    if (!musicId || !username || !password) {
-      return new Response(JSON.stringify({ error: '音乐ID和用户信息不能为空' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-
-    // 验证用户身份
-    const user = authenticateUser(username, password);
-    if (!user) {
-      return new Response(JSON.stringify({ error: '用户认证失败' }), {
-        status: 401,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       });
     }
 
     // 删除音乐记录
-    const success = deleteMusic(musicId, user.id);
+    const success = deleteMusic(musicId.toString(), user!.id);
 
     if (!success) {
-      return new Response(JSON.stringify({ error: '音乐不存在或无权限删除' }), {
+      return new Response(JSON.stringify({
+        error: '音乐不存在或无权限删除'
+      }), {
         status: 404,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       });
     }
 
@@ -47,23 +53,10 @@ export const POST: APIRoute = async ({ request }) => {
       message: '音乐删除成功'
     }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' }
     });
 
   } catch (error) {
-    console.error('删除音乐错误:', error);
-
-    let errorMessage = '删除音乐失败，请稍后再试';
-
-    if (error instanceof SyntaxError && error.message.includes('JSON')) {
-      errorMessage = '请求格式错误';
-    } else if (error instanceof Error) {
-      errorMessage = error.message;
-    }
-
-    return new Response(JSON.stringify({ error: errorMessage }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return handleApiError(error, '删除音乐');
   }
 };

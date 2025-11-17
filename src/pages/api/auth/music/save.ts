@@ -1,40 +1,44 @@
 import type { APIRoute } from 'astro';
 import { createMusic } from '@/lib/database';
-import { authenticateUser } from '@/lib/database';
+import { authenticateJWTRequest, parseRequestBody, handleApiError } from '@/lib/jwt-auth-middleware';
 
 export const POST: APIRoute = async ({ request }) => {
+  // 首先进行JWT认证
+  const authResult = await authenticateJWTRequest(request);
+  if (!authResult.success) {
+    return new Response(JSON.stringify({ error: authResult.error!.message }), {
+      status: authResult.error!.status,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
+  // 解析请求体
+  const bodyResult = await parseRequestBody(request, ['name', 'sounds']);
+  if (!bodyResult.success) {
+    return new Response(JSON.stringify({ error: bodyResult.error!.message }), {
+      status: bodyResult.error!.status,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
   try {
-    const body = await request.text();
-
-    if (!body.trim()) {
-      return new Response(JSON.stringify({ error: '请求体不能为空' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-
-    const { name, sounds, volume, speed, rate, random_effects, username, password } = JSON.parse(body);
+    const { user } = authResult;
+    const { data } = bodyResult;
+    const { name, sounds, volume, speed, rate, random_effects } = data;
 
     // 验证输入
-    if (!name || !sounds || !username || !password) {
-      return new Response(JSON.stringify({ error: '音乐名称、声音配置和用户信息不能为空' }), {
+    if (!name || !sounds || !Array.isArray(sounds)) {
+      return new Response(JSON.stringify({
+        error: '音乐名称和声音配置不能为空，声音必须是数组'
+      }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-
-    // 验证用户身份
-    const user = authenticateUser(username, password);
-    if (!user) {
-      return new Response(JSON.stringify({ error: '用户认证失败' }), {
-        status: 401,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       });
     }
 
     // 创建音乐记录
     const music = await createMusic({
-      user_id: user.id,
+      user_id: user!.id,
       name,
       sounds,
       volume: volume || {},
@@ -45,6 +49,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     return new Response(JSON.stringify({
       success: true,
+      message: '音乐保存成功',
       music: {
         id: music.id,
         name: music.name,
@@ -52,23 +57,10 @@ export const POST: APIRoute = async ({ request }) => {
       }
     }), {
       status: 201,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' }
     });
 
   } catch (error) {
-    console.error('保存音乐错误:', error);
-
-    let errorMessage = '保存音乐失败，请稍后再试';
-
-    if (error instanceof SyntaxError && error.message.includes('JSON')) {
-      errorMessage = '请求格式错误';
-    } else if (error instanceof Error) {
-      errorMessage = error.message;
-    }
-
-    return new Response(JSON.stringify({ error: errorMessage }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return handleApiError(error, '保存音乐');
   }
 };

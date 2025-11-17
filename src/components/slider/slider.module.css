@@ -27,13 +27,15 @@
   width: 16px;
   height: 16px;
   cursor: pointer;
-  background: var(--color-neutral-950);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--color-border);
   border-radius: 50%;
   box-shadow: 0 0 3px var(--color-neutral-50);
 }
 
 .sliderThumb:hover {
-  background: var(--color-neutral-800);
+  background: var(--bg-secondary);
+  border-color: var(--color-foreground);
 }
 
 .sliderThumb:focus {
