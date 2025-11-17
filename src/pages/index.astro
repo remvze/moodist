@@ -1,7 +1,6 @@
 ---
 import Layout from '@/layouts/layout.astro';
 
-import Donate from '@/components/donate.astro';
 import Hero from '@/components/hero.astro';
 import About from '@/components/about-unified.astro';
 
@@ -21,7 +20,6 @@ const pageDesc = lang === 'zh-CN'
 ---
 
 <Layout title={pageTitle} description={pageDesc}>
-  <Donate />
   <Hero />
   <App client:load />
   <About />

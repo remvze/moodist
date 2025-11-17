@@ -1,7 +1,6 @@
 ---
 import Layout from '@/layouts/layout.astro';
 
-import Donate from '@/components/donate.astro';
 import Hero from '@/components/hero.astro';
 import About from '@/components/about-unified.astro';
 
@@ -14,7 +13,6 @@ const pageDesc = 'Moodist 是一个免费开源的环境音生成器，提供精
 ---
 
 <Layout title={pageTitle} description={pageDesc}>
-  <Donate />
   <Hero />
   <App client:load />
   <About />

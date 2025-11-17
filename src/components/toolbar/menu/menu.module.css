@@ -9,19 +9,19 @@
     color: var(--color-foreground);
     pointer-events: auto;
     cursor: pointer;
-    background-color: var(--color-neutral-100);
-    border: 1px solid var(--color-neutral-300);
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 50%;
     transition: 0.2s;
 
     &:focus-visible {
-      outline: 2px solid var(--color-neutral-400);
+      outline: 2px solid var(--color-muted);
       outline-offset: 2px;
     }
 
     &:hover,
     &:focus-visible {
-      background-color: var(--color-neutral-200);
+      background-color: var(--bg-tertiary);
     }
   }
 }
@@ -36,8 +36,8 @@
   max-height: var(--radix-dropdown-menu-content-available-height);
   padding: 4px;
   overflow: auto;
-  background-color: var(--color-neutral-100);
-  border: 1px solid var(--color-neutral-300);
+  background-color: var(--component-bg);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
 }
 
