@@ -11,6 +11,7 @@ import { Container } from '@/components/container';
 import { StoreConsumer } from '@/components/store-consumer';
 import { Buttons } from '@/components/buttons';
 import { SelectedSoundsDisplay } from '@/components/selected-sounds-display';
+import { SavedMusicList } from '@/components/saved-music-list';
 import { Categories } from '@/components/categories';
 import { SharedModal } from '@/components/modals/shared';
 import { Toolbar } from '@/components/toolbar';
@@ -99,6 +100,7 @@ export function App() {
           <div id="app" />
           <Buttons />
           <SelectedSoundsDisplay />
+          <SavedMusicList />
           <Categories categories={allCategories} />
         </Container>
 

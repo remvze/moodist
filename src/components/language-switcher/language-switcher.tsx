@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaGlobe, FaSun, FaMoon, FaUser } from 'react-icons/fa/index';
+import { FaGlobe, FaSun, FaMoon, FaUser, FaSignOutAlt, FaCog } from 'react-icons/fa/index';
 import { AnimatePresence, motion } from 'motion/react';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useAuthStore } from '@/stores/auth';
@@ -48,6 +48,20 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
       document.removeEventListener('click', handleClickOutside);
     };
   }, [showUserMenu]);
+
+  // 监听显示登录表单的自定义事件
+  useEffect(() => {
+    const handleShowLoginForm = () => {
+      setShowAuthForm(true);
+      setIsLogin(true); // 默认显示登录表单
+    };
+
+    document.addEventListener('showLoginForm', handleShowLoginForm);
+
+    return () => {
+      document.removeEventListener('showLoginForm', handleShowLoginForm);
+    };
+  }, []);
 
   // 主题切换逻辑
   useEffect(() => {
@@ -292,26 +306,50 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
         </div>
       )}
 
-      {/* 用户菜单 - 下拉菜单 */}
-      {isAuthenticated && showUserMenu && (
-        <div className={styles.userMenu}>
-          <div className={styles.userInfo}>
-            <div className={styles.userAvatar}>
-              {user?.username.charAt(0).toUpperCase()}
+      {/* 用户菜单 - 左侧展开菜单 */}
+      <AnimatePresence>
+        {isAuthenticated && showUserMenu && (
+          <motion.div
+            className={styles.userMenu}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className={styles.userInfo}>
+              <div className={styles.userAvatar}>
+                {user?.username.charAt(0).toUpperCase()}
+              </div>
+              <span className={styles.userName}>{user?.username}</span>
             </div>
-            <span className={styles.userName}>{user?.username}</span>
-            <button
-              onClick={() => {
-                handleLogout();
-                setShowUserMenu(false);
-              }}
-              className={styles.logoutButton}
-            >
-              退出登录
-            </button>
-          </div>
-        </div>
-      )}
+
+            <div className={styles.userActions}>
+              <button
+                className={`${styles.userActionButton}`}
+                onClick={() => {
+                  // 这里可以添加个人设置功能
+                  setShowUserMenu(false);
+                  showNotificationMessage('个人设置功能开发中...', 'success');
+                }}
+              >
+                <FaCog className={styles.icon} />
+                个人设置
+              </button>
+
+              <button
+                className={`${styles.userActionButton} ${styles.logoutButton}`}
+                onClick={() => {
+                  handleLogout();
+                  setShowUserMenu(false);
+                }}
+              >
+                <FaSignOutAlt className={styles.icon} />
+                退出登录
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* 提示通知 */}
       {showNotification && (

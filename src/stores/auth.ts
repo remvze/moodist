@@ -12,6 +12,7 @@ interface AuthState {
   isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;
+  sessionPassword: string | null; // 仅当前会话使用的密码，不持久化
 }
 
 interface AuthStore extends AuthState {
@@ -56,6 +57,7 @@ export const useAuthStore = create<AuthStore>()(
       isAuthenticated: false,
       isLoading: false,
       error: null,
+      sessionPassword: null,
 
       // Actions
       login: async (userData) => {
@@ -72,6 +74,14 @@ export const useAuthStore = create<AuthStore>()(
             error: null,
           });
 
+          set({
+            user,
+            isAuthenticated: true,
+            isLoading: false,
+            error: null,
+            sessionPassword: userData.password, // 保存密码用于当前会话的API调用
+          });
+
           console.log('✅ 用户登录成功:', user.username);
         } catch (error) {
           const errorMessage = error instanceof Error ? error.message : '登录失败';
@@ -80,6 +90,7 @@ export const useAuthStore = create<AuthStore>()(
             isAuthenticated: false,
             isLoading: false,
             error: errorMessage,
+            sessionPassword: null,
           });
           console.error('❌ 登录失败:', error);
           throw error;
@@ -100,6 +111,14 @@ export const useAuthStore = create<AuthStore>()(
             error: null,
           });
 
+          set({
+            user,
+            isAuthenticated: true,
+            isLoading: false,
+            error: null,
+            sessionPassword: userData.password, // 保存密码用于当前会话的API调用
+          });
+
           console.log('✅ 用户注册成功:', user.username);
         } catch (error) {
           const errorMessage = error instanceof Error ? error.message : '注册失败';
@@ -108,6 +127,7 @@ export const useAuthStore = create<AuthStore>()(
             isAuthenticated: false,
             isLoading: false,
             error: errorMessage,
+            sessionPassword: null,
           });
           console.error('❌ 注册失败:', error);
           throw error;
@@ -120,6 +140,7 @@ export const useAuthStore = create<AuthStore>()(
           isAuthenticated: false,
           isLoading: false,
           error: null,
+          sessionPassword: null, // 清除会话密码
         });
         console.log('✅ 用户已登出');
       },
@@ -171,6 +192,7 @@ export const useAuthStore = create<AuthStore>()(
       partialize: (state) => ({
         user: state.user,
         isAuthenticated: state.isAuthenticated,
+        // 不包含 sessionPassword，仅存储在内存中
       }),
     }
   )

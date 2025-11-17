@@ -241,9 +241,9 @@
 /* 用户菜单样式 */
 .userMenu {
   position: fixed;
-  top: 70px;
-  right: 20px;
-  z-index: 999;
+  top: 20px;
+  right: 180px; /* 改为左侧展开，在headerControls的左边 */
+  z-index: 1001; /* 提高层级，确保在最上层 */
 }
 
 .userInfo {
@@ -282,19 +282,48 @@
   white-space: nowrap;
 }
 
-.logoutButton {
-  padding: 4px 8px;
-  font-size: var(--font-xsm);
-  color: #ef4444;
-  background: transparent;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s;
+.userActions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-border);
 }
 
-.logoutButton:hover {
+.userActionButton {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--color-foreground);
+  transition: all 0.2s ease;
+  font-size: 14px;
+  width: 100%;
+  text-align: left;
+}
+
+.userActionButton:hover {
+  background: var(--component-hover);
+}
+
+.userActionButton.logoutButton {
+  color: #ef4444;
+}
+
+.userActionButton.logoutButton:hover {
   background: rgba(239, 68, 68, 0.1);
+}
+
+.userActionButton .icon {
+  font-size: 14px;
+  width: 16px;
+  text-align: center;
 }
 
 /* 暗色主题下的特殊样式 */
@@ -435,8 +464,8 @@
   }
 
   .userMenu {
-    top: 60px;
-    right: 15px;
+    top: 15px;
+    right: 155px; /* 移动端适配左侧展开 */
   }
 
   .authFormOverlay {

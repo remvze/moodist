@@ -17,6 +17,29 @@ export interface CreateUserData {
   password: string;
 }
 
+export interface SavedMusic {
+  id: number;
+  user_id: number;
+  name: string;
+  sounds: string; // JSON string of sound IDs
+  volume: string; // JSON string of volume settings
+  speed: string; // JSON string of speed settings
+  rate: string; // JSON string of rate settings
+  random_effects: string; // JSON string of random effects settings
+  created_at: string;
+  updated_at: string;
+}
+
+export interface CreateMusicData {
+  user_id: number;
+  name: string;
+  sounds: string[];
+  volume: Record<string, number>;
+  speed: Record<string, number>;
+  rate: Record<string, number>;
+  random_effects: Record<string, boolean>;
+}
+
 export function getDatabase(): Database.Database {
   if (!db) {
     // 创建数据库文件路径
@@ -37,6 +60,23 @@ export function getDatabase(): Database.Database {
         username TEXT UNIQUE NOT NULL,
         password TEXT NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // 创建音乐保存表
+    db.exec(`
+      CREATE TABLE IF NOT EXISTS saved_music (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        name TEXT NOT NULL,
+        sounds TEXT NOT NULL,
+        volume TEXT NOT NULL,
+        speed TEXT NOT NULL,
+        rate TEXT NOT NULL,
+        random_effects TEXT NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
       )
     `);
   }
@@ -105,4 +145,59 @@ export function getUserByUsername(username: string): User | null {
   const user = database.prepare('SELECT id, username, created_at FROM users WHERE username = ?').get(username) as User | null;
 
   return user;
+}
+
+// 音乐保存相关函数
+export async function createMusic(musicData: CreateMusicData): Promise<SavedMusic> {
+  const database = getDatabase();
+
+  const stmt = database.prepare(`
+    INSERT INTO saved_music (user_id, name, sounds, volume, speed, rate, random_effects)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+  `);
+
+  const result = stmt.run(
+    musicData.user_id,
+    musicData.name,
+    JSON.stringify(musicData.sounds),
+    JSON.stringify(musicData.volume),
+    JSON.stringify(musicData.speed),
+    JSON.stringify(musicData.rate),
+    JSON.stringify(musicData.random_effects)
+  );
+
+  const music = database.prepare('SELECT * FROM saved_music WHERE id = ?').get(result.lastInsertRowid) as SavedMusic;
+
+  return music;
+}
+
+export function getUserMusic(userId: number): SavedMusic[] {
+  const database = getDatabase();
+
+  const musicList = database.prepare('SELECT * FROM saved_music WHERE user_id = ? ORDER BY created_at DESC').all(userId) as SavedMusic[];
+
+  return musicList;
+}
+
+export function updateMusicName(musicId: number, name: string, userId: number): boolean {
+  const database = getDatabase();
+
+  const stmt = database.prepare(`
+    UPDATE saved_music
+    SET name = ?, updated_at = CURRENT_TIMESTAMP
+    WHERE id = ? AND user_id = ?
+  `);
+
+  const result = stmt.run(name, musicId, userId);
+
+  return result.changes > 0;
+}
+
+export function deleteMusic(musicId: number, userId: number): boolean {
+  const database = getDatabase();
+
+  const stmt = database.prepare('DELETE FROM saved_music WHERE id = ? AND user_id = ?');
+  const result = stmt.run(musicId, userId);
+
+  return result.changes > 0;
 }
