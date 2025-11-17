@@ -27,15 +27,15 @@ const count = soundCount();
       position: sticky;
       top: 0;
       height: 80px;
-      background: linear-gradient(var(--color-neutral-50), transparent);
+      background: linear-gradient(var(--bg-secondary), transparent);
     }
 
     & .paragraph {
       padding: 30px 0;
       background: linear-gradient(
         transparent,
-        var(--color-neutral-50) 10%,
-        var(--color-neutral-50) 90%,
+        var(--bg-secondary) 10%,
+        var(--bg-secondary) 90%,
         transparent
       );
 
@@ -49,8 +49,8 @@ const count = soundCount();
         margin-bottom: 16px;
         font-size: var(--font-xsm);
         color: var(--color-foreground-subtle);
-        background: linear-gradient(var(--color-neutral-100), transparent);
-        border: 1px solid var(--color-neutral-300);
+        background: linear-gradient(var(--bg-secondary), transparent);
+        border: 1px solid var(--color-border);
         border-radius: 20px 20px 20px 8px;
 
         & span {
@@ -84,7 +84,7 @@ const count = soundCount();
       color: var(--color-foreground);
       cursor: pointer;
       background-color: transparent;
-      border: 1px solid var(--color-neutral-200);
+      border: 1px solid var(--color-border);
       border-radius: 50px;
       outline: none;
       transition: 0.2s;
@@ -99,7 +99,7 @@ const count = soundCount();
         background: linear-gradient(
           90deg,
           transparent,
-          var(--color-neutral-300),
+          var(--color-muted),
           transparent
         );
         transform: translateX(-50%);
@@ -107,11 +107,11 @@ const count = soundCount();
 
       &:hover,
       &:focus-visible {
-        background-color: var(--color-neutral-100);
+        background-color: var(--bg-secondary);
       }
 
       &:focus-visible {
-        outline: 2px solid var(--color-neutral-400);
+        outline: 2px solid var(--color-muted);
         outline-offset: 2px;
       }
     }

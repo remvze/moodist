@@ -54,28 +54,12 @@ const lang = ['en', 'zh-CN'].includes(langParam) ? langParam : 'en';
     {pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
   </head>
   <body>
-    <LanguageSwitcher client:load className="language-switcher-fixed" />
+    <LanguageSwitcher client:load className="" />
     <slot />
 
     <Reload client:load />
   </body>
 
   <style>
-    .language-switcher-fixed {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 1000;
-      background: rgba(24, 24, 27, 0.8);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    @media (max-width: 768px) {
-      .language-switcher-fixed {
-        top: 15px;
-        right: 15px;
-      }
-    }
   </style>
 </html>

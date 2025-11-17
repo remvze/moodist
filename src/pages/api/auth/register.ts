@@ -3,7 +3,16 @@ import { createUser } from '@/lib/database';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const { username, password } = await request.json();
+    const body = await request.text();
+
+    if (!body.trim()) {
+      return new Response(JSON.stringify({ error: '请求体不能为空' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    const { username, password } = JSON.parse(body);
 
     // 验证输入
     if (!username || !password) {
@@ -45,14 +54,21 @@ export const POST: APIRoute = async ({ request }) => {
   } catch (error) {
     console.error('注册错误:', error);
 
-    if (error instanceof Error && error.message === '用户名已存在') {
-      return new Response(JSON.stringify({ error: '用户名已存在' }), {
+    let errorMessage = '注册失败，请稍后再试';
+
+    if (error instanceof SyntaxError && error.message.includes('JSON')) {
+      errorMessage = '请求格式错误';
+    } else if (error instanceof Error && error.message === '用户名已存在') {
+      errorMessage = '用户名已存在';
+      return new Response(JSON.stringify({ error: errorMessage }), {
         status: 409,
         headers: { 'Content-Type': 'application/json' },
       });
+    } else if (error instanceof Error) {
+      errorMessage = error.message;
     }
 
-    return new Response(JSON.stringify({ error: '注册失败，请稍后再试' }), {
+    return new Response(JSON.stringify({ error: errorMessage }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
