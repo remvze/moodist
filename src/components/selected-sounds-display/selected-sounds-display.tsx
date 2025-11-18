@@ -297,7 +297,6 @@ export function SelectedSoundsDisplay() {
               maxLength={50}
             />
             <SaveMusicButton />
-            <DeleteMusicButton />
           </div>
         )}
 
@@ -332,13 +331,6 @@ export function SelectedSoundsDisplay() {
               <FaCog className={styles.musicIcon} />
               音乐列表
             </h4>
-            <button
-              className={styles.expandButton}
-              onClick={toggleExpandedMyMusic}
-              title={expandedMyMusic ? "收起" : "展开"}
-            >
-              {expandedMyMusic ? <FaChevronDown /> : <FaChevronRight />}
-            </button>
           </div>
 
           {/* 错误提示 */}
