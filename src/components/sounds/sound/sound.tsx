@@ -54,9 +54,10 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
     [speed, rate],
   );
 
-  const isLoading = useLoadingStore(state => state.loaders[src]);
+  const isLoading = src ? useLoadingStore(state => state.loaders[src]) : false;
 
-  const sound = useSound(src, { loop: true, volume: adjustedVolume, speed: actualPlaybackRate });
+  // 确保 src 存在才创建声音实例
+  const sound = useSound(src || '', { loop: true, volume: adjustedVolume, speed: actualPlaybackRate });
 
   useEffect(() => {
     if (locked) return;

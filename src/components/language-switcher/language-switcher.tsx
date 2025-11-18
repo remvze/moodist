@@ -14,7 +14,8 @@ interface LanguageSwitcherProps {
 export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   const { currentLang, changeLanguage, t } = useTranslation();
   const { isAuthenticated, user, login, register, logout, isLoading, checkAuth, error, clearError } = useAuthStore();
-  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean | null>(null); // 使用 null 表示未初始化
+  const [isClient, setIsClient] = useState(false); // 跟踪是否在客户端
   const [showAuthForm, setShowAuthForm] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [showNotification, setShowNotification] = useState(false);
@@ -26,10 +27,17 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
     password: '',
   });
 
+  // 客户端检测
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   // 认证状态检查
   useEffect(() => {
-    checkAuth();
-  }, []);
+    if (isClient) {
+      checkAuth();
+    }
+  }, [isClient]);
 
   // 点击外部关闭用户菜单
   useEffect(() => {
@@ -63,8 +71,13 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
     };
   }, []);
 
-  // 主题切换逻辑
+  // 主题切换逻辑 - 确保只在客户端执行
   useEffect(() => {
+    // 避免在 SSR 环境下执行
+    if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+      return;
+    }
+
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const initialDarkTheme = savedTheme ? savedTheme === 'dark' : systemPrefersDark;
@@ -114,6 +127,11 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   };
 
   const toggleTheme = () => {
+    // 确保主题已初始化且在客户端环境
+    if (isDarkTheme === null || typeof window === 'undefined' || typeof localStorage === 'undefined') {
+      return;
+    }
+
     const newTheme = !isDarkTheme;
     setIsDarkTheme(newTheme);
     applyTheme(newTheme);
@@ -203,23 +221,26 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
         <button
           className={styles.controlButton}
           onClick={toggleTheme}
-          aria-label={isDarkTheme ? 'Switch to light mode' : 'Switch to dark mode'}
+          aria-label={isDarkTheme === true ? 'Switch to light mode' : isDarkTheme === false ? 'Switch to dark mode' : 'Loading theme'}
+          disabled={isDarkTheme === null}
         >
-          <AnimatePresence initial={false} mode="wait">
-            <motion.span
-              animate="show"
-              aria-hidden="true"
-              exit="hidden"
-              initial="hidden"
-              key={isDarkTheme ? 'moon' : 'sun'}
-              variants={variants}
-              style={{ display: 'flex', alignItems: 'center' }}
-            >
-              {isDarkTheme ? <FaMoon /> : <FaSun />}
-            </motion.span>
-          </AnimatePresence>
+          {isDarkTheme !== null && (
+            <AnimatePresence initial={false} mode="wait">
+              <motion.span
+                animate="show"
+                aria-hidden="true"
+                exit="hidden"
+                initial="hidden"
+                key={isDarkTheme ? 'moon' : 'sun'}
+                variants={variants}
+                style={{ display: 'flex', alignItems: 'center' }}
+              >
+                {isDarkTheme ? <FaMoon /> : <FaSun />}
+              </motion.span>
+            </AnimatePresence>
+          )}
           <span style={{ marginLeft: '8px', fontSize: '14px' }}>
-            {isDarkTheme ? '黑暗' : '明亮'}
+            {isDarkTheme === null ? '...' : (isDarkTheme ? '黑暗' : '明亮')}
           </span>
         </button>
 
@@ -229,10 +250,10 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
           onClick={handleAuthClick}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          aria-label={isAuthenticated ? `用户: ${user?.username}` : '登录'}
+          aria-label={isClient ? (isAuthenticated ? `用户: ${user?.username}` : '登录') : '登录'}
         >
           <FaUser />
-          {isAuthenticated && user && (
+          {isClient && isAuthenticated && user && (
             <span className={styles.userIndicator}></span>
           )}
           <span style={{
@@ -243,7 +264,7 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap'
           }}>
-            {isAuthenticated ? (user?.username || '用户') : '登录'}
+            {isClient ? (isAuthenticated ? (user?.username || '用户') : '登录') : '登录'}
           </span>
         </motion.button>
       </div>

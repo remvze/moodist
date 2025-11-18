@@ -37,8 +37,8 @@ export function SelectedSoundsDisplay() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editingName, setEditingName] = useState('');
   const [expandedMusic, setExpandedMusic] = useState<Set<number>>(new Set()); // 跟踪展开的音乐项
-  const [expandedCurrent, setExpandedCurrent] = useState(true); // 跟踪当前选中音乐的展开状态，默认展开
-  const [expandedMyMusic, setExpandedMyMusic] = useState(false); // 跟踪我的音乐展开状态，默认收起
+  const [expandedCurrent, setExpandedCurrent] = useState(true); // 跟踪当前选中声音的展开状态，默认展开
+  const [expandedMyMusic, setExpandedMyMusic] = useState(true); // 跟踪音乐列表展开状态，默认展开
   const [error, setError] = useState<string | null>(null);
   const [musicName, setMusicName] = useState('');
 
@@ -50,24 +50,18 @@ export function SelectedSoundsDisplay() {
     Object.keys(state.sounds).filter(id => state.sounds[id].isSelected)
   );
 
-  // 互斥展开逻辑：展开当前音乐时收起我的音乐，反之亦然
+  // 独立展开逻辑：两个区域可以独立展开/收起
   const toggleExpandedCurrent = () => {
-    if (expandedCurrent) {
-      setExpandedCurrent(false);
-    } else {
-      setExpandedCurrent(true);
-      setExpandedMyMusic(false);
-      setExpandedMusic(new Set()); // 收起所有展开的音乐项
+    setExpandedCurrent(!expandedCurrent);
+    if (!expandedCurrent) {
+      setExpandedMusic(new Set()); // 展开时收起所有展开的音乐项
     }
   };
 
   const toggleExpandedMyMusic = () => {
-    if (expandedMyMusic) {
-      setExpandedMyMusic(false);
-    } else {
-      setExpandedMyMusic(true);
-      setExpandedCurrent(false);
-      setExpandedMusic(new Set()); // 收起所有展开的音乐项
+    setExpandedMyMusic(!expandedMyMusic);
+    if (!expandedMyMusic) {
+      setExpandedMusic(new Set()); // 展开时收起所有展开的音乐项
     }
   };
 
@@ -118,13 +112,21 @@ export function SelectedSoundsDisplay() {
   // 根据选中的声音ID获取声音对象
   const selectedSounds = useMemo(() => {
     return selectedSoundIds.map(id => {
-      const sound = sounds[id];
+      // 从 localizedCategories 中查找对应的声音数据
+      const allSounds = localizedCategories
+        .map(category => category.sounds)
+        .flat();
+      const soundData = allSounds.find(s => s.id === id);
+
+      if (!soundData) return null;
+
       return {
         id,
-        ...sound
+        ...soundData,
+        ...sounds[id] // 合并状态信息（volume, speed 等）
       };
     }).filter(Boolean);
-  }, [selectedSoundIds, sounds]);
+  }, [selectedSoundIds, sounds, localizedCategories]);
 
   // 获取音乐列表
   const fetchMusicList = async () => {
@@ -244,19 +246,28 @@ export function SelectedSoundsDisplay() {
     }
   }, [isAuthenticated, user]);
 
+  // 监听音乐列表数量，超过5个时默认收起
+  useEffect(() => {
+    if (savedMusicList.length > 5) {
+      setExpandedMyMusic(false);
+    } else {
+      setExpandedMyMusic(true);
+    }
+  }, [savedMusicList.length]);
+
   // 如果没有选中的声音，不渲染组件
   if (selectedSounds.length === 0) {
     return null;
   }
 
   return (
-    <div className={styles.soundsContainer}>
-      {/* 当前选中音乐标题区域 */}
-      {selectedSounds.length > 0 && (
-        <div className={styles.musicHeader}>
-          <h4 className={styles.musicTitle}>
+    <div className={styles.container}>
+      {/* 当前选中声音模块 */}
+      <div className={styles.currentSoundsModule}>
+        <div className={styles.currentSoundsHeader}>
+          <h4 className={styles.currentSoundsTitle}>
             <FaMusic className={styles.musicIcon} />
-            当前选中音乐
+            当前选中的声音
           </h4>
           <button
             className={`${styles.expandButton} ${styles.expandButtonCurrent}`}
@@ -266,53 +277,53 @@ export function SelectedSoundsDisplay() {
             {expandedCurrent ? <FaChevronDown /> : <FaChevronRight />}
           </button>
         </div>
-      )}
 
-      {/* 音乐名称配置区域 */}
-      {selectedSounds.length > 0 && expandedCurrent && (
-        <div className={styles.musicNameConfig}>
-          <input
-            type="text"
-            value={musicName}
-            onChange={(e) => setMusicName(e.target.value)}
-            placeholder="音乐名称"
-            className={styles.musicNameInput}
-            maxLength={50}
-          />
-          <SaveMusicButton />
-          <DeleteMusicButton />
-        </div>
-      )}
+        {/* 音乐名称配置区域 */}
+        {expandedCurrent && (
+          <div className={styles.musicNameConfig}>
+            <input
+              type="text"
+              value={musicName}
+              onChange={(e) => setMusicName(e.target.value)}
+              placeholder="音乐名称"
+              className={styles.musicNameInput}
+              maxLength={50}
+            />
+            <SaveMusicButton />
+            <DeleteMusicButton />
+          </div>
+        )}
 
-      {/* 选中的声音展示 */}
-      {selectedSounds.length > 0 && expandedCurrent && (
-        <div className={styles.sounds}>
-          <AnimatePresence initial={false}>
-            {selectedSounds.map((sound) => (
-              <Sound
-                key={sound.id}
-                id={sound.id}
-                icon={sound.icon}
-                label={sound.label}
-                src={sound.src}
-                functional={false}
-                displayMode={true}
-                hidden={false}
-                selectHidden={() => {}}
-                unselectHidden={() => {}}
-              />
-            ))}
-          </AnimatePresence>
-        </div>
-      )}
+        {/* 选中的声音展示 */}
+        {expandedCurrent && (
+          <div className={styles.sounds}>
+            <AnimatePresence initial={false}>
+              {selectedSounds.map((sound) => (
+                <Sound
+                  key={sound.id}
+                  id={sound.id}
+                  icon={sound.icon}
+                  label={sound.label}
+                  src={sound.src}
+                  functional={false}
+                  displayMode={true}
+                  hidden={false}
+                  selectHidden={() => {}}
+                  unselectHidden={() => {}}
+                />
+              ))}
+            </AnimatePresence>
+          </div>
+        )}
+      </div>
 
-      {/* 音乐列表区域 - 只有登录用户才显示 */}
-      {isAuthenticated && (
-        <div className={styles.musicSection}>
+      {/* 音乐列表模块 - 只有登录用户且有音乐时才显示 */}
+      {isAuthenticated && savedMusicList.length > 0 && (
+        <div className={`${styles.musicListModule} ${styles.musicSection}`}>
           <div className={styles.musicHeader}>
             <h4 className={styles.musicTitle}>
               <FaCog className={styles.musicIcon} />
-              我的音乐
+              音乐列表
             </h4>
             <button
               className={styles.expandButton}
@@ -390,43 +401,43 @@ export function SelectedSoundsDisplay() {
                         </div>
                       ) : (
                         <div className={styles.musicContent}>
-                          <div className={styles.musicNameRow}>
-                            <div className={styles.musicInfo}>
-                              <div className={styles.musicName}>{music.name}</div>
-                              <div className={styles.soundNames}>
-                                {music.sounds && music.sounds.length > 0 ? (
-                                  music.sounds.map((soundId, index) => {
-                                    // 从所有声音中查找对应的声音名称
-                                    const allSounds = localizedCategories
-                                      .map(category => category.sounds)
-                                      .flat();
-                                    const sound = allSounds.find(s => s.id === soundId);
-                                    return sound ? (
-                                      <span key={soundId} className={styles.soundName}>
-                                        {sound.label}{index < music.sounds.length - 1 ? ', ' : ''}
-                                      </span>
-                                    ) : null;
-                                  })
-                                ) : (
-                                  <span className={styles.noSounds}>暂无声音</span>
-                                )}
-                              </div>
+                          <div className={styles.musicInfo}>
+                            <div className={styles.musicName}>{music.name}</div>
+                            <div className={styles.soundNames}>
+                              {music.sounds && music.sounds.length > 0 ? (
+                                music.sounds.map((soundId, index) => {
+                                  // 从所有声音中查找对应的声音名称
+                                  const allSounds = localizedCategories
+                                    .map(category => category.sounds)
+                                    .flat();
+                                  const sound = allSounds.find(s => s.id === soundId);
+                                  return sound ? (
+                                    <span key={soundId} className={styles.soundName}>
+                                      {sound.label}{index < music.sounds.length - 1 ? ', ' : ''}
+                                    </span>
+                                  ) : null;
+                                })
+                              ) : (
+                                <span className={styles.noSounds}>暂无声音</span>
+                              )}
                             </div>
                           </div>
-                          <button
-                            onClick={() => deleteMusic(music.id.toString())}
-                            className={styles.deleteButton}
-                            title="删除"
-                          >
-                            <FaTrash />
-                          </button>
-                          <button
-                            onClick={() => toggleMusicExpansion(music.id)}
-                            className={styles.expandButton}
-                            title="展开/收起声音详情"
-                          >
-                            {expandedMusic.has(music.id) ? '收起 ▲' : '展开 ▼'}
-                          </button>
+                          <div className={styles.musicActions}>
+                            <button
+                              onClick={() => deleteMusic(music.id.toString())}
+                              className={styles.deleteButton}
+                              title="删除"
+                            >
+                              <FaTrash />
+                            </button>
+                            <button
+                              onClick={() => toggleMusicExpansion(music.id)}
+                              className={styles.expandButton}
+                              title="展开/收起声音详情"
+                            >
+                              {expandedMusic.has(music.id) ? '收起 ▲' : '展开 ▼'}
+                            </button>
+                          </div>
                         </div>
                       )}
 
@@ -434,7 +445,7 @@ export function SelectedSoundsDisplay() {
                       {expandedMusic.has(music.id) && (
                         <div className={styles.expandedMusicContent}>
                           {/* 播放按钮 */}
-                          <div className={styles.musicActions}>
+                          <div className={styles.expandedMusicActions}>
                             <button
                               onClick={() => playMusicRecord(music)}
                               className={styles.playMusicButton}

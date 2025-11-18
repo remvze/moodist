@@ -38,7 +38,7 @@ export function useSound(
   const sound = useMemo<Howl | null>(() => {
     let sound: Howl | null = null;
 
-    if (isBrowser) {
+    if (isBrowser && src) {
       sound = new Howl({
         html5,
         onload: () => {
@@ -46,7 +46,7 @@ export function useSound(
           setHasLoaded(true);
         },
         preload: options.preload ?? false,
-        src: src,
+        src: [src], // Howler.js 期望 src 是数组格式
       });
     }
 
