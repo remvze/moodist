@@ -50,7 +50,7 @@ export function SelectedSoundsDisplay() {
     Object.keys(state.sounds).filter(id => state.sounds[id].isSelected)
   );
 
-  // 独立展开逻辑：两个区域可以独立展开/收起
+  // 独立展开逻辑：展开当前选中声音时收起所有展开的音乐
   const toggleExpandedCurrent = () => {
     setExpandedCurrent(!expandedCurrent);
     if (!expandedCurrent) {
@@ -101,12 +101,19 @@ export function SelectedSoundsDisplay() {
     setExpandedMusic(prev => {
       const newSet = new Set(prev);
       if (newSet.has(musicId)) {
+        // 如果点击已展开的音乐，直接收起
         newSet.delete(musicId);
       } else {
-        newSet.add(musicId);
+        // 如果点击未展开的音乐，收起其他所有展开的项目，只展开当前这个
+        return new Set([musicId]);
       }
       return newSet;
     });
+
+    // 展开音乐时，同时收起当前选中声音模块
+    if (!expandedMusic.has(musicId)) {
+      setExpandedCurrent(false);
+    }
   };
 
   // 根据选中的声音ID获取声音对象
@@ -354,7 +361,7 @@ export function SelectedSoundsDisplay() {
 
           {/* 音乐列表 - 展开时显示 */}
           {expandedMyMusic && (
-            <div className={styles.musicList}>
+            <div className={`${styles.musicList} ${expandedMusic.size > 0 ? styles.hasExpanded : ''}`}>
               {console.log('🎵 渲染音乐列表:', { isLoadingMusic, listLength: savedMusicList.length })}
               {isLoadingMusic ? (
                 <div className={styles.loading}>加载中...</div>

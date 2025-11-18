@@ -134,6 +134,12 @@
   overflow-y: auto;
   border-radius: 6px;
   background: var(--color-component-bg);
+  transition: max-height 0.3s ease;
+}
+
+/* 当有展开的音乐项时，移除高度限制 */
+.musicList.hasExpanded {
+  max-height: none;
 }
 
 .musicItem {
@@ -191,8 +197,9 @@
   flex: 1;
   min-width: 0;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
 }
 
 /* 音乐操作按钮容器 - 右侧按钮 */
@@ -207,14 +214,13 @@
 .soundNames {
   font-size: 12px;
   color: var(--color-foreground-subtle);
-  line-height: 1.4;
+  line-height: 1.2;
   display: flex;
   flex-wrap: wrap;
   gap: 2px;
   align-items: center;
-  padding: 1px 4px;
-  flex: 1;
-  justify-content: flex-start;
+  padding: 6px 0;
+  margin: 0;
 }
 
 /* 展开按钮 */
@@ -223,14 +229,14 @@
   border: 1px solid var(--color-border);
   color: var(--color-foreground-subtle);
   border-radius: 4px;
-  padding: 2px 6px;
-  font-size: 10px;
+  padding: 4px 8px;
+  font-size: 11px;
   cursor: pointer;
   transition: all 0.2s ease;
   flex-shrink: 0;
-  height: 24px;
+  height: auto;
   line-height: 1;
-  margin-left: 4px;
+  margin: 0;
 }
 
 .expandButton:hover {
@@ -287,8 +293,8 @@
   font-size: 11px;
   transition: all 0.2s ease;
   flex-shrink: 0;
-  height: 24px;
-  margin-top: 2px;
+  height: auto;
+  margin: 0;
 }
 
 .deleteButton:hover {
