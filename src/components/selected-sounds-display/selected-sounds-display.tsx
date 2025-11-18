@@ -130,17 +130,9 @@ export function SelectedSoundsDisplay() {
     if (!isAuthenticated || !user) return;
 
     try {
-      const response = await fetch('/api/auth/music/rename', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          musicId,
-          name: newName,
-          username: user.username,
-          password: sessionPassword || '',
-        }),
+      const response = await ApiClient.post('/api/auth/music/rename', {
+        musicId,
+        name: newName
       });
 
       if (!response.ok) {
@@ -172,16 +164,8 @@ export function SelectedSoundsDisplay() {
     if (!confirm('确定要删除这首音乐吗？')) return;
 
     try {
-      const response = await fetch('/api/auth/music/delete', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          musicId,
-          username: user.username,
-          password: sessionPassword || '',
-        }),
+      const response = await ApiClient.post('/api/auth/music/delete', {
+        musicId
       });
 
       if (!response.ok) {
@@ -296,19 +280,11 @@ export function SelectedSoundsDisplay() {
         volume,
         speed,
         rate,
-        random_effects,
-        username: user?.username,
-        password: sessionPassword || '' // 使用会话密码，如果为空则让后端处理
+        random_effects
       };
 
       // 调用保存API
-      const response = await fetch('/api/auth/music/save', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(musicData),
-      });
+      const response = await ApiClient.post('/api/auth/music/save', musicData);
 
       if (response.ok) {
         const result = await response.json();
