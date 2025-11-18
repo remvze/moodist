@@ -23,4 +23,7 @@
 
   /* 拖动条已选中部分颜色 - 只比背景色深一点点 */
   --color-control-progress: var(--color-neutral-800);
+
+  /* 统一的组件背景色 - 用于声音选项和播放按钮下面区域 */
+  --color-component-bg: var(--bg-tertiary);
 }

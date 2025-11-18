@@ -93,8 +93,7 @@
   max-height: 300px;
   overflow-y: auto;
   border-radius: 6px;
-  background: var(--bg-tertiary);
-  border: 1px solid var(--color-border);
+  background: var(--color-component-bg);
 }
 
 .musicItem {

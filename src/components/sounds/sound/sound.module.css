@@ -7,7 +7,7 @@
   padding: 25px 20px;
   text-align: center;
   cursor: pointer;
-  background: linear-gradient(var(--component-bg) / 50%, transparent);
+  background: var(--color-component-bg);
   border: 1px solid var(--color-border);
   border-radius: 12px;
   transition: 0.2s;
