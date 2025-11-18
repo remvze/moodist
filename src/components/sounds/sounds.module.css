@@ -12,7 +12,6 @@
   margin-top: 20px;
   background: var(--bg-secondary);
   border-radius: 12px;
-  border: 1px solid var(--color-border);
   padding: 16px;
 }
 
@@ -199,6 +198,27 @@
 }
 
 .expandButton:hover {
+  background: var(--component-hover);
+  border-color: var(--color-foreground-subtle);
+  color: var(--color-foreground);
+}
+
+/* 当前选中音乐的展开按钮 */
+.expandButtonCurrent {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-foreground-subtle);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  height: 32px;
+  line-height: 1;
+}
+
+.expandButtonCurrent:hover {
   background: var(--component-hover);
   border-color: var(--color-foreground-subtle);
   color: var(--color-foreground);
@@ -521,6 +541,50 @@
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+/* 展开的音乐内容 */
+.expandedMusicContent {
+  padding: 16px;
+  background: var(--color-component-bg);
+  border-radius: 8px;
+  margin-top: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.musicActions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.playMusicButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--color-foreground);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 36px;
+}
+
+.playMusicButton:hover {
+  background: var(--color-foreground-subtle);
+  transform: translateY(-1px);
+}
+
+/* 展开音乐内的声音网格 */
+.expandedMusicContent .sounds {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin: 0;
 }
 
 .button {
