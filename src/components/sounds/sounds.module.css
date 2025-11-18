@@ -214,7 +214,7 @@
   align-items: center;
   padding: 1px 4px;
   flex: 1;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 /* 展开按钮 */
