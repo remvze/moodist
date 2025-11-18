@@ -26,3 +26,40 @@ body {
   color: var(--color-foreground);
   background-color: var(--color-neutral-300);
 }
+
+/* 滚动条样式 - 明亮模式下使用更浅的颜色 */
+[data-theme="light"] ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 4px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+  border: 1px solid #e5e7eb;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+  border-color: #d1d5db;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:active {
+  background: #6b7280;
+  border-color: #9ca3af;
+}
+
+/* Firefox 滚动条样式 - 明亮模式 */
+[data-theme="light"] * {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f3f4f6;
+}
+
+[data-theme="light"] *::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+}

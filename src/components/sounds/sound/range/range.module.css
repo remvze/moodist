@@ -32,83 +32,14 @@
   opacity: 1;
 }
 
-/* 当进度条禁用时，容器内的图标也要相应调整 */
-.volumeContainer:has(.range:disabled) .volumeIcon,
-.speedContainer:has(.range:disabled) .speedIcon,
-.rateContainer:has(.range:disabled) .rateIcon {
+/* 当滑块禁用时，容器内的图标也要相应调整 */
+.volumeContainer:has(.slider:disabled) .volumeIcon,
+.speedContainer:has(.slider:disabled) .speedIcon,
+.rateContainer:has(.slider:disabled) .rateIcon {
   opacity: 0.4;
 }
 
-.range {
+.slider {
   width: 100%;
   flex: 1;
-
-  /********** Range Input Styles **********/
-
-  /* Range Reset */
-  appearance: none;
-  cursor: pointer;
-  background: transparent;
-
-  /* Removes default focus */
-  &:focus {
-    outline: none;
-  }
-
-  &:disabled {
-    pointer-events: none;
-    cursor: default;
-    opacity: 0.5;
-  }
-
-  /***** Chrome, Safari, Opera and Edge Chromium styles *****/
-
-  &::-webkit-slider-runnable-track {
-    height: 0.5rem;
-    background-color: var(--bg-secondary);
-    border-radius: 0.5rem;
-  }
-
-  &::-webkit-slider-thumb {
-    width: 14px;
-    height: 14px;
-    margin-top: -3px;
-    appearance: none;
-    background-color: var(--color-neutral-700);
-    border: 1px solid var(--color-border);
-    border-radius: 50%;
-    box-shadow: 0 0 2px var(--color-neutral-400);
-  }
-
-  &:not(:disabled):focus::-webkit-slider-thumb {
-    border: 1px solid var(--color-foreground);
-    outline: 3px solid var(--color-foreground);
-    outline-offset: 0.125rem;
-  }
-
-  /******** Firefox styles ********/
-
-  &::-moz-range-track {
-    height: 0.5rem;
-    background-color: var(--bg-secondary);
-    border-radius: 0.5rem;
-  }
-
-  &::-moz-range-thumb {
-    width: 14px;
-    height: 14px;
-    margin-top: -3px;
-    background-color: var(--color-neutral-700);
-    border: none;
-    border: 1px solid var(--color-border);
-    border-radius: 0;
-    border-radius: 50%;
-    box-shadow: 0 0 2px var(--color-neutral-400);
-  }
-
-  &:not(:disabled):focus::-moz-range-thumb {
-    border: 1px solid var(--color-foreground);
-    outline: 3px solid var(--color-foreground);
-    outline-offset: 0.125rem;
-  }
 }

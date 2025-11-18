@@ -60,7 +60,7 @@
       width: 100%;
       height: 100%;
       content: '';
-      background-color: var(--bg-tertiary);
+      background-color: var(--color-control-bg);
       border-radius: 50%;
     }
 

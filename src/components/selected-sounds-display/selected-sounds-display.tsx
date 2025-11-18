@@ -198,6 +198,7 @@ export function SelectedSoundsDisplay() {
     });
   };
 
+
   // 播放保存的音乐
   const playSavedMusic = async (music: SavedMusic) => {
     // 清除当前所有声音选择
@@ -485,16 +486,7 @@ export function SelectedSoundsDisplay() {
                             >
                               {music.name}
                             </span>
-                            <button
-                              onClick={() => toggleMusicExpansion(music.id)}
-                              className={styles.expandButton}
-                              title="展开/收起声音详情"
-                            >
-                              {expandedMusic.has(music.id) ? '收起 ▲' : '展开 ▼'}
-                            </button>
-                          </div>
-                          {/* 展开时显示收录的声音名字 */}
-                          {expandedMusic.has(music.id) && (
+                            {/* 默认显示收录的声音名字 */}
                             <div className={styles.soundNames}>
                               {music.sounds && music.sounds.length > 0 ? (
                                 music.sounds.map((soundId: string, index: number) => {
@@ -513,7 +505,7 @@ export function SelectedSoundsDisplay() {
                                 <span className={styles.noSounds}>暂无声音</span>
                               )}
                             </div>
-                          )}
+                          </div>
                         </div>
                         <button
                           onClick={() => deleteMusic(music.id.toString())}
@@ -521,6 +513,13 @@ export function SelectedSoundsDisplay() {
                           title="删除"
                         >
                           <FaTrash />
+                        </button>
+                        <button
+                          onClick={() => toggleMusicExpansion(music.id)}
+                          className={styles.expandButton}
+                          title="展开/收起声音详情"
+                        >
+                          {expandedMusic.has(music.id) ? '收起 ▲' : '展开 ▼'}
                         </button>
                       </div>
                     )}

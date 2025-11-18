@@ -113,8 +113,8 @@
 
 .musicContent {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  align-items: flex-start;
+  gap: 12px;
 }
 
 .playButton {
@@ -165,7 +165,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* 声音名字显示 */
+.soundNames {
+  font-size: 12px;
+  color: var(--color-foreground-subtle);
+  line-height: 1.4;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  align-items: center;
+  padding: 1px 4px;
+  flex: 1;
+  justify-content: center;
 }
 
 /* 展开按钮 */
@@ -179,8 +194,9 @@
   cursor: pointer;
   transition: all 0.2s ease;
   flex-shrink: 0;
-  height: 20px;
+  height: 24px;
   line-height: 1;
+  margin-left: 4px;
 }
 
 .expandButton:hover {
@@ -189,16 +205,16 @@
   color: var(--color-foreground);
 }
 
-/* 声音名字显示 */
-.soundNames {
-  font-size: 12px;
-  color: var(--color-foreground-subtle);
-  line-height: 1.3;
-  word-break: break-all;
-}
-
 .soundName {
   color: var(--color-foreground-subtle);
+  background: rgba(var(--color-muted-rgb), 0.3);
+  padding: 1px 4px;
+  border-radius: 2px;
+  margin-right: 2px;
+  display: inline-block;
+  margin-bottom: 2px;
+  font-size: 11px;
+  border: 1px solid rgba(var(--color-border-rgb), 0.3);
 }
 
 .noSounds {
@@ -211,11 +227,13 @@
   color: white;
   border: none;
   border-radius: 4px;
-  padding: 6px 8px;
+  padding: 4px 6px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 11px;
   transition: all 0.2s ease;
   flex-shrink: 0;
+  height: 24px;
+  margin-top: 2px;
 }
 
 .deleteButton:hover {

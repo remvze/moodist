@@ -1,6 +1,7 @@
 import { FaVolumeUp, FaTachometerAlt, FaMusic } from 'react-icons/fa/index';
 import { useSoundStore } from '@/stores/sound';
 import { useTranslation } from '@/hooks/useTranslation';
+import { Slider } from '@/components/slider';
 
 import styles from './range.module.css';
 
@@ -24,55 +25,38 @@ export function Range({ id, label }: RangeProps) {
     <div className={styles.controlsContainer}>
       <div className={styles.volumeContainer}>
         <FaVolumeUp className={styles.volumeIcon} />
-        <input
-          aria-label={`${label} ${t('volume').toLowerCase()}`}
-          autoComplete="off"
-          className={styles.range}
+        <Slider
           disabled={!isSelected}
-          max={100}
+          max={1}
           min={0}
-          type="range"
-          value={volume * 100}
-          onClick={e => e.stopPropagation()}
-          onChange={e =>
-            !locked && isSelected && setVolume(id, Number(e.target.value) / 100)
-          }
+          step={0.01}
+          value={volume}
+          onChange={value => !locked && isSelected && setVolume(id, value)}
+          className={styles.slider}
         />
       </div>
       <div className={styles.speedContainer}>
         <FaTachometerAlt className={styles.speedIcon} />
-        <input
-          aria-label={`${label} speed`}
-          autoComplete="off"
-          className={styles.range}
+        <Slider
           disabled={!isSelected}
-          max={200}
-          min={50}
-          step={10}
-          type="range"
-          value={speed * 100}
-          onClick={e => e.stopPropagation()}
-          onChange={e =>
-            !locked && isSelected && setSpeed(id, Number(e.target.value) / 100)
-          }
+          max={2}
+          min={0.5}
+          step={0.1}
+          value={speed}
+          onChange={value => !locked && isSelected && setSpeed(id, value)}
+          className={styles.slider}
         />
       </div>
       <div className={styles.rateContainer}>
         <FaMusic className={styles.rateIcon} />
-        <input
-          aria-label={`${label} rate`}
-          autoComplete="off"
-          className={styles.range}
+        <Slider
           disabled={!isSelected}
-          max={200}
-          min={50}
-          step={10}
-          type="range"
-          value={rate * 100}
-          onClick={e => e.stopPropagation()}
-          onChange={e =>
-            !locked && isSelected && setRate(id, Number(e.target.value) / 100)
-          }
+          max={2}
+          min={0.5}
+          step={0.1}
+          value={rate}
+          onChange={value => !locked && isSelected && setRate(id, value)}
+          className={styles.slider}
         />
       </div>
     </div>
