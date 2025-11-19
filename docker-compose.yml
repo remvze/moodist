@@ -1,9 +1,6 @@
 services:
   moodist:
-    image: walllee/moodist:3.0.0-prod-like
-    build:
-      context: .
-      dockerfile: Dockerfile.dev-server
+    image: walllee/moodist:latest
     logging:
       options:
         max-size: 1g
