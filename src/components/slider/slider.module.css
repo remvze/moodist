@@ -11,14 +11,14 @@
   position: relative;
   flex-grow: 1;
   height: 4px;
-  background: var(--color-neutral-200);
+  background: var(--color-control-bg);
   border-radius: 9999px;
 }
 
 .sliderRange {
   position: absolute;
   height: 100%;
-  background: var(--color-neutral-800);
+  background: var(--color-control-progress);
   border-radius: 9999px;
 }
 
@@ -27,16 +27,18 @@
   width: 16px;
   height: 16px;
   cursor: pointer;
-  background: var(--color-neutral-950);
+  background: var(--color-control-progress);
+  border: 2px solid var(--color-control-progress);
   border-radius: 50%;
-  box-shadow: 0 0 3px var(--color-neutral-50);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
 }
 
 .sliderThumb:hover {
-  background: var(--color-neutral-800);
+  background: var(--color-control-bg-hover);
+  border-color: var(--color-control-bg-active);
 }
 
 .sliderThumb:focus {
   outline: none;
-  box-shadow: 0 0 0 3px var(--color-neutral-400);
+  box-shadow: 0 0 0 3px var(--color-foreground-subtler);
 }

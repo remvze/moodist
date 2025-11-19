@@ -1,0 +1,95 @@
+version: '3.8'
+
+services:
+  moodist:
+    # 使用优化的镜像名称
+    image: walllee/moodist:latest
+    container_name: moodist-app
+
+    # 重启策略
+    restart: unless-stopped
+
+    # 端口映射
+    ports:
+      - "8080:8080"
+
+    # 环境变量
+    environment:
+      - NODE_ENV=production
+      - TZ=Asia/Shanghai
+
+    # 健康检查
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+    # 资源限制
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 128M
+        reservations:
+          cpus: '0.1'
+          memory: 32M
+
+    # 日志配置
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    # 网络配置
+    networks:
+      - moodist-network
+
+    # 安全选项
+    security_opt:
+      - no-new-privileges:true
+
+    # 数据卷挂载
+    volumes:
+      # 挂载 SQLite 数据库文件目录（需要读写权限）
+      - ./data:/app/data:rw
+      # 挂载临时目录用于 SQLite WAL 文件
+      - moodist-temp:/tmp:rw
+
+    # 只读根文件系统（除了数据目录）
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx
+      - /var/run
+      - /var/log/nginx
+
+  # Nginx反向代理（可选）
+  nginx-proxy:
+    image: nginx:alpine
+    container_name: moodist-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./docker/nginx-proxy/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - moodist
+    networks:
+      - moodist-network
+    profiles:
+      - proxy
+
+volumes:
+  moodist-temp:
+    driver: local
+
+networks:
+  moodist-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

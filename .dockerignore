@@ -1,0 +1,77 @@
+# Dependencies
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Git
+.git
+.gitignore
+.github
+
+# Documentation
+README.md
+CHANGELOG.md
+LICENSE
+*.md
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Testing
+coverage
+.nyc_output
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Build outputs (exclude .build-cache for multi-stage builds)
+# Note: dist/ is included for simple build approach
+.build-cache
+
+# Docker files
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Temporary files
+.tmp
+.temp
+
+# Cache
+.cache
+.parcel-cache
+
+# Storybook build
+storybook-static
+
+# Spec workflow files
+.spec-workflow
+.serenatoken
+
+# Astro cache
+.astro

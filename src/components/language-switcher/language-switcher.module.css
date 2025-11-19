@@ -1,0 +1,492 @@
+/* 头部控制容器 */
+.headerControls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  z-index: 1000;
+  background: var(--bg-secondary);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px;
+  min-width: 160px;
+}
+
+/* 通用控制按钮样式 */
+.controlButton {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--color-foreground);
+  transition: all 0.2s ease;
+  font-size: 14px;
+  line-height: 1;
+  width: 100%;
+  height: auto;
+  min-height: 40px;
+  position: relative;
+  text-align: left;
+}
+
+.controlButton:hover {
+  background: var(--bg-tertiary);
+}
+
+.controlButton:focus {
+  outline: 2px solid var(--color-foreground);
+  outline-offset: 2px;
+}
+
+.controlButton:active {
+  transform: scale(0.95);
+}
+
+/* 用户指示器 */
+.userIndicator {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  border: 2px solid var(--bg-secondary);
+}
+
+/* 语言切换器样式 */
+.languageSwitcher {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: transparent;
+  color: var(--color-foreground);
+  font-size: 14px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.languageSwitcher:hover {
+  background: var(--bg-tertiary);
+}
+
+.icon {
+  color: var(--color-foreground-subtle);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.select {
+  background: transparent;
+  border: none;
+  color: var(--color-foreground);
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  border-radius: 4px;
+  min-width: 70px;
+  flex: 1;
+}
+
+.select:hover {
+  background-color: transparent;
+}
+
+.select:focus-visible {
+  outline: 2px solid var(--color-muted);
+  outline-offset: 2px;
+}
+
+/* 认证表单样式 */
+.authFormOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  padding: 16px;
+}
+
+.authForm {
+  width: 100%;
+  max-width: 320px;
+  padding: 16px;
+  background: var(--component-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-foreground);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.authForm h3 {
+  margin: 0 0 16px 0;
+  font-size: var(--font-lg);
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-foreground);
+}
+
+.authForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.authInput {
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: var(--font-sm);
+  background: var(--input-bg);
+  color: var(--color-foreground);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.authInput::placeholder {
+  color: var(--color-foreground-subtler);
+}
+
+.authInput:focus {
+  outline: none;
+  border-color: var(--color-muted);
+  box-shadow: 0 0 0 2px var(--color-muted);
+}
+
+.authButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.authSubmitButton {
+  flex: 1;
+  padding: 8px 16px;
+  background: var(--color-foreground);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 6px;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.authSubmitButton:hover:not(:disabled) {
+  background: var(--color-foreground-subtle);
+}
+
+.authSubmitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.authCancelButton {
+  padding: 8px 16px;
+  background: transparent;
+  color: var(--color-foreground-subtler);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.authCancelButton:hover {
+  background: var(--component-hover);
+  border-color: var(--color-foreground-subtle);
+}
+
+.authToggle {
+  margin-top: 8px;
+}
+
+.authToggleButton {
+  width: 100%;
+  padding: 6px 12px;
+  background: transparent;
+  color: var(--color-foreground-subtle);
+  border: none;
+  border-radius: 6px;
+  font-size: var(--font-xsm);
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.authToggleButton:hover {
+  color: var(--color-foreground);
+}
+
+/* 用户菜单样式 */
+.userMenu {
+  position: fixed;
+  top: 20px;
+  right: 180px; /* 改为左侧展开，在headerControls的左边 */
+  z-index: 1001; /* 提高层级，确保在最上层 */
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--component-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  min-width: 160px;
+}
+
+.userAvatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-foreground);
+  color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.userName {
+  font-weight: 500;
+  color: var(--color-foreground);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.userActions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-border);
+}
+
+.userActionButton {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--color-foreground);
+  transition: all 0.2s ease;
+  font-size: 14px;
+  width: 100%;
+  text-align: left;
+}
+
+.userActionButton:hover {
+  background: var(--component-hover);
+}
+
+.userActionButton.logoutButton {
+  color: #ef4444;
+}
+
+.userActionButton.logoutButton:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.userActionButton .icon {
+  font-size: 14px;
+  width: 16px;
+  text-align: center;
+}
+
+/* 暗色主题下的特殊样式 */
+:global(.dark-theme) .headerControls {
+  background: var(--bg-secondary);
+  border-color: var(--color-border);
+}
+
+:global(.dark-theme) .controlButton {
+  background: transparent;
+}
+
+:global(.dark-theme) .controlButton:hover {
+  background: var(--bg-tertiary);
+}
+
+:global(.dark-theme) .userIndicator {
+  border-color: var(--bg-secondary);
+}
+
+:global(.dark-theme) .authForm {
+  background: var(--component-bg);
+  border-color: var(--color-border);
+}
+
+:global(.dark-theme) .authInput {
+  background: var(--input-bg);
+  border-color: var(--color-border);
+}
+
+:global(.dark-theme) .userInfo {
+  background: var(--component-bg);
+  border-color: var(--color-border);
+}
+
+/* 提示通知样式 */
+.notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1002;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: notificationSlideIn 0.3s ease-out;
+  max-width: 400px;
+  width: calc(100vw - 40px);
+}
+
+.notificationContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  gap: 12px;
+}
+
+.notificationMessage {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.notificationClose {
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: inherit;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.notificationClose:hover {
+  opacity: 1;
+}
+
+/* 成功通知样式 */
+.notification.success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border: 1px solid #059669;
+}
+
+/* 错误通知样式 */
+.notification.error {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border: 1px solid #dc2626;
+}
+
+/* 通知动画 */
+@keyframes notificationSlideIn {
+  from {
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .headerControls {
+    top: 15px;
+    right: 15px;
+    padding: 6px;
+    gap: 3px;
+    min-width: 140px;
+  }
+
+  .controlButton {
+    padding: 8px 10px;
+    font-size: 13px;
+    min-height: 36px;
+    gap: 10px;
+  }
+
+  .languageSwitcher {
+    padding: 8px 10px;
+    gap: 10px;
+    font-size: 13px;
+  }
+
+  .icon {
+    font-size: 12px;
+  }
+
+  .select {
+    font-size: 13px;
+    min-width: 60px;
+  }
+
+  .userMenu {
+    top: 15px;
+    right: 155px; /* 移动端适配左侧展开 */
+  }
+
+  .authFormOverlay {
+    padding: 12px;
+  }
+
+  .authForm {
+    padding: 12px;
+  }
+
+  .notification {
+    top: 15px;
+    max-width: calc(100vw - 30px);
+    width: calc(100vw - 30px);
+  }
+
+  .notificationContent {
+    padding: 10px 14px;
+  }
+
+  .notificationMessage {
+    font-size: 13px;
+  }
+}

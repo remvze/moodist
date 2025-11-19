@@ -17,6 +17,7 @@ import { FADE_OUT } from '@/constants/events';
  * @param {Object} [options] - Options for sound playback.
  * @param {boolean} [options.loop=false] - Whether the sound should loop.
  * @param {number} [options.volume=0.5] - The initial volume of the sound, ranging from 0.0 to 1.0.
+ * @param {number} [options.speed=1.0] - The initial playback speed of the sound, ranging from 0.5 to 2.0.
  * @returns {{ play: () => void, stop: () => void, pause: () => void, fadeOut: (duration: number) => void, isLoading: boolean }} An object containing control functions for the sound:
  *   - play: Function to play the sound.
  *   - stop: Function to stop the sound.
@@ -26,7 +27,7 @@ import { FADE_OUT } from '@/constants/events';
  */
 export function useSound(
   src: string,
-  options: { loop?: boolean; preload?: boolean; volume?: number } = {},
+  options: { loop?: boolean; preload?: boolean; volume?: number; speed?: number } = {},
   html5: boolean = false,
 ) {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -37,7 +38,7 @@ export function useSound(
   const sound = useMemo<Howl | null>(() => {
     let sound: Howl | null = null;
 
-    if (isBrowser) {
+    if (isBrowser && src) {
       sound = new Howl({
         html5,
         onload: () => {
@@ -45,7 +46,7 @@ export function useSound(
           setHasLoaded(true);
         },
         preload: options.preload ?? false,
-        src: src,
+        src: [src], // Howler.js 期望 src 是数组格式
       });
     }
 
@@ -61,6 +62,10 @@ export function useSound(
   useEffect(() => {
     if (sound) sound.volume(options.volume ?? 0.5);
   }, [sound, options.volume]);
+
+  useEffect(() => {
+    if (sound) sound.rate(options.speed ?? 1.0);
+  }, [sound, options.speed]);
 
   const play = useCallback(
     (cb?: () => void) => {

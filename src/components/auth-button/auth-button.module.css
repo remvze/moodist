@@ -1,0 +1,285 @@
+.authButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--color-foreground, #1e293b);
+  transition: all 0.2s ease;
+  font-size: 16px;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  top: 1rem;
+  right: 4rem; /* 主题切换按钮左侧 */
+  z-index: 1000;
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.authButton:hover {
+  background: var(--bg-tertiary);
+  transform: scale(1.05);
+}
+
+.authButton:focus {
+  outline: 2px solid var(--color-foreground);
+  outline-offset: 2px;
+}
+
+.authButton:active {
+  transform: scale(0.95);
+}
+
+.userIndicator {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  border: 2px solid var(--bg-secondary);
+}
+
+/* 暗色主题下的特殊样式 */
+:global(.dark-theme) .authButton {
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-border);
+}
+
+:global(.dark-theme) .authButton:hover {
+  background: var(--bg-tertiary);
+}
+
+:global(.dark-theme) .userIndicator {
+  border-color: var(--bg-secondary);
+}
+
+/* 认证表单样式 */
+.authFormOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  padding: 16px;
+}
+
+.authForm {
+  width: 100%;
+  max-width: 320px;
+  padding: 16px;
+  background: var(--component-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-foreground);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.authForm h3 {
+  margin: 0 0 16px 0;
+  font-size: var(--font-lg);
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-foreground);
+}
+
+.authForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.authInput {
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: var(--font-sm);
+  background: var(--input-bg);
+  color: var(--color-foreground);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.authInput::placeholder {
+  color: var(--color-foreground-subtler);
+}
+
+.authInput:focus {
+  outline: none;
+  border-color: var(--color-muted);
+  box-shadow: 0 0 0 2px var(--color-muted);
+}
+
+.authButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.authSubmitButton {
+  flex: 1;
+  padding: 8px 16px;
+  background: var(--color-foreground);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 6px;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.authSubmitButton:hover:not(:disabled) {
+  background: var(--color-foreground-subtle);
+}
+
+.authSubmitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.authCancelButton {
+  padding: 8px 16px;
+  background: transparent;
+  color: var(--color-foreground-subtler);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.authCancelButton:hover {
+  background: var(--component-hover);
+  border-color: var(--color-foreground-subtle);
+}
+
+.authToggle {
+  margin-top: 8px;
+}
+
+.authToggleButton {
+  width: 100%;
+  padding: 6px 12px;
+  background: transparent;
+  color: var(--color-foreground-subtle);
+  border: none;
+  border-radius: 6px;
+  font-size: var(--font-xsm);
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.authToggleButton:hover {
+  color: var(--color-foreground);
+}
+
+/* 用户菜单样式 */
+.userMenu {
+  position: fixed;
+  top: 4rem;
+  right: 4rem;
+  z-index: 1000;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--component-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  min-width: 160px;
+}
+
+.userAvatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-foreground);
+  color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.userName {
+  font-weight: 500;
+  color: var(--color-foreground);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.logoutButton {
+  padding: 4px 8px;
+  font-size: var(--font-xsm);
+  color: #ef4444;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.logoutButton:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* 暗色主题下的样式优化 */
+:global(.dark-theme) .authForm {
+  background: var(--component-bg);
+  border-color: var(--color-border);
+}
+
+:global(.dark-theme) .authInput {
+  background: var(--input-bg);
+  border-color: var(--color-border);
+}
+
+:global(.dark-theme) .userInfo {
+  background: var(--component-bg);
+  border-color: var(--color-border);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .authButton {
+    top: 0.75rem;
+    right: 3.5rem;
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .userMenu {
+    top: 3.5rem;
+    right: 3.5rem;
+  }
+
+  .authFormOverlay {
+    padding: 12px;
+  }
+
+  .authForm {
+    padding: 12px;
+  }
+}

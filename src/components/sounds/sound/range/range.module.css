@@ -1,72 +1,45 @@
-.range {
-  width: 100%;
-  max-width: 120px;
+.controlsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   margin-top: 10px;
+  width: 100%;
+  max-width: 150px;
+}
 
-  /********** Range Input Styles **********/
+.volumeContainer,
+.speedContainer,
+.rateContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
 
-  /* Range Reset */
-  appearance: none;
-  cursor: pointer;
-  background: transparent;
+.volumeIcon,
+.speedIcon,
+.rateIcon {
+  color: var(--color-foreground-subtle);
+  font-size: 14px;
+  flex-shrink: 0;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
 
-  /* Removes default focus */
-  &:focus {
-    outline: none;
-  }
+.volumeContainer:hover .volumeIcon,
+.speedContainer:hover .speedIcon,
+.rateContainer:hover .rateIcon {
+  opacity: 1;
+}
 
-  &:disabled {
-    pointer-events: none;
-    cursor: default;
-    opacity: 0.5;
-  }
+/* 当滑块禁用时，容器内的图标也要相应调整 */
+.volumeContainer:has(.slider:disabled) .volumeIcon,
+.speedContainer:has(.slider:disabled) .speedIcon,
+.rateContainer:has(.slider:disabled) .rateIcon {
+  opacity: 0.4;
+}
 
-  /***** Chrome, Safari, Opera and Edge Chromium styles *****/
-
-  &::-webkit-slider-runnable-track {
-    height: 0.5rem;
-    background-color: #27272a;
-    border-radius: 0.5rem;
-  }
-
-  &::-webkit-slider-thumb {
-    width: 14px;
-    height: 14px;
-    margin-top: -3px;
-    appearance: none;
-    background-color: #3f3f46;
-    border: 1px solid #52525b;
-    border-radius: 50%;
-  }
-
-  &:not(:disabled):focus::-webkit-slider-thumb {
-    border: 1px solid #053a5f;
-    outline: 3px solid #053a5f;
-    outline-offset: 0.125rem;
-  }
-
-  /******** Firefox styles ********/
-
-  &::-moz-range-track {
-    height: 0.5rem;
-    background-color: #27272a;
-    border-radius: 0.5rem;
-  }
-
-  &::-moz-range-thumb {
-    width: 14px;
-    height: 14px;
-    margin-top: -3px;
-    background-color: #3f3f46;
-    border: none;
-    border: 1px solid #52525b;
-    border-radius: 0;
-    border-radius: 50%;
-  }
-
-  &:not(:disabled):focus::-moz-range-thumb {
-    border: 1px solid #053a5f;
-    outline: 3px solid #053a5f;
-    outline-offset: 0.125rem;
-  }
+.slider {
+  width: 100%;
+  flex: 1;
 }

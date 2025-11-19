@@ -1,10 +1,26 @@
-version: '3.9'
 services:
   moodist:
-    image: ghcr.io/remvze/moodist
+    image: walllee/moodist:latest
     logging:
       options:
         max-size: 1g
-    restart: always
+    restart: unless-stopped
     ports:
-      - '8080:8080'
+      - '11081:8080'
+    volumes:
+      # 挂载源代码用于热重载（保持用户权限）
+      - .:/app:cached
+      # 使用独立的 node_modules 避免权限冲突
+      - node_modules_volume:/app/node_modules
+      # 挂载 SQLite 数据库文件和 WAL 文件
+      - ./data:/app/data:rw
+    environment:
+      - NODE_ENV=development
+      - PORT=8080
+    stdin_open: true
+    tty: true
+    # 启动时确保安装了必要的开发依赖
+    command: sh -c "cd /app && npm install @astrojs/node autoprefixer --no-save && npm run dev -- --host 0.0.0.0 --port 8080"
+
+volumes:
+  node_modules_volume:

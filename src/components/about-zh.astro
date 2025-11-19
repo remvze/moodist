@@ -1,0 +1,173 @@
+---
+import { Container } from '@/components/container';
+
+import { count as soundCount } from '@/lib/sounds';
+
+const count = soundCount();
+---
+
+<section class="about">
+  <div class="effect"></div>
+
+  <Container tight>
+    <div class="paragraph">
+      <div class="counter">
+        <span>01</span> / <span>04</span>
+      </div>
+      <h2 class="title">免费环境音</h2>
+      <p class="body">
+        渴望从日常繁杂中获得片刻宁静？需要完美的声音环境来提升专注力或帮助入眠？
+        Moodist 就是您的最佳选择——免费开源的环境音生成器！无需订阅注册，使用 Moodist，
+        您可以免费享受舒缓沉浸的音频体验。
+      </p>
+    </div>
+
+    <div class="paragraph">
+      <div class="counter">
+        <span>02</span> / <span>04</span>
+      </div>
+      <h2 class="title">精心挑选的声音</h2>
+      <p class="body">
+        探索包含 <span class="sound-count">{count}</span> 个精心挑选声音的庞大音库。
+        自然爱好者可以在溪流的轻柔潺潺声中、海浪的节拍拍岸声中、或篝火的温暖噼啪声中获得慰藉。
+        城市景观在咖啡馆的轻柔嗡嗡声、火车的节拍咔嗒声、或交通的舒缓白噪声中变得生动。
+        对于寻求更深专注或放松的人，Moodist 提供了专门设计来增强心境的双节拍和色彩噪声。
+      </p>
+    </div>
+
+    <div class="paragraph">
+      <div class="counter">
+        <span>03</span> / <span>04</span>
+      </div>
+      <h2 class="title">创造您的声音景观</h2>
+      <p class="body">
+        Moodist 的美妙之处在于其简洁性和自定义性。没有复杂的菜单或令人困惑的选项——只需选择您喜欢的声音，
+        调整音量平衡，然后点击播放。想要将鸟儿的轻柔啾鸣与雨水的舒缓声音融合？没问题！
+        随心所欲地叠加多个声音，创建个性化的声音绿洲。
+      </p>
+    </div>
+
+    <div class="paragraph">
+      <div class="counter">
+        <span>04</span> / <span>04</span>
+      </div>
+      <h2 class="title">适合每个时刻的声音</h2>
+      <p class="body">
+        无论您是想在漫长一天后放松身心，在工作中提升专注力，还是让自己进入宁静的睡眠，
+        Moodist 都有完美的声音景观等着您。最棒的是什么？它完全免费开源，您可以毫无负担地享受它的好处。
+        今天就开始使用 Moodist，发现您新的宁静和专注天堂吧！
+      </p>
+    </div>
+
+    <button class="button" id="use-moodist">使用 Moodist</button>
+  </Container>
+</section>
+
+<script lang="ts">
+  const button = document.getElementById('use-moodist');
+
+  button?.addEventListener('click', () => {
+    const app = document.getElementById('app');
+
+    app?.scrollIntoView();
+  });
+</script>
+
+<style>
+  .about {
+    padding-top: 10px;
+
+    & .effect {
+      position: sticky;
+      top: 0;
+      height: 80px;
+      background: linear-gradient(var(--color-neutral-50), transparent);
+    }
+
+    & .paragraph {
+      padding: 30px 0;
+      background: linear-gradient(
+        transparent,
+        var(--color-neutral-50) 10%,
+        var(--color-neutral-50) 90%,
+        transparent
+      );
+
+      &:last-of-type {
+        padding-bottom: 0;
+      }
+
+      & .counter {
+        width: max-content;
+        padding: 6px 16px;
+        margin-bottom: 16px;
+        font-size: var(--font-xsm);
+        color: var(--color-foreground-subtle);
+        background: linear-gradient(var(--color-neutral-100), transparent);
+        border: 1px solid var(--color-neutral-300);
+        border-radius: 20px 20px 20px 8px;
+
+        & span {
+          font-weight: 500;
+          color: var(--color-foreground);
+        }
+      }
+
+      & .title {
+        margin-bottom: 8px;
+        font-family: var(--font-heading);
+        font-size: var(--font-md);
+        font-weight: 600;
+      }
+
+      & .body {
+        line-height: 1.6;
+        color: var(--color-foreground-subtle);
+      }
+    }
+
+    .button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      margin-top: 20px;
+      font-size: var(--font-xsm);
+      font-weight: 500;
+      color: var(--color-foreground);
+      cursor: pointer;
+      background-color: transparent;
+      border: 1px solid var(--color-neutral-200);
+      border-radius: 50px;
+      outline: none;
+      transition: 0.2s;
+
+      &::before {
+        position: absolute;
+        top: -1px;
+        left: 50%;
+        width: 70%;
+        height: 1px;
+        content: '';
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--color-neutral-300),
+          transparent
+        );
+        transform: translateX(-50%);
+      }
+
+      &:hover,
+      &:focus-visible {
+        background-color: var(--color-neutral-100);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--color-neutral-400);
+        outline-offset: 2px;
+      }
+    }
+  }
+</style>

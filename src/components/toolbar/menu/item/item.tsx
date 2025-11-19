@@ -5,6 +5,7 @@ import styles from './item.module.css';
 
 interface ItemProps {
   active?: boolean;
+  'data-i18n'?: string;
   disabled?: boolean;
   href?: string;
   icon: React.ReactElement;
@@ -15,6 +16,7 @@ interface ItemProps {
 
 export function Item({
   active,
+  'data-i18n': dataI18n,
   disabled = false,
   href,
   icon,
@@ -30,10 +32,11 @@ export function Item({
         className={styles.item}
         disabled={disabled}
         {...(href ? { href, target: '_blank' } : {})}
+        {...(dataI18n ? { 'data-i18n': dataI18n } : {})}
         aria-label={label}
       >
         <span className={styles.label}>
-          <span className={styles.icon}>{icon}</span> {label}
+          <span className={styles.icon}>{icon}</span> <span data-i18n={dataI18n}>{label}</span>
           {active && <div className={styles.active} />}
         </span>
 

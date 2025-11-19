@@ -13,6 +13,12 @@ export interface SoundActions {
   select: (id: string) => void;
   setGlobalVolume: (volume: number) => void;
   setVolume: (id: string, volume: number) => void;
+  setSpeed: (id: string, speed: number) => void;
+  setRate: (id: string, rate: number) => void;
+  toggleRandomSpeed: (id: string) => void;
+  toggleRandomVolume: (id: string) => void;
+  toggleRandomRate: (id: string) => void;
+  toggleAllRandom: (id: string) => void;
   shuffle: () => void;
   toggleFavorite: (id: string) => void;
   togglePlay: () => void;
@@ -88,6 +94,78 @@ export const createActions: StateCreator<
       });
     },
 
+    setSpeed(id, speed) {
+      set({
+        sounds: {
+          ...get().sounds,
+          [id]: { ...get().sounds[id], speed },
+        },
+      });
+    },
+
+    setRate(id, rate) {
+      set({
+        sounds: {
+          ...get().sounds,
+          [id]: { ...get().sounds[id], rate },
+        },
+      });
+    },
+
+    toggleRandomSpeed(id) {
+      const currentSound = get().sounds[id];
+      const isRandomSpeed = !currentSound.isRandomSpeed;
+
+      set({
+        sounds: {
+          ...get().sounds,
+          [id]: { ...currentSound, isRandomSpeed },
+        },
+      });
+    },
+
+    toggleRandomVolume(id) {
+      const currentSound = get().sounds[id];
+      const isRandomVolume = !currentSound.isRandomVolume;
+
+      set({
+        sounds: {
+          ...get().sounds,
+          [id]: { ...currentSound, isRandomVolume },
+        },
+      });
+    },
+
+    toggleRandomRate(id) {
+      const currentSound = get().sounds[id];
+      const isRandomRate = !currentSound.isRandomRate;
+
+      set({
+        sounds: {
+          ...get().sounds,
+          [id]: { ...currentSound, isRandomRate },
+        },
+      });
+    },
+
+    toggleAllRandom(id) {
+      const currentSound = get().sounds[id];
+      const hasAnyRandom = currentSound.isRandomSpeed || currentSound.isRandomVolume || currentSound.isRandomRate;
+      const newState = !hasAnyRandom;
+
+      set({
+        sounds: {
+          ...get().sounds,
+          [id]: {
+            ...currentSound,
+            isRandomSpeed: newState,
+            isRandomVolume: newState,
+            isRandomRate: newState
+          },
+        },
+      });
+    },
+
     shuffle() {
       const sounds = get().sounds;
       const ids = Object.keys(sounds);
@@ -95,6 +173,11 @@ export const createActions: StateCreator<
       ids.forEach(id => {
         sounds[id].isSelected = false;
         sounds[id].volume = 0.5;
+        sounds[id].speed = 1.0;
+        sounds[id].rate = 1.0;
+        sounds[id].isRandomSpeed = false;
+        sounds[id].isRandomVolume = false;
+        sounds[id].isRandomRate = false;
       });
 
       const randomIDs = pickMany(ids, 4);
@@ -154,6 +237,11 @@ export const createActions: StateCreator<
       ids.forEach(id => {
         sounds[id].isSelected = false;
         sounds[id].volume = 0.5;
+        sounds[id].speed = 1.0;
+        sounds[id].rate = 1.0;
+        sounds[id].isRandomSpeed = false;
+        sounds[id].isRandomVolume = false;
+        sounds[id].isRandomRate = false;
       });
 
       set({ sounds });

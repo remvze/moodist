@@ -2,6 +2,7 @@
 import { pwaInfo } from 'virtual:pwa-info'; // eslint-disable-line
 
 import { Reload } from '@/components/reload';
+import { LanguageSwitcher } from '@/components/language-switcher';
 
 import { count } from '@/lib/sounds';
 
@@ -16,10 +17,15 @@ const title = Astro.props.title || 'Moodist: Ambient Sounds for Focus and Calm';
 const description =
   Astro.props.description ||
   `Moodist is a free and open-source ambient sound generator featuring ${count()} carefully curated sounds. Create your ideal atmosphere for relaxation, focus, or creativity with this versatile tool.`;
+
+// Get language from URL parameter
+const url = Astro.url;
+const langParam = url.searchParams.get('lang') || 'en';
+const lang = ['en', 'zh-CN'].includes(langParam) ? langParam : 'en';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width" name="viewport" />
@@ -40,11 +46,20 @@ const description =
 
     <meta content="summary_large_image" name="twitter:card" />
 
+    <!-- Hreflang tags for SEO -->
+    <link rel="alternate" hreflang="en" href="https://moodist.app" />
+    <link rel="alternate" hreflang="zh-CN" href="https://moodist.app?lang=zh-CN" />
+    <link rel="alternate" hreflang="x-default" href="https://moodist.app" />
+
     {pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
   </head>
   <body>
+    <LanguageSwitcher client:load className="" />
     <slot />
 
     <Reload client:load />
   </body>
+
+  <style>
+  </style>
 </html>

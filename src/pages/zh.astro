@@ -1,0 +1,19 @@
+---
+import Layout from '@/layouts/layout.astro';
+
+import Hero from '@/components/hero.astro';
+import About from '@/components/about-unified.astro';
+
+import { App } from '@/components/app';
+import { getTranslation } from '@/data/i18n';
+
+const t = getTranslation('zh-CN');
+const pageTitle = 'Moodist：专注与放松的环境音';
+const pageDesc = 'Moodist 是一个免费开源的环境音生成器，提供精心挑选的声音，帮您创造放松、专注或创意的理想氛围。';
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+  <Hero />
+  <App client:load />
+  <About />
+</Layout>

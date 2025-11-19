@@ -1,0 +1,155 @@
+.deleteDropdownContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 60px;
+  height: 32px; /* 与输入框内容区域高度一致 */
+  padding: 6px 8px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px; /* 与输入框圆角一致 */
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.deleteButton:hover:not(:disabled) {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+.deleteButton:disabled {
+  background: var(--color-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.deleteButton.disabled {
+  background: var(--color-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.deleteDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  width: 280px;
+  max-height: 320px;
+  background: var(--component-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.dropdownHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.dropdownHeader h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-foreground);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: var(--color-foreground-subtle);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background: var(--component-hover);
+  color: var(--color-foreground);
+}
+
+.loading,
+.empty {
+  padding: 16px;
+  text-align: center;
+  color: var(--color-foreground-subtle);
+  font-size: 14px;
+}
+
+.musicList {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.musicItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.2s ease;
+}
+
+.musicItem:last-child {
+  border-bottom: none;
+}
+
+.musicItem:hover {
+  background: var(--component-hover);
+}
+
+.musicName {
+  flex: 1;
+  font-size: 14px;
+  color: var(--color-foreground);
+  margin-right: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.deleteItemButton {
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.deleteItemButton:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+.deleteItemButton:disabled {
+  background: var(--color-muted);
+  color: var(--color-foreground-subtle);
+  cursor: not-allowed;
+}

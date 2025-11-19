@@ -1,0 +1,201 @@
+.item {
+  width: 100%;
+  padding: 8px 12px;
+  text-align: left;
+  font-size: var(--font-sm);
+  color: var(--color-foreground);
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--color-neutral-200);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-neutral-400);
+    outline-offset: 2px;
+  }
+}
+
+.authContainer {
+  width: 100%;
+  padding: 8px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+}
+
+.userAvatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-foreground);
+  color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.userName {
+  font-weight: 500;
+  color: var(--color-foreground);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.logoutButton {
+  width: 100%;
+  padding: 8px 12px;
+  text-align: left;
+  font-size: var(--font-sm);
+  color: #ef4444;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-neutral-400);
+    outline-offset: 2px;
+  }
+}
+
+.authForm {
+  width: 100%;
+  padding: 16px;
+  background: var(--component-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-foreground);
+
+  h3 {
+    margin: 0 0 16px 0;
+    font-size: var(--font-lg);
+    font-weight: 600;
+    text-align: center;
+    color: var(--color-foreground);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+.authInput {
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: var(--font-sm);
+  background: var(--bg-primary);
+  color: var(--color-foreground);
+
+  &::placeholder {
+    color: var(--color-foreground-subtler);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-muted);
+    box-shadow: 0 0 0 2px var(--color-muted);
+  }
+}
+
+.authButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.authSubmitButton {
+  flex: 1;
+  padding: 8px 16px;
+  background: var(--color-foreground);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 6px;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover:not(:disabled) {
+    background: var(--color-foreground-subtle);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.authCancelButton {
+  padding: 8px 16px;
+  background: transparent;
+  color: var(--color-foreground-subtler);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+
+  &:hover {
+    background: var(--component-hover);
+    border-color: var(--color-foreground-subtle);
+  }
+}
+
+.authToggle {
+  margin-top: 8px;
+}
+
+.authToggleButton {
+  width: 100%;
+  padding: 6px 12px;
+  background: transparent;
+  color: var(--color-foreground-subtle);
+  border: none;
+  border-radius: 6px;
+  font-size: var(--font-xsm);
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--color-foreground);
+  }
+}
+
+.authFormOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}

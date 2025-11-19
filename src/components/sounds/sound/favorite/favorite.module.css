@@ -1,7 +1,4 @@
 .favoriteButton {
-  position: absolute;
-  top: 10px;
-  right: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,23 +7,24 @@
   line-height: 0;
   color: var(--color-foreground-subtle);
   cursor: pointer;
-  background-color: black;
-  background-color: var(--color-neutral-100);
-  border: 1px solid var(--color-neutral-200);
+  background-color: var(--component-bg);
+  border: 1px solid var(--color-border);
   border-radius: 50%;
   transition: 0.2s;
 
   &:hover,
   &:focus-visible {
     color: var(--color-foreground);
+    background-color: var(--component-hover);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-neutral-400);
+    outline: 2px solid var(--color-muted);
     outline-offset: 2px;
   }
 
   &.isFavorite {
     color: var(--color-foreground);
+    background-color: var(--component-active);
   }
 }

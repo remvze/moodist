@@ -5,6 +5,639 @@
   margin-top: 20px;
 }
 
+/* 主容器 */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px; /* 两个模块之间的间距 */
+  margin-top: 20px;
+}
+
+/* 当前选中声音模块 */
+.currentSoundsModule {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+}
+
+/* 音乐列表模块 */
+.musicListModule {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+}
+
+.soundsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.saveSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 20px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.saveButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 40px;
+}
+
+/* 音乐列表区域基础样式 */
+.musicSection {
+  /* 继承模块样式，不需要额外样式 */
+}
+
+/* 当前选中声音标题样式 */
+.currentSoundsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.currentSoundsTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-foreground);
+}
+
+/* 音乐列表标题样式 */
+.musicHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.musicTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-foreground);
+}
+
+.musicIcon {
+  color: var(--color-foreground-subtle);
+  font-size: 14px;
+}
+
+.toggleMusicList {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-foreground-subtle);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggleMusicList:hover {
+  background: var(--component-hover);
+  border-color: var(--color-foreground-subtle);
+  color: var(--color-foreground);
+}
+
+.musicList {
+  max-height: 300px;
+  overflow-y: auto;
+  border-radius: 6px;
+  background: var(--color-component-bg);
+  transition: max-height 0.3s ease;
+}
+
+/* 当有展开的音乐项时，移除高度限制 */
+.musicList.hasExpanded {
+  max-height: none;
+}
+
+.musicItem {
+  padding: 12px;
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.2s ease;
+}
+
+.musicItem:last-child {
+  border-bottom: none;
+}
+
+.musicItem:hover {
+  background: var(--component-hover);
+}
+
+/* 音乐内容容器 - 新的横向布局 */
+.musicContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.playButton {
+  background: var(--color-foreground);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 4px;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.playButton:hover {
+  background: var(--color-foreground-subtle);
+}
+
+.playButton.playing {
+  background: #e74c3c;
+  color: white;
+}
+
+.playButton.playing:hover {
+  background: #c0392b;
+}
+
+/* 音乐名称 */
+.musicName {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-foreground);
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 音乐信息容器 - 左侧信息 */
+.musicInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 音乐操作按钮容器 - 右侧按钮 */
+.musicActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* 声音名字显示 */
+.soundNames {
+  font-size: 12px;
+  color: var(--color-foreground-subtle);
+  line-height: 1.2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  align-items: center;
+  padding: 6px 0;
+  margin: 0;
+}
+
+/* 展开按钮 */
+.expandButton {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-foreground-subtle);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  height: auto;
+  line-height: 1;
+  margin: 0;
+}
+
+.expandButton:hover {
+  background: var(--component-hover);
+  border-color: var(--color-foreground-subtle);
+  color: var(--color-foreground);
+}
+
+/* 当前选中音乐的展开按钮 */
+.expandButtonCurrent {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-foreground-subtle);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  height: 32px;
+  line-height: 1;
+}
+
+.expandButtonCurrent:hover {
+  background: var(--component-hover);
+  border-color: var(--color-foreground-subtle);
+  color: var(--color-foreground);
+}
+
+.soundName {
+  color: var(--color-foreground-subtle);
+  background: rgba(var(--color-muted-rgb), 0.3);
+  padding: 1px 4px;
+  border-radius: 2px;
+  margin-right: 2px;
+  display: inline-block;
+  margin-bottom: 2px;
+  font-size: 11px;
+  border: 1px solid rgba(var(--color-border-rgb), 0.3);
+}
+
+.noSounds {
+  color: var(--color-foreground-subtler);
+  font-style: italic;
+}
+
+.deleteButton {
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 6px;
+  cursor: pointer;
+  font-size: 11px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  height: auto;
+  margin: 0;
+}
+
+.deleteButton:hover {
+  background: #dc2626;
+}
+
+/* 编辑表单样式 */
+.editForm {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.editInput {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 14px;
+  background: var(--input-bg);
+  color: var(--color-foreground);
+  outline: none;
+}
+
+.editInput:focus {
+  border-color: var(--color-muted);
+  box-shadow: 0 0 0 2px var(--color-muted);
+}
+
+.editButtons {
+  display: flex;
+  gap: 4px;
+}
+
+.editButton {
+  border: none;
+  border-radius: 4px;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editButton.saveButton {
+  background: #10b981;
+  color: white;
+}
+
+.editButton.saveButton:hover {
+  background: #059669;
+}
+
+.editButton.cancelButton {
+  background: var(--color-muted);
+  color: var(--color-foreground);
+}
+
+.editButton.cancelButton:hover {
+  background: var(--color-foreground-subtle);
+}
+
+/* 音乐名称配置区域 */
+.musicNameConfig {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  /* 移除边框和背景 */
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+.musicNameInput {
+  width: 6.25em; /* 5em * 1.25 = 6.25em，增大1/4 */
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 14px;
+  background: var(--input-bg);
+  color: var(--color-foreground);
+  outline: none;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.musicNameInput:focus {
+  border-color: var(--color-muted);
+  box-shadow: 0 0 0 2px var(--color-muted);
+}
+
+.musicNameInput::placeholder {
+  color: var(--color-foreground-subtler);
+}
+
+/* 空状态和加载状态 */
+.empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--color-foreground-subtle);
+}
+
+.emptyIcon {
+  font-size: 24px;
+  color: var(--color-foreground-subtler);
+  margin-bottom: 8px;
+}
+
+.empty p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.emptyHint {
+  font-size: 12px !important;
+  color: var(--color-foreground-subtler) !important;
+}
+
+.loading {
+  padding: 16px;
+  text-align: center;
+  color: var(--color-foreground-subtle);
+  font-size: 14px;
+}
+
+/* 错误提示样式 */
+.error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid #ef4444;
+  color: #dc2626;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.errorClose {
+  background: none;
+  border: none;
+  color: #dc2626;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
+}
+
+.errorClose:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.saveButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-1px);
+}
+
+.saveButton:disabled {
+  background: var(--color-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.saveButton.saving {
+  background: var(--color-muted);
+  color: var(--color-foreground);
+}
+
+.saveSuccess {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px;
+  background: var(--component-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-foreground);
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  z-index: 1002;
+  min-width: 250px;
+  font-size: 14px;
+  animation: slideIn 0.3s ease-out;
+}
+
+.saveSuccess p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-foreground-subtle);
+}
+
+.saveSuccess button {
+  padding: 8px 16px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--color-foreground);
+  color: var(--bg-primary);
+}
+
+.saveSuccess button:hover {
+  background: var(--color-foreground-subtle);
+}
+
+.loginPrompt {
+  padding: 16px;
+  background: var(--component-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-foreground);
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.loginPrompt p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-foreground-subtle);
+}
+
+.loginPrompt button {
+  padding: 8px 16px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.loginPrompt button:first-child {
+  background: var(--color-foreground);
+  color: var(--bg-primary);
+}
+
+.loginPrompt button:last-child {
+  background: transparent;
+  color: var(--color-foreground);
+  border: 1px solid var(--color-border);
+}
+
+.loginPrompt button:hover:first-child {
+  background: var(--color-foreground-subtle);
+}
+
+.loginPrompt button:hover:last-child {
+  background: var(--component-hover);
+  border-color: var(--color-foreground-subtle);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 展开的音乐内容 */
+.expandedMusicContent {
+  padding: 16px;
+  background: var(--color-component-bg);
+  border-radius: 8px;
+  margin-top: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.expandedMusicActions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.playMusicButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--color-foreground);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 36px;
+}
+
+.playMusicButton:hover {
+  background: var(--color-foreground-subtle);
+  transform: translateY(-1px);
+}
+
+/* 展开音乐内的声音网格 */
+.expandedMusicContent .sounds {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
 .button {
   position: relative;
   display: flex;
@@ -17,18 +650,18 @@
   font-size: var(--font-xsm);
   color: var(--color-neutral-subtle);
   cursor: pointer;
-  background-color: var(--color-neutral-50);
-  border: 1px solid var(--color-neutral-200);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--color-border);
   border-radius: 50px;
   transition: 0.2s;
 
   &:hover,
   &:focus-visible {
-    background-color: var(--color-neutral-100);
+    background-color: var(--bg-tertiary);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-neutral-400);
+    outline: 2px solid var(--color-muted);
     outline-offset: 2px;
   }
 
@@ -42,7 +675,7 @@
     background: linear-gradient(
       90deg,
       transparent,
-      var(--color-neutral-300),
+      var(--color-muted),
       transparent
     );
     transform: translateX(-50%);
@@ -55,7 +688,7 @@
     width: 8px;
     height: 8px;
     content: '';
-    background-color: var(--color-neutral-950);
+    background-color: var(--color-foreground);
     border-radius: 50%;
   }
 }
