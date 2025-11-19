@@ -6,7 +6,7 @@ services:
         max-size: 1g
     restart: unless-stopped
     ports:
-      - '8080:8080'
+      - '11081:8080'
     volumes:
       # 挂载源代码用于热重载（保持用户权限）
       - .:/app:cached
@@ -19,6 +19,8 @@ services:
       - PORT=8080
     stdin_open: true
     tty: true
+    # 启动时确保安装了必要的开发依赖
+    command: sh -c "cd /app && npm install @astrojs/node autoprefixer --no-save && npm run dev -- --host 0.0.0.0 --port 8080"
 
 volumes:
   node_modules_volume:
