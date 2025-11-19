@@ -8,3 +8,8 @@ services:
     restart: always
     ports:
       - '8080:8080'
+    volumes:
+      # 挂载 SQLite 数据库文件和 WAL 文件
+      - ./data:/app/data:rw
+    environment:
+      - NODE_ENV=production

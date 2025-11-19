@@ -31,6 +31,8 @@ services:
       - .:/app
       - /app/node_modules  # 防止node_modules被覆盖
       - moodist-dist:/app/dist
+      # 挂载 SQLite 数据库文件目录
+      - ./data:/app/data:rw
 
     # 工作目录
     working_dir: /app

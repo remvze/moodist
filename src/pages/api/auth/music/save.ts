@@ -26,6 +26,8 @@ export const POST: APIRoute = async ({ request }) => {
     const { data } = bodyResult;
     const { name, sounds, volume, speed, rate, random_effects } = data;
 
+    console.log('🎵 保存音乐请求:', { userId: user?.id, name, soundsCount: sounds?.length });
+
     // 验证输入
     if (!name || !sounds || !Array.isArray(sounds)) {
       return new Response(JSON.stringify({
@@ -47,6 +49,8 @@ export const POST: APIRoute = async ({ request }) => {
       random_effects: random_effects || {},
     });
 
+    console.log('✅ 音乐保存成功:', { id: music.id, name: music.name });
+
     return new Response(JSON.stringify({
       success: true,
       message: '音乐保存成功',
@@ -61,6 +65,18 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
   } catch (error) {
+    console.error('❌ 保存音乐API错误:', error);
+
+    // 处理特定的数据库错误
+    if (error instanceof Error && error.message.includes('readonly')) {
+      return new Response(JSON.stringify({
+        error: '数据库权限错误，请检查文件权限'
+      }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
     return handleApiError(error, '保存音乐');
   }
 };

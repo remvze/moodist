@@ -51,7 +51,17 @@ export function getDatabase(): Database.Database {
       fs.mkdirSync(dbDir, { recursive: true });
     }
 
-    db = new Database(dbPath);
+    // 以读写模式打开数据库，启用WAL模式提高并发性能
+    db = new Database(dbPath, {
+      readonly: false,
+      fileMustExist: false,
+      verbose: console.log // 添加SQL执行日志
+    });
+
+    // 启用WAL模式，提高并发写入性能
+    db.pragma('journal_mode = WAL');
+    db.pragma('synchronous = NORMAL');
+    db.pragma('cache_size = 1000');
 
     // 创建用户表
     db.exec(`

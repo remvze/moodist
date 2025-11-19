@@ -181,6 +181,15 @@
   background: var(--color-foreground-subtle);
 }
 
+.playButton.playing {
+  background: #e74c3c;
+  color: white;
+}
+
+.playButton.playing:hover {
+  background: #c0392b;
+}
+
 /* 音乐名称 */
 .musicName {
   font-size: 14px;

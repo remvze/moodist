@@ -51,7 +51,14 @@ services:
     security_opt:
       - no-new-privileges:true
 
-    # 只读根文件系统
+    # 数据卷挂载
+    volumes:
+      # 挂载 SQLite 数据库文件目录（需要读写权限）
+      - ./data:/app/data:rw
+      # 挂载临时目录用于 SQLite WAL 文件
+      - moodist-temp:/tmp:rw
+
+    # 只读根文件系统（除了数据目录）
     read_only: true
     tmpfs:
       - /var/cache/nginx
@@ -75,6 +82,10 @@ services:
       - moodist-network
     profiles:
       - proxy
+
+volumes:
+  moodist-temp:
+    driver: local
 
 networks:
   moodist-network:
