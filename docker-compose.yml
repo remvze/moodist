@@ -1,15 +1,27 @@
-version: '3.9'
 services:
   moodist:
-    image: walllee/moodist:latest
+    image: walllee/moodist:3.0.0-prod-like
+    build:
+      context: .
+      dockerfile: Dockerfile.dev-server
     logging:
       options:
         max-size: 1g
-    restart: always
+    restart: unless-stopped
     ports:
       - '8080:8080'
     volumes:
+      # 挂载源代码用于热重载（保持用户权限）
+      - .:/app:cached
+      # 使用独立的 node_modules 避免权限冲突
+      - node_modules_volume:/app/node_modules
       # 挂载 SQLite 数据库文件和 WAL 文件
       - ./data:/app/data:rw
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
+      - PORT=8080
+    stdin_open: true
+    tty: true
+
+volumes:
+  node_modules_volume:

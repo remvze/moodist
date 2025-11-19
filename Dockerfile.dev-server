@@ -1,0 +1,56 @@
+# 开发模式 Dockerfile - 完整开发环境
+FROM node:18-alpine
+
+# 安装必要的系统依赖
+RUN apk add --no-cache \
+    curl \
+    git \
+    bash
+
+# 设置工作目录
+WORKDIR /app
+
+# 设置环境变量
+ENV NODE_ENV=production
+ENV PORT=8080
+ENV HOST=0.0.0.0
+ENV PATH="/app/node_modules/.bin:${PATH}"
+
+# 复制package文件
+COPY package*.json ./
+
+# 安装所有依赖（包括devDependencies），跳过 prepare 脚本
+RUN npm ci --ignore-scripts && \
+    npm cache clean --force && \
+    npm install husky --save-dev
+
+# 复制所有源代码
+COPY . .
+
+# 创建数据目录
+RUN mkdir -p /app/data
+
+# 暴露端口
+EXPOSE 8080
+
+# 健康检查
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+  CMD curl -f http://localhost:8080/ || exit 1
+
+# 启动开发服务器（类似生产模式，稳定运行）
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "8080"]
+
+# 定义构建参数
+ARG VERSION=latest
+ARG BUILD_DATE
+ARG VCS_REF
+
+# 添加标签信息
+LABEL maintainer="walllee" \
+      org.opencontainers.image.title="Moodist Development" \
+      org.opencontainers.image.description="Ambient sounds for focus and calm - 开发环境（完整功能）" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.created="${BUILD_DATE}" \
+      org.opencontainers.image.revision="${VCS_REF}" \
+      org.opencontainers.image.source="https://github.com/wheesys/moodist" \
+      org.opencontainers.image.licenses="MIT"

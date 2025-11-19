@@ -5,7 +5,10 @@ import node from '@astrojs/node';
 import AstroPWA from '@vite-pwa/astro';
 
 export default defineConfig({
-  output: 'static',
+  output: 'server',
+  adapter: node({
+    mode: 'standalone'
+  }),
   integrations: [
     react(),
     AstroPWA({
