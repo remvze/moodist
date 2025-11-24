@@ -18,32 +18,29 @@
     align-items: center;
     justify-content: center;
 
-    & a {
-      color: inherit;
-      text-decoration: none;
+    & .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      font-size: var(--font-md);
+      color: var(--color-foreground);
+      cursor: pointer;
+      background: linear-gradient(
+        var(--color-neutral-50),
+        var(--color-neutral-100)
+      );
+      border: 1px solid var(--color-neutral-300);
+      border-radius: 50%;
+      transition: 0.2s;
 
-      & .icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 48px;
-        height: 48px;
-        font-size: var(--font-md);
+      &:hover {
         background: linear-gradient(
-          var(--color-neutral-50),
-          var(--color-neutral-100)
+          var(--color-neutral-100),
+          var(--color-neutral-200)
         );
-        border: 1px solid var(--color-neutral-300);
-        border-radius: 50%;
-        transition: 0.2s;
-
-        &:hover {
-          background: linear-gradient(
-            var(--color-neutral-100),
-            var(--color-neutral-200)
-          );
-          transform: scale(1.15);
-        }
+        transform: scale(1.15);
       }
     }
   }

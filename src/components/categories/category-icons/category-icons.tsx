@@ -7,6 +7,11 @@ import { Tooltip } from '@/components/tooltip';
 export default function CategoryIcons() {
   const categories = useMemo(() => sounds.categories, []);
 
+  const goto = (id: string) => {
+    const category = document.getElementById(`category-${id}`);
+    category?.scrollIntoView();
+  };
+
   return (
     <Container>
       <div className={styles.wrapper}>
@@ -15,11 +20,18 @@ export default function CategoryIcons() {
           <Tooltip.Provider delayDuration={0}>
             {categories.map(category => {
               return (
-                <a href={`#category-${category.id}`} key={category.id}>
-                  <Tooltip content={category.title} placement="bottom">
-                    <div className={styles.icon}>{category.icon}</div>
-                  </Tooltip>
-                </a>
+                <Tooltip
+                  content={category.title}
+                  key={category.id}
+                  placement="bottom"
+                >
+                  <button
+                    className={styles.icon}
+                    onClick={() => goto(category.id)}
+                  >
+                    {category.icon}
+                  </button>
+                </Tooltip>
               );
             })}
           </Tooltip.Provider>
