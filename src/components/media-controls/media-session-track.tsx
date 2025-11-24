@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { BrowserDetect } from '@/helpers/browser-detect';
 
@@ -15,23 +15,14 @@ const metadata: MediaMetadataInit = {
 export function MediaSessionTrack() {
   const { isBrowser } = useSSR();
   const isDarkTheme = useDarkTheme();
-  const [isGenerated, setIsGenerated] = useState(false);
   const isPlaying = useSoundStore(state => state.isPlaying);
   const play = useSoundStore(state => state.play);
   const pause = useSoundStore(state => state.pause);
   const masterAudioSoundRef = useRef<HTMLAudioElement>(null);
   const artworkURL = isDarkTheme ? '/logo-dark.png' : '/logo-light.png';
 
-  const generateSilence = useCallback(async () => {
-    if (!masterAudioSoundRef.current) return;
-
-    masterAudioSoundRef.current.src = '/sounds/silence.mp3';
-
-    setIsGenerated(true);
-  }, []);
-
   useEffect(() => {
-    if (!isBrowser || !isPlaying || !isGenerated) return;
+    if (!isBrowser || !isPlaying) return;
 
     navigator.mediaSession.metadata = new MediaMetadata({
       ...metadata,
@@ -43,11 +34,7 @@ export function MediaSessionTrack() {
         },
       ],
     });
-  }, [artworkURL, isBrowser, isDarkTheme, isGenerated, isPlaying]);
-
-  useEffect(() => {
-    generateSilence();
-  }, [generateSilence]);
+  }, [artworkURL, isBrowser, isDarkTheme, isPlaying]);
 
   const startMasterAudio = useCallback(async () => {
     if (!masterAudioSoundRef.current) return;
@@ -79,7 +66,6 @@ export function MediaSessionTrack() {
   }, []);
 
   useEffect(() => {
-    if (!isGenerated) return;
     if (!masterAudioSoundRef.current) return;
 
     if (isPlaying) {
@@ -87,7 +73,7 @@ export function MediaSessionTrack() {
     } else {
       stopMasterAudio();
     }
-  }, [isGenerated, isPlaying, startMasterAudio, stopMasterAudio]);
+  }, [isPlaying, startMasterAudio, stopMasterAudio]);
 
   useEffect(() => {
     const masterAudioSound = masterAudioSoundRef.current;
@@ -101,5 +87,12 @@ export function MediaSessionTrack() {
     };
   }, []);
 
-  return <audio id="media-session-track" loop ref={masterAudioSoundRef} />;
+  return (
+    <audio
+      id="media-session-track"
+      loop
+      ref={masterAudioSoundRef}
+      src="/sounds/silence.wav"
+    />
+  );
 }
