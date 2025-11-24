@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/remvze/moodist/compare/v2.2.0...v2.3.0) (2025-11-24)
+
+
+### 🚚 Chores
+
+* change silence ([b921629](https://github.com/remvze/moodist/commit/b921629ee33c4a18a86258ba204921f732f404ff))
+
+
+### ✨ Features
+
+* turn links into buttons ([d016076](https://github.com/remvze/moodist/commit/d0160763eeb66ba47dd06098b1f2a84e234fca36))
+
 ## [2.2.0](https://github.com/remvze/moodist/compare/v2.1.0...v2.2.0) (2025-11-24)
 
 
