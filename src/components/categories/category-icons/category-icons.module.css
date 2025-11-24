@@ -26,9 +26,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 50px;
-        height: 50px;
-        font-size: var(--font-lg);
+        width: 48px;
+        height: 48px;
+        font-size: var(--font-md);
         background: linear-gradient(
           var(--color-neutral-50),
           var(--color-neutral-100)
