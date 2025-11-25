@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/remvze/moodist/compare/v2.3.0...v2.4.0) (2025-11-25)
+
+
+### ✨ Features
+
+* add audio session type ([3a96d38](https://github.com/remvze/moodist/commit/3a96d38a774c7675811d5a3ea323a49d9d129bbc))
+
 ## [2.3.0](https://github.com/remvze/moodist/compare/v2.2.0...v2.3.0) (2025-11-24)
 
 
