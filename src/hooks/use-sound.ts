@@ -47,6 +47,10 @@ export function useSound(
         preload: options.preload ?? false,
         src: src,
       });
+
+      if (window.navigator.audioSession) {
+        window.navigator.audioSession.type = 'playback';
+      }
     }
 
     return sound;
