@@ -53,21 +53,25 @@
 
 ## Commands
 
-- `npm run dev`: run development server
-- `npm run build`: build for production
-- `npm run preview`: preview the built app
-- `npm run lint`: lint files using ESLint
-- `npm run lint:fix`: lint and fix using ESLint
-- `npm run lint:style`: lint styles using Stylelint
-- `npm run lint:style:fix`: lint and fix styles using Stylelint
-- `npm run format`: format files using Prettier
-- `npm run commit`: commit message using Commitizen
-- `npm run release:major`: release major version
-- `npm run release:minor`: release minor version
-- `npm run release:patch`: release patch version
-- `npm run storybook`: run Storybook
-
-## Contributing
+- `bun run dev`: run development server
+- `bun run build`: build for production
+- `bun run preview`: preview the built app
+- `bun run lint`: lint files using ESLint
+- `bun run lint:fix`: lint and fix using ESLint
+- `bun run lint:style`: lint styles using Stylelint
+- `bun run lint:style:fix`: lint and fix styles using Stylelint
+- `bun run format`: format files using Prettier
+- `bun run commit`: commit message using Commitizen
+- `bun run release:major`: release major version
+- `bun run release:minor`: release minor version
+- `bun run release:patch`: release patch version
+- `bun run storybook`: run Storybook
+- `bun run tauri dev`: run Tauri development server
+- `bun run tauri build`: build Tauri app for production
+- `bun run tauri ios dev`: run Tauri app on iOS device
+- `bun run tauri ios build`: build Tauri app for iOS device
+- `bun run tauri android dev`: run Tauri app on Android device
+- `bun run tauri android build`: build Tauri app for Android device
 
 🚧 Please check [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
