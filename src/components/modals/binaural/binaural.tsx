@@ -100,9 +100,22 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
   const stopSound = useCallback(() => {
     if (!isPlaying) return;
 
+    // Stop oscillators
     leftOscillatorRef.current?.stop();
     rightOscillatorRef.current?.stop();
-    audioContextRef.current?.close();
+
+    // Unload oscillators
+    leftOscillatorRef.current = null;
+    rightOscillatorRef.current = null;
+
+    // Close and unload AudioContext
+    if (audioContextRef.current) {
+      audioContextRef.current.close();
+      audioContextRef.current = null;
+    }
+
+    // Unload gain node
+    gainNodeRef.current = null;
 
     setIsPlaying(false);
   }, [isPlaying]);
@@ -127,11 +140,9 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
   useEffect(() => {
     // Cleanup when component unmounts
     return () => {
-      if (isPlaying) {
-        stopSound();
-      }
+      stopSound();
     };
-  }, [isPlaying, stopSound]);
+  }, [stopSound]);
 
   useEffect(() => {
     // Update frequencies when a preset is selected
