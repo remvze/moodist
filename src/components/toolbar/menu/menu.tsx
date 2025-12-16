@@ -179,11 +179,7 @@ export function Menu() {
         show={modals.shortcuts}
         onClose={() => close('shortcuts')}
       />
-      <Pomodoro
-        open={() => open('pomodoro')}
-        show={modals.pomodoro}
-        onClose={() => close('pomodoro')}
-      />
+      <Pomodoro show={modals.pomodoro} onClose={() => close('pomodoro')} />
       <Notepad show={modals.notepad} onClose={() => close('notepad')} />
       <Todo show={modals.todo} onClose={() => close('todo')} />
       <Countdown show={modals.countdown} onClose={() => close('countdown')} />
