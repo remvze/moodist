@@ -8,8 +8,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
         // Configure audio session for background playback
         do {
             try AVAudioSession.sharedInstance().setCategory(
@@ -21,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             print("Failed to set audio session category: \(error)")
         }
-        
         return true
     }
 
