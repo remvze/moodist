@@ -36,6 +36,7 @@
     "@capacitor/share": "^8.0.0",
     "@capacitor/splash-screen": "^8.0.0",
     "@capacitor/status-bar": "^8.0.0",
+    "@capgo/native-audio": "8.2.0",
     "@floating-ui/react": "0.26.0",
     "@formkit/auto-animate": "0.8.2",
     "@radix-ui/react-checkbox": "1.1.4",

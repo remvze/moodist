@@ -8,3 +8,4 @@ export {
   NOTIFICATION_IDS,
   scheduleNotification,
 } from './notifications';
+export { nativeAudio } from '@/lib/audio/native-audio-service';

@@ -6,6 +6,7 @@ import AVFoundation
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    private var isAudioSessionInterrupted = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Configure audio session for background playback
@@ -19,7 +20,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             print("Failed to set audio session category: \(error)")
         }
+        
+        // Register for audio interruption notifications
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleAudioSessionInterruption),
+            name: AVAudioSession.interruptionNotification,
+            object: AVAudioSession.sharedInstance()
+        )
+        
         return true
+    }
+    
+    @objc private func handleAudioSessionInterruption(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
+              let type = AVAudioSession.InterruptionType(rawValue: typeValue) else {
+            return
+        }
+        
+        switch type {
+        case .began:
+            // Only mark as interrupted if not already interrupted
+            if !isAudioSessionInterrupted {
+                isAudioSessionInterrupted = true
+                print("[Audio] Session interrupted")
+            }
+        case .ended:
+            isAudioSessionInterrupted = false
+            // Check if we should resume
+            if let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt {
+                let options = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
+                if options.contains(.shouldResume) {
+                    do {
+                        try AVAudioSession.sharedInstance().setActive(true)
+                        print("[Audio] Session resumed after interruption")
+                    } catch {
+                        print("[Audio] Failed to reactivate session: \(error)")
+                    }
+                }
+            }
+        @unknown default:
+            break
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
