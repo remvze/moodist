@@ -5,6 +5,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import { useSoundStore } from '@/stores/sound';
 import { useSnackbar } from '@/contexts/snackbar';
 import { cn } from '@/helpers/styles';
+import { isNativePlatform } from '@/lib/platform';
 
 import styles from './play.module.css';
 
@@ -29,7 +30,9 @@ export function PlayButton() {
     if (isPlaying && noSelected) pause();
   }, [isPlaying, pause, noSelected]);
 
-  useHotkeys('shift+space', handleToggle, {}, [handleToggle]);
+  useHotkeys('shift+space', handleToggle, { enabled: !isNativePlatform() }, [
+    handleToggle,
+  ]);
 
   return (
     <button
