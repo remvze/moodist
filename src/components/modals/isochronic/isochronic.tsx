@@ -2,6 +2,7 @@ import { useEffect, useState, useRef, useCallback } from 'react';
 
 import { Modal } from '@/components/modal';
 import { Slider } from '@/components/slider';
+import { isNativePlatform } from '@/lib/platform';
 
 import styles from './isochornic.module.css';
 
@@ -161,12 +162,21 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
     }
   };
 
+  const isNative = isNativePlatform();
+
   return (
     <Modal show={show} onClose={onClose}>
       <header className={styles.header}>
         <h2 className={styles.title}>Isochronic Tone</h2>
         <p className={styles.desc}>Isochronic tone generator.</p>
       </header>
+
+      {isNative && (
+        <div className={styles.note}>
+          Isochronic tones use real-time audio synthesis and will stop when the
+          app is in the background. Keep the app open for continuous playback.
+        </div>
+      )}
 
       <div className={styles.fieldWrapper}>
         <label>
