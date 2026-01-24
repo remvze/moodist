@@ -10,6 +10,7 @@
 - ⚡ [Features](#features)
 - 🧰 [Tools](#tools)
 - 🔮 [Commands](#commands)
+- 📱 [iOS App](#ios-app)
 - 🚧 [Contributing](#contributing)
 - ⭐ [Support](#support-moodist)
 - 📜 [License](#license)
@@ -53,19 +54,63 @@
 
 ## Commands
 
+### Web Development
 - `npm run dev`: run development server
 - `npm run build`: build for production
 - `npm run preview`: preview the built app
+
+### iOS Development (with Capacitor)
+- `npm run build:ios`: build and sync to iOS
+- `npm run dev:ios`: build, sync, and open in Xcode
+- `npm run cap:sync`: sync web assets to native platforms
+- `npm run cap:ios`: open iOS project in Xcode
+
+### Code Quality
 - `npm run lint`: lint files using ESLint
 - `npm run lint:fix`: lint and fix using ESLint
 - `npm run lint:style`: lint styles using Stylelint
 - `npm run lint:style:fix`: lint and fix styles using Stylelint
 - `npm run format`: format files using Prettier
+
+### Git & Versioning
 - `npm run commit`: commit message using Commitizen
 - `npm run release:major`: release major version
 - `npm run release:minor`: release minor version
 - `npm run release:patch`: release patch version
+
+### Development Tools
 - `npm run storybook`: run Storybook
+
+## iOS App
+
+Moodist is now available as a native iOS app using Capacitor! The same codebase powers both the web app and iOS app.
+
+### Features on iOS
+- ✅ Full feature parity with web app
+- ✅ Background audio playback
+- ✅ Native share sheet integration
+- ✅ Offline-first with all sounds bundled
+- ✅ No data collection or tracking
+
+### For Developers
+
+**Quick Start:**
+```bash
+npm install
+npm run build:ios
+# Opens in Xcode - requires macOS with Xcode installed
+```
+
+**Documentation:**
+- 📖 [Full Implementation Guide](CAPACITOR_IMPLEMENTATION.md)
+- 🚀 [Quick Reference](CAPACITOR_QUICK_REFERENCE.md)
+
+**Status:** Code complete. Remaining tasks require:
+- App icons (design)
+- Xcode for testing
+- Apple Developer account for App Store submission
+
+The iOS-specific code uses platform abstraction layers and is fully compatible with the web version. All changes are backward compatible.
 
 ## Contributing
 
