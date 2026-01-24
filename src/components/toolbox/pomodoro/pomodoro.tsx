@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { FaUndo, FaPlay, FaPause } from 'react-icons/fa/index';
 import { IoMdSettings } from 'react-icons/io/index';
 
@@ -10,8 +10,14 @@ import { Setting } from './setting';
 
 import { useLocalStorage } from '@/hooks/use-local-storage';
 import { useSoundEffect } from '@/hooks/use-sound-effect';
+import { useAppState } from '@/hooks/use-app-state';
 import { usePomodoroStore } from '@/stores/pomodoro';
 import { useCloseListener } from '@/hooks/use-close-listener';
+import {
+  cancelNotification,
+  NOTIFICATION_IDS,
+  scheduleNotification,
+} from '@/lib/platform';
 
 import styles from './pomodoro.module.css';
 
@@ -31,6 +37,9 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
 
   const [timer, setTimer] = useState(0);
   const interval = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Store target end time for sync on app resume
+  const targetEndTimeRef = useRef<number | null>(null);
 
   const alarm = useSoundEffect('/sounds/alarm.mp3');
 
@@ -65,6 +74,32 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
 
   useCloseListener(() => setShowSetting(false));
 
+  // Sync timer when app returns from background
+  useAppState(isAppActive => {
+    if (isAppActive && running && targetEndTimeRef.current) {
+      const remaining = Math.max(
+        0,
+        Math.floor((targetEndTimeRef.current - Date.now()) / 1000),
+      );
+
+      if (remaining <= 0) {
+        // Timer completed while backgrounded
+        if (interval.current) clearInterval(interval.current);
+        alarm.play();
+        setRunning(false);
+        setCompletions(prev => ({
+          ...prev,
+          [selectedTab]: prev[selectedTab] + 1,
+        }));
+        setTimer(0);
+        targetEndTimeRef.current = null;
+        cancelNotification(NOTIFICATION_IDS.POMODORO);
+      } else {
+        setTimer(remaining);
+      }
+    }
+  });
+
   useEffect(() => {
     if (running) {
       if (interval.current) clearInterval(interval.current);
@@ -88,6 +123,7 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
         ...prev,
         [selectedTab]: prev[selectedTab] + 1,
       }));
+      targetEndTimeRef.current = null;
     }
   }, [timer, selectedTab, running, setRunning, alarm]);
 
@@ -98,26 +134,53 @@ export function Pomodoro({ onClose, open, show }: PomodoroProps) {
 
     setRunning(false);
     setTimer(time);
+    targetEndTimeRef.current = null;
   }, [selectedTab, times, setRunning]);
 
-  const toggleRunning = () => {
-    if (running) setRunning(false);
-    else if (timer <= 0) {
+  const toggleRunning = useCallback(() => {
+    if (running) {
+      setRunning(false);
+      targetEndTimeRef.current = null;
+      // Cancel notification when pausing
+      cancelNotification(NOTIFICATION_IDS.POMODORO);
+    } else if (timer <= 0) {
       const time = times[selectedTab] || 10;
-
+      const endTime = Date.now() + time * 1000;
+      targetEndTimeRef.current = endTime;
       setTimer(time);
       setRunning(true);
-    } else setRunning(true);
-  };
+      // Schedule notification for when timer ends
+      scheduleNotification({
+        body: `${selectedTab === 'pomodoro' ? 'Focus session' : 'Break'} complete!`,
+        id: NOTIFICATION_IDS.POMODORO,
+        scheduleAt: new Date(endTime),
+        title: 'Pomodoro Timer',
+      });
+    } else {
+      const endTime = Date.now() + timer * 1000;
+      targetEndTimeRef.current = endTime;
+      setRunning(true);
+      // Schedule notification with remaining time
+      scheduleNotification({
+        body: `${selectedTab === 'pomodoro' ? 'Focus session' : 'Break'} complete!`,
+        id: NOTIFICATION_IDS.POMODORO,
+        scheduleAt: new Date(endTime),
+        title: 'Pomodoro Timer',
+      });
+    }
+  }, [running, timer, times, selectedTab, setRunning]);
 
-  const restart = () => {
+  const restart = useCallback(() => {
     if (interval.current) clearInterval(interval.current);
 
     const time = times[selectedTab] || 10;
 
     setRunning(false);
     setTimer(time);
-  };
+    targetEndTimeRef.current = null;
+    // Cancel any scheduled notification
+    cancelNotification(NOTIFICATION_IDS.POMODORO);
+  }, [times, selectedTab, setRunning]);
 
   return (
     <>

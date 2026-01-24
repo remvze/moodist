@@ -1,10 +1,16 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 import { Modal } from '@/components/modal';
 
 import { useSoundEffect } from '@/hooks/use-sound-effect';
+import { useAppState } from '@/hooks/use-app-state';
 import { cn } from '@/helpers/styles';
 import { padNumber } from '@/helpers/number';
+import {
+  cancelNotification,
+  NOTIFICATION_IDS,
+  scheduleNotification,
+} from '@/lib/platform';
 
 import styles from './countdown.module.css';
 
@@ -22,7 +28,32 @@ export function Countdown({ onClose, show }: CountdownProps) {
   const [isActive, setIsActive] = useState(false);
   const [isFormVisible, setIsFormVisible] = useState(true);
 
+  // Store target end time for sync on app resume
+  const targetEndTimeRef = useRef<number | null>(null);
+
   const alarm = useSoundEffect('/sounds/alarm.mp3');
+
+  // Sync timer when app returns from background
+  useAppState(isAppActive => {
+    if (isAppActive && isActive && targetEndTimeRef.current) {
+      const remaining = Math.max(
+        0,
+        Math.floor((targetEndTimeRef.current - Date.now()) / 1000),
+      );
+
+      if (remaining <= 0) {
+        // Timer completed while backgrounded
+        alarm.play();
+        setIsActive(false);
+        setIsFormVisible(true);
+        setTimeLeft(0);
+        targetEndTimeRef.current = null;
+        cancelNotification(NOTIFICATION_IDS.COUNTDOWN);
+      } else {
+        setTimeLeft(remaining);
+      }
+    }
+  });
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -33,6 +64,7 @@ export function Countdown({ onClose, show }: CountdownProps) {
       alarm.play();
       setIsActive(false);
       setIsFormVisible(true);
+      targetEndTimeRef.current = null;
     }
 
     return () => clearTimeout(timer);
@@ -43,10 +75,21 @@ export function Countdown({ onClose, show }: CountdownProps) {
       const totalTime =
         (hours || 0) * 3600 + (minutes || 0) * 60 + (seconds || 0);
 
+      const endTime = Date.now() + totalTime * 1000;
+      targetEndTimeRef.current = endTime;
+
       setTimeLeft(totalTime);
       setInitialTime(totalTime);
       setIsActive(true);
       setIsFormVisible(false);
+
+      // Schedule notification for when timer ends (for background support)
+      scheduleNotification({
+        body: 'Your countdown timer has finished!',
+        id: NOTIFICATION_IDS.COUNTDOWN,
+        scheduleAt: new Date(endTime),
+        title: 'Countdown Complete',
+      });
     }
   }, [hours, minutes, seconds]);
 
@@ -54,11 +97,31 @@ export function Countdown({ onClose, show }: CountdownProps) {
     setIsActive(false);
     setIsFormVisible(true);
     setTimeLeft(0);
+    targetEndTimeRef.current = null;
+    // Cancel the scheduled notification
+    cancelNotification(NOTIFICATION_IDS.COUNTDOWN);
   }, []);
 
   const toggleTimer = useCallback(() => {
-    setIsActive(prev => !prev);
-  }, []);
+    setIsActive(prev => {
+      if (prev) {
+        // Pausing - cancel the notification and clear target time
+        cancelNotification(NOTIFICATION_IDS.COUNTDOWN);
+        targetEndTimeRef.current = null;
+      } else {
+        // Resuming - reschedule with remaining time
+        const endTime = Date.now() + timeLeft * 1000;
+        targetEndTimeRef.current = endTime;
+        scheduleNotification({
+          body: 'Your countdown timer has finished!',
+          id: NOTIFICATION_IDS.COUNTDOWN,
+          scheduleAt: new Date(endTime),
+          title: 'Countdown Complete',
+        });
+      }
+      return !prev;
+    });
+  }, [timeLeft]);
 
   const formatTime = useCallback((time: number) => {
     const hrs = Math.floor(time / 3600);

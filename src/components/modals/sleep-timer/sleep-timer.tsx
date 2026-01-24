@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useMemo } from 'react';
+import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
 
 import { Modal } from '@/components/modal';
 import { Timer } from './timer';
@@ -7,6 +7,12 @@ import { useSoundStore } from '@/stores/sound';
 import { cn } from '@/helpers/styles';
 import { FADE_OUT } from '@/constants/events';
 import { useSleepTimerStore } from '@/stores/sleep-timer';
+import { useAppState } from '@/hooks/use-app-state';
+import {
+  cancelNotification,
+  NOTIFICATION_IDS,
+  scheduleNotification,
+} from '@/lib/platform';
 
 import styles from './sleep-timer.module.css';
 
@@ -42,16 +48,45 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
 
   const timerId = useRef<ReturnType<typeof setInterval>>();
 
+  // Store target end time for sync on app resume
+  const targetEndTimeRef = useRef<number | null>(null);
+
   const isPlaying = useSoundStore(state => state.isPlaying);
   const play = useSoundStore(state => state.play);
   const pause = useSoundStore(state => state.pause);
 
-  const handleStart = () => {
+  // Sync timer when app returns from background
+  useAppState(isAppActive => {
+    if (isAppActive && running && targetEndTimeRef.current) {
+      const remaining = Math.max(
+        0,
+        Math.floor((targetEndTimeRef.current - Date.now()) / 1000),
+      );
+
+      if (remaining <= 0) {
+        // Timer completed while backgrounded
+        if (timerId.current) clearInterval(timerId.current);
+        setRunning(false);
+        dispatch(FADE_OUT, { duration: 1000 });
+        setTimeSpent(0);
+        targetEndTimeRef.current = null;
+        cancelNotification(NOTIFICATION_IDS.SLEEP_TIMER);
+      } else {
+        // Update timeSpent to reflect actual elapsed time
+        setTimeSpent(totalSeconds - remaining);
+      }
+    }
+  });
+
+  const handleStart = useCallback(() => {
     if (timerId.current) clearInterval(timerId.current);
     if (noSelected) return;
     if (!isPlaying) play();
 
     if (totalSeconds > 0) {
+      const endTime = Date.now() + totalSeconds * 1000;
+      targetEndTimeRef.current = endTime;
+
       setRunning(true);
 
       const newTimerId = setInterval(() => {
@@ -59,28 +94,40 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
       }, 1000);
 
       timerId.current = newTimerId;
+
+      // Schedule notification for when sleep timer ends
+      scheduleNotification({
+        body: 'Sounds have been faded out. Sweet dreams!',
+        id: NOTIFICATION_IDS.SLEEP_TIMER,
+        scheduleAt: new Date(endTime),
+        title: 'Sleep Timer',
+      });
     }
-  };
+  }, [noSelected, isPlaying, play, totalSeconds]);
 
   useEffect(() => {
-    if (timeLeft === 0) {
+    if (timeLeft === 0 && running) {
       setRunning(false);
 
       dispatch(FADE_OUT, { duration: 1000 });
 
       setTimeSpent(0);
+      targetEndTimeRef.current = null;
 
       if (timerId.current) clearInterval(timerId.current);
     }
-  }, [timeLeft, pause]);
+  }, [timeLeft, running, pause]);
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     if (timerId.current) clearInterval(timerId.current);
     setTimeSpent(0);
     setHours('0');
     setMinutes('10');
     setRunning(false);
-  };
+    targetEndTimeRef.current = null;
+    // Cancel the scheduled notification
+    cancelNotification(NOTIFICATION_IDS.SLEEP_TIMER);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
