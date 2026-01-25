@@ -24,8 +24,11 @@
     "build-storybook": "storybook build",
     "cap:sync": "cap sync",
     "cap:ios": "cap open ios",
+    "cap:android": "cap open android",
     "build:ios": "npm run build && cap sync ios",
-    "dev:ios": "npm run build && cap sync ios && cap open ios"
+    "build:android": "npm run build && cap sync android",
+    "dev:ios": "npm run build && cap sync ios && cap open ios",
+    "dev:android": "npm run build && cap sync android && cap open android"
   },
   "dependencies": {
     "@astrojs/react": "3.6.0",
@@ -63,6 +66,7 @@
     "zustand": "4.4.3"
   },
   "devDependencies": {
+    "@capacitor/android": "8.0.1",
     "@capacitor/cli": "^8.0.0",
     "@capacitor/ios": "^8.0.0",
     "@chromatic-com/storybook": "1.3.3",

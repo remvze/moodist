@@ -35,7 +35,7 @@ import { Slider } from '@/components/slider';
 
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
-import { isNativePlatform } from '@/lib/platform';
+import { isNativePlatform, isIOS } from '@/lib/platform';
 
 import styles from './menu.module.css';
 import { useCloseListener } from '@/hooks/use-close-listener';
@@ -85,6 +85,7 @@ export function Menu() {
   );
 
   const isNative = isNativePlatform();
+  const isIOSPlatform = isIOS();
 
   useHotkeys('shift+m', () => setIsOpen(prev => !prev), { enabled: !isNative });
   useHotkeys('shift+alt+p', () => open('presets'), { enabled: !isNative });
@@ -153,7 +154,7 @@ export function Menu() {
                     )}
                     {!isNative && <Divider />}
 
-                    {!isNative && (
+                    {!isIOSPlatform && (
                       <>
                         <div className={styles.globalVolume}>
                           <label htmlFor="global-volume">Global Volume</label>

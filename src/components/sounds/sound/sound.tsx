@@ -14,7 +14,7 @@ import styles from './sound.module.css';
 import type { Sound as SoundType } from '@/data/types';
 
 import { useKeyboardButton } from '@/hooks/use-keyboard-button';
-import { isNativePlatform } from '@/lib/platform';
+import { isIOS } from '@/lib/platform';
 
 interface SoundProps extends SoundType {
   functional: boolean;
@@ -27,10 +27,11 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
   { functional, hidden, icon, id, label, selectHidden, src, unselectHidden },
   ref,
 ) {
-  // Check native platform after mount to avoid hydration mismatch
-  const [isNative, setIsNative] = useState(false);
+  // Check iOS after mount to avoid hydration mismatch
+  // Only iOS WebView lacks HTML5 audio volume control - Android works fine
+  const [isIOSPlatform, setIsIOSPlatform] = useState(false);
   useEffect(() => {
-    setIsNative(isNativePlatform());
+    setIsIOSPlatform(isIOS());
   }, []);
 
   const isPlaying = useSoundStore(state => state.isPlaying);
@@ -120,7 +121,7 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
       <div className={styles.label} id={id}>
         {label}
       </div>
-      {!isNative && <Range id={id} label={label} />}
+      {!isIOSPlatform && <Range id={id} label={label} />}
     </div>
   );
 });

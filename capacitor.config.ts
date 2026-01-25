@@ -9,6 +9,9 @@ const config: CapacitorConfig = {
     backgroundColor: '#09090b',
     preferredContentMode: 'mobile',
   },
+  android: {
+    backgroundColor: '#09090b',
+  },
   plugins: {
     SplashScreen: {
       launchShowDuration: 2000,
