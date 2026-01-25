@@ -8,11 +8,15 @@ interface NavigatorWithAudioSession extends Navigator {
   audioSession?: AudioSession;
 }
 
+let audioSessionConfigured = false;
+
 export async function configureAudioSession(): Promise<void> {
+  if (audioSessionConfigured) return;
+  audioSessionConfigured = true;
+
   if (isNativePlatform() && isIOS()) {
     // iOS WebView audio session is configured via native code
-    // This function serves as a hook point for future native plugin integration
-    console.log('[Audio] iOS native audio session');
+    // No action needed - handled by AppDelegate.swift
   } else if (typeof window !== 'undefined' && 'navigator' in window) {
     // Web Audio Session API (experimental)
     const nav = window.navigator as NavigatorWithAudioSession;
