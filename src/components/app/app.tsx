@@ -1,11 +1,9 @@
-import { useMemo, useEffect, useRef } from 'react';
+import { useMemo, useEffect } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import { BiSolidHeart } from 'react-icons/bi/index';
 import { Howler } from 'howler';
-import { SplashScreen } from '@capacitor/splash-screen';
 
 import { useSoundStore } from '@/stores/sound';
-import { isNativePlatform } from '@/lib/platform';
 
 import { Container } from '@/components/container';
 import { StoreConsumer } from '@/components/store-consumer';
@@ -29,8 +27,6 @@ export function App() {
   const pause = useSoundStore(state => state.pause);
   const lock = useSoundStore(state => state.lock);
   const unlock = useSoundStore(state => state.unlock);
-  const unselectAll = useSoundStore(state => state.unselectAll);
-  const hasCleared = useRef(false);
 
   const favoriteSounds = useMemo(() => {
     const favoriteSounds = categories
@@ -61,20 +57,6 @@ export function App() {
 
     return () => document.removeEventListener('visibilitychange', onChange);
   }, []);
-
-  // Hide splash screen when app is ready
-  useEffect(() => {
-    SplashScreen.hide();
-  }, []);
-
-  // Clear selected sounds on native app launch (fresh start after being killed)
-  // This prevents the UI showing sounds as selected when they're not actually playing
-  useEffect(() => {
-    if (isNativePlatform() && !hasCleared.current) {
-      hasCleared.current = true;
-      unselectAll();
-    }
-  }, [unselectAll]);
 
   useEffect(() => {
     const unsubscribe = subscribe(FADE_OUT, (e: { duration: number }) => {
