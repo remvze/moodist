@@ -42,18 +42,22 @@ Moodist is a free, open-source ambient sound mixer that helps you focus, relax, 
 
 | Layer | Technology |
 |-------|------------|
-| Language | TypeScript |
+| Language | TypeScript (strict mode) |
 | UI | React 18 |
-| Framework | Astro |
-| Styling | CSS Modules + PostCSS |
+| Framework | Astro 4 |
+| Styling | CSS Modules + PostCSS Nesting |
 | State | Zustand |
 | Animation | Framer Motion |
 | Audio | Howler.js |
-| Components | Radix UI |
-| Native | Capacitor v8 |
+| Components | Radix UI (checkbox, dropdown, slider, tooltip) |
+| Native | Capacitor v8 (iOS + Android) |
+| Native Plugins | App Lifecycle, Clipboard, Local Notifications, Share, Splash Screen, Status Bar |
+| PWA | Vite PWA with offline support |
 | Testing | Vitest |
-| Docs | Storybook |
-| Quality | ESLint, Prettier, Stylelint, Husky, Commitlint |
+| Docs | Storybook 8 |
+| Quality | ESLint, Prettier, Stylelint, Husky, Commitlint, Lint-Staged |
+| CI/CD | GitHub Actions, Docker (Alpine Node + Nginx) |
+| Versioning | Standard Version + Commitizen |
 
 ## Quick Start
 
