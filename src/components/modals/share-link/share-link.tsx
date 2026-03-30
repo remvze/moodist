@@ -1,10 +1,15 @@
 import { useMemo, useEffect, useState } from 'react';
-import { IoCopyOutline, IoCheckmark } from 'react-icons/io5/index';
+import {
+  IoCopyOutline,
+  IoCheckmark,
+  IoShareOutline,
+} from 'react-icons/io5/index';
 
 import { Modal } from '@/components/modal';
 
 import { useCopy } from '@/hooks/use-copy';
 import { useSoundStore } from '@/stores/sound';
+import { isNativePlatform, shareContent } from '@/lib/platform';
 
 import styles from './share-link.module.css';
 
@@ -17,6 +22,7 @@ export function ShareLinkModal({ onClose, show }: ShareLinkModalProps) {
   const [isMounted, setIsMounted] = useState(false);
   const sounds = useSoundStore(state => state.sounds);
   const { copy, copying } = useCopy();
+  const isNative = isNativePlatform();
 
   const selected = useMemo(() => {
     return Object.keys(sounds)
@@ -49,6 +55,17 @@ export function ShareLinkModal({ onClose, show }: ShareLinkModalProps) {
 
   useEffect(() => setIsMounted(true), []);
 
+  const handleNativeShare = async () => {
+    try {
+      await shareContent({
+        title: 'My Moodist Selection',
+        url,
+      });
+    } catch (error) {
+      console.error('Failed to share:', error);
+    }
+  };
+
   return (
     <Modal show={show} onClose={onClose}>
       <h1 className={styles.heading}>Share your sound selection!</h1>
@@ -61,6 +78,11 @@ export function ShareLinkModal({ onClose, show }: ShareLinkModalProps) {
         <button onClick={() => copy(url)}>
           {copying ? <IoCheckmark /> : <IoCopyOutline />}
         </button>
+        {isNative && (
+          <button onClick={handleNativeShare}>
+            <IoShareOutline />
+          </button>
+        )}
       </div>
     </Modal>
   );

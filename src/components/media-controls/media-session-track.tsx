@@ -6,6 +6,7 @@ import { useSoundStore } from '@/stores/sound';
 
 import { useSSR } from '@/hooks/use-ssr';
 import { useDarkTheme } from '@/hooks/use-dark-theme';
+import { supportsMediaSession } from '@/lib/platform/audio';
 
 const metadata: MediaMetadataInit = {
   artist: 'Moodist',
@@ -23,6 +24,7 @@ export function MediaSessionTrack() {
 
   useEffect(() => {
     if (!isBrowser || !isPlaying) return;
+    if (!supportsMediaSession()) return;
 
     navigator.mediaSession.metadata = new MediaMetadata({
       ...metadata,
@@ -43,9 +45,11 @@ export function MediaSessionTrack() {
     try {
       await masterAudioSoundRef.current.play();
 
-      navigator.mediaSession.playbackState = 'playing';
-      navigator.mediaSession.setActionHandler('play', play);
-      navigator.mediaSession.setActionHandler('pause', pause);
+      if (supportsMediaSession()) {
+        navigator.mediaSession.playbackState = 'playing';
+        navigator.mediaSession.setActionHandler('play', play);
+        navigator.mediaSession.setActionHandler('pause', pause);
+      }
     } catch {
       // Do nothing
     }
@@ -62,7 +66,9 @@ export function MediaSessionTrack() {
     } else {
       masterAudioSoundRef.current.pause();
     }
-    navigator.mediaSession.playbackState = 'paused';
+    if (supportsMediaSession()) {
+      navigator.mediaSession.playbackState = 'paused';
+    }
   }, []);
 
   useEffect(() => {
@@ -81,9 +87,11 @@ export function MediaSessionTrack() {
     return () => {
       masterAudioSound?.pause();
 
-      navigator.mediaSession.setActionHandler('play', null);
-      navigator.mediaSession.setActionHandler('pause', null);
-      navigator.mediaSession.playbackState = 'none';
+      if (supportsMediaSession()) {
+        navigator.mediaSession.setActionHandler('play', null);
+        navigator.mediaSession.setActionHandler('pause', null);
+        navigator.mediaSession.playbackState = 'none';
+      }
     };
   }, []);
 

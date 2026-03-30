@@ -35,6 +35,7 @@ import { Slider } from '@/components/slider';
 
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
+import { isNativePlatform, isIOS } from '@/lib/platform';
 
 import styles from './menu.module.css';
 import { useCloseListener } from '@/hooks/use-close-listener';
@@ -83,16 +84,21 @@ export function Menu() {
     [closeAll],
   );
 
-  useHotkeys('shift+m', () => setIsOpen(prev => !prev));
-  useHotkeys('shift+alt+p', () => open('presets'));
-  useHotkeys('shift+h', () => open('shortcuts'));
-  useHotkeys('shift+b', () => open('breathing'));
-  useHotkeys('shift+n', () => open('notepad'));
-  useHotkeys('shift+p', () => open('pomodoro'));
-  useHotkeys('shift+t', () => open('todo'));
-  useHotkeys('shift+c', () => open('countdown'));
-  useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
-  useHotkeys('shift+alt+t', () => open('sleepTimer'));
+  const isNative = isNativePlatform();
+  const isIOSPlatform = isIOS();
+
+  useHotkeys('shift+m', () => setIsOpen(prev => !prev), { enabled: !isNative });
+  useHotkeys('shift+alt+p', () => open('presets'), { enabled: !isNative });
+  useHotkeys('shift+h', () => open('shortcuts'), { enabled: !isNative });
+  useHotkeys('shift+b', () => open('breathing'), { enabled: !isNative });
+  useHotkeys('shift+n', () => open('notepad'), { enabled: !isNative });
+  useHotkeys('shift+p', () => open('pomodoro'), { enabled: !isNative });
+  useHotkeys('shift+t', () => open('todo'), { enabled: !isNative });
+  useHotkeys('shift+c', () => open('countdown'), { enabled: !isNative });
+  useHotkeys('shift+s', () => open('shareLink'), {
+    enabled: !noSelected && !isNative,
+  });
+  useHotkeys('shift+alt+t', () => open('sleepTimer'), { enabled: !isNative });
 
   useCloseListener(closeAll);
 
@@ -140,23 +146,28 @@ export function Menu() {
                     <Divider />
                     <BinauralItem open={() => open('binaural')} />
                     <IsochronicItem open={() => open('isochronic')} />
-                    <LofiItem open={() => open('lofi')} />
+                    {!isNative && <LofiItem open={() => open('lofi')} />}
 
                     <Divider />
-                    <ShortcutsItem open={() => open('shortcuts')} />
-                    <Divider />
+                    {!isNative && (
+                      <ShortcutsItem open={() => open('shortcuts')} />
+                    )}
+                    {!isNative && <Divider />}
 
-                    <div className={styles.globalVolume}>
-                      <label htmlFor="global-volume">Global Volume</label>
-                      <Slider
-                        max={100}
-                        min={0}
-                        value={globalVolume * 100}
-                        onChange={value => setGlobalVolume(value / 100)}
-                      />
-                    </div>
-
-                    <Divider />
+                    {!isIOSPlatform && (
+                      <>
+                        <div className={styles.globalVolume}>
+                          <label htmlFor="global-volume">Global Volume</label>
+                          <Slider
+                            max={100}
+                            min={0}
+                            value={globalVolume * 100}
+                            onChange={value => setGlobalVolume(value / 100)}
+                          />
+                        </div>
+                        <Divider />
+                      </>
+                    )}
                     <DonateItem />
                     <SourceItem />
                   </motion.div>

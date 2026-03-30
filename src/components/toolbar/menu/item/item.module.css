@@ -49,6 +49,15 @@
     border-radius: 50%;
   }
 
+  & .badge {
+    padding: 1px 6px;
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--color-warning);
+    background-color: color-mix(in srgb, var(--color-warning) 15%, transparent);
+    border-radius: 3px;
+  }
+
   & .shortcut {
     font-size: var(--font-2xsm);
   }

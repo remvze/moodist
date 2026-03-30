@@ -5,6 +5,8 @@ import { useLoadingStore } from '@/stores/loading';
 import { subscribe } from '@/lib/event';
 import { useSSR } from './use-ssr';
 import { FADE_OUT } from '@/constants/events';
+import { configureAudioSession } from '@/lib/platform/audio';
+import { isNativePlatform } from '@/lib/platform';
 
 /**
  * A custom React hook to manage sound playback using Howler.js with additional features.
@@ -27,19 +29,22 @@ import { FADE_OUT } from '@/constants/events';
 export function useSound(
   src: string,
   options: { loop?: boolean; preload?: boolean; volume?: number } = {},
-  html5: boolean = false,
+  html5Override?: boolean,
 ) {
   const [hasLoaded, setHasLoaded] = useState(false);
   const isLoading = useLoadingStore(state => state.loaders[src]);
   const setIsLoading = useLoadingStore(state => state.set);
 
   const { isBrowser } = useSSR();
+  // Use HTML5 Audio on native iOS for background playback support
+  // Web Audio API doesn't work in background on iOS WebViews
+  const useHtml5 = html5Override ?? isNativePlatform();
   const sound = useMemo<Howl | null>(() => {
     let sound: Howl | null = null;
 
     if (isBrowser) {
       sound = new Howl({
-        html5,
+        html5: useHtml5,
         onload: () => {
           setIsLoading(src, false);
           setHasLoaded(true);
@@ -48,13 +53,11 @@ export function useSound(
         src: src,
       });
 
-      if (window.navigator.audioSession) {
-        window.navigator.audioSession.type = 'playback';
-      }
+      configureAudioSession();
     }
 
     return sound;
-  }, [src, isBrowser, setIsLoading, html5, options.preload]);
+  }, [src, isBrowser, setIsLoading, useHtml5, options.preload]);
 
   useEffect(() => {
     if (sound) {

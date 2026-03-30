@@ -2,6 +2,7 @@ import { useEffect, useState, useRef, useCallback } from 'react';
 
 import { Modal } from '@/components/modal';
 import { Slider } from '@/components/slider';
+import { isNativePlatform } from '@/lib/platform';
 
 import styles from './binaural.module.css';
 
@@ -36,6 +37,8 @@ function computeBinauralBeatOscillatorFrequencies(
 }
 
 export function BinauralModal({ onClose, show }: BinauralProps) {
+  const isNative = isNativePlatform();
+
   const [baseFrequency, setBaseFrequency] = useState<number>(440); // Default to A4 note
   const [beatFrequency, setBeatFrequency] = useState<number>(10); // Default to 10 Hz difference
   const [volume, setVolume] = useState<number>(0.5); // Default volume at 50%
@@ -166,6 +169,13 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
         <h2 className={styles.title}>Binaural Beat</h2>
         <p className={styles.desc}>Binaural beat generator.</p>
       </header>
+
+      {isNative && (
+        <div className={styles.note}>
+          Binaural beats use real-time audio synthesis and will stop when the
+          app is in the background. Keep the app open for continuous playback.
+        </div>
+      )}
 
       <div className={styles.fieldWrapper}>
         <label>

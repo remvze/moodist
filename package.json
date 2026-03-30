@@ -21,10 +21,24 @@
     "release:minor": "npm run release -- --release-as minor",
     "release:patch": "npm run release -- --release-as patch",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "cap:sync": "cap sync",
+    "cap:ios": "cap open ios",
+    "cap:android": "cap open android",
+    "build:ios": "npm run build && cap sync ios",
+    "build:android": "npm run build && cap sync android",
+    "dev:ios": "npm run build && cap sync ios && cap open ios",
+    "dev:android": "npm run build && cap sync android && cap open android"
   },
   "dependencies": {
     "@astrojs/react": "3.6.0",
+    "@capacitor/app": "^8.0.0",
+    "@capacitor/clipboard": "^8.0.0",
+    "@capacitor/core": "^8.0.0",
+    "@capacitor/local-notifications": "^8.0.0",
+    "@capacitor/share": "^8.0.0",
+    "@capacitor/splash-screen": "^8.0.0",
+    "@capacitor/status-bar": "^8.0.0",
     "@floating-ui/react": "0.26.0",
     "@formkit/auto-animate": "0.8.2",
     "@radix-ui/react-checkbox": "1.1.4",
@@ -52,6 +66,9 @@
     "zustand": "4.4.3"
   },
   "devDependencies": {
+    "@capacitor/android": "8.0.1",
+    "@capacitor/cli": "^8.0.0",
+    "@capacitor/ios": "^8.0.0",
     "@chromatic-com/storybook": "1.3.3",
     "@commitlint/cli": "17.7.2",
     "@commitlint/config-conventional": "17.7.0",

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, forwardRef, useMemo } from 'react';
+import { useCallback, useEffect, forwardRef, useMemo, useState } from 'react';
 import { ImSpinner9 } from 'react-icons/im/index';
 
 import { Range } from './range';
@@ -14,6 +14,7 @@ import styles from './sound.module.css';
 import type { Sound as SoundType } from '@/data/types';
 
 import { useKeyboardButton } from '@/hooks/use-keyboard-button';
+import { isIOS } from '@/lib/platform';
 
 interface SoundProps extends SoundType {
   functional: boolean;
@@ -26,6 +27,13 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
   { functional, hidden, icon, id, label, selectHidden, src, unselectHidden },
   ref,
 ) {
+  // Check iOS after mount to avoid hydration mismatch
+  // Only iOS WebView lacks HTML5 audio volume control - Android works fine
+  const [isIOSPlatform, setIsIOSPlatform] = useState(false);
+  useEffect(() => {
+    setIsIOSPlatform(isIOS());
+  }, []);
+
   const isPlaying = useSoundStore(state => state.isPlaying);
   const play = useSoundStore(state => state.play);
   const selectSound = useSoundStore(state => state.select);
@@ -113,7 +121,7 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
       <div className={styles.label} id={id}>
         {label}
       </div>
-      <Range id={id} label={label} />
+      {!isIOSPlatform && <Range id={id} label={label} />}
     </div>
   );
 });

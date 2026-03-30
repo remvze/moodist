@@ -13,6 +13,15 @@
   }
 }
 
+.note {
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  font-size: var(--font-sm);
+  color: var(--color-foreground-subtle);
+  background-color: var(--color-neutral-100);
+  border-radius: 6px;
+}
+
 .fieldWrapper {
   margin-bottom: 12px;
 

@@ -8,6 +8,7 @@ import { Tooltip } from '@/components/tooltip';
 import { useSoundStore } from '@/stores/sound';
 import { cn } from '@/helpers/styles';
 import { fade, mix, slideX } from '@/lib/motion';
+import { isNativePlatform } from '@/lib/platform';
 
 import styles from './unselect.module.css';
 
@@ -29,7 +30,9 @@ export function UnselectButton() {
     else if (!noSelected) unselectAll(true);
   }, [hasHistory, noSelected, unselectAll, restoreHistory, locked]);
 
-  useHotkeys('shift+r', handleToggle, {}, [handleToggle]);
+  useHotkeys('shift+r', handleToggle, { enabled: !isNativePlatform() }, [
+    handleToggle,
+  ]);
 
   return (
     <>

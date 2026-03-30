@@ -1,5 +1,7 @@
 import { useState, useCallback } from 'react';
 
+import { writeToClipboard } from '@/lib/platform';
+
 /**
  * A custom React hook to copy text to the clipboard with a temporary state indication.
  *
@@ -12,13 +14,16 @@ export function useCopy(timeout = 1500) {
   const [copying, setCopying] = useState(false);
 
   const copy = useCallback(
-    (content: string) => {
+    async (content: string) => {
       if (copying) return;
 
-      navigator.clipboard.writeText(content);
-      setCopying(true);
-
-      setTimeout(() => setCopying(false), timeout);
+      try {
+        await writeToClipboard(content);
+        setCopying(true);
+        setTimeout(() => setCopying(false), timeout);
+      } catch (error) {
+        console.error('Failed to copy:', error);
+      }
     },
     [copying, timeout],
   );

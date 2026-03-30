@@ -1,10 +1,13 @@
 import { FiExternalLink } from 'react-icons/fi/index';
 import { Item as DropdownItem } from '@radix-ui/react-dropdown-menu';
 
+import { isNativePlatform } from '@/lib/platform';
+
 import styles from './item.module.css';
 
 interface ItemProps {
   active?: boolean;
+  badge?: string;
   disabled?: boolean;
   href?: string;
   icon: React.ReactElement;
@@ -15,6 +18,7 @@ interface ItemProps {
 
 export function Item({
   active,
+  badge,
   disabled = false,
   href,
   icon,
@@ -23,6 +27,7 @@ export function Item({
   shortcut,
 }: ItemProps) {
   const Comp = href ? 'a' : 'button';
+  const isNative = isNativePlatform();
 
   return (
     <DropdownItem asChild onClick={onClick}>
@@ -35,9 +40,12 @@ export function Item({
         <span className={styles.label}>
           <span className={styles.icon}>{icon}</span> {label}
           {active && <div className={styles.active} />}
+          {badge && <span className={styles.badge}>{badge}</span>}
         </span>
 
-        {shortcut && <span className={styles.shortcut}>{shortcut}</span>}
+        {shortcut && !isNative && (
+          <span className={styles.shortcut}>{shortcut}</span>
+        )}
 
         {href && (
           <span className={styles.external}>

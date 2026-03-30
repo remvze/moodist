@@ -1,0 +1,36 @@
+App/build
+App/Pods
+App/output
+App/App/public
+DerivedData
+xcuserdata
+
+# User-specific Xcode state
+*.xcuserstate
+*.xcuserdatad/
+*.xccheckout
+*.xcscmblueprint
+
+# Cordova plugins for Capacitor
+capacitor-cordova-ios-plugins
+
+# Generated Config files
+App/App/capacitor.config.json
+App/App/config.xml
+
+# Build artifacts
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# CocoaPods (if using)
+App/Pods/
+App/Podfile.lock
+
+# Swift Package Manager
+.build/
+.swiftpm/xcode/xcuserdata/
+
+# Xcode workspace settings (user-specific)
+App/App.xcodeproj/project.xcworkspace/xcuserdata/
+App/App.xcworkspace/xcuserdata/

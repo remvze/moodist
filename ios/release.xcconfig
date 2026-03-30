@@ -1,0 +1,34 @@
+// Release build configuration
+// This file is automatically used by Xcode for Release builds
+
+CAPACITOR_DEBUG = false
+
+// Code Signing (Automatic - will use your team from Xcode)
+CODE_SIGN_STYLE = Automatic
+
+// Deployment Target
+IPHONEOS_DEPLOYMENT_TARGET = 15.0
+
+// Build Settings
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = 
+SWIFT_OPTIMIZATION_LEVEL = -O
+
+// Product Info
+PRODUCT_NAME = Moodist
+MARKETING_VERSION = 1.0
+CURRENT_PROJECT_VERSION = 1
+
+// Bundle Identifier (can be overridden in Xcode if needed)
+PRODUCT_BUNDLE_IDENTIFIER = net.mvze.moodist
+
+// Device Support
+TARGETED_DEVICE_FAMILY = 1,2
+
+// Info.plist
+INFOPLIST_FILE = App/Info.plist
+
+// Asset Catalog
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
+
+// Swift Version
+SWIFT_VERSION = 5.0

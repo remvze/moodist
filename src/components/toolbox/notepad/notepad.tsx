@@ -60,7 +60,13 @@ export function Notepad({ onClose, show }: NotepadProps) {
             <Button
               icon={<LuDownload />}
               tooltip="Download Note"
-              onClick={() => download('Moodit Note.txt', note)}
+              onClick={async () => {
+                try {
+                  await download('Moodit Note.txt', note);
+                } catch (error) {
+                  console.error('Failed to download note:', error);
+                }
+              }}
             />
             <Button
               critical={!history}
