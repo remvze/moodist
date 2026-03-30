@@ -1,10 +1,10 @@
 <div align="center">
-  <img src="/assets/banner.png" alt="Moodist Banner" />
-  <h1>Moodist</h1>
-  <p><strong>Ambient sounds for focus and calm.</strong></p>
-  <p>An open-source, privacy-first ambient sound mixer built with React, Astro, and Capacitor - available on web, iOS, and Android.</p>
+  <img src="/assets/banner.png" alt="Moodist Mobile Banner" />
+  <h1>Moodist Mobile</h1>
+  <p><strong>Ambient sounds for focus and calm - now on iOS and Android.</strong></p>
+  <p>A mobile adaptation of <a href="https://github.com/remvze/moodist">Moodist</a> by <a href="https://github.com/remvze">MAZE</a>, bringing the full ambient sound experience to native platforms using Capacitor.</p>
 
-  <a href="https://moodist.mvze.net">Live Demo</a> &bull;
+  <a href="https://moodist.mvze.net">Live Demo (Web)</a> &bull;
   <a href="#contributing">Contribute</a> &bull;
   <a href="DEVELOPMENT.md">Dev Setup</a> &bull;
   <a href="https://buymeacoffee.com/remvze">Buy Me a Coffee</a>
@@ -19,11 +19,15 @@
 
 ---
 
-## What is Moodist?
+> **Fork notice:** This project is a fork of [remvze/moodist](https://github.com/remvze/moodist), the original open-source ambient sound app. This repo extends it with native iOS and Android support via Capacitor, platform abstraction layers, and mobile-specific optimizations. All credit for the original concept, design, and web implementation goes to [MAZE](https://github.com/remvze).
 
-Moodist is a free, open-source ambient sound mixer that helps you focus, relax, or sleep. Mix and match 75+ high-quality sounds across categories like nature, rain, animals, urban, and more. No accounts, no tracking, no ads - just sound.
+## What is Moodist Mobile?
 
-**Web app:** [moodist.mvze.net](https://moodist.mvze.net)
+[Moodist](https://github.com/remvze/moodist) is a free, open-source ambient sound mixer created by [MAZE](https://github.com/remvze). **Moodist Mobile** takes that same experience and brings it to native iOS and Android using Capacitor. The same codebase powers the web, iOS, and Android apps - with platform-specific enhancements like background audio, native sharing, and local notifications.
+
+Mix and match 75+ high-quality sounds across categories like nature, rain, animals, urban, and more. No accounts, no tracking, no ads - just sound.
+
+**Original web app:** [moodist.mvze.net](https://moodist.mvze.net) | **Original repo:** [remvze/moodist](https://github.com/remvze/moodist)
 
 ## Features
 
