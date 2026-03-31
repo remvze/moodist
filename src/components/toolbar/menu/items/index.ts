@@ -1,4 +1,5 @@
 export { Shuffle as ShuffleItem } from './shuffle';
+export { FavoriteScroll as FavoriteScrollItem } from './favorite-scroll';
 export { Share as ShareItem } from './share';
 export { Donate as DonateItem } from './donate';
 export { Source as SourceItem } from './source';
