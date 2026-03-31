@@ -11,6 +11,7 @@ export interface SoundActions {
   play: () => void;
   restoreHistory: () => void;
   select: (id: string) => void;
+  setAutoScrollToFavorites: (autoScrollToFavorites: boolean) => void;
   setGlobalVolume: (volume: number) => void;
   setVolume: (id: string, volume: number) => void;
   shuffle: () => void;
@@ -71,6 +72,10 @@ export const createActions: StateCreator<
           [id]: { ...get().sounds[id], isSelected: true },
         },
       });
+    },
+
+    setAutoScrollToFavorites(autoScrollToFavorites) {
+      set({ autoScrollToFavorites });
     },
 
     setGlobalVolume(volume) {

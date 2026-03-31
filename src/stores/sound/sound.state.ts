@@ -5,6 +5,7 @@ import type { SoundActions } from './sound.actions';
 import { sounds } from '@/data/sounds';
 
 export interface SoundState {
+  autoScrollToFavorites: boolean;
   getFavorites: () => Array<string>;
   globalVolume: number;
   history: {
@@ -33,6 +34,7 @@ export const createState: StateCreator<
   SoundState
 > = (set, get) => {
   const state: SoundState = {
+    autoScrollToFavorites: true,
     getFavorites() {
       const { sounds } = get();
       const ids = Object.keys(sounds);

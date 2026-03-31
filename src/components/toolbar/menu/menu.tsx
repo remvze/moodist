@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'motion/react';
 
 import {
   ShuffleItem,
+  FavoriteScrollItem,
   ShareItem,
   DonateItem,
   SourceItem,
@@ -128,6 +129,7 @@ export function Menu() {
                     <PresetsItem open={() => open('presets')} />
                     <ShareItem open={() => open('shareLink')} />
                     <ShuffleItem />
+                    <FavoriteScrollItem />
                     <SleepTimerItem open={() => open('sleepTimer')} />
 
                     <Divider />

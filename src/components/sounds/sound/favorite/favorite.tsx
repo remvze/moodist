@@ -17,13 +17,16 @@ interface FavoriteProps {
 
 export function Favorite({ id, label }: FavoriteProps) {
   const isFavorite = useSoundStore(state => state.sounds[id].isFavorite);
+  const autoScrollToFavorites = useSoundStore(
+    state => state.autoScrollToFavorites,
+  );
   const toggleFavorite = useSoundStore(state => state.toggleFavorite);
 
   const handleToggle = async () => {
     toggleFavorite(id);
 
     // Check if false -> true
-    if (!isFavorite) {
+    if (!isFavorite && autoScrollToFavorites) {
       await waitUntil(
         () => !!document.getElementById('category-favorites'),
         50,
