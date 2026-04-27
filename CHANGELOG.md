@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/remvze/moodist/compare/v2.4.1...v2.5.0) (2026-04-27)
+
+
+### 🐛 Bug Fixes
+
+* minor ([0f7a1c7](https://github.com/remvze/moodist/commit/0f7a1c771cc097bf340c8a7969b2f4dc65fedc00))
+
 ### [2.4.1](https://github.com/remvze/moodist/compare/v2.4.0...v2.4.1) (2026-04-27)
 
 
