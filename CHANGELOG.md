@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.1](https://github.com/remvze/moodist/compare/v2.5.0...v2.5.1) (2026-04-27)
+
+
+### 🐛 Bug Fixes
+
+* pnpm installation ([6af5d8c](https://github.com/remvze/moodist/commit/6af5d8c3b728d20a9815781ff27fe4bd9f66890d))
+
 ## [2.5.0](https://github.com/remvze/moodist/compare/v2.4.1...v2.5.0) (2026-04-27)
 
 
