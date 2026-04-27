@@ -24,8 +24,7 @@
     "plugin:jsx-a11y/recommended",
     "plugin:react-hooks/recommended",
     "plugin:astro/recommended",
-    "prettier",
-    "plugin:storybook/recommended"
+    "prettier"
   ],
   "plugins": [
     "@typescript-eslint",
