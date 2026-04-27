@@ -8,7 +8,6 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "vitest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro",
     "lint:fix": "npm run lint -- --fix",
     "lint:style": "stylelint ./**/*.{css,astro,html}",
@@ -97,7 +96,6 @@
     "stylelint-config-html": "1.1.0",
     "stylelint-config-recess-order": "4.4.0",
     "stylelint-config-standard": "34.0.0",
-    "stylelint-prettier": "4.0.2",
-    "vitest": "1.6.0"
+    "stylelint-prettier": "4.0.2"
   }
 }
