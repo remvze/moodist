@@ -9,16 +9,16 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:fix": "pnpm run lint -- --fix",
     "lint:style": "stylelint ./**/*.{css,astro,html}",
-    "lint:style:fix": "npm run lint:style -- --fix",
+    "lint:style:fix": "pnpm run lint:style -- --fix",
     "format": "prettier . --write",
     "prepare": "husky install",
     "commit": "git-cz",
     "release": "standard-version --no-verify",
-    "release:major": "npm run release -- --release-as major",
-    "release:minor": "npm run release -- --release-as minor",
-    "release:patch": "npm run release -- --release-as patch"
+    "release:major": "pnpm run release -- --release-as major",
+    "release:minor": "pnpm run release -- --release-as minor",
+    "release:patch": "pnpm run release -- --release-as patch"
   },
   "dependencies": {
     "@astrojs/react": "3.6.0",
