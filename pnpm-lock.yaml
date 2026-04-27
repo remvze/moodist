@@ -189,6 +189,9 @@ importers:
       stylelint-prettier:
         specifier: 4.0.2
         version: 4.0.2(prettier@3.0.3)(stylelint@15.10.3(typescript@5.9.3))
+      workbox-window:
+        specifier: 7.4.0
+        version: 7.4.0
 
 packages:
 
