@@ -1,0 +1,9 @@
+:8080 {
+  file_server
+  root * /var/www/html
+
+  handle_errors {
+    rewrite * /index.html
+    file_server
+  }
+}

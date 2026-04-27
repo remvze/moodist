@@ -17,10 +17,9 @@ COPY . .
 # Build the app
 RUN pnpm run build
 
+FROM docker.io/caddy:latest
 
-FROM docker.io/nginx:alpine AS runtime
-
-COPY ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY ./Caddyfile /etc/caddy/Caddyfile
+COPY --from=build /app/dist /var/www/html
 
 EXPOSE 8080
