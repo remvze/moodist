@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.2](https://github.com/remvze/moodist/compare/v2.5.1...v2.5.2) (2026-04-27)
+
+
+### 🚚 Chores
+
+* add workbox-window to the devdeps ([4070f6c](https://github.com/remvze/moodist/commit/4070f6c1555e90acb76a0ba566e3b5a44d4c7217))
+
 ### [2.5.1](https://github.com/remvze/moodist/compare/v2.5.0...v2.5.1) (2026-04-27)
 
 
