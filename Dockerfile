@@ -3,7 +3,7 @@ FROM docker.io/node:20-alpine3.18 AS build
 WORKDIR /app
 
 # Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN npm install -g pnpm@latest-10
 
 # Copy dependency files
 COPY package.json pnpm-lock.yaml ./
