@@ -13,6 +13,18 @@
 
 ---
 
+## Features
+
+- 84 curated ambient sounds you can layer into custom soundscapes.
+- Smooth fade transitions on play/stop and sleep timer shutdown.
+- Shareable mixes via URL with one-click import.
+- Presets to save, rename, delete, and instantly reapply mixes.
+- Built-in binaural beat and isochronic tone generators.
+- Built-in breathing exercise, Pomodoro, countdown, todo, and notepad tools.
+- Installable PWA with offline caching.
+- Open-source and self-hostable with Docker.
+- And much more!
+
 ## Self-Hosting
 
 ### 1. Run with Docker
