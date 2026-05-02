@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/remvze/moodist/compare/v2.5.2...v2.6.0) (2026-05-02)
+
+
+### 🚚 Chores
+
+* update the readme ([be27a08](https://github.com/remvze/moodist/commit/be27a08092575131d93a0898a71dc1094151c573))
+
+
+### ✨ Features
+
+* add fading effect ([ad32975](https://github.com/remvze/moodist/commit/ad3297547d5781e8c281820e3d3ca6307eee325c))
+
+
+### ♻️ Code Refactoring
+
+* flatten and inline stores ([0e49a2c](https://github.com/remvze/moodist/commit/0e49a2c80fe11bfd938cf93aeceea440e19f6668))
+
 ### [2.5.2](https://github.com/remvze/moodist/compare/v2.5.1...v2.5.2) (2026-04-27)
 
 
