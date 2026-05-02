@@ -1,10 +1,12 @@
-import { useMemo, useEffect, useCallback, useState } from 'react';
+import { useMemo, useEffect, useCallback, useState, useRef } from 'react';
 import { Howl } from 'howler';
 
 import { useLoadingStore } from '@/stores/loading';
 import { subscribe } from '@/lib/event';
 import { useSSR } from './use-ssr';
 import { FADE_OUT } from '@/constants/events';
+
+const DEFAULT_FADE_DURATION = 250;
 
 /**
  * A custom React hook to manage sound playback using Howler.js with additional features.
@@ -32,6 +34,10 @@ export function useSound(
   const [hasLoaded, setHasLoaded] = useState(false);
   const isLoading = useLoadingStore(state => state.loaders[src]);
   const setIsLoading = useLoadingStore(state => state.set);
+  const transitionToken = useRef(0);
+  const fadeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const targetVolume = useRef(options.volume ?? 0.5);
+  const isFadingOut = useRef(false);
 
   const { isBrowser } = useSSR();
   const sound = useMemo<Howl | null>(() => {
@@ -63,12 +69,27 @@ export function useSound(
   }, [sound, options.loop]);
 
   useEffect(() => {
-    if (sound) sound.volume(options.volume ?? 0.5);
+    targetVolume.current = options.volume ?? 0.5;
+
+    if (sound && !isFadingOut.current) {
+      sound.volume(targetVolume.current);
+    }
   }, [sound, options.volume]);
+
+  const clearFadeTimeout = useCallback(() => {
+    if (fadeTimeout.current) {
+      clearTimeout(fadeTimeout.current);
+      fadeTimeout.current = null;
+    }
+  }, []);
 
   const play = useCallback(
     (cb?: () => void) => {
       if (sound) {
+        transitionToken.current += 1;
+        isFadingOut.current = false;
+        clearFadeTimeout();
+
         if (!hasLoaded && !isLoading) {
           setIsLoading(src, true);
           sound.load();
@@ -78,30 +99,72 @@ export function useSound(
           sound.play();
         }
 
+        const currentVolume = sound.volume();
+        const nextVolume = targetVolume.current;
+
+        if (currentVolume !== nextVolume) {
+          sound.fade(currentVolume, nextVolume, DEFAULT_FADE_DURATION);
+        }
+
         if (typeof cb === 'function') sound.once('end', cb);
       }
     },
-    [src, setIsLoading, sound, hasLoaded, isLoading],
+    [src, setIsLoading, sound, hasLoaded, isLoading, clearFadeTimeout],
   );
 
   const stop = useCallback(() => {
-    if (sound) sound.stop();
-  }, [sound]);
+    transitionToken.current += 1;
+    isFadingOut.current = false;
+    clearFadeTimeout();
 
-  const pause = useCallback(() => {
-    if (sound) sound.pause();
-  }, [sound]);
+    if (sound) {
+      sound.stop();
+      sound.volume(targetVolume.current);
+    }
+  }, [sound, clearFadeTimeout]);
+
+  const pause = useCallback(
+    (duration: number = DEFAULT_FADE_DURATION) => {
+      if (!sound) return;
+
+      transitionToken.current += 1;
+      const token = transitionToken.current;
+      isFadingOut.current = true;
+      clearFadeTimeout();
+
+      if (!sound.playing()) {
+        isFadingOut.current = false;
+        sound.volume(targetVolume.current);
+        return;
+      }
+
+      const currentVolume = sound.volume();
+
+      if (duration <= 0 || currentVolume <= 0) {
+        sound.pause();
+        isFadingOut.current = false;
+        sound.volume(targetVolume.current);
+        return;
+      }
+
+      sound.fade(currentVolume, 0, duration);
+
+      fadeTimeout.current = setTimeout(() => {
+        if (transitionToken.current !== token) return;
+
+        sound.pause();
+        isFadingOut.current = false;
+        sound.volume(targetVolume.current);
+      }, duration);
+    },
+    [sound, clearFadeTimeout],
+  );
 
   const fadeOut = useCallback(
     (duration: number) => {
-      sound?.fade(sound.volume(), 0, duration);
-
-      setTimeout(() => {
-        pause();
-        sound?.volume(options.volume || 0.5);
-      }, duration);
+      pause(duration);
     },
-    [options.volume, sound, pause],
+    [pause],
   );
 
   useEffect(() => {
@@ -109,6 +172,10 @@ export function useSound(
 
     return subscribe(FADE_OUT, listener);
   }, [fadeOut]);
+
+  useEffect(() => {
+    return () => clearFadeTimeout();
+  }, [clearFadeTimeout]);
 
   const control = useMemo(
     () => ({ fadeOut, isLoading, pause, play, stop }),
