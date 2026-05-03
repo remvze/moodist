@@ -6,6 +6,7 @@ import { Favorite } from './favorite';
 
 import { useSound } from '@/hooks/use-sound';
 import { useSoundStore } from '@/stores/sound';
+import { useSettingsStore } from '@/stores/settings';
 import { useLoadingStore } from '@/stores/loading';
 import { cn } from '@/helpers/styles';
 
@@ -35,7 +36,7 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
   const locked = useSoundStore(state => state.locked);
 
   const volume = useSoundStore(state => state.sounds[id].volume);
-  const globalVolume = useSoundStore(state => state.globalVolume);
+  const globalVolume = useSettingsStore(state => state.globalVolume);
   const adjustedVolume = useMemo(
     () => volume * globalVolume,
     [volume, globalVolume],

@@ -13,7 +13,6 @@ type SoundValue = {
 
 interface SoundStore {
   getFavorites: () => Array<string>;
-  globalVolume: number;
   history: Record<string, SoundValue> | null;
   isPlaying: boolean;
   lock: () => void;
@@ -24,7 +23,6 @@ interface SoundStore {
   play: () => void;
   restoreHistory: () => void;
   select: (id: string) => void;
-  setGlobalVolume: (volume: number) => void;
   setVolume: (id: string, volume: number) => void;
   shuffle: () => void;
   sounds: Record<string, SoundValue>;
@@ -62,7 +60,6 @@ export const useSoundStore = create<SoundStore>()(
         return favorites;
       },
 
-      globalVolume: 1,
       history: null,
       isPlaying: false,
 
@@ -117,12 +114,6 @@ export const useSoundStore = create<SoundStore>()(
             ...get().sounds,
             [id]: { ...get().sounds[id], isSelected: true },
           },
-        });
-      },
-
-      setGlobalVolume(volume) {
-        set({
-          globalVolume: volume,
         });
       },
 
@@ -217,7 +208,6 @@ export const useSoundStore = create<SoundStore>()(
         ),
       name: 'moodist-sounds',
       partialize: state => ({
-        globalVolume: state.globalVolume,
         sounds: state.sounds,
       }),
       skipHydration: true,

@@ -38,6 +38,10 @@ export function ShortcutsModal({ onClose, show }: ShortcutsModalProps) {
       label: 'Notepad',
     },
     {
+      keys: ['Shift', 'G'],
+      label: 'Settings',
+    },
+    {
       keys: ['Shift', 'T'],
       label: 'Todo Checklist',
     },
