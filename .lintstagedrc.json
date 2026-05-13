@@ -1,7 +1,3 @@
 {
-  "*.{ts,tsx,js,jsx}": "eslint --fix",
-  "*.{json,md}": "prettier --write",
-  "*.css": "stylelint --fix",
-  "*.astro": ["eslint --fix", "stylelint --fix"],
-  "*.html": ["prettier --write", "stylelint --fix"]
+  "*.{astro,css,html,js,jsx,json,jsonc,md,ts,tsx}": "biome check --write --no-errors-on-unmatched"
 }

@@ -48,7 +48,7 @@ export const useNoteStore = create<NoteStore>()(
       merge: (persisted, current) =>
         merge(
           current,
-          // @ts-ignore
+          // @ts-expect-error
           persisted,
         ),
       name: 'moodist-note',

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.4.15/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "includes": ["**", "!!**/node_modules", "!!**/dist", "!!**/.output"]
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80,
+    "useEditorconfig": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "noLabelWithoutControl": "off",
+        "useButtonType": "off",
+        "useMediaCaption": "off",
+        "useSemanticElements": "off"
+      },
+      "complexity": {
+        "useFlatMap": "off"
+      },
+      "correctness": {
+        "noUndeclaredVariables": "off",
+        "noUnresolvedImports": "off",
+        "useExhaustiveDependencies": "off"
+      },
+      "style": {
+        "noDescendingSpecificity": "off"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "off",
+        "noDuplicateProperties": "off",
+        "noImplicitAnyLet": "off",
+        "noRedeclare": "off"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "asNeeded",
+      "quoteStyle": "single",
+      "semicolons": "always",
+      "trailingCommas": "all"
+    }
+  },
+  "css": {
+    "formatter": {
+      "quoteStyle": "single"
+    }
+  },
+  "assist": {
+    "enabled": false
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.astro"],
+      "javascript": {
+        "globals": ["Astro"]
+      },
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUnusedImports": "off",
+            "noUnusedVariables": "off",
+            "useJsxKeyInIterable": "off"
+          }
+        }
+      }
+    }
+  ]
+}

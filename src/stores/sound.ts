@@ -203,7 +203,7 @@ export const useSoundStore = create<SoundStore>()(
       merge: (persisted, current) =>
         merge(
           current,
-          // @ts-ignore
+          // @ts-expect-error
           persisted,
         ),
       name: 'moodist-sounds',

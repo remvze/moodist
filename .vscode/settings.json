@@ -1,20 +1,8 @@
 {
   "files.eol": "\n",
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "astro"
-  ],
-  "stylelint.validate": ["css", "html", "astro"],
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.fixAll.stylelint": "explicit"
-  },
-  "[javascript][javascriptreact][typescript][typescriptreact][astro]": {
-    "editor.formatOnSave": false
+    "source.fixAll.biome": "explicit"
   }
 }
