@@ -40,7 +40,7 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
     [totalSeconds, timeSpent],
   );
 
-  const timerId = useRef<ReturnType<typeof setInterval>>();
+  const timerId = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const isPlaying = useSoundStore(state => state.isPlaying);
   const play = useSoundStore(state => state.play);
