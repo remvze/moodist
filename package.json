@@ -21,7 +21,7 @@
     "release:patch": "pnpm run release --release-as patch"
   },
   "dependencies": {
-    "@astrojs/react": "3.6.0",
+    "@astrojs/react": "5.0.7",
     "@floating-ui/react": "0.26.0",
     "@formkit/auto-animate": "0.8.2",
     "@radix-ui/react-checkbox": "1.1.4",
@@ -31,8 +31,8 @@
     "@types/howler": "2.2.10",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
-    "@vite-pwa/astro": "0.5.0",
-    "astro": "4.10.3",
+    "@vite-pwa/astro": "1.2.0",
+    "astro": "6.4.4",
     "deepmerge": "4.3.1",
     "focus-trap-react": "10.2.3",
     "framer-motion": "10.16.4",
@@ -59,6 +59,6 @@
     "lint-staged": "17.0.7",
     "postcss-nesting": "12.0.1",
     "standard-version": "9.5.0",
-    "workbox-window": "7.4.0"
+    "workbox-window": "7.4.1"
   }
 }
