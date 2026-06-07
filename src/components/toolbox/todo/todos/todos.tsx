@@ -19,16 +19,9 @@ export function Todos() {
       </header>
 
       {todos.length > 0 ? (
-        <>
-          {todos.map(todo => (
-            <Todo
-              done={todo.done}
-              id={todo.id}
-              key={todo.id}
-              todo={todo.todo}
-            />
-          ))}
-        </>
+        todos.map(todo => (
+          <Todo done={todo.done} id={todo.id} key={todo.id} todo={todo.todo} />
+        ))
       ) : (
         <p className={styles.empty}>You don&apos;t have any todos.</p>
       )}
