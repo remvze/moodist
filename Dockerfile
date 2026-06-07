@@ -1,12 +1,12 @@
-FROM docker.io/node:20-alpine3.18 AS build
+FROM docker.io/node:24-alpine AS build
 
 WORKDIR /app
 
 # Install pnpm
-RUN npm install -g pnpm@latest-10
+RUN npm install -g pnpm@latest-11
 
 # Copy dependency files
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 # Install dependencies
 RUN pnpm install --frozen-lockfile
