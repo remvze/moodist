@@ -22,8 +22,6 @@
   },
   "dependencies": {
     "@astrojs/react": "5.0.7",
-    "@floating-ui/react": "0.26.0",
-    "@formkit/auto-animate": "0.8.2",
     "@types/howler": "2.2.10",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
@@ -31,7 +29,6 @@
     "astro": "6.4.4",
     "deepmerge": "4.3.1",
     "focus-trap-react": "10.2.3",
-    "framer-motion": "10.16.4",
     "howler": "2.2.4",
     "js-confetti": "0.12.0",
     "motion": "12.23.24",

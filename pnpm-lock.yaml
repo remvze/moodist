@@ -11,12 +11,6 @@ importers:
       '@astrojs/react':
         specifier: 5.0.7
         version: 5.0.7(@types/node@25.6.0)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(jiti@2.6.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(terser@5.46.2)(yaml@2.9.0)
-      '@floating-ui/react':
-        specifier: 0.26.0
-        version: 0.26.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      '@formkit/auto-animate':
-        specifier: 0.8.2
-        version: 0.8.2
       '@types/howler':
         specifier: 2.2.10
         version: 2.2.10
@@ -38,9 +32,6 @@ importers:
       focus-trap-react:
         specifier: 10.2.3
         version: 10.2.3(prop-types@15.8.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      framer-motion:
-        specifier: 10.16.4
-        version: 10.16.4(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       howler:
         specifier: 2.2.4
         version: 2.2.4
@@ -108,9 +99,6 @@ importers:
       standard-version:
         specifier: 9.5.0
         version: 9.5.0
-      workbox-window:
-        specifier: 7.4.1
-        version: 7.4.1
 
 packages:
 
@@ -1029,20 +1017,8 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  '@floating-ui/react@0.26.0':
-    resolution: {integrity: sha512-W70xgicegogSoy+8Hfmpd/NWEuL26vsatIHkpVydmigJ84YYhs5/GlBCkLcETWajCjD9XKwlHUv6ezwbLLiung==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-
-  '@floating-ui/utils@0.1.6':
-    resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==}
-
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
-
-  '@formkit/auto-animate@0.8.2':
-    resolution: {integrity: sha512-SwPWfeRa5veb1hOIBMdzI+73te5puUBHmqqaF1Bu7FjvxlYSz/kJcZKSa9Cg60zL0uRNeJL2SbRxV6Jp6Q1nFQ==}
 
   '@hutson/parse-repository-url@3.0.2':
     resolution: {integrity: sha512-H9XAx3hc0BQHY6l+IFSWHDySypcXsvsuLhgYLUGywmJ5pswRVQJUHpOsobnLYp2ZUaUlKiKDrgWWhosOwAEM8Q==}
@@ -3043,17 +3019,6 @@ packages:
 
   fraction.js@5.3.4:
     resolution: {integrity: sha512-1X1NTtiJphryn/uLQz3whtY6jK3fTqoE3ohKs0tT+Ujr1W59oopxmoEh7Lu5p6vBaPbgoM0bzveAW4Qi5RyWDQ==}
-
-  framer-motion@10.16.4:
-    resolution: {integrity: sha512-p9V9nGomS3m6/CALXqv6nFGMuFOxbWsmaOrdmhyQimMIlLl3LC7h7l86wge/Js/8cRu5ktutS/zlzgR7eBOtFA==}
-    peerDependencies:
-      react: ^18.0.0
-      react-dom: ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
 
   framer-motion@12.38.0:
     resolution: {integrity: sha512-rFYkY/pigbcswl1XQSb7q424kSTQ8q6eAC+YUsSKooHQYuLdzdHjrt6uxUC+PRAO++q5IS7+TamgIw1AphxR+g==}
@@ -6344,19 +6309,7 @@ snapshots:
       react: 19.2.7
       react-dom: 19.2.7(react@19.2.7)
 
-  '@floating-ui/react@0.26.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
-    dependencies:
-      '@floating-ui/react-dom': 2.1.8(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      '@floating-ui/utils': 0.1.6
-      react: 19.2.7
-      react-dom: 19.2.7(react@19.2.7)
-      tabbable: 6.4.0
-
-  '@floating-ui/utils@0.1.6': {}
-
   '@floating-ui/utils@0.2.11': {}
-
-  '@formkit/auto-animate@0.8.2': {}
 
   '@hutson/parse-repository-url@3.0.2': {}
 
@@ -8508,14 +8461,6 @@ snapshots:
       signal-exit: 4.1.0
 
   fraction.js@5.3.4: {}
-
-  framer-motion@10.16.4(react-dom@19.2.7(react@19.2.7))(react@19.2.7):
-    dependencies:
-      tslib: 2.8.1
-    optionalDependencies:
-      '@emotion/is-prop-valid': 0.8.8
-      react: 19.2.7
-      react-dom: 19.2.7(react@19.2.7)
 
   framer-motion@12.38.0(@emotion/is-prop-valid@0.8.8)(react-dom@19.2.7(react@19.2.7))(react@19.2.7):
     dependencies:
