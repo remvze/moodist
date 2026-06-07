@@ -1,5 +1,5 @@
 import { FiExternalLink } from 'react-icons/fi/index';
-import { Item as DropdownItem } from '@radix-ui/react-dropdown-menu';
+import { DropdownMenu } from 'radix-ui';
 
 import styles from './item.module.css';
 
@@ -25,7 +25,7 @@ export function Item({
   const Comp = href ? 'a' : 'button';
 
   return (
-    <DropdownItem asChild onClick={onClick}>
+    <DropdownMenu.Item asChild onClick={onClick}>
       <Comp
         className={styles.item}
         disabled={disabled}
@@ -45,6 +45,6 @@ export function Item({
           </span>
         )}
       </Comp>
-    </DropdownItem>
+    </DropdownMenu.Item>
   );
 }

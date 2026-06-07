@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import * as TooltipPrimitive from '@radix-ui/react-tooltip';
+import { Tooltip as TooltipPrimitive } from 'radix-ui';
 
 import { slideX, slideY, mix, fade } from '@/lib/motion';
 
@@ -21,7 +21,7 @@ type Placement =
   | 'left-end';
 
 interface TooltipProps {
-  children: JSX.Element;
+  children: React.ReactNode;
   content: string;
   placement?: Placement;
 }
