@@ -1,0 +1,29 @@
+.timer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 48px 0;
+  font-size: var(--font-xlg);
+  font-weight: 500;
+  background-color: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 12px;
+
+  &::after {
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    width: 75%;
+    height: 1px;
+    content: '';
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-neutral-400),
+      transparent
+    );
+    transform: translateX(-50%);
+  }
+}
