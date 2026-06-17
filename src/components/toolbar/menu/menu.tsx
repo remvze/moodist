@@ -1,8 +1,8 @@
-import { useState, useMemo, useCallback } from 'react';
-import { IoMenu, IoClose } from 'react-icons/io5/index';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { useHotkeys } from 'react-hotkeys-hook';
-import { AnimatePresence, motion } from 'motion/react';
+import { useState, useMemo, useCallback } from "react";
+import { IoMenu, IoClose } from "react-icons/io5/index";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { useHotkeys } from "react-hotkeys-hook";
+import { AnimatePresence, motion } from "motion/react";
 
 import {
   ShuffleItem,
@@ -15,36 +15,43 @@ import {
   SleepTimerItem,
   BreathingExerciseItem,
   PomodoroItem,
+  FlowmodoroItem,
   NotepadItem,
   TodoItem,
   CountdownItem,
   BinauralItem,
   IsochronicItem,
   LofiItem,
-} from './items';
-import { Divider } from './divider';
-import { ShareLinkModal } from '@/components/modals/share-link';
-import { PresetsModal } from '@/components/modals/presets';
-import { ShortcutsModal } from '@/components/modals/shortcuts';
-import { SleepTimerModal } from '@/components/modals/sleep-timer';
-import { SettingsModal } from '@/components/modals/settings';
-import { BreathingExerciseModal } from '@/components/modals/breathing';
-import { BinauralModal } from '@/components/modals/binaural';
-import { IsochronicModal } from '@/components/modals/isochronic';
-import { LofiModal } from '@/components/modals/lofi';
-import { Pomodoro, Notepad, Todo, Countdown } from '@/components/toolbox';
+} from "./items";
+import { Divider } from "./divider";
+import { ShareLinkModal } from "@/components/modals/share-link";
+import { PresetsModal } from "@/components/modals/presets";
+import { ShortcutsModal } from "@/components/modals/shortcuts";
+import { SleepTimerModal } from "@/components/modals/sleep-timer";
+import { SettingsModal } from "@/components/modals/settings";
+import { BreathingExerciseModal } from "@/components/modals/breathing";
+import { BinauralModal } from "@/components/modals/binaural";
+import { IsochronicModal } from "@/components/modals/isochronic";
+import { LofiModal } from "@/components/modals/lofi";
+import {
+  Pomodoro,
+  Flowmodoro,
+  Notepad,
+  Todo,
+  Countdown,
+} from "@/components/toolbox";
 
-import { fade, mix, slideY } from '@/lib/motion';
-import { useSoundStore } from '@/stores/sound';
+import { fade, mix, slideY } from "@/lib/motion";
+import { useSoundStore } from "@/stores/sound";
 
-import styles from './menu.module.css';
-import { useCloseListener } from '@/hooks/use-close-listener';
-import { closeModals } from '@/lib/modal';
+import styles from "./menu.module.css";
+import { useCloseListener } from "@/hooks/use-close-listener";
+import { closeModals } from "@/lib/modal";
 
 export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const noSelected = useSoundStore(state => state.noSelected());
+  const noSelected = useSoundStore((state) => state.noSelected());
 
   const initial = useMemo(
     () => ({
@@ -55,6 +62,7 @@ export function Menu() {
       lofi: false,
       notepad: false,
       pomodoro: false,
+      flowmodoro: false,
       presets: false,
       settings: false,
       shareLink: false,
@@ -64,11 +72,10 @@ export function Menu() {
     }),
     [],
   );
-
   const [modals, setModals] = useState(initial);
 
   const close = useCallback((name: string) => {
-    setModals(prev => ({ ...prev, [name]: false }));
+    setModals((prev) => ({ ...prev, [name]: false }));
   }, []);
 
   const closeAll = useCallback(() => setModals(initial), [initial]);
@@ -78,22 +85,23 @@ export function Menu() {
       closeAll();
       setIsOpen(false);
       closeModals();
-      setModals(prev => ({ ...prev, [name]: true }));
+      setModals((prev) => ({ ...prev, [name]: true }));
     },
     [closeAll],
   );
 
-  useHotkeys('shift+m', () => setIsOpen(prev => !prev));
-  useHotkeys('shift+alt+p', () => open('presets'));
-  useHotkeys('shift+h', () => open('shortcuts'));
-  useHotkeys('shift+b', () => open('breathing'));
-  useHotkeys('shift+n', () => open('notepad'));
-  useHotkeys('shift+p', () => open('pomodoro'));
-  useHotkeys('shift+t', () => open('todo'));
-  useHotkeys('shift+c', () => open('countdown'));
-  useHotkeys('shift+g', () => open('settings'));
-  useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
-  useHotkeys('shift+alt+t', () => open('sleepTimer'));
+  useHotkeys("shift+m", () => setIsOpen((prev) => !prev));
+  useHotkeys("shift+alt+p", () => open("presets"));
+  useHotkeys("shift+h", () => open("shortcuts"));
+  useHotkeys("shift+b", () => open("breathing"));
+  useHotkeys("shift+n", () => open("notepad"));
+  useHotkeys("shift+p", () => open("pomodoro"));
+  useHotkeys("shift+f", () => open("flowmodoro"));
+  useHotkeys("shift+t", () => open("todo"));
+  useHotkeys("shift+c", () => open("countdown"));
+  useHotkeys("shift+g", () => open("settings"));
+  useHotkeys("shift+s", () => open("shareLink"), { enabled: !noSelected });
+  useHotkeys("shift+alt+t", () => open("sleepTimer"));
 
   useCloseListener(closeAll);
 
@@ -102,7 +110,7 @@ export function Menu() {
   return (
     <>
       <div className={styles.wrapper}>
-        <DropdownMenu.Root open={isOpen} onOpenChange={o => setIsOpen(o)}>
+        <DropdownMenu.Root open={isOpen} onOpenChange={(o) => setIsOpen(o)}>
           <DropdownMenu.Trigger asChild>
             <button aria-label="Menu" className={styles.menuButton}>
               {isOpen ? <IoClose /> : <IoMenu />}
@@ -126,27 +134,28 @@ export function Menu() {
                     initial="hidden"
                     variants={variants}
                   >
-                    <PresetsItem open={() => open('presets')} />
-                    <ShareItem open={() => open('shareLink')} />
+                    <PresetsItem open={() => open("presets")} />
+                    <ShareItem open={() => open("shareLink")} />
                     <ShuffleItem />
-                    <SleepTimerItem open={() => open('sleepTimer')} />
+                    <SleepTimerItem open={() => open("sleepTimer")} />
 
                     <Divider />
-                    <CountdownItem open={() => open('countdown')} />
-                    <PomodoroItem open={() => open('pomodoro')} />
-                    <NotepadItem open={() => open('notepad')} />
-                    <TodoItem open={() => open('todo')} />
-                    <BreathingExerciseItem open={() => open('breathing')} />
+                    <CountdownItem open={() => open("countdown")} />
+                    <PomodoroItem open={() => open("pomodoro")} />
+                    <FlowmodoroItem open={() => open("flowmodoro")} />
+                    <NotepadItem open={() => open("notepad")} />
+                    <TodoItem open={() => open("todo")} />
+                    <BreathingExerciseItem open={() => open("breathing")} />
 
                     <Divider />
-                    <BinauralItem open={() => open('binaural')} />
-                    <IsochronicItem open={() => open('isochronic')} />
-                    <LofiItem open={() => open('lofi')} />
+                    <BinauralItem open={() => open("binaural")} />
+                    <IsochronicItem open={() => open("isochronic")} />
+                    <LofiItem open={() => open("lofi")} />
 
                     <Divider />
-                    <SettingsItem open={() => open('settings')} />
+                    <SettingsItem open={() => open("settings")} />
                     <Divider />
-                    <ShortcutsItem open={() => open('shortcuts')} />
+                    <ShortcutsItem open={() => open("shortcuts")} />
                     <Divider />
                     <DonateItem />
                     <SourceItem />
@@ -160,36 +169,41 @@ export function Menu() {
 
       <ShareLinkModal
         show={modals.shareLink}
-        onClose={() => close('shareLink')}
+        onClose={() => close("shareLink")}
       />
       <BreathingExerciseModal
         show={modals.breathing}
-        onClose={() => close('breathing')}
+        onClose={() => close("breathing")}
       />
       <ShortcutsModal
         show={modals.shortcuts}
-        onClose={() => close('shortcuts')}
+        onClose={() => close("shortcuts")}
       />
-      <SettingsModal show={modals.settings} onClose={() => close('settings')} />
+      <SettingsModal show={modals.settings} onClose={() => close("settings")} />
       <Pomodoro
-        open={() => open('pomodoro')}
+        open={() => open("pomodoro")}
         show={modals.pomodoro}
-        onClose={() => close('pomodoro')}
+        onClose={() => close("pomodoro")}
       />
-      <Notepad show={modals.notepad} onClose={() => close('notepad')} />
-      <Todo show={modals.todo} onClose={() => close('todo')} />
-      <Countdown show={modals.countdown} onClose={() => close('countdown')} />
-      <PresetsModal show={modals.presets} onClose={() => close('presets')} />
+      <Flowmodoro
+        open={() => open("flowmodoro")}
+        show={modals.flowmodoro}
+        onClose={() => close("flowmodoro")}
+      />
+      <Notepad show={modals.notepad} onClose={() => close("notepad")} />
+      <Todo show={modals.todo} onClose={() => close("todo")} />
+      <Countdown show={modals.countdown} onClose={() => close("countdown")} />
+      <PresetsModal show={modals.presets} onClose={() => close("presets")} />
       <SleepTimerModal
         show={modals.sleepTimer}
-        onClose={() => close('sleepTimer')}
+        onClose={() => close("sleepTimer")}
       />
-      <BinauralModal show={modals.binaural} onClose={() => close('binaural')} />
+      <BinauralModal show={modals.binaural} onClose={() => close("binaural")} />
       <IsochronicModal
         show={modals.isochronic}
-        onClose={() => close('isochronic')}
+        onClose={() => close("isochronic")}
       />
-      <LofiModal show={modals.lofi} onClose={() => close('lofi')} />
+      <LofiModal show={modals.lofi} onClose={() => close("lofi")} />
     </>
   );
 }

@@ -1,0 +1,76 @@
+.title {
+  margin-bottom: 16px;
+  font-family: var(--font-heading);
+  font-size: var(--font-md);
+  font-weight: 600;
+}
+
+& .form {
+  display: flex;
+  flex-direction: column;
+
+  & .field {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    margin-bottom: 16px;
+
+    & .label {
+      font-size: var(--font-sm);
+      color: var(--color-foreground);
+
+      & span {
+        color: var(--color-foreground-subtle);
+      }
+    }
+
+    & .input {
+      display: block;
+      height: 40px;
+      padding: 0 8px;
+      color: var(--color-foreground);
+      background-color: var(--color-neutral-50);
+      border: 1px solid var(--color-neutral-200);
+      border-radius: 4px;
+      outline: none;
+
+      &:focus-visible {
+        outline: 2px solid var(--color-neutral-400);
+        outline-offset: 2px;
+      }
+    }
+  }
+
+  & .buttons {
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+
+    & button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 0 16px;
+      font-size: var(--font-sm);
+      font-weight: 500;
+      color: var(--color-foreground);
+      cursor: pointer;
+      background-color: var(--color-neutral-200);
+      border: none;
+      border-radius: 4px;
+      outline: none;
+
+      &:focus-visible {
+        outline: 2px solid var(--color-neutral-400);
+        outline-offset: 2px;
+      }
+
+      &.primary {
+        color: var(--color-neutral-100);
+        background-color: var(--color-neutral-950);
+      }
+    }
+  }
+}
