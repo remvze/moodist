@@ -1,3 +1,8 @@
+.unselectWrapper {
+  flex: none;
+  overflow: visible;
+}
+
 .unselectButton {
   display: flex;
   align-items: center;
@@ -12,7 +17,9 @@
   background-color: var(--color-neutral-100);
   border: 1px solid var(--color-neutral-300);
   border-radius: 100px;
-  transition: 0.2s;
+  transition:
+    background-color 180ms ease,
+    transform 120ms ease;
 
   &:disabled,
   &.disabled {
