@@ -1,10 +1,16 @@
 import { useEffect, useState, useRef, useMemo } from 'react';
 
-import { Modal } from '@/components/modal';
+import {
+  Modal,
+  ModalActions,
+  ModalButton,
+  ModalDescription,
+  ModalHeader,
+  ModalTitle,
+} from '@/components/modal';
 import { Timer } from './timer';
 import { dispatch } from '@/lib/event';
 import { useSoundStore } from '@/stores/sound';
-import { cn } from '@/helpers/styles';
 import { FADE_OUT } from '@/constants/events';
 import { useSleepTimerStore } from '@/stores/sleep-timer';
 
@@ -90,12 +96,14 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
 
   return (
     <Modal show={show} onClose={onClose}>
-      <header className={styles.header}>
-        <h2 className={styles.title}>Sleep Timer</h2>
-        <p className={styles.desc}>
-          Stop sounds after a certain amount of time.
-        </p>
-      </header>
+      <ModalHeader>
+        <div>
+          <ModalTitle>Sleep Timer</ModalTitle>
+          <ModalDescription>
+            Stop sounds after a certain amount of time.
+          </ModalDescription>
+        </div>
+      </ModalHeader>
 
       <form onSubmit={handleSubmit}>
         <div className={styles.controls}>
@@ -111,26 +119,19 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
 
           {running ? <Timer reverse={timeSpent} timer={timeLeft} /> : null}
 
-          <div className={styles.buttons}>
+          <ModalActions>
             {running && (
-              <button
-                className={styles.button}
-                type="button"
-                onClick={handleReset}
-              >
+              <ModalButton type="button" onClick={handleReset}>
                 Reset
-              </button>
+              </ModalButton>
             )}
 
             {!running && (
-              <button
-                className={cn(styles.button, styles.primary)}
-                type="submit"
-              >
+              <ModalButton variant="primary" type="submit">
                 Start
-              </button>
+              </ModalButton>
             )}
-          </div>
+          </ModalActions>
         </div>
       </form>
     </Modal>

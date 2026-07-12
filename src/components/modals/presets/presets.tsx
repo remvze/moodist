@@ -1,4 +1,4 @@
-import { Modal } from '@/components/modal';
+import { Modal, ModalHeader, ModalTitle } from '@/components/modal';
 import { New } from './new';
 import { List } from './list';
 
@@ -12,7 +12,9 @@ interface PresetsModalProps {
 export function PresetsModal({ onClose, show }: PresetsModalProps) {
   return (
     <Modal show={show} onClose={onClose}>
-      <h2 className={styles.title}>Presets</h2>
+      <ModalHeader>
+        <ModalTitle>Presets</ModalTitle>
+      </ModalHeader>
       <New />
       <div className={styles.divider} />
       <List close={onClose} />

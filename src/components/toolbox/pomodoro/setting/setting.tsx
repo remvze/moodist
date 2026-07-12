@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import { Modal } from '@/components/modal';
+import {
+  Modal,
+  ModalActions,
+  ModalButton,
+  ModalHeader,
+  ModalTitle,
+} from '@/components/modal';
 
 import styles from './setting.module.css';
 
@@ -46,7 +52,9 @@ export function Setting({ onChange, onClose, show, times }: SettingProps) {
 
   return (
     <Modal lockBody={false} show={show} onClose={onClose}>
-      <h2 className={styles.title}>Change Times</h2>
+      <ModalHeader>
+        <ModalTitle>Change Times</ModalTitle>
+      </ModalHeader>
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <Field
@@ -68,14 +76,14 @@ export function Setting({ onChange, onClose, show, times }: SettingProps) {
           onChange={handleChange('long')}
         />
 
-        <div className={styles.buttons}>
-          <button type="button" onClick={handleCancel}>
+        <ModalActions>
+          <ModalButton type="button" onClick={handleCancel}>
             Cancel
-          </button>
-          <button className={styles.primary} type="submit">
+          </ModalButton>
+          <ModalButton variant="primary" type="submit">
             Save
-          </button>
-        </div>
+          </ModalButton>
+        </ModalActions>
       </form>
     </Modal>
   );

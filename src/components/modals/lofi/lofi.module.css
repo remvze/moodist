@@ -1,41 +1,7 @@
-.title {
-  margin-bottom: 12px;
-  font-family: var(--font-heading);
-  font-weight: 600;
-}
-
 .notice {
   & p {
     line-height: 1.4;
     color: var(--color-foreground-subtle);
-  }
-
-  & .buttons {
-    display: flex;
-    column-gap: 8px;
-    align-items: center;
-    justify-content: flex-end;
-    margin-top: 12px;
-
-    & button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 40px;
-      padding: 0 16px;
-      font-size: var(--font-sm);
-      font-weight: 500;
-      color: var(--color-foreground);
-      cursor: pointer;
-      background: var(--color-neutral-200);
-      border: none;
-      border-radius: 8px;
-
-      &.primary {
-        color: var(--color-neutral-50);
-        background: var(--color-neutral-950);
-      }
-    }
   }
 }
 

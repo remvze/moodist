@@ -4,7 +4,7 @@ import { LuCopy, LuDownload } from 'react-icons/lu/index';
 import { FaCheck } from 'react-icons/fa6/index';
 import { FaUndo } from 'react-icons/fa/index';
 
-import { Modal } from '@/components/modal';
+import { Modal, ModalHeader, ModalTitle } from '@/components/modal';
 import { Button } from './button';
 
 import { useNoteStore } from '@/stores/note';
@@ -48,8 +48,8 @@ export function Notepad({ onClose, show }: NotepadProps) {
 
   return (
     <Modal show={show} wide onClose={onClose}>
-      <header className={styles.header}>
-        <h2 className={styles.label}>Your Note</h2>
+      <ModalHeader className={styles.header}>
+        <ModalTitle className={styles.label}>Your Note</ModalTitle>
         <div className={styles.buttons}>
           <Tooltip.Provider delayDuration={0}>
             <Button
@@ -71,7 +71,7 @@ export function Notepad({ onClose, show }: NotepadProps) {
             />
           </Tooltip.Provider>
         </div>
-      </header>
+      </ModalHeader>
 
       <textarea
         className={styles.textarea}

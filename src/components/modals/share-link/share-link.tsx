@@ -1,7 +1,12 @@
 import { useMemo, useEffect, useState } from 'react';
 import { IoCopyOutline, IoCheckmark } from 'react-icons/io5/index';
 
-import { Modal } from '@/components/modal';
+import {
+  Modal,
+  ModalDescription,
+  ModalHeader,
+  ModalTitle,
+} from '@/components/modal';
 
 import { useCopy } from '@/hooks/use-copy';
 import { useSoundStore } from '@/stores/sound';
@@ -51,11 +56,15 @@ export function ShareLinkModal({ onClose, show }: ShareLinkModalProps) {
 
   return (
     <Modal show={show} onClose={onClose}>
-      <h1 className={styles.heading}>Share your sound selection!</h1>
-      <p className={styles.desc}>
-        Copy and send the following link to the person you want to share your
-        selection with.
-      </p>
+      <ModalHeader>
+        <div>
+          <ModalTitle>Share your sound selection!</ModalTitle>
+          <ModalDescription>
+            Copy and send the following link to the person you want to share
+            your selection with.
+          </ModalDescription>
+        </div>
+      </ModalHeader>
       <div className={styles.inputWrapper}>
         <input readOnly type="text" value={url} />
         <button onClick={() => copy(url)}>

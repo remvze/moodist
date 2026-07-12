@@ -1,10 +1,16 @@
 import { useState, useEffect, useCallback } from 'react';
 
-import { Modal } from '@/components/modal';
+import {
+  Modal,
+  ModalActions,
+  ModalButton,
+  ModalDescription,
+  ModalHeader,
+  ModalTitle,
+} from '@/components/modal';
 
 import { useSoundEffect } from '@/hooks/use-sound-effect';
 import { useSettingsStore } from '@/stores/settings';
-import { cn } from '@/helpers/styles';
 import { padNumber } from '@/helpers/number';
 
 import styles from './countdown.module.css';
@@ -74,10 +80,12 @@ export function Countdown({ onClose, show }: CountdownProps) {
 
   return (
     <Modal show={show} onClose={onClose}>
-      <header className={styles.header}>
-        <h2 className={styles.title}>Countdown Timer</h2>
-        <p className={styles.desc}>Super simple countdown timer.</p>
-      </header>
+      <ModalHeader>
+        <div>
+          <ModalTitle>Countdown Timer</ModalTitle>
+          <ModalDescription>Super simple countdown timer.</ModalDescription>
+        </div>
+      </ModalHeader>
 
       {isFormVisible ? (
         <div className={styles.formContainer}>
@@ -127,14 +135,11 @@ export function Countdown({ onClose, show }: CountdownProps) {
             />
           </div>
 
-          <div className={styles.buttonContainer}>
-            <button
-              className={cn(styles.button, styles.primary)}
-              onClick={handleStart}
-            >
+          <ModalActions>
+            <ModalButton variant="primary" onClick={handleStart}>
               Start
-            </button>
-          </div>
+            </ModalButton>
+          </ModalActions>
         </div>
       ) : (
         <div className={styles.timerContainer}>
@@ -143,18 +148,13 @@ export function Countdown({ onClose, show }: CountdownProps) {
             <span>{formatTime(timeLeft)}</span>
           </div>
 
-          <div className={styles.buttonContainer}>
-            <button className={styles.button} onClick={handleBack}>
-              Back
-            </button>
+          <ModalActions>
+            <ModalButton onClick={handleBack}>Back</ModalButton>
 
-            <button
-              className={cn(styles.button, styles.primary)}
-              onClick={toggleTimer}
-            >
+            <ModalButton variant="primary" onClick={toggleTimer}>
               {isActive ? 'Pause' : 'Start'}
-            </button>
-          </div>
+            </ModalButton>
+          </ModalActions>
         </div>
       )}
     </Modal>

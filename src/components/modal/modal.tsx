@@ -35,14 +35,14 @@ export function Modal({
   };
 
   useEffect(() => {
-    if (show && lockBody) {
-      document.body.style.overflowY = 'hidden';
-    } else if (lockBody) {
-      // Wait for transition to finish before allowing scrollbar to return
-      setTimeout(() => {
-        document.body.style.overflowY = 'auto';
-      }, TRANSITION_DURATION);
-    }
+    if (!show || !lockBody) return;
+
+    const previousOverflow = document.body.style.overflowY;
+    document.body.style.overflowY = 'hidden';
+
+    return () => {
+      document.body.style.overflowY = previousOverflow;
+    };
   }, [show, lockBody]);
 
   useEffect(() => {

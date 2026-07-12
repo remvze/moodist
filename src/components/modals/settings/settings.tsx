@@ -1,4 +1,9 @@
-import { Modal } from '@/components/modal';
+import {
+  Modal,
+  ModalDescription,
+  ModalHeader,
+  ModalTitle,
+} from '@/components/modal';
 import { Slider } from '@/components/slider';
 import { useSettingsStore } from '@/stores/settings';
 
@@ -17,10 +22,12 @@ export function SettingsModal({ onClose, show }: SettingsModalProps) {
 
   return (
     <Modal show={show} onClose={onClose}>
-      <header className={styles.header}>
-        <h2 className={styles.title}>Settings</h2>
-        <p className={styles.desc}>Control global and alarm volumes.</p>
-      </header>
+      <ModalHeader>
+        <div>
+          <ModalTitle>Settings</ModalTitle>
+          <ModalDescription>Control global and alarm volumes.</ModalDescription>
+        </div>
+      </ModalHeader>
 
       <div className={styles.group}>
         <p className={styles.label}>Global Volume</p>

@@ -1,8 +1,13 @@
 import { useRegisterSW } from 'virtual:pwa-register/react'; // eslint-disable-line
 
-import { Modal } from '@/components/modal';
-
-import styles from './reload.module.css';
+import {
+  Modal,
+  ModalActions,
+  ModalButton,
+  ModalDescription,
+  ModalHeader,
+  ModalTitle,
+} from '@/components/modal';
 
 export function ReloadModal() {
   const {
@@ -16,21 +21,24 @@ export function ReloadModal() {
 
   return (
     <Modal show={needRefresh} onClose={close}>
-      <h2 className={styles.title}>New Content</h2>
-      <p className={styles.desc}>
-        New content available, click on reload button to update.
-      </p>
+      <ModalHeader>
+        <div>
+          <ModalTitle>New Content</ModalTitle>
+          <ModalDescription>
+            New content available, click on reload button to update.
+          </ModalDescription>
+        </div>
+      </ModalHeader>
 
-      <div className={styles.buttons}>
-        <button onClick={close}>Close</button>
-
-        <button
-          className={styles.primary}
+      <ModalActions>
+        <ModalButton onClick={close}>Close</ModalButton>
+        <ModalButton
+          variant="primary"
           onClick={() => updateServiceWorker(true)}
         >
           Reload
-        </button>
-      </div>
+        </ModalButton>
+      </ModalActions>
     </Modal>
   );
 }

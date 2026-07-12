@@ -1,9 +1,3 @@
-.title {
-  font-family: var(--font-heading);
-  font-size: var(--font-md);
-  font-weight: 600;
-}
-
 .divider {
   width: 100%;
   height: 1px;

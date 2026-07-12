@@ -1,17 +1,3 @@
-.header {
-  margin-bottom: 24px;
-}
-
-.title {
-  margin-bottom: 8px;
-  font-size: var(--font-md);
-  font-weight: 600;
-}
-
-.desc {
-  color: var(--color-foreground-subtle);
-}
-
 .group {
   margin-bottom: 20px;
 }

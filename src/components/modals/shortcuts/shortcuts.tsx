@@ -1,4 +1,4 @@
-import { Modal } from '@/components/modal';
+import { Modal, ModalHeader, ModalTitle } from '@/components/modal';
 
 import styles from './shortcuts.module.css';
 
@@ -61,7 +61,9 @@ export function ShortcutsModal({ onClose, show }: ShortcutsModalProps) {
 
   return (
     <Modal show={show} onClose={onClose}>
-      <h1 className={styles.heading}>Keyboard Shortcuts</h1>
+      <ModalHeader>
+        <ModalTitle>Keyboard Shortcuts</ModalTitle>
+      </ModalHeader>
       <div className={styles.shortcuts}>
         {shortcuts.map(shortcut => (
           <Row

@@ -9,6 +9,7 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -16,8 +17,6 @@ body {
   font-size: var(--font-base);
   color: var(--color-foreground);
   background-color: var(--color-neutral-50);
-  /* Workaround for modal and scrollbar layout shifts */
-  width: 100vw;
   overflow-x: hidden;
 }
 

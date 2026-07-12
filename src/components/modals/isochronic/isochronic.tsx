@@ -1,6 +1,13 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 
-import { Modal } from '@/components/modal';
+import {
+  Modal,
+  ModalActions,
+  ModalButton,
+  ModalDescription,
+  ModalHeader,
+  ModalTitle,
+} from '@/components/modal';
 import { Slider } from '@/components/slider';
 
 import styles from './isochornic.module.css';
@@ -163,10 +170,12 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
 
   return (
     <Modal show={show} onClose={onClose}>
-      <header className={styles.header}>
-        <h2 className={styles.title}>Isochronic Tone</h2>
-        <p className={styles.desc}>Isochronic tone generator.</p>
-      </header>
+      <ModalHeader>
+        <div>
+          <ModalTitle>Isochronic Tone</ModalTitle>
+          <ModalDescription>Isochronic tone generator.</ModalDescription>
+        </div>
+      </ModalHeader>
 
       <div className={styles.fieldWrapper}>
         <label>
@@ -241,18 +250,19 @@ export function IsochronicModal({ onClose, show }: IsochronicProps) {
           />
         </label>
       </div>
-      <div className={styles.buttons}>
-        <button
-          className={styles.primary}
+      <ModalActions>
+        <ModalButton
+          fullWidth
+          variant="primary"
           disabled={isPlaying}
           onClick={startSound}
         >
           Start
-        </button>
-        <button disabled={!isPlaying} onClick={stopSound}>
+        </ModalButton>
+        <ModalButton fullWidth disabled={!isPlaying} onClick={stopSound}>
           Stop
-        </button>
-      </div>
+        </ModalButton>
+      </ModalActions>
     </Modal>
   );
 }

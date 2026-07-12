@@ -1,11 +1,17 @@
 import { useState, useEffect } from 'react';
 
-import { Modal } from '@/components/modal';
+import {
+  Modal,
+  ModalActions,
+  ModalButton,
+  ModalDescription,
+  ModalHeader,
+  ModalTitle,
+} from '@/components/modal';
 
 import { useSoundStore } from '@/stores/sound';
 import { useSnackbar } from '@/contexts/snackbar';
 import { useCloseListener } from '@/hooks/use-close-listener';
-import { cn } from '@/helpers/styles';
 import { sounds } from '@/data/sounds';
 
 import styles from './shared.module.css';
@@ -82,11 +88,15 @@ export function SharedModal() {
 
   return (
     <Modal show={isOpen} onClose={() => setIsOpen(false)}>
-      <h1 className={styles.heading}>New sound mix detected!</h1>
-      <p className={styles.desc}>
-        Someone has shared the following mix with you. Would you want to
-        override your current selection?
-      </p>
+      <ModalHeader>
+        <div>
+          <ModalTitle>New sound mix detected!</ModalTitle>
+          <ModalDescription>
+            Someone has shared the following mix with you. Would you want to
+            override your current selection?
+          </ModalDescription>
+        </div>
+      </ModalHeader>
       <div className={styles.sounds}>
         {sharedSounds.map(sound => (
           <div className={styles.sound} key={sound.id}>
@@ -94,17 +104,12 @@ export function SharedModal() {
           </div>
         ))}
       </div>
-      <div className={styles.footer}>
-        <button className={cn(styles.button)} onClick={() => setIsOpen(false)}>
-          Cancel
-        </button>
-        <button
-          className={cn(styles.button, styles.primary)}
-          onClick={handleOverride}
-        >
+      <ModalActions>
+        <ModalButton onClick={() => setIsOpen(false)}>Cancel</ModalButton>
+        <ModalButton variant="primary" onClick={handleOverride}>
           Override
-        </button>
-      </div>
+        </ModalButton>
+      </ModalActions>
     </Modal>
   );
 }

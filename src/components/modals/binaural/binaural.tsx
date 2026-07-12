@@ -1,6 +1,13 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 
-import { Modal } from '@/components/modal';
+import {
+  Modal,
+  ModalActions,
+  ModalButton,
+  ModalDescription,
+  ModalHeader,
+  ModalTitle,
+} from '@/components/modal';
 import { Slider } from '@/components/slider';
 
 import styles from './binaural.module.css';
@@ -162,10 +169,12 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
 
   return (
     <Modal show={show} onClose={onClose}>
-      <header className={styles.header}>
-        <h2 className={styles.title}>Binaural Beat</h2>
-        <p className={styles.desc}>Binaural beat generator.</p>
-      </header>
+      <ModalHeader>
+        <div>
+          <ModalTitle>Binaural Beat</ModalTitle>
+          <ModalDescription>Binaural beat generator.</ModalDescription>
+        </div>
+      </ModalHeader>
 
       <div className={styles.fieldWrapper}>
         <label>
@@ -226,18 +235,19 @@ export function BinauralModal({ onClose, show }: BinauralProps) {
           />
         </label>
       </div>
-      <div className={styles.buttons}>
-        <button
-          className={styles.primary}
+      <ModalActions>
+        <ModalButton
+          fullWidth
+          variant="primary"
           disabled={isPlaying}
           onClick={startSound}
         >
           Start
-        </button>
-        <button disabled={!isPlaying} onClick={stopSound}>
+        </ModalButton>
+        <ModalButton fullWidth disabled={!isPlaying} onClick={stopSound}>
           Stop
-        </button>
-      </div>
+        </ModalButton>
+      </ModalActions>
     </Modal>
   );
 }
