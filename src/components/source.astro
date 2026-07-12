@@ -3,7 +3,10 @@ import { FaGithub } from 'react-icons/fa/index';
 
 import { SpecialButton } from './special-button';
 import { Container } from './container';
-import Binary from './binary.astro';
+import { Binary } from './binary';
+import { generateRandomBinaryString } from '@/helpers/binary';
+
+const initialBinary = generateRandomBinaryString(1000);
 ---
 
 <div class="source">
@@ -25,7 +28,9 @@ import Binary from './binary.astro';
         </SpecialButton>
       </div>
 
-      <div class="binary"><Binary /></div>
+      <div class="binary">
+        <Binary initialValue={initialBinary} client:visible />
+      </div>
     </div>
   </Container>
 </div>
