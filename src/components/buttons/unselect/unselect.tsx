@@ -32,43 +32,41 @@ export function UnselectButton() {
   useHotkeys('shift+r', handleToggle, {}, [handleToggle]);
 
   return (
-    <>
-      <AnimatePresence mode="wait">
-        {(!noSelected || hasHistory) && (
-          <motion.div
-            animate="show"
-            exit="exit"
-            initial="hidden"
-            variants={variants}
-          >
-            <Tooltip.Provider delayDuration={0}>
-              <Tooltip
-                content={
+    <AnimatePresence mode="wait">
+      {(!noSelected || hasHistory) && (
+        <motion.div
+          animate="show"
+          exit="exit"
+          initial="hidden"
+          variants={variants}
+        >
+          <Tooltip.Provider delayDuration={0}>
+            <Tooltip
+              content={
+                hasHistory
+                  ? 'Restore unselected sounds.'
+                  : 'Unselect all sounds.'
+              }
+            >
+              <button
+                disabled={noSelected && !hasHistory}
+                aria-label={
                   hasHistory
-                    ? 'Restore unselected sounds.'
-                    : 'Unselect all sounds.'
+                    ? 'Restore Unselected Sounds'
+                    : 'Unselect All Sounds'
                 }
+                className={cn(
+                  styles.unselectButton,
+                  noSelected && !hasHistory && styles.disabled,
+                )}
+                onClick={handleToggle}
               >
-                <button
-                  disabled={noSelected && !hasHistory}
-                  aria-label={
-                    hasHistory
-                      ? 'Restore Unselected Sounds'
-                      : 'Unselect All Sounds'
-                  }
-                  className={cn(
-                    styles.unselectButton,
-                    noSelected && !hasHistory && styles.disabled,
-                  )}
-                  onClick={handleToggle}
-                >
-                  {hasHistory ? <BiUndo /> : <BiTrash />}
-                </button>
-              </Tooltip>
-            </Tooltip.Provider>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+                {hasHistory ? <BiUndo /> : <BiTrash />}
+              </button>
+            </Tooltip>
+          </Tooltip.Provider>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

@@ -58,7 +58,7 @@ export function SharedModal() {
           setIsOpen(true);
           setSharedSounds(_sharedSounds);
         }
-      } catch (error) {
+      } catch {
         return;
       } finally {
         history.pushState({}, '', location.href.split('?')[0]);

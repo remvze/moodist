@@ -87,7 +87,9 @@ export function Countdown({ onClose, show }: CountdownProps) {
               placeholder="HH"
               type="number"
               value={hours}
-              onChange={e => setHours(Math.max(0, parseInt(e.target.value)))}
+              onChange={e =>
+                setHours(Math.max(0, Number.parseInt(e.target.value, 10) || 0))
+              }
             />
 
             <span>:</span>
@@ -98,7 +100,12 @@ export function Countdown({ onClose, show }: CountdownProps) {
               type="number"
               value={minutes}
               onChange={e =>
-                setMinutes(Math.max(0, Math.min(59, parseInt(e.target.value))))
+                setMinutes(
+                  Math.max(
+                    0,
+                    Math.min(59, Number.parseInt(e.target.value, 10)),
+                  ),
+                )
               }
             />
 
@@ -110,7 +117,12 @@ export function Countdown({ onClose, show }: CountdownProps) {
               type="number"
               value={seconds}
               onChange={e =>
-                setSeconds(Math.max(0, Math.min(59, parseInt(e.target.value))))
+                setSeconds(
+                  Math.max(
+                    0,
+                    Math.min(59, Number.parseInt(e.target.value, 10)),
+                  ),
+                )
               }
             />
           </div>

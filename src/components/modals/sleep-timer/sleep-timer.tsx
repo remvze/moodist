@@ -28,8 +28,8 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
 
   const totalSeconds = useMemo(
     () =>
-      (hours === '' ? 0 : parseInt(hours)) * 3600 +
-      (minutes === '' ? 0 : parseInt(minutes)) * 60,
+      (hours === '' ? 0 : Number.parseInt(hours, 10)) * 3600 +
+      (minutes === '' ? 0 : Number.parseInt(minutes, 10)) * 60,
     [hours, minutes],
   );
 
@@ -40,7 +40,7 @@ export function SleepTimerModal({ onClose, show }: SleepTimerModalProps) {
     [totalSeconds, timeSpent],
   );
 
-  const timerId = useRef<ReturnType<typeof setInterval>>();
+  const timerId = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const isPlaying = useSoundStore(state => state.isPlaying);
   const play = useSoundStore(state => state.play);

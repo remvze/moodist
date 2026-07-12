@@ -22,7 +22,7 @@ export function useLocalStorage<T>(key: string, fallback: T): [T, SetValue<T>] {
 
     try {
       parsed = JSON.parse(value);
-    } catch (error) {
+    } catch {
       parsed = fallback;
     }
 

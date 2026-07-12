@@ -33,6 +33,7 @@ export const useNoteStore = create<NoteStore>()(
       restore() {
         if (!get().history) return;
 
+        // biome-ignore lint/style/noNonNullAssertion: it's guaranteed to be not null
         set({ history: null, note: get().history! });
       },
 

@@ -11,9 +11,9 @@ export function Reverse({ time }: ReverseProps) {
   let minutes = Math.floor((time % 3600) / 60);
   let seconds = time % 60;
 
-  hours = isNaN(hours) ? 0 : hours;
-  minutes = isNaN(minutes) ? 0 : minutes;
-  seconds = isNaN(seconds) ? 0 : seconds;
+  hours = Number.isNaN(hours) ? 0 : hours;
+  minutes = Number.isNaN(minutes) ? 0 : minutes;
+  seconds = Number.isNaN(seconds) ? 0 : seconds;
 
   const formattedHours = padNumber(hours);
   const formattedMinutes = padNumber(minutes);

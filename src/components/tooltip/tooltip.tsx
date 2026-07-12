@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import * as TooltipPrimitive from '@radix-ui/react-tooltip';
+import { Tooltip as TooltipPrimitive } from 'radix-ui';
 
 import { slideX, slideY, mix, fade } from '@/lib/motion';
 
@@ -21,10 +21,14 @@ type Placement =
   | 'left-end';
 
 interface TooltipProps {
-  children: JSX.Element;
+  children: React.ReactNode;
   content: string;
   placement?: Placement;
 }
+
+type PlacementSide = 'top' | 'right' | 'bottom' | 'left';
+type PlacementAlign = 'start' | 'end' | 'center';
+type Motion = ReturnType<typeof slideY>;
 
 export function Tooltip({
   children,
@@ -33,21 +37,17 @@ export function Tooltip({
 }: TooltipProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const side = placement.split('-')[0] as 'top' | 'right' | 'bottom' | 'left';
-  const align = placement.split('-')[1] as
-    | 'start'
-    | 'end'
-    | 'center'
-    | undefined;
+  const side = placement.split('-')[0] as PlacementSide;
+  const align = placement.split('-')[1] as PlacementAlign | undefined;
 
-  const slide = {
+  const slides: Record<PlacementSide, Motion> = {
     bottom: slideY(-5),
     left: slideX(5),
     right: slideX(-5),
     top: slideY(5),
-  }[side];
+  };
 
-  const variants = mix(fade(), slide!);
+  const variants = mix(fade(), slides[side]);
 
   return (
     <TooltipPrimitive.Root open={isOpen} onOpenChange={o => setIsOpen(o)}>
