@@ -20,7 +20,7 @@ interface LofiProps {
 const videos = [
   {
     channel: 'Lofi Girl',
-    id: 'jfKfPfyJRdk',
+    id: 'X4VbdwhkE10',
     title: 'lofi hip hop radio',
   },
   {
@@ -30,7 +30,7 @@ const videos = [
   },
   {
     channel: 'Lofi Girl',
-    id: 'P6Segk8cr-c',
+    id: 'CwPCy1GLS38',
     title: 'sad lofi radio',
   },
   {
@@ -40,8 +40,8 @@ const videos = [
   },
   {
     channel: 'Lofi Girl',
-    id: 'TtkFsfOP9QI',
-    title: 'peaceful piano radio',
+    id: 'N0snMcR6aaA',
+    title: 'relaxing piano radio',
   },
 ];
 
