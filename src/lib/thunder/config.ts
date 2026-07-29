@@ -1,7 +1,7 @@
 import { getAssetPath } from '@/helpers/path';
 
 /** Number of crack-N.mp3 / tail-N.mp3 pairs available under /sounds/rain/thunder/ */
-const SAMPLE_COUNT = 14;
+const SAMPLE_COUNT = 12;
 
 export const CRACK_FILES = Array.from({ length: SAMPLE_COUNT }, (_, i) =>
   getAssetPath(`/sounds/rain/thunder/crack-${i + 1}.mp3`),
