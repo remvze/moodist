@@ -1,8 +1,9 @@
 export interface Sound {
+  generator?: boolean;
   icon: React.ReactNode;
   id: string;
   label: string;
-  src: string;
+  src?: string;
 }
 
 export type Sounds = Array<Sound>;

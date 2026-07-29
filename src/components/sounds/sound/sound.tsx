@@ -5,9 +5,9 @@ import { Range } from './range';
 import { Favorite } from './favorite';
 
 import { useSound } from '@/hooks/use-sound';
+import { useThunder } from '@/hooks/use-thunder';
 import { useSoundStore } from '@/stores/sound';
 import { useSettingsStore } from '@/stores/settings';
-import { useLoadingStore } from '@/stores/loading';
 import { cn } from '@/helpers/styles';
 
 import styles from './sound.module.css';
@@ -23,8 +23,32 @@ interface SoundProps extends SoundType {
   unselectHidden: (key: string) => void;
 }
 
-export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
-  { functional, hidden, icon, id, label, selectHidden, src, unselectHidden },
+interface SoundControl {
+  fadeOut: (duration: number) => void;
+  isLoading?: boolean;
+  pause: (duration?: number) => void;
+  play: () => void;
+  stop: () => void;
+}
+
+interface SoundViewProps {
+  functional: boolean;
+  hidden: boolean;
+  icon: React.ReactNode;
+  id: string;
+  label: string;
+  selectHidden: (key: string) => void;
+  sound: SoundControl;
+  unselectHidden: (key: string) => void;
+}
+
+/**
+ * Presentational + interaction wiring shared by every sound tile, regardless
+ * of whether it's backed by a static looping sample (useSound) or a
+ * procedural generator (useThunder) — both expose the same control shape.
+ */
+const SoundView = forwardRef<HTMLDivElement, SoundViewProps>(function SoundView(
+  { functional, hidden, icon, id, label, selectHidden, sound, unselectHidden },
   ref,
 ) {
   const isPlaying = useSoundStore(state => state.isPlaying);
@@ -35,24 +59,13 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
   const isSelected = useSoundStore(state => state.sounds[id].isSelected);
   const locked = useSoundStore(state => state.locked);
 
-  const volume = useSoundStore(state => state.sounds[id].volume);
-  const globalVolume = useSettingsStore(state => state.globalVolume);
-  const adjustedVolume = useMemo(
-    () => volume * globalVolume,
-    [volume, globalVolume],
-  );
-
-  const isLoading = useLoadingStore(state => state.loaders[src]);
-
-  const sound = useSound(src, { loop: true, volume: adjustedVolume });
-
   useEffect(() => {
     if (locked) return;
 
     if (isSelected && isPlaying && functional) {
-      sound?.play();
+      sound.play();
     } else {
-      sound?.pause();
+      sound.pause();
     }
   }, [isSelected, sound, isPlaying, functional, locked]);
 
@@ -103,7 +116,7 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
     >
       <Favorite id={id} label={label} />
       <div className={styles.icon}>
-        {isLoading ? (
+        {sound.isLoading ? (
           <span aria-hidden="true" className={styles.spinner}>
             <ImSpinner9 />
           </span>
@@ -118,3 +131,44 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
     </div>
   );
 });
+
+const StaticSound = forwardRef<HTMLDivElement, SoundProps>(function StaticSound(
+  { src, ...props },
+  ref,
+) {
+  const volume = useSoundStore(state => state.sounds[props.id].volume);
+  const globalVolume = useSettingsStore(state => state.globalVolume);
+  const adjustedVolume = useMemo(
+    () => volume * globalVolume,
+    [volume, globalVolume],
+  );
+
+  const sound = useSound(src as string, { loop: true, volume: adjustedVolume });
+
+  return <SoundView {...props} ref={ref} sound={sound} />;
+});
+
+const GeneratorSound = forwardRef<HTMLDivElement, SoundProps>(
+  function GeneratorSound(props, ref) {
+    const volume = useSoundStore(state => state.sounds[props.id].volume);
+    const globalVolume = useSettingsStore(state => state.globalVolume);
+    const adjustedVolume = useMemo(
+      () => volume * globalVolume,
+      [volume, globalVolume],
+    );
+
+    const sound = useThunder({ volume: adjustedVolume });
+
+    return <SoundView {...props} ref={ref} sound={sound} />;
+  },
+);
+
+export const Sound = forwardRef<HTMLDivElement, SoundProps>(
+  function Sound(props, ref) {
+    return props.generator ? (
+      <GeneratorSound {...props} ref={ref} />
+    ) : (
+      <StaticSound {...props} ref={ref} />
+    );
+  },
+);

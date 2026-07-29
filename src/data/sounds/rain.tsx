@@ -29,10 +29,10 @@ export const rain: Category = {
       src: getAssetPath('/sounds/rain/heavy-rain.mp3'),
     },
     {
+      generator: true,
       icon: <MdOutlineThunderstorm />,
       id: 'thunder',
       label: 'Thunder',
-      src: getAssetPath('/sounds/rain/thunder.mp3'),
     },
     {
       icon: <GiWindow />,
