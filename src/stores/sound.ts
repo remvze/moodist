@@ -11,14 +11,19 @@ type SoundValue = {
   volume: number;
 };
 
+type SoundHistory = {
+  isPlaying: boolean;
+  sounds: Record<string, SoundValue>;
+};
+
 interface SoundStore {
   getFavorites: () => Array<string>;
-  history: Record<string, SoundValue> | null;
+  history: SoundHistory | null;
   isPlaying: boolean;
   lock: () => void;
   locked: boolean;
   noSelected: () => boolean;
-  override: (sounds: Record<string, number>) => void;
+  override: (sounds: Record<string, number>, pushToHistory?: boolean) => void;
   pause: () => void;
   play: () => void;
   restoreHistory: () => void;
@@ -76,19 +81,26 @@ export const useSoundStore = create<SoundStore>()(
         return keys.every(key => !sounds[key].isSelected);
       },
 
-      override(newSounds) {
-        get().unselectAll();
+      override(newSounds, pushToHistory = false) {
+        const previous = get();
+        const sounds = Object.fromEntries(
+          Object.entries(previous.sounds).map(([id, sound]) => [
+            id,
+            {
+              ...sound,
+              isSelected: id in newSounds,
+              volume: id in newSounds ? newSounds[id] : 0.5,
+            },
+          ]),
+        );
 
-        const sounds = get().sounds;
-
-        Object.keys(newSounds).forEach(sound => {
-          if (sounds[sound]) {
-            sounds[sound].isSelected = true;
-            sounds[sound].volume = newSounds[sound];
-          }
+        set({
+          history:
+            pushToHistory && !previous.noSelected()
+              ? { isPlaying: previous.isPlaying, sounds: previous.sounds }
+              : null,
+          sounds,
         });
-
-        set({ history: null, sounds: { ...sounds } });
       },
 
       pause() {
@@ -104,7 +116,11 @@ export const useSoundStore = create<SoundStore>()(
 
         if (!history) return;
 
-        set({ history: null, sounds: history });
+        set({
+          history: null,
+          isPlaying: history.isPlaying,
+          sounds: history.sounds,
+        });
       },
 
       select(id) {
@@ -185,7 +201,10 @@ export const useSoundStore = create<SoundStore>()(
         const sounds = get().sounds;
 
         if (pushToHistory) {
-          const history = JSON.parse(JSON.stringify(sounds));
+          const history = {
+            isPlaying: get().isPlaying,
+            sounds: structuredClone(sounds),
+          };
           set({ history });
         }
 

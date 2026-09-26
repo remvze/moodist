@@ -1,0 +1,122 @@
+.anchor {
+  display: flex;
+  pointer-events: auto;
+}
+
+.trigger {
+  display: inline-flex;
+  gap: 9px;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  padding: 0 18px;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--color-inverted-foreground);
+  cursor: pointer;
+  background: var(--color-inverted-background);
+  border: 1px solid var(--color-inverted-background);
+  border-radius: 100px;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--color-inverted-background-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  & svg {
+    font-size: var(--font-base);
+  }
+}
+
+.content {
+  z-index: 15;
+  width: min(320px, calc(100vw - 24px));
+  max-height: min(420px, var(--radix-popover-content-available-height));
+  padding: 8px;
+  overflow-y: auto;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 0;
+  box-shadow: var(--shadow-floating);
+}
+
+.description,
+.savedHeading {
+  padding: 8px 10px;
+  font-size: var(--font-sm);
+  color: var(--color-foreground-subtle);
+}
+
+.savedHeading {
+  font-weight: 600;
+  color: var(--color-foreground);
+}
+
+.divider {
+  height: 1px;
+  margin: 8px 0;
+  background-color: var(--color-border);
+}
+
+.mix {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 56px;
+  padding: 8px 10px;
+  text-align: left;
+  color: var(--color-foreground);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color-surface-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: -2px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  & > svg {
+    flex: none;
+    font-size: var(--font-md);
+  }
+}
+
+.mixText {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+
+  & strong {
+    overflow: hidden;
+    font-size: var(--font-sm);
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  & span {
+    overflow: hidden;
+    font-size: var(--font-xsm);
+    color: var(--color-foreground-subtle);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

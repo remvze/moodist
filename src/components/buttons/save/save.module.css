@@ -1,0 +1,40 @@
+.saveWrapper {
+  flex: none;
+  overflow: visible;
+}
+
+.saveButton {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  font-size: var(--font-md);
+  color: var(--color-foreground);
+  cursor: pointer;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  transition:
+    background-color 180ms ease,
+    transform 120ms ease;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color-surface-hover);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

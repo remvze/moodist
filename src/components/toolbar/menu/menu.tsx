@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { IoMenu, IoClose } from 'react-icons/io5/index';
 import { DropdownMenu } from 'radix-ui';
 import { useHotkeys } from 'react-hotkeys-hook';
@@ -42,6 +42,8 @@ import styles from './menu.module.css';
 import { useCloseListener } from '@/hooks/use-close-listener';
 import { closeModals } from '@/lib/modal';
 import { toggleTheme } from '@/lib/theme';
+import { subscribe } from '@/lib/event';
+import { OPEN_PRESETS } from '@/constants/events';
 
 export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -97,6 +99,8 @@ export function Menu() {
   useHotkeys('shift+d', toggleTheme);
   useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
   useHotkeys('shift+alt+t', () => open('sleepTimer'));
+
+  useEffect(() => subscribe(OPEN_PRESETS, () => open('presets')), [open]);
 
   useCloseListener(closeAll);
 

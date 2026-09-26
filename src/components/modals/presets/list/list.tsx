@@ -19,11 +19,11 @@ export function List({ close }: ListProps) {
   return (
     <div className={styles.list}>
       <h3 className={styles.title}>
-        Your Presets {presets.length > 0 && `(${presets.length})`}
+        Saved mixes {presets.length > 0 && `(${presets.length})`}
       </h3>
 
       {!presets.length && (
-        <p className={styles.empty}>You don&apos;t have any presets yet.</p>
+        <p className={styles.empty}>You don&apos;t have any saved mixes yet.</p>
       )}
 
       {presets.map(preset => (
@@ -40,7 +40,7 @@ export function List({ close }: ListProps) {
           <button
             className={styles.primary}
             onClick={() => {
-              override(preset.sounds);
+              override(preset.sounds, true);
               play();
               close();
             }}

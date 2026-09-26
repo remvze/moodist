@@ -13,9 +13,9 @@ export function PresetsModal({ onClose, show }: PresetsModalProps) {
   return (
     <Modal show={show} onClose={onClose}>
       <ModalHeader>
-        <ModalTitle>Presets</ModalTitle>
+        <ModalTitle>Your mixes</ModalTitle>
       </ModalHeader>
-      <New />
+      <New onSaved={onClose} />
       <div className={styles.divider} />
       <List close={onClose} />
     </Modal>

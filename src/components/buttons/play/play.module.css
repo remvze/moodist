@@ -38,3 +38,9 @@
     outline-offset: 2px;
   }
 }
+
+@media (width <= 600px) {
+  .playButton {
+    width: 120px;
+  }
+}
