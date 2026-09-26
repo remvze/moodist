@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import merge from 'deepmerge';
 import { v4 as uuid } from 'uuid';
 
 interface PresetStore {
@@ -38,8 +37,20 @@ export const usePresetStore = create<PresetStore>()(
       presets: [],
     }),
     {
-      merge: (persisted, current) =>
-        merge(current, persisted as Partial<PresetStore>),
+      merge: (persisted, current) => {
+        const saved = (persisted as Partial<PresetStore> | undefined)?.presets;
+        if (!Array.isArray(saved)) return current;
+
+        const seen = new Set<string>();
+        return {
+          ...current,
+          presets: saved.filter(preset => {
+            if (seen.has(preset.id)) return false;
+            seen.add(preset.id);
+            return true;
+          }),
+        };
+      },
 
       migrate,
       name: 'moodist-presets',

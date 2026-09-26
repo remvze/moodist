@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useRef, useState, type FormEvent } from 'react';
 
 import { cn } from '@/helpers/styles';
 import { useSoundStore } from '@/stores/sound';
@@ -9,6 +9,7 @@ import styles from './new.module.css';
 
 export function New({ onSaved }: { onSaved?: () => void }) {
   const [name, setName] = useState('');
+  const isSubmitting = useRef(false);
 
   const noSelected = useSoundStore(state => state.noSelected());
   const sounds = useSoundStore(state => state.sounds);
@@ -19,7 +20,8 @@ export function New({ onSaved }: { onSaved?: () => void }) {
     e.preventDefault();
 
     const label = name.trim();
-    if (!label || noSelected) return;
+    if (!label || noSelected || isSubmitting.current) return;
+    isSubmitting.current = true;
 
     const _sounds: Record<string, number> = {};
 
@@ -51,7 +53,10 @@ export function New({ onSaved }: { onSaved?: () => void }) {
           maxLength={60}
           type="text"
           value={name}
-          onChange={e => setName(e.target.value)}
+          onChange={e => {
+            isSubmitting.current = false;
+            setName(e.target.value);
+          }}
         />
         <button disabled={noSelected}>Save</button>
       </form>

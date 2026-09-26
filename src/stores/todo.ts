@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import merge from 'deepmerge';
 import { v4 as uuid } from 'uuid';
 
 import { addConfetti } from '@/lib/confetti';
@@ -80,8 +79,20 @@ export const useTodoStore = create<TodoStore>()(
       },
     }),
     {
-      merge: (persisted, current) =>
-        merge(current, persisted as Partial<TodoStore>),
+      merge: (persisted, current) => {
+        const saved = (persisted as Partial<TodoStore> | undefined)?.todos;
+        if (!Array.isArray(saved)) return current;
+
+        const seen = new Set<string>();
+        return {
+          ...current,
+          todos: saved.filter(todo => {
+            if (seen.has(todo.id)) return false;
+            seen.add(todo.id);
+            return true;
+          }),
+        };
+      },
 
       name: 'moodist-todos',
       partialize: state => ({ todos: state.todos }),
