@@ -1,9 +1,12 @@
 import { sounds } from '@/data/sounds';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { BiSearch } from 'react-icons/bi/index';
 
 import styles from './category-icons.module.css';
 
 import { Container } from '@/components/container';
+import { OPEN_SOUND_SEARCH } from '@/constants/events';
+import { dispatch } from '@/lib/event';
 
 export default function CategoryIcons() {
   const categories = useMemo(() => sounds.categories, []);
@@ -40,8 +43,18 @@ export default function CategoryIcons() {
     <Container>
       <div className={styles.wrapper}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Browse sounds</h2>
-          <p>Jump to any category.</p>
+          <div>
+            <h2 className={styles.title}>Browse sounds</h2>
+            <p>Jump to any category.</p>
+          </div>
+          <button
+            className={styles.searchButton}
+            type="button"
+            onClick={() => dispatch(OPEN_SOUND_SEARCH)}
+          >
+            <BiSearch aria-hidden="true" />
+            Search<span className={styles.searchSuffix}> sounds</span>
+          </button>
         </div>
 
         <nav

@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { BiPlay } from 'react-icons/bi/index';
 import { RiPlayListFill } from 'react-icons/ri/index';
 import { Popover } from 'radix-ui';
 
 import { usePresetStore } from '@/stores/preset';
 import { useSoundStore } from '@/stores/sound';
+import { useCloseListener } from '@/hooks/use-close-listener';
 
 import styles from './starter-mixes.module.css';
 
@@ -36,6 +37,8 @@ export function StarterMixes() {
   const override = useSoundStore(state => state.override);
   const play = useSoundStore(state => state.play);
   const locked = useSoundStore(state => state.locked);
+
+  useCloseListener(useCallback(() => setOpen(false), []));
 
   const playMix = (sounds: Record<string, number>) => {
     if (locked) return;

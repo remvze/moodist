@@ -10,6 +10,7 @@ import { StoreConsumer } from '@/components/store-consumer';
 import { Buttons } from '@/components/buttons';
 import { Categories } from '@/components/categories';
 import { SharedModal } from '@/components/modals/shared';
+import { SoundSearch } from '@/components/sound-search/sound-search';
 import { Toolbar } from '@/components/toolbar';
 import { SnackbarProvider } from '@/contexts/snackbar';
 import { MediaControls } from '@/components/media-controls';
@@ -98,6 +99,7 @@ export function App() {
 
         <Toolbar />
         <SharedModal />
+        <SoundSearch />
       </StoreConsumer>
     </SnackbarProvider>
   );

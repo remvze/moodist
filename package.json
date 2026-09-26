@@ -27,6 +27,7 @@
     "@types/react-dom": "19.2.3",
     "@vite-pwa/astro": "1.2.0",
     "astro": "7.3.1",
+    "cmdk": "1.1.1",
     "deepmerge": "4.3.1",
     "focus-trap-react": "10.2.3",
     "howler": "2.2.4",

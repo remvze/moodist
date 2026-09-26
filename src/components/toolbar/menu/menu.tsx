@@ -75,7 +75,10 @@ export function Menu() {
     setModals(prev => ({ ...prev, [name]: false }));
   }, []);
 
-  const closeAll = useCallback(() => setModals(initial), [initial]);
+  const closeAll = useCallback(() => {
+    setModals(initial);
+    setIsOpen(false);
+  }, [initial]);
 
   const open = useCallback(
     (name: string) => {

@@ -1,0 +1,141 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background-color: var(--color-backdrop);
+}
+
+.dialog {
+  position: fixed;
+  top: min(18vh, 150px);
+  left: 50%;
+  z-index: 31;
+  width: min(520px, calc(100vw - 32px));
+  transform: translateX(-50%);
+}
+
+.command {
+  overflow: hidden;
+  color: var(--color-foreground);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 0;
+  box-shadow: var(--shadow-floating);
+}
+
+.inputRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  height: 54px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--color-border);
+
+  & > svg {
+    flex: none;
+    font-size: var(--font-md);
+    color: var(--color-foreground-subtle);
+  }
+
+  & input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    font-size: var(--font-base);
+    color: var(--color-foreground);
+    background: transparent;
+    border: 0;
+    outline: none;
+
+    &::placeholder {
+      color: var(--color-foreground-subtle);
+    }
+  }
+}
+
+.results {
+  max-height: min(360px, calc(100dvh - 210px));
+  padding: 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-padding-block: 8px;
+}
+
+.empty {
+  padding: 20px 12px;
+  font-size: var(--font-sm);
+  color: var(--color-foreground-subtle);
+  text-align: center;
+}
+
+.group {
+  padding-bottom: 6px;
+
+  & [cmdk-group-heading] {
+    padding: 10px 10px 6px;
+    font-size: var(--font-xsm);
+    font-weight: 600;
+    color: var(--color-foreground-subtle);
+  }
+}
+
+.item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 44px;
+  padding: 7px 10px;
+  font-size: var(--font-sm);
+  cursor: pointer;
+  border-radius: 0;
+
+  &[data-selected='true'] {
+    background-color: var(--color-surface-hover);
+  }
+
+  &[data-disabled='true'] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.soundIcon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  font-size: var(--font-base);
+  color: var(--color-foreground-subtle);
+  background-color: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+}
+
+.soundName {
+  flex: 1;
+  min-width: 0;
+}
+
+.selected {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+  font-size: var(--font-xsm);
+  color: var(--color-foreground-subtle);
+
+  & svg {
+    font-size: var(--font-base);
+  }
+}
+
+@media (width <= 600px) {
+  .dialog {
+    top: 12vh;
+  }
+
+  .results {
+    max-height: min(360px, calc(100dvh - 130px));
+  }
+}
