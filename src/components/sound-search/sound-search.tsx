@@ -32,6 +32,15 @@ export function SoundSearch() {
   useCloseListener(closeSearch);
 
   useEffect(() => {
+    if (!open) return;
+
+    document.body.dataset.soundSearchOpen = 'true';
+    return () => {
+      delete document.body.dataset.soundSearchOpen;
+    };
+  }, [open]);
+
+  useEffect(() => {
     const unsubscribe = subscribe(OPEN_SOUND_SEARCH, openSearch);
 
     const onKeyDown = (event: KeyboardEvent) => {

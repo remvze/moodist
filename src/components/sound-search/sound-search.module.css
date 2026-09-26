@@ -1,3 +1,8 @@
+:global(body[data-sound-search-open][data-scroll-locked]) {
+  /* biome-ignore lint/complexity/noImportantStyles: Radix injects its scrollbar margin with !important. */
+  margin-right: 0 !important;
+}
+
 .overlay {
   position: fixed;
   inset: 0;
