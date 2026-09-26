@@ -110,13 +110,15 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
           <span aria-hidden="true">{icon}</span>
         )}
       </div>
-      <div className={styles.heading}>
-        <div className={styles.label} id={id}>
-          {label}
+      <div className={styles.content}>
+        <div className={styles.heading}>
+          <div className={styles.label} id={id}>
+            {label}
+          </div>
+          <Favorite id={id} label={label} />
         </div>
-        <Favorite id={id} label={label} />
+        <Range id={id} label={label} />
       </div>
-      <Range id={id} label={label} />
     </div>
   );
 });

@@ -1,8 +1,8 @@
 .range {
   max-width: none;
-  width: calc(100% - 28px);
-  margin: 4px 14px 17px;
-  grid-column: 2;
+  width: 100%;
+  height: 14px;
+  margin: 0;
 
   /********** Range Input Styles **********/
 
