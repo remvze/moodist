@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/remvze/moodist/compare/v3.0.0...v3.1.0) (2026-09-26)
+
+
+### 💄 Styling
+
+* better icon alignment ([78218f5](https://github.com/remvze/moodist/commit/78218f5a4851b937e4b37708bfa7dc4e092923b8))
+* decrease font size ([0e88ddd](https://github.com/remvze/moodist/commit/0e88ddd2ae09b386d7a1a36fd89e7b17a76a399c))
+
+
+### ✨ Features
+
+* add fade to the category icons ([cd0a21d](https://github.com/remvze/moodist/commit/cd0a21d18c017b33438f18527acba91d19aa9f94))
+* add labels to countdown timer ([06bde61](https://github.com/remvze/moodist/commit/06bde61d35f53cb957ef974d561a1514212b7d8d))
+* add oscillation ([c48f39a](https://github.com/remvze/moodist/commit/c48f39aef70e1e77c1b0d43f6c701845f5acd768))
+* add premade sets and save button ([dc06e0a](https://github.com/remvze/moodist/commit/dc06e0a3d2955a8c398e47be8bf4c53238ee3430))
+* add shortcut to toggle themes ([c413679](https://github.com/remvze/moodist/commit/c413679571a3d38a8e09f0b9413f658ebd2d0125))
+* add sound search ([fe20661](https://github.com/remvze/moodist/commit/fe20661c28f7aa2c1b0eb880f3520151381c247d))
+* improve the settings modal ([6284b4f](https://github.com/remvze/moodist/commit/6284b4f4c9b690a25aa3fdfd109654a1949a5eae))
+* remove the jump for favorites ([ee488c3](https://github.com/remvze/moodist/commit/ee488c3658cbaa86b249d5b9d22e1895dfffb47b))
+
+
+### 🐛 Bug Fixes
+
+* better spacing for sound cards ([9d24de3](https://github.com/remvze/moodist/commit/9d24de3e846cbbeedbf2e3f67a3283b222efa45b))
+* duplicates on reload ([f65e66b](https://github.com/remvze/moodist/commit/f65e66b5a7471c20df366bd354850b0b57814dd0))
+* lock the body on pomodoro settings ([c0c9820](https://github.com/remvze/moodist/commit/c0c9820f0696a3b0ab6f93c2f508a6084457df1e))
+* prevent default on shift+space ([6f0a503](https://github.com/remvze/moodist/commit/6f0a503fce5c9968aacd925cdf8d986bfa8acb1c))
+
 ## [3.0.0](https://github.com/remvze/moodist/compare/v2.6.1...v3.0.0) (2026-09-06)
 
 
