@@ -25,29 +25,57 @@ export function SettingsModal({ onClose, show }: SettingsModalProps) {
       <ModalHeader>
         <div>
           <ModalTitle>Settings</ModalTitle>
-          <ModalDescription>Control global and alarm volumes.</ModalDescription>
+          <ModalDescription>Adjust sound and alarm volume.</ModalDescription>
         </div>
       </ModalHeader>
 
-      <div className={styles.group}>
-        <p className={styles.label}>Global Volume</p>
-        <Slider
-          max={100}
-          min={0}
-          value={globalVolume * 100}
-          onChange={value => setGlobalVolume(value / 100)}
+      <div className={styles.settings}>
+        <VolumeSetting
+          description="Controls the overall level of your sound mix."
+          label="Sound volume"
+          value={globalVolume}
+          onChange={setGlobalVolume}
         />
-      </div>
-
-      <div className={styles.group}>
-        <p className={styles.label}>Alarm Volume</p>
-        <Slider
-          max={100}
-          min={0}
-          value={alarmVolume * 100}
-          onChange={value => setAlarmVolume(value / 100)}
+        <VolumeSetting
+          description="Controls timer and countdown alerts."
+          label="Alarm volume"
+          value={alarmVolume}
+          onChange={setAlarmVolume}
         />
       </div>
     </Modal>
+  );
+}
+
+interface VolumeSettingProps {
+  description: string;
+  label: string;
+  onChange: (volume: number) => void;
+  value: number;
+}
+
+function VolumeSetting({
+  description,
+  label,
+  onChange,
+  value,
+}: VolumeSettingProps) {
+  return (
+    <div className={styles.setting}>
+      <div className={styles.settingHeader}>
+        <div>
+          <p className={styles.label}>{label}</p>
+          <p className={styles.description}>{description}</p>
+        </div>
+        <span className={styles.value}>{Math.round(value * 100)}%</span>
+      </div>
+      <Slider
+        ariaLabel={label}
+        max={100}
+        min={0}
+        value={value * 100}
+        onChange={nextValue => onChange(nextValue / 100)}
+      />
+    </div>
   );
 }

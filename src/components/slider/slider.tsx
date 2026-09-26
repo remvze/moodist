@@ -2,6 +2,7 @@ import { Slider as RadixSlider } from 'radix-ui';
 import styles from './slider.module.css';
 
 type SliderProps = {
+  ariaLabel?: string;
   className?: string;
   defaultValue?: number;
   disabled?: boolean;
@@ -13,6 +14,7 @@ type SliderProps = {
 };
 
 export function Slider({
+  ariaLabel,
   className,
   defaultValue = 50,
   disabled = false,
@@ -41,7 +43,10 @@ export function Slider({
       <RadixSlider.Track className={styles.sliderTrack}>
         <RadixSlider.Range className={styles.sliderRange} />
       </RadixSlider.Track>
-      <RadixSlider.Thumb className={styles.sliderThumb} />
+      <RadixSlider.Thumb
+        aria-label={ariaLabel}
+        className={styles.sliderThumb}
+      />
     </RadixSlider.Root>
   );
 }

@@ -1,10 +1,41 @@
-.group {
-  margin-bottom: 20px;
+.settings {
+  border-top: 1px solid var(--color-border);
 }
 
-.label {
-  display: block;
-  margin-bottom: 12px;
-  font-size: var(--font-xsm);
+.setting {
+  padding: 20px 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  &:last-child {
+    padding-bottom: 4px;
+  }
+}
+
+.settingHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.label,
+.value {
+  font-size: var(--font-sm);
   font-weight: 500;
+}
+
+.value {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-foreground-subtle);
+}
+
+.description {
+  margin-top: 4px;
+  font-size: var(--font-xsm);
+  line-height: 1.4;
+  color: var(--color-foreground-subtle);
 }
