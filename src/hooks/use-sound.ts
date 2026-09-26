@@ -7,6 +7,9 @@ import { useSSR } from './use-ssr';
 import { FADE_OUT } from '@/constants/events';
 
 const DEFAULT_FADE_DURATION = 250;
+const OSCILLATION_PERIOD = 10_000;
+const OSCILLATION_MIN_VOLUME = 0.4;
+const OSCILLATION_UPDATE_INTERVAL = 50;
 
 /**
  * A custom React hook to manage sound playback using Howler.js with additional features.
@@ -17,7 +20,9 @@ const DEFAULT_FADE_DURATION = 250;
  *
  * @param {string} src - The source URL of the sound file.
  * @param {Object} [options] - Options for sound playback.
+ * @param {boolean} [options.active=false] - Whether the sound is currently playing.
  * @param {boolean} [options.loop=false] - Whether the sound should loop.
+ * @param {boolean} [options.oscillate=false] - Whether to gently swell its volume.
  * @param {number} [options.volume=0.5] - The initial volume of the sound, ranging from 0.0 to 1.0.
  * @returns {{ play: () => void, stop: () => void, pause: () => void, fadeOut: (duration: number) => void, isLoading: boolean }} An object containing control functions for the sound:
  *   - play: Function to play the sound.
@@ -28,7 +33,13 @@ const DEFAULT_FADE_DURATION = 250;
  */
 export function useSound(
   src: string,
-  options: { loop?: boolean; preload?: boolean; volume?: number } = {},
+  options: {
+    active?: boolean;
+    loop?: boolean;
+    oscillate?: boolean;
+    preload?: boolean;
+    volume?: number;
+  } = {},
   html5: boolean = false,
 ) {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -37,6 +48,7 @@ export function useSound(
   const transitionToken = useRef(0);
   const fadeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const targetVolume = useRef(options.volume ?? 0.5);
+  const oscillationMultiplier = useRef(1);
   const isFadingOut = useRef(false);
 
   const { isBrowser } = useSSR();
@@ -72,9 +84,49 @@ export function useSound(
     targetVolume.current = options.volume ?? 0.5;
 
     if (sound && !isFadingOut.current) {
-      sound.volume(targetVolume.current);
+      sound.volume(targetVolume.current * oscillationMultiplier.current);
     }
   }, [sound, options.volume]);
+
+  useEffect(() => {
+    if (!sound) return;
+
+    if (!options.active || !options.oscillate) {
+      if (options.active && sound.playing() && !isFadingOut.current) {
+        const currentVolume = sound.volume();
+        if (Math.abs(currentVolume - targetVolume.current) < 0.01) {
+          sound.volume(targetVolume.current);
+        } else {
+          sound.fade(
+            currentVolume,
+            targetVolume.current,
+            DEFAULT_FADE_DURATION,
+          );
+        }
+      }
+      return;
+    }
+
+    const startedAt = performance.now();
+    const updateVolume = () => {
+      if (!sound.playing() || isFadingOut.current) return;
+
+      const phase =
+        ((performance.now() - startedAt) / OSCILLATION_PERIOD) * 2 * Math.PI;
+      oscillationMultiplier.current =
+        OSCILLATION_MIN_VOLUME +
+        ((1 - OSCILLATION_MIN_VOLUME) * (1 + Math.cos(phase))) / 2;
+      sound.volume(targetVolume.current * oscillationMultiplier.current);
+    };
+
+    updateVolume();
+    const interval = setInterval(updateVolume, OSCILLATION_UPDATE_INTERVAL);
+
+    return () => {
+      clearInterval(interval);
+      oscillationMultiplier.current = 1;
+    };
+  }, [sound, options.active, options.oscillate]);
 
   const clearFadeTimeout = useCallback(() => {
     if (fadeTimeout.current) {
@@ -100,7 +152,7 @@ export function useSound(
         }
 
         const currentVolume = sound.volume();
-        const nextVolume = targetVolume.current;
+        const nextVolume = targetVolume.current * oscillationMultiplier.current;
 
         if (currentVolume !== nextVolume) {
           sound.fade(currentVolume, nextVolume, DEFAULT_FADE_DURATION);

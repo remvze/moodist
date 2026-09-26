@@ -1,5 +1,6 @@
 import { useCallback, useEffect, forwardRef, useMemo } from 'react';
 import { ImSpinner9 } from 'react-icons/im/index';
+import { TbWaveSine } from 'react-icons/tb/index';
 
 import { Range } from './range';
 import { Favorite } from './favorite';
@@ -33,6 +34,8 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
   const unselectSound = useSoundStore(state => state.unselect);
   const setVolume = useSoundStore(state => state.setVolume);
   const isSelected = useSoundStore(state => state.sounds[id].isSelected);
+  const isOscillating = useSoundStore(state => state.sounds[id].isOscillating);
+  const toggleOscillation = useSoundStore(state => state.toggleOscillation);
   const locked = useSoundStore(state => state.locked);
 
   const volume = useSoundStore(state => state.sounds[id].volume);
@@ -44,7 +47,12 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
 
   const isLoading = useLoadingStore(state => state.loaders[src]);
 
-  const sound = useSound(src, { loop: true, volume: adjustedVolume });
+  const sound = useSound(src, {
+    active: isSelected && isPlaying && functional,
+    loop: true,
+    oscillate: isOscillating,
+    volume: adjustedVolume,
+  });
 
   useEffect(() => {
     if (locked) return;
@@ -117,7 +125,30 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
           </div>
           <Favorite id={id} label={label} />
         </div>
-        <Range id={id} label={label} />
+        <div className={styles.controls}>
+          <Range id={id} label={label} />
+          {isSelected && (
+            <button
+              aria-label={`Oscillate ${label} volume`}
+              aria-pressed={isOscillating}
+              className={cn(
+                styles.oscillation,
+                isOscillating && styles.oscillating,
+              )}
+              disabled={locked}
+              title="Gently raise and lower volume"
+              type="button"
+              onClick={event => {
+                event.stopPropagation();
+                toggleOscillation(id);
+              }}
+              onKeyDown={event => event.stopPropagation()}
+            >
+              <TbWaveSine aria-hidden="true" />
+              <span>Swell</span>
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import { pickMany, random } from '@/helpers/random';
 
 type SoundValue = {
   isFavorite: boolean;
+  isOscillating: boolean;
   isSelected: boolean;
   volume: number;
 };
@@ -32,6 +33,7 @@ interface SoundStore {
   shuffle: () => void;
   sounds: Record<string, SoundValue>;
   toggleFavorite: (id: string) => void;
+  toggleOscillation: (id: string) => void;
   togglePlay: () => void;
   unlock: () => void;
   unselect: (id: string) => void;
@@ -45,6 +47,7 @@ function createInitialSounds() {
     category.sounds.forEach(sound => {
       initialSounds[sound.id] = {
         isFavorite: false,
+        isOscillating: false,
         isSelected: false,
         volume: 0.5,
       };
@@ -172,6 +175,18 @@ export const useSoundStore = create<SoundStore>()(
           sounds: {
             ...sounds,
             [id]: { ...sound, isFavorite: !sound.isFavorite },
+          },
+        });
+      },
+
+      toggleOscillation(id) {
+        const sounds = get().sounds;
+        const sound = sounds[id];
+
+        set({
+          sounds: {
+            ...sounds,
+            [id]: { ...sound, isOscillating: !sound.isOscillating },
           },
         });
       },
