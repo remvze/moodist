@@ -41,6 +41,7 @@ import { useSoundStore } from '@/stores/sound';
 import styles from './menu.module.css';
 import { useCloseListener } from '@/hooks/use-close-listener';
 import { closeModals } from '@/lib/modal';
+import { toggleTheme } from '@/lib/theme';
 
 export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -93,6 +94,7 @@ export function Menu() {
   useHotkeys('shift+t', () => open('todo'));
   useHotkeys('shift+c', () => open('countdown'));
   useHotkeys('shift+g', () => open('settings'));
+  useHotkeys('shift+d', toggleTheme);
   useHotkeys('shift+s', () => open('shareLink'), { enabled: !noSelected });
   useHotkeys('shift+alt+t', () => open('sleepTimer'));
 

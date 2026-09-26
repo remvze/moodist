@@ -28,6 +28,15 @@ export function Theme() {
     setTheme(preference);
     applyTheme(preference);
 
+    const syncTheme = () => {
+      const saved = localStorage.getItem(THEME_STORAGE_KEY);
+      setTheme(
+        themes.includes(saved as ThemePreference)
+          ? (saved as ThemePreference)
+          : 'system',
+      );
+    };
+
     const media = window.matchMedia('(prefers-color-scheme: dark)');
     const handleSystemThemeChange = () => {
       const currentPreference = localStorage.getItem(THEME_STORAGE_KEY);
@@ -37,7 +46,11 @@ export function Theme() {
     };
 
     media.addEventListener('change', handleSystemThemeChange);
-    return () => media.removeEventListener('change', handleSystemThemeChange);
+    window.addEventListener('themechange', syncTheme);
+    return () => {
+      media.removeEventListener('change', handleSystemThemeChange);
+      window.removeEventListener('themechange', syncTheme);
+    };
   }, []);
 
   function selectTheme(nextTheme: ThemePreference) {

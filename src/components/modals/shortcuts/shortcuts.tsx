@@ -42,6 +42,10 @@ export function ShortcutsModal({ onClose, show }: ShortcutsModalProps) {
       label: 'Settings',
     },
     {
+      keys: ['Shift', 'D'],
+      label: 'Toggle Theme',
+    },
+    {
       keys: ['Shift', 'T'],
       label: 'Todo Checklist',
     },

@@ -29,3 +29,11 @@ export function applyTheme(theme: Theme) {
 
   window.dispatchEvent(new CustomEvent('themechange'));
 }
+
+export function toggleTheme() {
+  const nextTheme =
+    document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+
+  localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+  applyTheme(nextTheme);
+}
