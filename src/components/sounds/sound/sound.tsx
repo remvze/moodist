@@ -101,7 +101,6 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
       onClick={handleClick}
       onKeyDown={handleKeyDown}
     >
-      <Favorite id={id} label={label} />
       <div className={styles.icon}>
         {isLoading ? (
           <span aria-hidden="true" className={styles.spinner}>
@@ -111,8 +110,11 @@ export const Sound = forwardRef<HTMLDivElement, SoundProps>(function Sound(
           <span aria-hidden="true">{icon}</span>
         )}
       </div>
-      <div className={styles.label} id={id}>
-        {label}
+      <div className={styles.heading}>
+        <div className={styles.label} id={id}>
+          {label}
+        </div>
+        <Favorite id={id} label={label} />
       </div>
       <Range id={id} label={label} />
     </div>

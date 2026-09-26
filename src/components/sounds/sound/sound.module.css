@@ -30,7 +30,8 @@
 
   & .icon {
     display: flex;
-    grid-row: 1 / -1;
+    grid-row: 1 / 3;
+    grid-column: 1;
     align-items: center;
     justify-content: center;
     width: 52px;
@@ -83,10 +84,19 @@
     }
   }
 
+  & .heading {
+    display: flex;
+    grid-row: 1;
+    grid-column: 2;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-width: 0;
+    padding: 10px 10px 0 14px;
+  }
+
   & .label {
     min-width: 0;
-    align-self: end;
-    padding: 16px 38px 7px 14px;
     font-family: var(--font-heading);
     font-size: var(--font-sm);
     font-weight: 600;

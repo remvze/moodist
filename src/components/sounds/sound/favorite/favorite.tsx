@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import { flushSync } from 'react-dom';
 import { BiHeart, BiSolidHeart } from 'react-icons/bi/index';
 import { AnimatePresence, motion } from 'motion/react';
 
@@ -8,7 +10,6 @@ import { fade } from '@/lib/motion';
 import styles from './favorite.module.css';
 
 import { useKeyboardButton } from '@/hooks/use-keyboard-button';
-import { waitUntil } from '@/helpers/wait';
 
 interface FavoriteProps {
   id: string;
@@ -16,22 +17,21 @@ interface FavoriteProps {
 }
 
 export function Favorite({ id, label }: FavoriteProps) {
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const isFavorite = useSoundStore(state => state.sounds[id].isFavorite);
   const toggleFavorite = useSoundStore(state => state.toggleFavorite);
 
-  const handleToggle = async () => {
-    toggleFavorite(id);
+  const handleToggle = () => {
+    const card = buttonRef.current?.closest<HTMLElement>('[role="button"]');
+    const topBefore = card?.getBoundingClientRect().top;
 
-    // Check if false -> true
-    if (!isFavorite) {
-      await waitUntil(
-        () => !!document.getElementById('category-favorites'),
-        50,
-      );
+    flushSync(() => toggleFavorite(id));
 
-      document
-        .getElementById('category-favorites')
-        ?.scrollIntoView({ behavior: 'smooth' });
+    if (card?.isConnected && topBefore !== undefined) {
+      const offset = card.getBoundingClientRect().top - topBefore;
+      if (Math.abs(offset) > 0.5) {
+        window.scrollBy({ top: offset, behavior: 'instant' });
+      }
     }
   };
 
@@ -42,6 +42,7 @@ export function Favorite({ id, label }: FavoriteProps) {
   return (
     <AnimatePresence initial={false} mode="wait">
       <button
+        ref={buttonRef}
         className={cn(styles.favoriteButton, isFavorite && styles.isFavorite)}
         aria-label={
           isFavorite

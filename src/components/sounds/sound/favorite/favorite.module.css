@@ -1,8 +1,6 @@
 .favoriteButton {
-  position: absolute;
-  top: 13px;
-  right: 10px;
   display: flex;
+  flex: 0 0 26px;
   align-items: center;
   justify-content: center;
   width: 26px;
