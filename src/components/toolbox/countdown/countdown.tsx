@@ -76,83 +76,132 @@ export function Countdown({ onClose, show }: CountdownProps) {
     return `${padNumber(hrs)}:${padNumber(mins)}:${padNumber(secs)}`;
   }, []);
 
+  const duration = hours * 3600 + minutes * 60 + seconds;
   const elapsedTime = initialTime - timeLeft;
+  const progress = initialTime > 0 ? (elapsedTime / initialTime) * 100 : 0;
 
   return (
     <Modal show={show} onClose={onClose}>
       <ModalHeader>
         <div>
           <ModalTitle>Countdown Timer</ModalTitle>
-          <ModalDescription>Super simple countdown timer.</ModalDescription>
+          <ModalDescription>
+            Set a duration and get an alert when time is up.
+          </ModalDescription>
         </div>
       </ModalHeader>
 
       {isFormVisible ? (
-        <div className={styles.formContainer}>
-          <div className={styles.inputContainer}>
-            <input
-              className={styles.input}
-              placeholder="HH"
-              type="number"
-              value={hours}
-              onChange={e =>
-                setHours(Math.max(0, Number.parseInt(e.target.value, 10) || 0))
-              }
-            />
+        <form
+          onSubmit={event => {
+            event.preventDefault();
+            handleStart();
+          }}
+        >
+          <div className={styles.fields}>
+            <div className={styles.field}>
+              <label htmlFor="countdown-hours">Hours</label>
+              <input
+                id="countdown-hours"
+                inputMode="numeric"
+                min={0}
+                type="number"
+                value={hours}
+                onChange={event =>
+                  setHours(
+                    Math.max(0, Number.parseInt(event.target.value, 10) || 0),
+                  )
+                }
+              />
+            </div>
 
-            <span>:</span>
+            <div className={styles.field}>
+              <label htmlFor="countdown-minutes">Minutes</label>
+              <input
+                id="countdown-minutes"
+                inputMode="numeric"
+                max={59}
+                min={0}
+                type="number"
+                value={minutes}
+                onChange={event =>
+                  setMinutes(
+                    Math.max(
+                      0,
+                      Math.min(
+                        59,
+                        Number.parseInt(event.target.value, 10) || 0,
+                      ),
+                    ),
+                  )
+                }
+              />
+            </div>
 
-            <input
-              className={styles.input}
-              placeholder="MM"
-              type="number"
-              value={minutes}
-              onChange={e =>
-                setMinutes(
-                  Math.max(
-                    0,
-                    Math.min(59, Number.parseInt(e.target.value, 10)),
-                  ),
-                )
-              }
-            />
-
-            <span>:</span>
-
-            <input
-              className={styles.input}
-              placeholder="SS"
-              type="number"
-              value={seconds}
-              onChange={e =>
-                setSeconds(
-                  Math.max(
-                    0,
-                    Math.min(59, Number.parseInt(e.target.value, 10)),
-                  ),
-                )
-              }
-            />
+            <div className={styles.field}>
+              <label htmlFor="countdown-seconds">Seconds</label>
+              <input
+                id="countdown-seconds"
+                inputMode="numeric"
+                max={59}
+                min={0}
+                type="number"
+                value={seconds}
+                onChange={event =>
+                  setSeconds(
+                    Math.max(
+                      0,
+                      Math.min(
+                        59,
+                        Number.parseInt(event.target.value, 10) || 0,
+                      ),
+                    ),
+                  )
+                }
+              />
+            </div>
           </div>
 
           <ModalActions>
-            <ModalButton variant="primary" onClick={handleStart}>
+            <ModalButton
+              disabled={duration === 0}
+              type="submit"
+              variant="primary"
+            >
               Start
             </ModalButton>
           </ModalActions>
-        </div>
+        </form>
       ) : (
-        <div className={styles.timerContainer}>
+        <div>
           <div className={styles.displayTime}>
-            <p className={styles.reverse}>- {formatTime(elapsedTime)}</p>
-            <span>{formatTime(timeLeft)}</span>
+            <p className={styles.status}>
+              {isActive ? 'Counting down' : 'Paused'}
+            </p>
+            <span className={styles.time} role="timer">
+              {formatTime(timeLeft)}
+            </span>
+            <div
+              aria-label="Countdown progress"
+              aria-valuemax={initialTime}
+              aria-valuemin={0}
+              aria-valuenow={elapsedTime}
+              className={styles.progress}
+              role="progressbar"
+            >
+              <div
+                className={styles.progressFill}
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+            <p className={styles.elapsed}>Elapsed {formatTime(elapsedTime)}</p>
           </div>
 
           <ModalActions>
-            <ModalButton onClick={handleBack}>Back</ModalButton>
+            <ModalButton onClick={handleBack}>Change time</ModalButton>
 
             <ModalButton variant="primary" onClick={toggleTimer}>
-              {isActive ? 'Pause' : 'Start'}
+              {isActive ? 'Pause' : 'Resume'}
             </ModalButton>
           </ModalActions>
         </div>
