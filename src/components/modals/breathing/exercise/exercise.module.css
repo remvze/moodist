@@ -61,9 +61,5 @@
     background-color: transparent;
     border: none;
     outline: none;
-
-    & option {
-      color: var(--color-inverted-foreground);
-    }
   }
 }

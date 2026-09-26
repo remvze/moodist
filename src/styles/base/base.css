@@ -20,6 +20,11 @@ body {
   overflow-x: hidden;
 }
 
+select option {
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+}
+
 ::selection {
   color: var(--color-foreground);
   background-color: var(--color-surface-active);

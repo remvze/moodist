@@ -36,13 +36,24 @@
     column-gap: 8px;
     align-items: center;
     justify-content: flex-start;
+    white-space: nowrap;
   }
 
   & .icon {
+    display: inline-flex;
+    flex: 0 0 16px;
+    align-items: center;
+    justify-content: center;
+    height: 16px;
     color: var(--color-foreground);
+
+    & svg {
+      display: block;
+    }
   }
 
   & .active {
+    flex: 0 0 4px;
     width: 4px;
     height: 4px;
     background: var(--color-inverted-background);
@@ -51,5 +62,6 @@
 
   & .shortcut {
     font-size: var(--font-2xsm);
+    white-space: nowrap;
   }
 }
