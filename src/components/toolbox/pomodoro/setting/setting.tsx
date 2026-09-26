@@ -51,7 +51,7 @@ export function Setting({ onChange, onClose, show, times }: SettingProps) {
   };
 
   return (
-    <Modal lockBody={false} show={show} onClose={onClose}>
+    <Modal show={show} onClose={onClose}>
       <ModalHeader>
         <ModalTitle>Change Times</ModalTitle>
       </ModalHeader>
