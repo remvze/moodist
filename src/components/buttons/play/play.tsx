@@ -29,7 +29,15 @@ export function PlayButton() {
     if (isPlaying && noSelected) pause();
   }, [isPlaying, pause, noSelected]);
 
-  useHotkeys('shift+space', handleToggle, {}, [handleToggle]);
+  useHotkeys(
+    'shift+space',
+    event => {
+      event.preventDefault();
+      handleToggle();
+    },
+    {},
+    [handleToggle],
+  );
 
   return (
     <button
