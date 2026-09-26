@@ -104,5 +104,31 @@
     &::-webkit-scrollbar {
       display: none;
     }
+
+    &.fadeStart,
+    &.fadeEnd {
+      -webkit-mask-image: linear-gradient(
+        to right,
+        var(--fade-start, #000),
+        #000 32px,
+        #000 calc(100% - 32px),
+        var(--fade-end, #000)
+      );
+      mask-image: linear-gradient(
+        to right,
+        var(--fade-start, #000),
+        #000 32px,
+        #000 calc(100% - 32px),
+        var(--fade-end, #000)
+      );
+    }
+
+    &.fadeStart {
+      --fade-start: transparent;
+    }
+
+    &.fadeEnd {
+      --fade-end: transparent;
+    }
   }
 }

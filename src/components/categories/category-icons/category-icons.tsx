@@ -1,5 +1,5 @@
 import { sounds } from '@/data/sounds';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import styles from './category-icons.module.css';
 
@@ -7,6 +7,29 @@ import { Container } from '@/components/container';
 
 export default function CategoryIcons() {
   const categories = useMemo(() => sounds.categories, []);
+  const categoriesRef = useRef<HTMLElement>(null);
+  const [showStartFade, setShowStartFade] = useState(false);
+  const [showEndFade, setShowEndFade] = useState(false);
+
+  useEffect(() => {
+    const nav = categoriesRef.current;
+    if (!nav) return;
+
+    const updateFade = () => {
+      setShowStartFade(nav.scrollLeft > 2);
+      setShowEndFade(nav.scrollLeft + nav.clientWidth < nav.scrollWidth - 2);
+    };
+
+    updateFade();
+    nav.addEventListener('scroll', updateFade, { passive: true });
+    const observer = new ResizeObserver(updateFade);
+    observer.observe(nav);
+
+    return () => {
+      nav.removeEventListener('scroll', updateFade);
+      observer.disconnect();
+    };
+  }, []);
 
   const goto = (id: string) => {
     const category = document.getElementById(`category-${id}`);
@@ -21,7 +44,11 @@ export default function CategoryIcons() {
           <p>Jump to any category.</p>
         </div>
 
-        <nav aria-label="Sound categories" className={styles.categories}>
+        <nav
+          aria-label="Sound categories"
+          className={`${styles.categories} ${showStartFade ? styles.fadeStart : ''} ${showEndFade ? styles.fadeEnd : ''}`}
+          ref={categoriesRef}
+        >
           {categories.map(category => (
             <button
               className={styles.category}
