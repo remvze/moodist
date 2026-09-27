@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.1](https://github.com/remvze/moodist/compare/v3.1.0...v3.1.1) (2026-09-27)
+
+
+### 🐛 Bug Fixes
+
+* docker ([e0093ac](https://github.com/remvze/moodist/commit/e0093acbcb7330e8c8721b425c364a6cd799e87c))
+* remove extra margin from cmdk ([50be461](https://github.com/remvze/moodist/commit/50be461bd7cedad686a31cedded041091d9a7b07))
+
 ## [3.1.0](https://github.com/remvze/moodist/compare/v3.0.0...v3.1.0) (2026-09-26)
 
 
