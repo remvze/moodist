@@ -1,4 +1,4 @@
-import { MdOutlineAvTimer } from 'react-icons/md/index';
+import { TbClockUp } from 'react-icons/tb/index';
 
 import { Item } from '../item';
 
@@ -14,7 +14,7 @@ export function Flowmodoro({ open }: FlowmodoroProps) {
   return (
     <Item
       active={running}
-      icon={<MdOutlineAvTimer />}
+      icon={<TbClockUp />}
       label="Flowmodoro"
       shortcut="Shift + F"
       onClick={open}
