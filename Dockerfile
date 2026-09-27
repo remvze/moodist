@@ -1,4 +1,5 @@
-FROM docker.io/node:24-alpine AS build
+# The Astro output is static, so build it on the runner's native architecture.
+FROM --platform=$BUILDPLATFORM docker.io/node:24-alpine AS build
 
 WORKDIR /app
 
