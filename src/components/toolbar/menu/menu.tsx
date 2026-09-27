@@ -23,6 +23,7 @@ import {
   BinauralItem,
   IsochronicItem,
   LofiItem,
+  RadioItem,
 } from './items';
 import { Divider } from './divider';
 import { ShareLinkModal } from '@/components/modals/share-link';
@@ -34,6 +35,7 @@ import { BreathingExerciseModal } from '@/components/modals/breathing';
 import { BinauralModal } from '@/components/modals/binaural';
 import { IsochronicModal } from '@/components/modals/isochronic';
 import { LofiModal } from '@/components/modals/lofi';
+import { RadioModal } from '@/components/modals/radio';
 import {
   Pomodoro,
   Flowmodoro,
@@ -54,6 +56,7 @@ import { OPEN_PRESETS } from '@/constants/events';
 
 export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
+  const [radioPlaying, setRadioPlaying] = useState(false);
 
   const noSelected = useSoundStore(state => state.noSelected());
 
@@ -64,6 +67,7 @@ export function Menu() {
       countdown: false,
       isochronic: false,
       lofi: false,
+      radio: false,
       notepad: false,
       pomodoro: false,
       flowmodoro: false,
@@ -166,6 +170,10 @@ export function Menu() {
                     <BinauralItem open={() => open('binaural')} />
                     <IsochronicItem open={() => open('isochronic')} />
                     <LofiItem open={() => open('lofi')} />
+                    <RadioItem
+                      active={radioPlaying}
+                      open={() => open('radio')}
+                    />
 
                     <Divider />
                     <SettingsItem open={() => open('settings')} />
@@ -220,6 +228,11 @@ export function Menu() {
         onClose={() => close('isochronic')}
       />
       <LofiModal show={modals.lofi} onClose={() => close('lofi')} />
+      <RadioModal
+        show={modals.radio}
+        onClose={() => close('radio')}
+        onPlayingChange={setRadioPlaying}
+      />
     </>
   );
 }

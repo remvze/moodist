@@ -1,0 +1,353 @@
+.player {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.station {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  min-width: 0;
+  padding: 14px;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+}
+
+.artwork {
+  display: flex;
+  flex: 0 0 104px;
+  align-items: center;
+  justify-content: center;
+  width: 104px;
+  height: 104px;
+  overflow: hidden;
+  color: var(--color-foreground-subtle);
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+
+  & img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  & svg {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.stationDetails {
+  min-width: 0;
+
+  & h3 {
+    margin: 10px 0 8px;
+    overflow: hidden;
+    font-family: var(--font-heading);
+    font-size: var(--font-md);
+    font-weight: 600;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+  }
+
+  & a {
+    display: inline-flex;
+    gap: 4px;
+    align-items: center;
+    font-size: var(--font-xsm);
+    color: var(--color-foreground-subtle);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: var(--color-foreground);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus);
+      outline-offset: 2px;
+    }
+  }
+}
+
+.liveLabel {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  font-size: var(--font-xsm);
+  font-weight: 500;
+  color: var(--color-foreground-subtle);
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-foreground);
+  border-radius: 50%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  & small {
+    font-size: var(--font-xsm);
+    color: var(--color-foreground-subtle);
+  }
+}
+
+.fieldLabel {
+  font-size: var(--font-sm);
+  font-weight: 500;
+}
+
+.selectTrigger {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  font: inherit;
+  font-size: var(--font-sm);
+  color: var(--color-foreground);
+  text-align: left;
+  cursor: pointer;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+
+  & > span:first-child {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    border-color: var(--color-border-strong);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+}
+
+.selectIcon {
+  display: flex;
+  flex: none;
+
+  & svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.selectContent {
+  z-index: 30;
+  width: var(--radix-select-trigger-width);
+  max-height: min(220px, var(--radix-select-content-available-height));
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  box-shadow: var(--shadow-floating);
+}
+
+.selectViewport {
+  box-sizing: border-box;
+  max-height: 218px;
+  padding: 4px;
+  overflow-y: auto;
+}
+
+.selectOption {
+  display: block;
+  width: 100%;
+  padding: 9px 10px;
+  overflow: hidden;
+  font-size: var(--font-sm);
+  color: var(--color-foreground);
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+
+  &[data-highlighted] {
+    background: var(--color-surface-hover);
+  }
+
+  &[data-state='checked'] {
+    font-weight: 600;
+    background: var(--color-surface-active);
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 14px;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+}
+
+.playButton {
+  display: flex;
+  flex: 0 0 48px;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  font-size: 20px;
+  color: var(--color-inverted-foreground);
+  cursor: pointer;
+  background: var(--color-inverted-background);
+  border: 0;
+  border-radius: 0;
+
+  &:hover {
+    background: var(--color-inverted-background-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+}
+
+.volume {
+  flex: 1;
+  min-width: 0;
+}
+
+.volumeLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: var(--font-xsm);
+
+  & span:last-child {
+    color: var(--color-foreground-subtle);
+  }
+}
+
+.status {
+  min-height: 18px;
+  margin-top: -10px;
+  font-size: var(--font-xsm);
+  color: var(--color-foreground-subtle);
+}
+
+.credit {
+  margin-top: 20px;
+  font-size: var(--font-xsm);
+  line-height: 1.5;
+  color: var(--color-foreground-subtle);
+
+  & a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+
+.loading {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 14px;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+}
+
+.loadingArt,
+.loadingText span {
+  background: var(--color-surface-hover);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loadingArt {
+  flex: 0 0 104px;
+  height: 104px;
+}
+
+.loadingText {
+  flex: 1;
+
+  & span {
+    display: block;
+    width: 80%;
+    height: 12px;
+    margin-bottom: 12px;
+  }
+
+  & span:nth-child(2) {
+    width: 55%;
+  }
+
+  & p {
+    font-size: var(--font-xsm);
+    color: var(--color-foreground-subtle);
+  }
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  padding: 32px 16px;
+  text-align: center;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+
+  & > svg {
+    width: 28px;
+    height: 28px;
+    color: var(--color-foreground-subtle);
+  }
+
+  & button {
+    padding: 8px 12px;
+    color: var(--color-inverted-foreground);
+    cursor: pointer;
+    background: var(--color-inverted-background);
+    border: 0;
+    border-radius: 0;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus);
+      outline-offset: 2px;
+    }
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (max-width: 440px) {
+  .artwork,
+  .loadingArt {
+    flex-basis: 80px;
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadingArt,
+  .loadingText span {
+    animation: none;
+  }
+}

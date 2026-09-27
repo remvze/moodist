@@ -12,9 +12,11 @@ import styles from './modal.module.css';
 
 interface ModalProps {
   children: React.ReactNode;
+  closeOnEscape?: boolean;
   lockBody?: boolean;
   onClose: () => void;
   persist?: boolean;
+  portalContainerRef?: React.Ref<HTMLDivElement>;
   show: boolean;
   wide?: boolean;
 }
@@ -23,9 +25,11 @@ const TRANSITION_DURATION = 300;
 
 export function Modal({
   children,
+  closeOnEscape = true,
   lockBody = true,
   onClose,
   persist = false,
+  portalContainerRef,
   show,
   wide,
 }: ModalProps) {
@@ -47,7 +51,7 @@ export function Modal({
 
   useEffect(() => {
     function keyListener(e: KeyboardEvent) {
-      if (show && e.key === 'Escape') {
+      if (show && closeOnEscape && e.key === 'Escape') {
         onClose();
       }
     }
@@ -55,7 +59,7 @@ export function Modal({
     document.addEventListener('keydown', keyListener);
 
     return () => document.removeEventListener('keydown', keyListener);
-  }, [onClose, show]);
+  }, [closeOnEscape, onClose, show]);
 
   const animationProps = persist
     ? {
@@ -91,6 +95,7 @@ export function Modal({
             {children}
           </motion.div>
         </div>
+        {portalContainerRef && <div ref={portalContainerRef} />}
       </div>
     </FocusTrap>
   );
