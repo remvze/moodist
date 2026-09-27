@@ -16,6 +16,7 @@ import {
   SleepTimerItem,
   BreathingExerciseItem,
   PomodoroItem,
+  FlowmodoroItem,
   NotepadItem,
   TodoItem,
   CountdownItem,
@@ -33,7 +34,13 @@ import { BreathingExerciseModal } from '@/components/modals/breathing';
 import { BinauralModal } from '@/components/modals/binaural';
 import { IsochronicModal } from '@/components/modals/isochronic';
 import { LofiModal } from '@/components/modals/lofi';
-import { Pomodoro, Notepad, Todo, Countdown } from '@/components/toolbox';
+import {
+  Pomodoro,
+  Flowmodoro,
+  Notepad,
+  Todo,
+  Countdown,
+} from '@/components/toolbox';
 
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
@@ -59,6 +66,7 @@ export function Menu() {
       lofi: false,
       notepad: false,
       pomodoro: false,
+      flowmodoro: false,
       presets: false,
       settings: false,
       shareLink: false,
@@ -96,6 +104,7 @@ export function Menu() {
   useHotkeys('shift+b', () => open('breathing'));
   useHotkeys('shift+n', () => open('notepad'));
   useHotkeys('shift+p', () => open('pomodoro'));
+  useHotkeys('shift+f', () => open('flowmodoro'));
   useHotkeys('shift+t', () => open('todo'));
   useHotkeys('shift+c', () => open('countdown'));
   useHotkeys('shift+g', () => open('settings'));
@@ -148,6 +157,7 @@ export function Menu() {
                     <Divider />
                     <CountdownItem open={() => open('countdown')} />
                     <PomodoroItem open={() => open('pomodoro')} />
+                    <FlowmodoroItem open={() => open('flowmodoro')} />
                     <NotepadItem open={() => open('notepad')} />
                     <TodoItem open={() => open('todo')} />
                     <BreathingExerciseItem open={() => open('breathing')} />
@@ -190,6 +200,11 @@ export function Menu() {
         open={() => open('pomodoro')}
         show={modals.pomodoro}
         onClose={() => close('pomodoro')}
+      />
+      <Flowmodoro
+        open={() => open('flowmodoro')}
+        show={modals.flowmodoro}
+        onClose={() => close('flowmodoro')}
       />
       <Notepad show={modals.notepad} onClose={() => close('notepad')} />
       <Todo show={modals.todo} onClose={() => close('todo')} />
