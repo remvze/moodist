@@ -8,7 +8,7 @@
   margin-top: 12px;
   background-color: var(--color-background);
   border: 1px solid var(--color-border);
-  border-radius: 0;
+  border-radius: 10px;
 
   & .timer {
     position: absolute;
@@ -19,13 +19,13 @@
     color: var(--color-foreground-subtle);
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: 0;
+    border-radius: 10px;
   }
 
   & .phase {
     font-family: var(--font-display);
     font-size: var(--font-lg);
-    font-weight: 600;
+    font-weight: 450;
   }
 
   & .circle {
@@ -50,7 +50,7 @@
   margin-top: 8px;
   background-color: var(--color-background);
   border: 1px solid var(--color-border);
-  border-radius: 0;
+  border-radius: 10px;
 
   & .selectBox {
     width: 100%;

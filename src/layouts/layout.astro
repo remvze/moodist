@@ -1,6 +1,5 @@
 ---
 import { pwaInfo } from 'virtual:pwa-info'; // eslint-disable-line
-import { Font } from 'astro:assets';
 
 import { Reload } from '@/components/reload';
 
@@ -13,10 +12,16 @@ interface Props {
   title?: string;
 }
 
-const title = Astro.props.title || 'Moodist: Ambient Sounds for Focus and Calm';
+const title =
+  Astro.props.title ||
+  'Moodist + The Work Docs: A little space to find your focus';
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = new URL('/og.png', Astro.site);
+const imageAlt =
+  'Moodist + The Work Docs — A little space to find your focus, above a peaceful illustrated garden.';
 const description =
   Astro.props.description ||
-  `Moodist is a free and open-source ambient sound generator featuring ${count()} carefully curated sounds. Create your ideal atmosphere for relaxation, focus, or creativity with this versatile tool.`;
+  `Read deeply. Work gently. Take a breath. Mix ${count()} ambient sounds to make a little room for focus, reading, or rest. Free and open-source.`;
 ---
 
 <!doctype html>
@@ -25,7 +30,7 @@ const description =
     <meta charset="UTF-8" />
     <meta content="width=device-width" name="viewport" />
     <meta content={Astro.generator} name="generator" />
-    <meta content="#18181b" name="theme-color" />
+    <meta content="#121923" name="theme-color" />
     <script is:inline>
       (() => {
         const saved = localStorage.getItem('moodist-theme');
@@ -43,26 +48,33 @@ const description =
         document.documentElement.style.colorScheme = theme;
         document
           .querySelector('meta[name="theme-color"]')
-          ?.setAttribute('content', theme === 'dark' ? '#18181b' : '#fafafa');
+          ?.setAttribute('content', theme === 'dark' ? '#121923' : '#faf9f5');
       })();
     </script>
     <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
-    <Font cssVariable="--font-inter" preload={[{ weight: 400 }]} />
-    <Font cssVariable="--font-inter-tight" />
-    <Font cssVariable="--font-fraunces" preload />
+    <link rel="preload" href="/fonts/SNPro-Latin.woff2" as="font" type="font/woff2" crossorigin />
 
+    <link rel="canonical" href={canonicalUrl} />
     <title>{title}</title>
     <meta content={title} name="title" />
     <meta content={description} name="description" />
 
     <meta content={title} property="og:title" />
     <meta content={description} property="og:description" />
-    <meta content="Moodist" property="og:site_name" />
-    <meta content="https://moodist.app" property="og:url" />
+    <meta content="Moodist + The Work Docs" property="og:site_name" />
+    <meta content={canonicalUrl} property="og:url" />
     <meta content="website" property="og:type" />
-    <meta content="https://moodist.app/og.png" property="og:image" />
+    <meta content={imageUrl} property="og:image" />
+    <meta content="image/png" property="og:image:type" />
+    <meta content="1200" property="og:image:width" />
+    <meta content="630" property="og:image:height" />
+    <meta content={imageAlt} property="og:image:alt" />
 
     <meta content="summary_large_image" name="twitter:card" />
+    <meta content={title} name="twitter:title" />
+    <meta content={description} name="twitter:description" />
+    <meta content={imageUrl} name="twitter:image" />
+    <meta content={imageAlt} name="twitter:image:alt" />
 
     {pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
   </head>

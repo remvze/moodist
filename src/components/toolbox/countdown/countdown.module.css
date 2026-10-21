@@ -25,7 +25,7 @@
     text-align: center;
     background-color: var(--color-background);
     border: 1px solid var(--color-border);
-    border-radius: 0;
+    border-radius: 10px;
     outline: none;
 
     &:focus-visible {
@@ -36,6 +36,7 @@
 }
 
 .displayTime {
+  border-radius: 14px;
   padding: 26px 24px 18px;
   text-align: center;
   background-color: var(--color-background);
@@ -51,7 +52,7 @@
 .time {
   display: block;
   font-size: clamp(2rem, 8vw, 3rem);
-  font-weight: 600;
+  font-weight: 400;
   font-variant-numeric: tabular-nums;
   line-height: 1.1;
   letter-spacing: -0.04em;
@@ -75,4 +76,23 @@
   font-variant-numeric: tabular-nums;
   color: var(--color-foreground-subtle);
   text-align: left;
+}
+
+.quickStart {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.quickStart button {
+  flex: 1;
+  min-height: 38px;
+  font-size: var(--font-sm);
+  color: var(--color-accent);
+  background: var(--color-surface-hover);
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+}
+.quickStart button:hover {
+  background: var(--color-selected-surface);
 }

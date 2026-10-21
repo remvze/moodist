@@ -23,6 +23,7 @@ export function Button({
     <Tooltip.Provider delayDuration={0}>
       <Tooltip content={tooltip} placement="bottom">
         <button
+          aria-label={tooltip}
           className={cn(styles.button, smallIcon && styles.smallIcon)}
           disabled={disabled}
           onClick={onClick}

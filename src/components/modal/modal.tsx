@@ -12,6 +12,7 @@ import styles from './modal.module.css';
 
 interface ModalProps {
   children: React.ReactNode;
+  docked?: boolean;
   closeOnEscape?: boolean;
   lockBody?: boolean;
   onClose: () => void;
@@ -25,6 +26,7 @@ const TRANSITION_DURATION = 300;
 
 export function Modal({
   children,
+  docked = false,
   closeOnEscape = true,
   lockBody = true,
   onClose,
@@ -39,7 +41,7 @@ export function Modal({
   };
 
   useEffect(() => {
-    if (!show || !lockBody) return;
+    if (!show || !lockBody || docked) return;
 
     const previousOverflow = document.body.style.overflowY;
     document.body.style.overflowY = 'hidden';
@@ -47,7 +49,7 @@ export function Modal({
     return () => {
       document.body.style.overflowY = previousOverflow;
     };
-  }, [show, lockBody]);
+  }, [show, lockBody, docked]);
 
   useEffect(() => {
     function keyListener(e: KeyboardEvent) {
@@ -71,6 +73,28 @@ export function Modal({
         initial: 'hidden',
       };
 
+  if (docked) {
+    return show ? (
+      <Portal>
+        <section
+          aria-label="Tool workspace"
+          className={styles.docked}
+          id="focus-tool-panel"
+        >
+          <button
+            aria-label="Minimize tool"
+            className={styles.minimize}
+            onClick={onClose}
+            type="button"
+          >
+            <IoClose />
+          </button>
+          {children}
+        </section>
+      </Portal>
+    ) : null;
+  }
+
   const content = (
     <FocusTrap active={show}>
       <div>
@@ -89,7 +113,11 @@ export function Modal({
             transition={{ duration: TRANSITION_DURATION / 1000 }}
             variants={variants.modal}
           >
-            <button className={styles.close} onClick={onClose}>
+            <button
+              aria-label="Close dialog"
+              className={styles.close}
+              onClick={onClose}
+            >
               <IoClose />
             </button>
             {children}

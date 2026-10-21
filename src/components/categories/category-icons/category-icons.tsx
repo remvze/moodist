@@ -1,5 +1,5 @@
 import { sounds } from '@/data/sounds';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo } from 'react';
 import { BiSearch } from 'react-icons/bi/index';
 
 import styles from './category-icons.module.css';
@@ -10,33 +10,13 @@ import { dispatch } from '@/lib/event';
 
 export default function CategoryIcons() {
   const categories = useMemo(() => sounds.categories, []);
-  const categoriesRef = useRef<HTMLElement>(null);
-  const [showStartFade, setShowStartFade] = useState(false);
-  const [showEndFade, setShowEndFade] = useState(false);
-
-  useEffect(() => {
-    const nav = categoriesRef.current;
-    if (!nav) return;
-
-    const updateFade = () => {
-      setShowStartFade(nav.scrollLeft > 2);
-      setShowEndFade(nav.scrollLeft + nav.clientWidth < nav.scrollWidth - 2);
-    };
-
-    updateFade();
-    nav.addEventListener('scroll', updateFade, { passive: true });
-    const observer = new ResizeObserver(updateFade);
-    observer.observe(nav);
-
-    return () => {
-      nav.removeEventListener('scroll', updateFade);
-      observer.disconnect();
-    };
-  }, []);
-
   const goto = (id: string) => {
     const category = document.getElementById(`category-${id}`);
-    category?.scrollIntoView({ behavior: 'smooth' });
+    category?.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 'instant'
+        : 'smooth',
+    });
   };
 
   return (
@@ -45,7 +25,7 @@ export default function CategoryIcons() {
         <div className={styles.header}>
           <div>
             <h2 className={styles.title}>Browse sounds</h2>
-            <p>Jump to any category.</p>
+            <p>Find a familiar place. Settle into a sound.</p>
           </div>
           <button
             className={styles.searchButton}
@@ -57,14 +37,11 @@ export default function CategoryIcons() {
           </button>
         </div>
 
-        <nav
-          aria-label="Sound categories"
-          className={`${styles.categories} ${showStartFade ? styles.fadeStart : ''} ${showEndFade ? styles.fadeEnd : ''}`}
-          ref={categoriesRef}
-        >
+        <nav aria-label="Sound categories" className={styles.categories}>
           {categories.map(category => (
             <button
               className={styles.category}
+              data-category={category.id}
               key={category.id}
               onClick={() => goto(category.id)}
             >

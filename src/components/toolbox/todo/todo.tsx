@@ -14,7 +14,7 @@ interface TodoProps {
 
 export function Todo({ onClose, show }: TodoProps) {
   return (
-    <Modal show={show} onClose={onClose}>
+    <Modal docked show={show} onClose={onClose}>
       <ModalHeader>
         <div>
           <ModalTitle>Todo Checklist</ModalTitle>

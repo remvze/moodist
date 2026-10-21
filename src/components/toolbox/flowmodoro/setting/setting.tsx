@@ -51,7 +51,7 @@ export function Setting({ onChange, onClose, show, times }: SettingProps) {
   };
 
   return (
-    <Modal show={show} onClose={onClose}>
+    <Modal docked show={show} onClose={onClose}>
       <ModalHeader>
         <ModalTitle>Break Percentage</ModalTitle>
       </ModalHeader>

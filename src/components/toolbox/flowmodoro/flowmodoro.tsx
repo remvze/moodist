@@ -126,7 +126,7 @@ export function Flowmodoro({ onClose, open, show }: FlowmodoroProps) {
 
   return (
     <>
-      <Modal show={show} onClose={onClose}>
+      <Modal docked show={show} onClose={onClose}>
         <header className={styles.header}>
           <h2 className={styles.title}>Flowmodoro Timer</h2>
 

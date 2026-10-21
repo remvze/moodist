@@ -29,3 +29,9 @@ select option {
   color: var(--color-foreground);
   background-color: var(--color-surface-active);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

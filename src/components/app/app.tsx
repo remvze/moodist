@@ -6,6 +6,7 @@ import { Howler } from 'howler';
 import { useSoundStore } from '@/stores/sound';
 
 import { Container } from '@/components/container';
+import CategoryIcons from '@/components/categories/category-icons/category-icons';
 import { StoreConsumer } from '@/components/store-consumer';
 import { Buttons } from '@/components/buttons';
 import { Categories } from '@/components/categories';
@@ -91,6 +92,7 @@ export function App() {
     <SnackbarProvider>
       <StoreConsumer>
         <MediaControls />
+        <CategoryIcons />
         <Container>
           <div id="app" />
           <Buttons />

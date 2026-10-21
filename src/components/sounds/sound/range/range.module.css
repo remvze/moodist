@@ -19,7 +19,7 @@
   &:disabled {
     pointer-events: none;
     cursor: default;
-    opacity: 0.16;
+    opacity: 0.4;
   }
 
   /***** Chrome, Safari, Opera and Edge Chromium styles *****/

@@ -2,7 +2,7 @@
   scroll-margin-top: 24px;
 
   &:not(:last-of-type) {
-    margin-bottom: 20px;
+    margin-bottom: 28px;
   }
 
   & .iconContainer {
@@ -13,8 +13,8 @@
 
     & .tail {
       width: 1px;
-      height: 75px;
-      background: linear-gradient(transparent, var(--color-border-strong));
+      height: 44px;
+      background: linear-gradient(transparent, var(--color-border));
     }
 
     & .icon {
@@ -24,8 +24,13 @@
       width: 45px;
       height: 45px;
       font-size: var(--font-md);
-      background-color: var(--color-surface);
-      border: 1px solid var(--color-border-strong);
+      color: var(--color-foreground-subtle);
+      background-color: color-mix(
+        in srgb,
+        var(--color-foreground-subtler) 8%,
+        var(--color-background)
+      );
+      border: none;
       border-radius: 50%;
     }
   }
@@ -33,7 +38,7 @@
   & .title {
     font-family: var(--font-display);
     font-size: var(--font-lg);
-    font-weight: 600;
+    font-weight: 450;
     text-align: center;
   }
 }

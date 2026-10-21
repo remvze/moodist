@@ -45,7 +45,7 @@ export function ShareLinkModal({ onClose, show }: ShareLinkModalProps) {
 
   const url = useMemo(() => {
     if (!isMounted)
-      return `https://moodist.app/?share=${encodeURIComponent(string)}`;
+      return `https://focus.theworkdocs.com/?share=${encodeURIComponent(string)}`;
 
     return `${window.location.protocol}//${
       window.location.host

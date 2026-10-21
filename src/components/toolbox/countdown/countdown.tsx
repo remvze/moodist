@@ -46,17 +46,17 @@ export function Countdown({ onClose, show }: CountdownProps) {
     return () => clearTimeout(timer);
   }, [isActive, timeLeft, alarm]);
 
-  const handleStart = useCallback(() => {
-    if (hours > 0 || minutes > 0 || seconds > 0) {
-      const totalTime =
-        (hours || 0) * 3600 + (minutes || 0) * 60 + (seconds || 0);
+  const startDuration = useCallback((totalTime: number) => {
+    if (totalTime <= 0) return;
+    setTimeLeft(totalTime);
+    setInitialTime(totalTime);
+    setIsActive(true);
+    setIsFormVisible(false);
+  }, []);
 
-      setTimeLeft(totalTime);
-      setInitialTime(totalTime);
-      setIsActive(true);
-      setIsFormVisible(false);
-    }
-  }, [hours, minutes, seconds]);
+  const handleStart = useCallback(() => {
+    startDuration((hours || 0) * 3600 + (minutes || 0) * 60 + (seconds || 0));
+  }, [hours, minutes, seconds, startDuration]);
 
   const handleBack = useCallback(() => {
     setIsActive(false);
@@ -81,7 +81,7 @@ export function Countdown({ onClose, show }: CountdownProps) {
   const progress = initialTime > 0 ? (elapsedTime / initialTime) * 100 : 0;
 
   return (
-    <Modal show={show} onClose={onClose}>
+    <Modal docked show={show} onClose={onClose}>
       <ModalHeader>
         <div>
           <ModalTitle>Countdown Timer</ModalTitle>
@@ -98,6 +98,22 @@ export function Countdown({ onClose, show }: CountdownProps) {
             handleStart();
           }}
         >
+          <div
+            aria-label="Quick countdown"
+            role="group"
+            className={styles.quickStart}
+          >
+            {[5, 15, 30].map(value => (
+              <button
+                aria-label={`Start ${value} minute countdown`}
+                key={value}
+                onClick={() => startDuration(value * 60)}
+                type="button"
+              >
+                {value} min
+              </button>
+            ))}
+          </div>
           <div className={styles.fields}>
             <div className={styles.field}>
               <label htmlFor="countdown-hours">Hours</label>

@@ -1,7 +1,16 @@
+@font-face {
+  font-family: 'SN Pro';
+  src: url('/fonts/SNPro-Latin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+2000-2BFF;
+}
+
 :root {
-  --font-body: var(--font-inter);
-  --font-heading: var(--font-inter-tight);
-  --font-display: var(--font-fraunces);
+  --font-body: 'SN Pro', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-body);
+  --font-display: var(--font-body);
 
   /* Font Sizes */
   --font-base-size: 1rem;

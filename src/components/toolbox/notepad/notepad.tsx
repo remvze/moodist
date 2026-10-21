@@ -47,7 +47,7 @@ export function Notepad({ onClose, show }: NotepadProps) {
   };
 
   return (
-    <Modal show={show} wide onClose={onClose}>
+    <Modal docked show={show} wide onClose={onClose}>
       <ModalHeader className={styles.header}>
         <ModalTitle className={styles.label}>Your Note</ModalTitle>
         <div className={styles.buttons}>

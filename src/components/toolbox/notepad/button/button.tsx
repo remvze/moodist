@@ -22,6 +22,7 @@ export function Button({
   return (
     <Tooltip content={tooltip} placement="bottom">
       <button
+        aria-label={tooltip}
         className={cn(
           styles.button,
           critical && styles.critical,

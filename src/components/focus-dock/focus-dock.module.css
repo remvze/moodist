@@ -1,0 +1,103 @@
+.dock {
+  position: fixed;
+  z-index: 19;
+  right: 16px;
+  bottom: 86px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.icons {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  box-shadow: 0 6px 24px rgb(0 0 0 / 6%);
+}
+.icon {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 48px;
+  font-size: 21px;
+  color: var(--color-foreground-subtle);
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.icon:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-foreground);
+}
+.icon[aria-pressed='true'] {
+  color: var(--color-accent);
+  background: var(--color-selected-surface);
+}
+.dot {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+.time {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 34px;
+  padding: 6px 12px;
+  font-size: var(--font-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-accent);
+  white-space: nowrap;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.time span {
+  font-size: 11px;
+  color: var(--color-foreground-subtle);
+}
+.dock button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+@media (width <= 600px) {
+  .dock {
+    right: 50%;
+    bottom: 80px;
+    transform: translateX(50%);
+  }
+  .icons {
+    flex-direction: row;
+  }
+  .time {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .dock:has(.icon[aria-pressed='true']) .time {
+    display: none;
+  }
+}
+
+.caption {
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 450;
+}

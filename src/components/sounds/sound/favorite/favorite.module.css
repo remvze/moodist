@@ -6,11 +6,11 @@
   width: 26px;
   height: 26px;
   line-height: 0;
-  color: var(--color-foreground-subtle);
+  color: var(--color-foreground-subtler);
   cursor: pointer;
   background-color: transparent;
   border: none;
-  border-radius: 0;
+  border-radius: 50%;
   transition:
     color 180ms ease,
     background-color 180ms ease,
@@ -28,6 +28,6 @@
   }
 
   &.isFavorite {
-    color: var(--color-foreground);
+    color: var(--color-accent);
   }
 }

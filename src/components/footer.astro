@@ -5,7 +5,7 @@ import { Container } from './container';
 <footer class="footer">
   <Container>
     <p>
-      Created by <a href="https://twitter.com/remvze">Maze ✦</a>
+      Created by <a href="https://www.theworkdocs.com/">The Work Docs team</a>
     </p>
   </Container>
 </footer>
@@ -14,7 +14,8 @@ import { Container } from './container';
   .footer {
     display: flex;
     align-items: center;
-    height: 100px;
+    padding: 36px 0 44px;
+    text-align: center;
 
     & p {
       font-size: var(--font-sm);
@@ -26,6 +27,17 @@ import { Container } from './container';
         color: var(--color-foreground);
         text-decoration: none;
       }
+    }
+
+    & a:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    & a:focus-visible {
+      outline: 2px solid var(--color-focus);
+      outline-offset: 4px;
+      border-radius: 4px;
     }
   }
 </style>

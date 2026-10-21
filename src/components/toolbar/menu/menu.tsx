@@ -44,6 +44,8 @@ import {
   Countdown,
 } from '@/components/toolbox';
 
+import { FocusDock } from '@/components/focus-dock/focus-dock';
+
 import { fade, mix, slideY } from '@/lib/motion';
 import { useSoundStore } from '@/stores/sound';
 
@@ -52,7 +54,7 @@ import { useCloseListener } from '@/hooks/use-close-listener';
 import { closeModals } from '@/lib/modal';
 import { toggleTheme } from '@/lib/theme';
 import { subscribe } from '@/lib/event';
-import { OPEN_PRESETS } from '@/constants/events';
+import { OPEN_PRESETS, focusTools } from '@/constants/events';
 
 export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -124,6 +126,11 @@ export function Menu() {
 
   return (
     <>
+      <FocusDock
+        active={focusTools.find(tool => modals[tool])}
+        onOpen={open}
+        onClose={closeAll}
+      />
       <div className={styles.wrapper}>
         <DropdownMenu.Root
           modal={false}
@@ -204,11 +211,7 @@ export function Menu() {
         onClose={() => close('shortcuts')}
       />
       <SettingsModal show={modals.settings} onClose={() => close('settings')} />
-      <Pomodoro
-        open={() => open('pomodoro')}
-        show={modals.pomodoro}
-        onClose={() => close('pomodoro')}
-      />
+      <Pomodoro show={modals.pomodoro} onClose={() => close('pomodoro')} />
       <Flowmodoro
         open={() => open('flowmodoro')}
         show={modals.flowmodoro}

@@ -1,72 +1,57 @@
 :root {
-  --color-neutral-50: #fafafa;
-  --color-neutral-100: #f4f4f5;
-  --color-neutral-200: #e4e4e7;
-  --color-neutral-300: #d4d4d8;
-  --color-neutral-400: #a1a1aa;
-  --color-neutral-500: #71717a;
-  --color-neutral-600: #52525b;
-  --color-neutral-700: #3f3f46;
-  --color-neutral-800: #27272a;
-  --color-neutral-900: #18181b;
-  --color-neutral-950: #09090b;
-
   /* Foreground */
-  --color-foreground: var(--color-neutral-50);
-  --color-foreground-subtle: var(--color-neutral-400);
-  --color-foreground-subtler: var(--color-neutral-500);
+  --color-foreground: #f1f3fb;
+  --color-foreground-subtle: #cad3e3;
+  --color-foreground-subtler: #a9b0c0;
 
   /* Backgrounds and surfaces */
-  --color-background: var(--color-neutral-950);
-  --color-surface: var(--color-neutral-900);
-  --color-surface-hover: var(--color-neutral-800);
-  --color-surface-active: var(--color-neutral-700);
-  --color-selected-surface: var(--color-neutral-800);
-  --color-selected-border: var(--color-neutral-600);
+  --color-background: #121923;
+  --color-surface: #1d2633;
+  --color-surface-hover: #252f3e;
+  --color-surface-active: #364259;
+  --color-selected-surface: #2c3250;
+  --color-selected-border: #828be0;
   --color-card-hover: var(--color-surface);
 
   /* Borders and focus */
-  --color-border: var(--color-neutral-800);
-  --color-border-strong: var(--color-neutral-700);
-  --color-focus: var(--color-neutral-600);
+  --color-border: #303c4d;
+  --color-border-strong: #4c5c73;
+  --color-focus: #a9b1ff;
+  --color-accent: #a9b1ff;
 
   /* Overlays and media */
   --color-backdrop: rgb(9 9 11 / 65%);
-  --color-on-image: #fff;
-  --color-on-image-subtle: rgb(255 255 255 / 80%);
-  --color-image-overlay: rgb(9 9 11 / 52%);
-  --color-image-surface: rgb(9 9 11 / 32%);
-  --color-image-border: rgb(255 255 255 / 22%);
   --shadow-floating: none;
   --shadow-card: none;
   --shadow-card-hover: none;
 
   /* Inverted controls */
-  --color-inverted-background: var(--color-neutral-50);
-  --color-inverted-background-hover: var(--color-neutral-200);
-  --color-inverted-foreground: var(--color-neutral-950);
+  --color-inverted-background: #a9b1ff;
+  --color-inverted-background-hover: #c4c9ff;
+  --color-inverted-foreground: #121923;
 }
 
 :root[data-theme='light'] {
-  --color-foreground: var(--color-neutral-950);
-  --color-foreground-subtle: var(--color-neutral-600);
-  --color-foreground-subtler: var(--color-neutral-500);
+  --color-foreground: #172a40;
+  --color-foreground-subtle: #394b60;
+  --color-foreground-subtler: #64748b;
 
-  --color-background: var(--color-neutral-50);
+  --color-background: #faf9f5;
   --color-surface: #fff;
-  --color-surface-hover: var(--color-neutral-100);
-  --color-surface-active: var(--color-neutral-200);
-  --color-selected-surface: var(--color-neutral-200);
-  --color-selected-border: var(--color-neutral-500);
+  --color-surface-hover: #f0f1f7;
+  --color-surface-active: #dde0fb;
+  --color-selected-surface: #eef0ff;
+  --color-selected-border: #343ed4;
   --color-card-hover: var(--color-surface);
 
-  --color-border: var(--color-neutral-200);
-  --color-border-strong: var(--color-neutral-300);
-  --color-focus: var(--color-neutral-500);
+  --color-border: #e1e4eb;
+  --color-border-strong: #b8c2d2;
+  --color-focus: #343ed4;
+  --color-accent: #343ed4;
 
-  --color-inverted-background: var(--color-neutral-950);
-  --color-inverted-background-hover: var(--color-neutral-800);
-  --color-inverted-foreground: var(--color-neutral-50);
+  --color-inverted-background: #343ed4;
+  --color-inverted-background-hover: #282fa9;
+  --color-inverted-foreground: #fff;
 
   --color-backdrop: rgb(9 9 11 / 35%);
   --shadow-floating: 0 12px 32px rgb(9 9 11 / 10%);

@@ -7,7 +7,7 @@
   margin-top: 12px;
   background-color: var(--color-background);
   border: 1px solid var(--color-border);
-  border-radius: 0;
+  border-radius: 10px;
 
   & input {
     flex-grow: 1;
@@ -32,6 +32,6 @@
     cursor: pointer;
     background-color: var(--color-surface-hover);
     border: 1px solid var(--color-border-strong);
-    border-radius: 0;
+    border-radius: 10px;
   }
 }
