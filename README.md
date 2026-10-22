@@ -58,6 +58,12 @@ Then open:
 http://localhost:8080
 ```
 
+### 3. Deploy on Wasmer
+
+[![Deploy to Wasmer](https://img.shields.io/badge/Deploy%20to-Wasmer-171717?logo=wasmer&logoColor=white)](https://wasmer.io/apps/create?github=remvze%2Fmoodist)
+
+Wasmer detects the Astro site, runs `pnpm install` and `pnpm run build`, and serves the generated `dist` folder as static files. The button opens Wasmer's import page for this public repository, where you review the configuration and click Deploy; it does not create a copy of the repository in your GitHub account. To customize the site and redeploy on every push, fork this repository and import your own repository on Wasmer.
+
 ## Contributing
 
 Please check [CONTRIBUTING.md](CONTRIBUTING.md) file.
